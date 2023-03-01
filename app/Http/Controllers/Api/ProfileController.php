@@ -75,6 +75,7 @@ class ProfileController extends Controller {
 
     public function updateAddress( Request $request ) {
         $id = $request->id;
+        $add = Address::find( $id );
         $add->first_name = $request->first_name;
         $add->last_name = $request->last_name;
         $add->mobile = $request->mobile;
