@@ -82,6 +82,20 @@ class ProfileController extends Controller {
 
     public function editAddress( Request $request ) {
         $id = $request->id;
+        $valid = Validator::make($request->all(),[
+            "id" => "required|exists:Address"
+        ],[
+            "id.required" => "Id is required",
+            "id.esists" => "No address found"
+        ]);
+
+        if($valid->fails()) {
+            return response()->json([
+                "response_message" => $valid->errors()->first(),
+                "response_code"    => 401,
+            ],401);
+        }
+
         $add = Address::find( $id );
         return response()->json( [
             'response_code' => 200,
