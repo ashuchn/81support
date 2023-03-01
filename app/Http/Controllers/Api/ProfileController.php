@@ -46,6 +46,13 @@ class ProfileController extends Controller {
             "address_line_1.required" => "Address Line 1 is required",
             "country.required" => "Country is required",
         ]);
+
+        if($valid->fails()) {
+            return response()->json([
+                "response_message" => $valid->errors()->first(),
+                "response_code"    => 401,
+            ],401);
+        }
  
         $add = new Address;
         $add->user_id = $id;
@@ -98,6 +105,13 @@ class ProfileController extends Controller {
             "address_line_1.required" => "Address Line 1 is required",
             "country.required" => "Country is required",
         ]);
+
+        if($valid->fails()) {
+            return response()->json([
+                "response_message" => $valid->errors()->first(),
+                "response_code"    => 401,
+            ],401);
+        }
 
         $add = Address::find( $id );
         $add->first_name = $request->first_name;
