@@ -84,6 +84,21 @@ class ProfileController extends Controller {
 
     public function updateAddress( Request $request ) {
         $id = $request->id;
+
+        $valid = Validator::make($request->all(),[
+            "first_name" => "required",
+            "last_name" => "required",
+            "mobile" => "required",
+            "address_line_1" => "required",
+            "country" => "required",
+        ],[
+            "first_name.required" => "First Name is required",
+            "last_name.required" => "Last Name is required",
+            "mobile.required" => "Mobile is required",
+            "address_line_1.required" => "Address Line 1 is required",
+            "country.required" => "Country is required",
+        ]);
+
         $add = Address::find( $id );
         $add->first_name = $request->first_name;
         $add->last_name = $request->last_name;
