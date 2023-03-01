@@ -46,7 +46,7 @@ Route::group(['middleware' => 'auth:sanctum'],function () {
     
     Route::post('addAddress',[ProfileController::class,'addAddress']);
     Route::get('getAddress',[ProfileController::class,'getAddress']);
-    Route::get('editAddress',[ProfileController::class,'editAddress']);
+    Route::post('editAddress',[ProfileController::class,'editAddress']);
     Route::post('updateAddress',[ProfileController::class,'updateAddress']);
 });
 
