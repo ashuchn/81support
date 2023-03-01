@@ -31,9 +31,40 @@ class ProfileController extends Controller {
 
     public function addAddress( Request $request ) {
         $id = $request->user()->id;
-        $userprofile = New_User::find( $id );
-        $userprofile->address = $request->address;
-        $userprofile->save();
+
+        $valid = Validator::make($request->all(),[
+            "first_name" => "required",
+            "last_name" => "required",
+            "mobile" => "required",
+            "address_line_1" => "required",
+            "country" => "required",
+        ],[
+            "first_name.required" => "First Name is required",
+            "last_name.required" => "Last Name is required",
+            "mobile.required" => "Mobile is required",
+            "address_line_1.required" => "Address Line 1 is required",
+            "country.required" => "Country is required",
+        ]);
+ 
+        $check = Address::where('user_id',$id)->first();
+
+        if($check) {
+            return response()->json([
+                "response_message" => "Address already exists",
+                "response_code"    => 401,
+            ],401);
+        }
+
+        $add = new Address;
+        $add->user_id = $id;
+        $add->first_name = $request->first_name;
+        $add->last_name = $request->last_name;
+        $add->mobile = $request->mobile;
+        $add->address_line_1 = $request->address_line_1;
+        $add->address_line_2 = $request->address_line_2;
+        $add->country = $request->country;
+        $add->save();
+
         return response()->json( [
             'response_message' => 'Address Added',
             'response_code' => 200,
