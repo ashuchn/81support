@@ -18,4 +18,5 @@ class Address extends Model
         'address_line_2',
         'country'
     ];
+    
 }
