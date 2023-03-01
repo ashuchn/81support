@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\New_User;
+use App\Models\Address;
 use Validator;
 use Hash;
 use DB;
