@@ -74,10 +74,14 @@ class ProfileController extends Controller {
     }
 
     public function updateAddress( Request $request ) {
-        $id = $request->user()->id;
-        $userprofile = New_User::find( $id );
-        $userprofile->address = $request->address;
-        $userprofile->save();
+        $id = $request->id;
+        $add->first_name = $request->first_name;
+        $add->last_name = $request->last_name;
+        $add->mobile = $request->mobile;
+        $add->address_line_1 = $request->address_line_1;
+        $add->address_line_2 = $request->address_line_2;
+        $add->country = $request->country;
+        $add->save();
         return response()->json( [
             'response_message' => 'Address Updated',
             'response_code' => 200,
