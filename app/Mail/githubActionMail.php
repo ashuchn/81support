@@ -30,7 +30,8 @@ class githubActionMail extends Mailable
     {
         return $this->view('emails.index')
             ->with([
-                    'time' => date_create()->format('Y-m-d H:i:s'),
+                    // 'time' => date_create()->format('Y-m-d H:i:s'),
+                    'time' => NOW(),
                 ]);
     }
 }
