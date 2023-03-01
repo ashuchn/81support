@@ -73,6 +73,16 @@ class ProfileController extends Controller {
         ] );
     }
 
+    public function editAddress( Request $request ) {
+        $id = $request->id;
+        $add = Address::find( $id );
+        return response()->json( [
+            'response_message' => 'Address Added',
+            'response_code' => 200,
+            'data' => $add,
+        ] );
+    }
+
     public function updateAddress( Request $request ) {
         $id = $request->id;
         $add = Address::find( $id );
