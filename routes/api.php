@@ -43,6 +43,7 @@ Route::group(['middleware' => 'auth:sanctum'],function () {
     Route::get('getBookmarks',[ShopController::class,'getBookmarks']);
     Route::post('getDeals',[ShopController::class,'getDeals']);
     Route::post('increaseCartProductCount',[ShopController::class,'increaseCartProductCount']);
+    Route::post('decreaseCartProductCount',[ShopController::class,'decreaseCartProductCount']);
     
     Route::post('addAddress',[ProfileController::class,'addAddress']);
     Route::get('getAddress',[ProfileController::class,'getAddress']);

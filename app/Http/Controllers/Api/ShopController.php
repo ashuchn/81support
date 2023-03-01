@@ -565,5 +565,70 @@ class ShopController extends Controller {
 
     }
 
+    public function decreaseCartProductCount(Request $req)
+    {
+        $valid = Validator::make($req->all(),[
+            "cartId" => "Required|exists:carts,id",
+        ],[
+            "cartId.required" => "Provide cart Id",
+            "cartId.exists"   => "No Products in Cart"
+        ]);
+
+        if($valid->fails()) {
+            return response()->json([
+                "response_message" => $valid->errors()->first(),
+                "response_code"    => 401,
+            ],401);
+        }
+
+        $decrement = Cart::where('id', $req->cartId)->decrement('quantity', 1);
+        if($decrement) {
+
+            $userId = $req->user()->id;
+            $data = Cart::where('userId', $userId)->get(['id as cartId','productId','userId','quantity']);
+            $cartProductCount =  count($data);
+    
+                $cart = $data->map(function($dt) {
+                    $product = Product::where('id', $dt->productId)->first();
+                    $images = DB::table('product_images')->where('productId', $dt->productId)->pluck('image');
+                    $urlImages = $images->map(function($img) {
+                        $img = url('/').'/'.$img;
+                        return $img; 
+                    });
+                    $product->images = $urlImages;
+                    
+                    $reviews = DB::table('reviews')->where('productId',$dt->productId)->get(['id','userId','productId','rating','description']);
+                    if(isset($reviews)) {
+                        $review = $reviews->map(function($rv){
+                             $user = New_User::find($rv->userId);
+                             if($user) {
+                                $rv->userName = $user->name;
+                                $rv->userImage = $user->image;
+                             } else {
+                                $rv->userName = null;
+                                $rv->userImage = null;
+                             }
+                             return $rv;
+                        });
+                    } else {
+                        $review = [];
+                    }
+                    $product->reviews = $reviews;
+                    $dt->addedProduct = $product; 
+                    unset($dt->userId);
+                    unset($dt->productId);
+                    return $dt;
+                });
+
+                return response()->json([
+                    "response_message" => "Ok!",
+                    "response_code"    => 200,
+                    "cartProductCount" => $cartProductCount,
+                    "data"             => $cart
+                ]);
+        }
+
+    }
+
 
 }
