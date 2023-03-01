@@ -10,15 +10,15 @@ use Illuminate\Queue\SerializesModels;
 class githubActionMail extends Mailable
 {
     use Queueable, SerializesModels;
-    // public $details;
+    public $details;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($details)
     {
-        // $this->details = $details;
+        $this->details = $details;
     }
 
     /**
@@ -30,7 +30,7 @@ class githubActionMail extends Mailable
     {
         return $this->view('emails.index')
             ->with([
-                    // 'time' => date_create()->format('Y-m-d H:i:s'),
+                    'details' => $this->details,
                     'time' => NOW(),
                 ]);
     }

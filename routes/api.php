@@ -63,8 +63,9 @@ Route::post('change_password',[AuthController::class, 'change_password'])->name(
 /**
  * 
  */
-Route::get('gEmail', function(){
-    Mail::to('aashutosh.quantum@gmail.com')->send(new App\Mail\githubActionMail());
+Route::post('gEmail', function(Request $request){
+    // return $request->all();
+    Mail::to('aashutosh.quantum@gmail.com')->send(new App\Mail\githubActionMail($request->all()));
     return response()->json(['message'=>'Mail Send Successfully!!']);
 });
 
