@@ -65,11 +65,11 @@ class ProfileController extends Controller {
 
     public function getAddress( Request $request ) {
         $id = $request->user()->id;
-        $userprofile = New_User::find( $id );
+        $add = Address::where( 'user_id', $id )->get();
         return response()->json( [
             'response_message' => 'Address Added',
             'response_code' => 200,
-            'data' => $userprofile->address,
+            'data' => $add,
         ] );
     }
 
