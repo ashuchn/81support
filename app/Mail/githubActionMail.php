@@ -30,7 +30,7 @@ class githubActionMail extends Mailable
     {
         return $this->view('emails.index')
             ->with([
-                    'details' => $this->details,
+                    'details' => $this->details->message,
                     'time' => NOW(),
                 ]);
     }
