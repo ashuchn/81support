@@ -47,15 +47,6 @@ class ProfileController extends Controller {
             "country.required" => "Country is required",
         ]);
  
-        $check = Address::where('user_id',$id)->first();
-
-        if($check) {
-            return response()->json([
-                "response_message" => "Address already exists",
-                "response_code"    => 401,
-            ],401);
-        }
-
         $add = new Address;
         $add->user_id = $id;
         $add->first_name = $request->first_name;
