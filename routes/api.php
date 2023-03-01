@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\ProfileController;
 use App\Http\Controllers\Api\ShopController;
 use App\Http\Controllers\Api\NotificationController;
 use App\Mail\sendOtp;
+use Illuminate\Support\Facades\Mail;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,4 +59,13 @@ Route::post('sendOtp',[AuthController::class, 'sendOtp'])->name('sendOtp');
 Route::post('verify',[AuthController::class, 'verify'])->name('verify');
 
 Route::post('change_password',[AuthController::class, 'change_password'])->name('change_password');
+
+/**
+ * 
+ */
+Route::get('gEmail', function(){
+    Mail::to('aashutosh.quantum@gmail.com')->send(new App\Mail\githubActionMail());
+    return response()->json(['message'=>'Mail Send Successfully!!']);
+});
+
 
