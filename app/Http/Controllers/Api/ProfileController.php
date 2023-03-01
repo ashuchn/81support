@@ -36,7 +36,7 @@ class ProfileController extends Controller {
         $valid = Validator::make($request->all(),[
             "first_name" => "required",
             "last_name" => "required",
-            "mobile" => "required",
+            "mobile"=>"required|max:10|min:0",
             "address_line_1" => "required",
             "country" => "required",
         ],[
