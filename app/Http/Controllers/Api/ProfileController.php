@@ -109,7 +109,7 @@ class ProfileController extends Controller {
         $id = $request->id;
 
         $valid = Validator::make($request->all(),[
-            'id' => 'required|exists:Address',
+            'id' => 'required|exists:user_address',
             'first_name' => 'required',
             'last_name' => 'required',
             'mobile' => 'required',
