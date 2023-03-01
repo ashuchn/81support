@@ -77,7 +77,6 @@ class ProfileController extends Controller {
         $id = $request->id;
         $add = Address::find( $id );
         return response()->json( [
-            'response_message' => 'Address Added',
             'response_code' => 200,
             'data' => $add,
         ] );
