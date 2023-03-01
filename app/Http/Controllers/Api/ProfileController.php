@@ -28,5 +28,37 @@ class ProfileController extends Controller {
             'response_code' => 200,
         ] );
     }
+
+    public function addAddress( Request $request ) {
+        $id = $request->user()->id;
+        $userprofile = New_User::find( $id );
+        $userprofile->address = $request->address;
+        $userprofile->save();
+        return response()->json( [
+            'response_message' => 'Address Added',
+            'response_code' => 200,
+        ] );
+    }
+
+    public function getAddress( Request $request ) {
+        $id = $request->user()->id;
+        $userprofile = New_User::find( $id );
+        return response()->json( [
+            'response_message' => 'Address Added',
+            'response_code' => 200,
+            'data' => $userprofile->address,
+        ] );
+    }
+
+    public function updateAddress( Request $request ) {
+        $id = $request->user()->id;
+        $userprofile = New_User::find( $id );
+        $userprofile->address = $request->address;
+        $userprofile->save();
+        return response()->json( [
+            'response_message' => 'Address Updated',
+            'response_code' => 200,
+        ] );
+    }
     
 }
