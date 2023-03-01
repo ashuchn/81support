@@ -112,7 +112,7 @@ class ProfileController extends Controller {
             'id' => 'required|exists:user_address',
             'first_name' => 'required',
             'last_name' => 'required',
-            'mobile' => 'required',
+            'mobile'=>'required|max:10|min:0',
             'address_line_1' => 'required',
             'country' => "required",
         ],[
@@ -120,6 +120,8 @@ class ProfileController extends Controller {
             'first_name.required' => 'First Name is required',
             'last_name.required' => 'Last Name is required',
             'mobile.required' => 'Mobile is required',
+            'mobile.max' => 'Mobile must be 10 digits',
+            'mobile.min' => 'Mobile must be 10 digits',
             'address_line_1.required' => 'Address Line 1 is required',
             'country.required' => 'Country is required',
         ]);
