@@ -51,8 +51,8 @@ class ProfileController extends Controller {
 
         if($valid->fails()) {
             return response()->json([
-                "response_message" => $valid->errors()->first(),
-                "response_code"    => 401,
+                'response_message' => $valid->errors()->first(),
+                'response_code'    => 401,
             ],401);
         }
  
@@ -85,16 +85,16 @@ class ProfileController extends Controller {
     public function editAddress( Request $request ) {
         $id = $request->id;
         $valid = Validator::make($request->all(),[
-            "id" => "required|exists:Address"
+            'id' => 'required|exists:Address'
         ],[
-            "id.required" => "Id is required",
-            "id.esists" => "No address found"
+            'id.required' => 'Id is required',
+            'id.esists' => 'No address found'
         ]);
 
         if($valid->fails()) {
             return response()->json([
-                "response_message" => $valid->errors()->first(),
-                "response_code"    => 401,
+                'response_message' => $valid->errors()->first(),
+                'response_code'    => 401,
             ],401);
         }
 
@@ -114,7 +114,7 @@ class ProfileController extends Controller {
             'last_name' => 'required',
             'mobile'=>'required|max:10|min:0',
             'address_line_1' => 'required',
-            'country' => "required",
+            'country' => 'required',
         ],[
             'id.required' => 'Id is required',
             'first_name.required' => 'First Name is required',
@@ -128,8 +128,8 @@ class ProfileController extends Controller {
 
         if($valid->fails()) {
             return response()->json([
-                "response_message" => $valid->errors()->first(),
-                "response_code"    => 401,
+                'response_message' => $valid->errors()->first(),
+                'response_code'    => 401,
             ],401);
         }
 
