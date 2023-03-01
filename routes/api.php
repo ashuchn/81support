@@ -19,6 +19,7 @@ use App\Mail\sendOtp;
 |
 */
 
+Route::get('test', [AuthController::class, 'test']);
 
 Route::middleware('auth:sanctum')->get('/profile/view', function (Request $request) {
     
