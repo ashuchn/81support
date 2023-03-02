@@ -176,6 +176,9 @@
                                 _token: '{{ csrf_token() }}',
                                 status: 0
                             }
+                            success: function(data) {
+                                alert(data.success);
+                            }
                         });
                     } else if ($(this).prop("checked") == false) {
                         var id = $(this).prop('id');
