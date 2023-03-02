@@ -386,12 +386,15 @@ class ShopController extends Controller {
             $cart = $data->map(function($dt) {
                 $product = Product::where('id', $dt->productId)->first();
                 $images = DB::table('product_images')->where('productId', $dt->productId)->pluck('image');
-                $urlImages = $images->map(function($img) {
-                    $img = url('/').'/'.$img;
-                    return $img; 
-                });
-                $product->images = $urlImages;
-                
+                if(isset($images)) {
+                    $urlImages = $images->map(function($img) {
+                        $img = url('/').'/'.$img;
+                        return $img; 
+                    });
+                    $product->images = $urlImages;
+                } else {
+                    $product->images = [];
+                }
                 $reviews = DB::table('reviews')->where('productId',$dt->productId)->get(['id','userId','productId','rating','description']);
                 if(isset($reviews)) {
                     $review = $reviews->map(function($rv){
