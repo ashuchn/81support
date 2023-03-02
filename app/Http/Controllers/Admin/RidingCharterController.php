@@ -92,15 +92,15 @@ class RidingCharterController extends Controller
 		$id = $request->id;
 		$usr = Riding_Charter_User::find($id);
 		$res = $usr->status;
-		if($res == 0){
-			$usr->status = 1;
-			$usr->save();
-		}else{
-			$usr->status = 0;
-			$usr->save();
-		}
+		// if($res == 0){
+		// 	$usr->status = 1;
+		// 	$usr->save();
+		// }else{
+		// 	$usr->status = 0;
+		// 	$usr->save();
+		// }
 
-		return response()->json(['success'=>'Status change successfully']);
+		return response()->json(['success'=>'Status change successfully', 'status' => $res, 'id' => $id]);
 	}
     
     public function view_ridingcharter($id)
