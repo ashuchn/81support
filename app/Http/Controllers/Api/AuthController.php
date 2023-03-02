@@ -129,8 +129,80 @@ class AuthController extends Controller {
         $update = New_User::where('email', $req->email)->update([ "otp" => $otp ]);
         return response()->json( [
             "response_message" => "otp sent!",
-            "response_code" => 200
+            "response_code"    => 200,
+            "otp"              => $otp 
         ],200 );
+    }
+
+
+    public function verifyOtp(Request $req)
+    {
+        $validator = Validator::make( $req->all(), [
+            'email' => 'required|email|exists:new_users',
+            'otp'   => 'required|max:4'
+        ],[
+            'email.required' => ':attribute is required',
+            'email.email'    => 'Incorrect :attribute Format',
+            'email.exists' => ':attribute does not exists',
+            'otp.required'   => ':attribute is required',
+            'otp.max'        => 'Only 4 digits :attribute accepted',
+        ] );
+
+        if ( $validator->fails() ) {
+            return response()->json( [
+                'response_message' => $validator->messages()->first(),
+                'response_code' => 401
+            ],401 );
+        }
+
+        $data = New_User::where('email', $req->email)->first();
+        if($data->otp == $req->otp) {
+            return response()->json( [
+                "response_message" => "otp matched!",
+                "response_code" => 200
+            ],200 );
+        } else {
+            return response()->json( [
+                'response_message' => "otp not matched",
+                'response_code' => 401
+            ],401 );
+        }
+
+    }
+
+
+    public function changePassword(Request $req)
+    {
+        $validator = Validator::make( $req->all(), [
+            'email'      => 'required|email|exists:new_users',
+            'password'   => 'required'
+        ],[
+            'email.required' => ':attribute is required',
+            'email.email'    => 'Incorrect :attribute Format',
+            'email.exists' => ':attribute does not exists',
+            'password.required'   => ':attribute is required',
+        ] );
+
+        if ( $validator->fails() ) {
+            return response()->json( [
+                'response_message' => $validator->messages()->first(),
+                'response_code' => 401
+            ],401 );
+        }
+
+        $update = New_User::where('email', $req->email)->update([ "password" => Hash::make($req->password) ]);
+        if($update) {
+            return response()->json( [
+                "response_message" => "Password Changed!",
+                "response_code" => 200
+            ],200 );
+        } else {
+            return response()->json( [
+                "response_message" => "Some error occured!",
+                "response_code" => 401
+            ],401 );
+        }
+
     }
 
 
