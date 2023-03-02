@@ -57,12 +57,12 @@ Route::post('login',[AuthController::class, 'login'])->name('login');
 Route::post('signup',[AuthController::class, 'signup'])->name('signup');
 
 Route::post('checkEmailExist', [AuthController::class, 'checkEmailExist'])->name('checkEmailExist');
+Route::post('verifyOtp', [AuthController::class, 'verifyOtp'])->name('verifyOtp');
+Route::post('changePassword',[AuthController::class, 'changePassword'])->name('changePassword');
+// Route::post('sendOtp',[AuthController::class, 'sendOtp'])->name('sendOtp');
 
-Route::post('sendOtp',[AuthController::class, 'sendOtp'])->name('sendOtp');
+// Route::post('verify',[AuthController::class, 'verify'])->name('verify');
 
-Route::post('verify',[AuthController::class, 'verify'])->name('verify');
-
-Route::post('change_password',[AuthController::class, 'change_password'])->name('change_password');
 
 /**
  * 
