@@ -90,7 +90,7 @@ class RidingCharterController extends Controller
 	{
 		$status = $request->status;
 		$id = $request->id;
-		$usr = New_User::find($id);
+		$usr = Riding_Charter_User::find($id);
 		$res = $usr->status;
 		if($res == 0){
 			$usr->status = 1;
