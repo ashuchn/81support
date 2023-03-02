@@ -22,7 +22,7 @@
         <section class="content">
             <div class="container-fluid">
                 {{-- <button "></button> --}}
-                <table class="table">
+                <table class="table table-bordered table-striped">
                     <thead>
                         <tr>
                             <th>Image</th>
