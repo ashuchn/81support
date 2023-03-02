@@ -189,7 +189,13 @@ class ShopController extends Controller {
         }
         $product->delete();
         $cart = Cart::where('userId', $userId)->get();
-
+        if($cart == NULL || $cart == ''){
+            return response()->json([
+                "response_message" => "Cart is Empty",
+                "response_code"    => 200,
+                "data"             => $cart
+            ],200);
+        }
         return response()->json([
             "response_message" => "Product removed from cart",
             "response_code"    => 200,
