@@ -32,7 +32,7 @@
                             <th>Actions</th>
                         </tr>
                     </thead>
-                    {{ $i = 1 }}
+                    <?php $i = 1; ?>
                     <tbody>
                         @forelse($data as $item)
                             <tr>
