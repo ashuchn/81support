@@ -46,7 +46,7 @@
                                                 <div class="carousel-item <?php if ($active == true) {
                                                     echo 'active';
                                                 } ?>">
-                                                    <img class="img-fluid card-img-top img-thumbnail"
+                                                    <img class="img-fluid card-img-top img-thumbnai"
                                                         src="{{ $img }}" style="max-height: 200px; max-width: 300px;" alt="First slide">
                                                     <div class="card-img-overlay">
 
