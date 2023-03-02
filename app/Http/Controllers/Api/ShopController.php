@@ -642,5 +642,55 @@ class ShopController extends Controller {
 
     }
 
+    public function getProductsByCategory(Request $req) {
+        $valid = Validator::make($req->all(),[
+            "categoryId" => "Required|exists:categories,id",
+        ],[
+            "categoryId.required" => "Provide Category Id",
+            "categoryId.exists"   => "No Products Found"
+        ]);
+
+        if($valid->fails()) {
+            return response()->json([
+                "response_message" => $valid->errors()->first(),
+                "response_code"    => 401,
+            ],401);
+        }
+
+        $categoryId = $req->categoryId;
+        $products = Product::where('categoryId', $categoryId)->get();
+        $products = $products->map(function($product) {
+            $images = DB::table('product_images')->where('productId', $product->id)->pluck('image');
+            $urlImages = $images->map(function($img) {
+                $img = url('/').'/'.$img;
+                return $img; 
+            });
+            $product->images = $urlImages;
+            
+            $reviews = DB::table('reviews')->where('productId',$product->id)->get(['id','userId','productId','rating','description']);
+            if(isset($reviews)) {
+                $review = $reviews->map(function($rv){
+                     $user = New_User::find($rv->userId);
+                     if($user) {
+                        $rv->userName = $user->name;
+                        $rv->userImage = $user->image;
+                     } else {
+                        $rv->userName = null;
+                        $rv->userImage = null;
+                     }
+                     return $rv;
+                });
+            } else {
+                $review = [];
+            }
+            $product->reviews = $reviews;
+            return $product;
+        });
+        return response()->json([
+            "response_message" => "Ok!",
+            "response_code"    => 200,
+            "data"             => $products
+        ],200);
+    }
 
 }
