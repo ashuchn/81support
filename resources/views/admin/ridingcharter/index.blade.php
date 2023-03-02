@@ -175,7 +175,7 @@
                                 id: id,
                                 _token: '{{ csrf_token() }}',
                                 status: 0
-                            }
+                            },
                             success: function(data) {
                                 alert(data.success);
                             }
