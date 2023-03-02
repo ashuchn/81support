@@ -179,6 +179,7 @@ class ShopController extends Controller {
             ],401);
         }
         $product_id = $id;
+        $userId = Auth::user()->id;
         $product = Cart::where('userId', $userId)->where('productId', $product_id)->first();
         $product->delete();
         $cart = Cart::where('userId', $userId)->get();
