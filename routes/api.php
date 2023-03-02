@@ -56,6 +56,8 @@ Route::post('login',[AuthController::class, 'login'])->name('login');
 
 Route::post('signup',[AuthController::class, 'signup'])->name('signup');
 
+Route::post('checkEmailExist', [AuthController::class, 'checkEmailExist'])->name('checkEmailExist');
+
 Route::post('sendOtp',[AuthController::class, 'sendOtp'])->name('sendOtp');
 
 Route::post('verify',[AuthController::class, 'verify'])->name('verify');
