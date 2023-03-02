@@ -177,7 +177,7 @@
                                 status: 0
                             },
                             success: function(data) {
-                                alert(data.success);
+                                alert(data);
                             }
                         });
                     } else if ($(this).prop("checked") == false) {
