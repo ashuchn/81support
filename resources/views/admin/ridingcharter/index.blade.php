@@ -114,42 +114,6 @@
 
                                                 </td>
                                             </tr>
-
-                                            <script>
-                                                // $(document).ready(function(){
-                                                // $("#status<?php echo $ridingcharterDetails->id; ?>").change(function(){
-
-                                                // 	var status = $('#statusval<?php echo $ridingcharterDetails->id; ?>').val();
-                                                // 	var ridingcharter_id = $('#ridingcharter_id<?php echo $ridingcharterDetails->id; ?>').val();
-                                                // if(status == '1'){
-
-                                                // $.ajax({
-                                                // url:'{{ route('change-status-ridingcharter') }}',
-                                                // method:'POST',
-                                                // data:{status:status,ridingcharter_id:ridingcharter_id,'_token':"{{ csrf_token() }}"},
-                                                // success:function(data){
-                                                // //alert(data);
-                                                // //$('#child_id').html(data);
-                                                // }
-                                                // });
-
-                                                // }else{
-                                                // 	$.ajax({
-                                                // url:'{{ route('change-status-ridingcharter') }}',
-                                                // method:'POST',
-                                                // data:{status:status,ridingcharter_id:ridingcharter_id,'_token':"{{ csrf_token() }}"},
-                                                // success:function(data){
-                                                // alert(data);
-                                                // $('#child_id').html(data);
-                                                // }
-                                                // });
-                                                // }
-
-                                                // });
-                                                // });
-                                            </script>
-
-
                                             <div class="modal fade" id="modal-delete<?php echo $ridingcharterDetails->id; ?>">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
