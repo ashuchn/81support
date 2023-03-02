@@ -76,6 +76,7 @@
                                     <button class="btn btn-light">Edit</button>
                                 </td>
                             </tr>
+                            <?php $i++; ?>
                         @empty
                             No record Found
                         @endforelse
