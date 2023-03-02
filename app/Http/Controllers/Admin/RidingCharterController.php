@@ -86,7 +86,7 @@ class RidingCharterController extends Controller
 	return redirect()->route('ridingcharter.index');
     }
     
-    public function change_status_user(Request $request)
+    public function change_status_ridingcharter(Request $request)
 	{
 		$status = $request->status;
 		$id = $request->id;
