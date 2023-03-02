@@ -33,6 +33,7 @@
                         </tr>
                     </thead>
                     <tbody>
+                      {{ $i = 1; }}
                         @forelse($data as $item)
                             <tr>
                                 <td>
