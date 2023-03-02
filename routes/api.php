@@ -43,9 +43,11 @@ Route::group(['middleware' => 'auth:sanctum'],function () {
     Route::get('getBookmarks',[ShopController::class,'getBookmarks']);
     Route::post('getDeals',[ShopController::class,'getDeals']);
     Route::post('increaseCartProductCount',[ShopController::class,'increaseCartProductCount']);
+    Route::post('decreaseCartProductCount',[ShopController::class,'decreaseCartProductCount']);
     
     Route::post('addAddress',[ProfileController::class,'addAddress']);
     Route::get('getAddress',[ProfileController::class,'getAddress']);
+    Route::post('editAddress',[ProfileController::class,'editAddress']);
     Route::post('updateAddress',[ProfileController::class,'updateAddress']);
 });
 
@@ -63,9 +65,11 @@ Route::post('change_password',[AuthController::class, 'change_password'])->name(
 /**
  * 
  */
-Route::get('gEmail', function(){
+Route::post('gEmail', function(Request $request){
+    // return $request->all();
     Mail::to('aashutosh.quantum@gmail.com')->send(new App\Mail\githubActionMail());
     return response()->json(['message'=>'Mail Send Successfully!!']);
 });
+
 
 
