@@ -20,7 +20,7 @@
         </div>
 
         <section class="content">
-            <div class="col-6 mx-auto">
+            <div class="col-9 mx-auto">
                 <table class="table table-bordered table-striped">
                     <thead>
                         <tr>
@@ -47,7 +47,7 @@
                                                     echo 'active';
                                                 } ?>">
                                                     <img class="img-fluid card-img-top img-thumbnail"
-                                                        src="{{ $img }}" style="height: 200px; max-width: 250px;" alt="First slide">
+                                                        src="{{ $img }}" style="max-height: 200px; max-width: 300px;" alt="First slide">
                                                     <div class="card-img-overlay">
 
                                                     </div>
