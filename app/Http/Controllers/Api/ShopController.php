@@ -170,7 +170,7 @@ class ShopController extends Controller {
     }
     
     
-    public function removeProductFromCart($id)
+    public function removeProductFromCart($id, Request $req)
     {
         if($id == NULL || $id == ''){
             return response()->json([
@@ -179,7 +179,7 @@ class ShopController extends Controller {
             ],401);
         }
         $product_id = $id;
-        $userId = Auth::user()->id;
+        $userId = $req->user()->id;
         $product = Cart::where('userId', $userId)->where('productId', $product_id)->first();
         $product->delete();
         $cart = Cart::where('userId', $userId)->get();
