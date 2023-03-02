@@ -88,10 +88,10 @@ class RidingCharterController extends Controller
     
     public function change_status_user(Request $request)
 	{
-		$status = $request->status;
-		$id = $request->id;
-		$usr = Riding_Charter_User::find($id);
-		$res = $usr->status;
+		// $status = $request->status;
+		// $id = $request->id;
+		// $usr = Riding_Charter_User::find($id);
+		// $res = $usr->status;
 		// if($res == 0){
 		// 	$usr->status = 1;
 		// 	$usr->save();
