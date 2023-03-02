@@ -48,7 +48,7 @@
                                                 } ?>">
                                                     <img class="img-fluid card-img-top img-thumbnai"
                                                         src="{{ $img }}" style="max-height: 200px; max-width: 300px;" alt="First slide">
-                                                    <div class="card-img-overlay">
+                                                    <div class="card-img-overla">
 
                                                     </div>
                                                 </div>
