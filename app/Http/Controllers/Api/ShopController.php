@@ -183,7 +183,7 @@ class ShopController extends Controller {
         $product = Cart::where('userId', $userId)->where('productId', $product_id)->first();
         if($product == NULL || $product == ''){
             return response()->json([
-                "response_message" => "Product not found",
+                "response_message" => "Product not found in cart",
                 "response_code"    => 404,
             ],401);
         }
