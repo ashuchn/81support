@@ -84,16 +84,16 @@
                                                 <td>{{ $ridingcharterDetails->email }}</td>
                                                 <td>{{ $ridingcharterDetails->mobile }}</td>
                                                 <td>
-                                                    <div class="form-group">
-                                                        <div class="custom-control custom-switch">
-                                                            <input type="checkbox" class="custom-control-input"
-                                                                id="<?php echo $ridingcharterDetails->id; ?>" <?php if ($ridingcharterDetails->status == '1') {
-                                                                    echo 'checked';
-                                                                } ?>>
-                                                            <label class="custom-control-label"
-                                                                for="status<?php echo $ridingcharterDetails->id; ?>"></label>
-                                                        </div>
+                                                  <div class="form-group">
+                                                    <div class="custom-control custom-switch">
+                                                        <input type="checkbox" class="custom-control-input"
+                                                            id="<?php echo $ridingcharterDetails->id; ?>" <?php if ($ridingcharterDetails->status == '1') {
+                                                                echo 'checked';
+                                                            } ?>>
+                                                        <label class="custom-control-label"
+                                                            for="<?php echo $ridingcharterDetails->id; ?>"></label>
                                                     </div>
+                                                </div>
                                                 </td>
                                                 <td>{{ $ridingcharterDetails->created_at }}</td>
                                                 <input type="hidden" id="statusval<?php echo $ridingcharterDetails->id; ?>"
