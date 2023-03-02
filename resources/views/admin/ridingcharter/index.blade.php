@@ -187,26 +187,10 @@
                 $('input[type="checkbox"]').click(function() {
                     if ($(this).prop("checked") == true) {
                         var id = $(this).prop('id');
-                        $.ajax({
-                            type: 'POST',
-                            url: "{{ route('change-status-user') }}",
-                            data: {
-                                id: id,
-                                _token: '{{ csrf_token() }}',
-                                status: 0
-                            }
-                        });
+                        alert('checked');
                     } else if ($(this).prop("checked") == false) {
                         var id = $(this).prop('id');
-                        $.ajax({
-                            type: 'POST',
-                            url: "{{ route('change-status-user') }}",
-                            data: {
-                                id: id,
-                                _token: '{{ csrf_token() }}',
-                                status: 1
-                            }
-                        });
+                        alert('unchecked');
                     }
                 });
             });
