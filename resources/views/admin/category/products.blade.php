@@ -48,7 +48,7 @@
                                                     echo 'active';
                                                 } ?>">
                                                     <img class="img-fluid card-img-top img-thumbnail"
-                                                        src="{{ $img }}" style="height: 200px" alt="First slide">
+                                                        src="{{ $img }}" style="height: 200px; max-width: 250px;" alt="First slide">
                                                     <div class="card-img-overlay">
 
                                                     </div>
