@@ -65,7 +65,7 @@ Route::prefix('admin')->group(function () {
         //riding charter
         Route::get('add_ridingcharter', [RidingCharterController::class, 'add_ridingcharter'])->name('admin.add_ridingcharter');
         
-        Route::post('change-status-ridingcharter', [App\Http\Controllers\AdminController::class, 'change_status_ridingcharter'])->name('change-status-ridingcharter');
+        Route::post('change_status_ridingcharter', [RidingCharterController::class, 'change_status_ridingcharter'])->name('change_status_ridingcharter');
         
         Route::get('view_ridingcharter/{id}', [RidingCharterController::class, 'view_ridingcharter'])->name('admin.view_ridingcharter');
         

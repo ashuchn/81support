@@ -76,7 +76,6 @@ class UserController extends Controller
 	$userprofile->mobile=$request->mobile;
 	$userprofile->password= Hash::make($request->password);
 	//$userprofile->password= $request->password;
-	$userprofile->status='0';
 	$userprofile->save();
 	$user_id = $userprofile->id;
 
@@ -85,7 +84,7 @@ class UserController extends Controller
 	return redirect()->route('user.index');
     }
     
-    	public function change_status_user(Request $request)
+	public function change_status_user(Request $request)
 	{
 		$status = $request->status;
 		$id = $request->id;
