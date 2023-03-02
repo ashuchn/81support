@@ -87,7 +87,7 @@
                                                     <div class="form-group">
                                                         <div class="custom-control custom-switch">
                                                             <input type="checkbox" class="custom-control-input"
-                                                                id="status<?php echo $ridingcharterDetails->id; ?>" <?php if ($ridingcharterDetails->status == '1') {
+                                                                id="<?php echo $ridingcharterDetails->id; ?>" <?php if ($ridingcharterDetails->status == '1') {
                                                                     echo 'checked';
                                                                 } ?>>
                                                             <label class="custom-control-label"
