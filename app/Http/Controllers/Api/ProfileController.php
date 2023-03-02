@@ -12,6 +12,16 @@ use DB;
 use Mail;
 
 class ProfileController extends Controller {
+
+    public function getProfile( Request $request ) {
+        $id = $request->user()->id;
+        $user = New_User::where( 'id', $id )->first(['id','name','email','mobile','dob','otp','image','status']);
+        return response()->json( [
+            'response_message' => 'Profile',
+            'response_code' => 200,
+            'data' => $user,
+        ] );
+    }
     
      public function update( Request $request ) {
         
