@@ -32,8 +32,8 @@
                             <th>Actions</th>
                         </tr>
                     </thead>
+                    {{ $i = 1 }}
                     <tbody>
-                      {{ $i = 1 }}
                         @forelse($data as $item)
                             <tr>
                                 <td>
@@ -48,7 +48,7 @@
                                                     echo 'active';
                                                 } ?>">
                                                     <img class="img-fluid card-img-top img-thumbnail"
-                                                        src="{{ $img }}" style="height: 50px" alt="First slide">
+                                                        src="{{ $img }}" style="height: 200px" alt="First slide">
                                                     <div class="card-img-overlay">
 
                                                     </div>
