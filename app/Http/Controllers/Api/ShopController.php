@@ -181,6 +181,12 @@ class ShopController extends Controller {
         $product_id = $id;
         $userId = $req->user()->id;
         $product = Cart::where('userId', $userId)->where('productId', $product_id)->first();
+        if($product == NULL || $product == ''){
+            return response()->json([
+                "response_message" => "Product not found",
+                "response_code"    => 401,
+            ],401);
+        }
         $product->delete();
         $cart = Cart::where('userId', $userId)->get();
 
