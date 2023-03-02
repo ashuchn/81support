@@ -184,7 +184,7 @@ class ShopController extends Controller {
         if($product == NULL || $product == ''){
             return response()->json([
                 "response_message" => "Product not found",
-                "response_code"    => 401,
+                "response_code"    => 404,
             ],401);
         }
         $product->delete();
