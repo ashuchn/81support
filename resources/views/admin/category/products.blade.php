@@ -20,8 +20,7 @@
         </div>
 
         <section class="content">
-            <div class="container-fluid">
-                {{-- <button "></button> --}}
+            <div class="col-6 mx-auto">
                 <table class="table table-bordered table-striped">
                     <thead>
                         <tr>
