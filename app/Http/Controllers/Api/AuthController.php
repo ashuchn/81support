@@ -138,11 +138,12 @@ class AuthController extends Controller {
     public function verifyOtp(Request $req)
     {
         $validator = Validator::make( $req->all(), [
-            'email' => 'required|email',
+            'email' => 'required|email|exists:new_users',
             'otp'   => 'required|max:4'
         ],[
             'email.required' => ':attribute is required',
             'email.email'    => 'Incorrect :attribute Format',
+            'email.exists' => ':attribute does not exists',
             'otp.required'   => ':attribute is required',
             'otp.max'        => 'Only 4 digits :attribute accepted',
         ] );
@@ -173,11 +174,12 @@ class AuthController extends Controller {
     public function changePassword(Request $req)
     {
         $validator = Validator::make( $req->all(), [
-            'email'      => 'required|email',
+            'email'      => 'required|email|exists:new_users',
             'password'   => 'required'
         ],[
             'email.required' => ':attribute is required',
             'email.email'    => 'Incorrect :attribute Format',
+            'email.exists' => ':attribute does not exists',
             'password.required'   => ':attribute is required',
         ] );
 
