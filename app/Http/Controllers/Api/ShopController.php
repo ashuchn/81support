@@ -178,12 +178,16 @@ class ShopController extends Controller {
                 "response_code"    => 401,
             ],401);
         }
-        
-        $delete = Cart::find($id);
+        $product_id = $id;
+        $product = Cart::where('userId', $userId)->where('productId', $product_id)->first();
+        $product->delete();
+        $cart = Cart::where('userId', $userId)->get();
+
         if($delete->delete()) {
             return response()->json([
                     "response_message" => "Product removed from cart",
                     "response_code"    => 200,
+                    "data"             => $cart
                 ],200);
         } else {
             return response()->json([
