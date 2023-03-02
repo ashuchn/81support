@@ -168,7 +168,18 @@
                 $('input[type="checkbox"]').click(function() {
                     if ($(this).prop("checked") == true) {
                         var id = $(this).prop('id');
-                        alert('checked');
+                        $.ajax({
+                            type: 'POST',
+                            url: "{{ route('change_status_ridingcharter') }}",
+                            data: {
+                                id: id,
+                                _token: '{{ csrf_token() }}',
+                                status: 0
+                            }
+                            success: function(data) {
+                                alert(data.success);
+                            }
+                        });
                     } else if ($(this).prop("checked") == false) {
                         var id = $(this).prop('id');
                         alert('unchecked');
