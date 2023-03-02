@@ -190,19 +190,11 @@ class ShopController extends Controller {
         $product->delete();
         $cart = Cart::where('userId', $userId)->get();
 
-        if($product->delete()) {
-            return response()->json([
-                    "response_message" => "Product removed from cart",
-                    "response_code"    => 200,
-                    "data"             => $cart
-                ],200);
-        } else {
-            return response()->json([
-                    "response_message" => "Some error Occured",
-                    "response_code"    => 401,
-                ],401);
-        }
-        
+        return response()->json([
+            "response_message" => "Product removed from cart",
+            "response_code"    => 200,
+            "data"             => $cart
+        ],200);
     }
     
     public function bookmarkProduct(Request $req)
