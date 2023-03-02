@@ -46,7 +46,7 @@ Route::group(['middleware' => 'auth:sanctum'],function () {
     Route::post('decreaseCartProductCount',[ShopController::class,'decreaseCartProductCount']);
     Route::post('getProductsByCategory',[ShopController::class,'getProductsByCategory']);
     
-    Route::post('addProfile',[ProfileController::class,'addProfile']);
+    Route::post('getProfile',[ProfileController::class,'getProfile']);
     Route::post('addAddress',[ProfileController::class,'addAddress']);
     Route::get('getAddress',[ProfileController::class,'getAddress']);
     Route::post('editAddress',[ProfileController::class,'editAddress']);
