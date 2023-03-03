@@ -60,7 +60,7 @@
                                                     } ?>">
                                                         <img class="img-fluid card-img-top img-thumbnai"
                                                             src="{{ $img }}"
-                                                            style="height: 30%" alt="First slide">
+                                                            style="height: 10%" alt="First slide">
                                                         <div class="card-img-overla">
     
                                                         </div>
