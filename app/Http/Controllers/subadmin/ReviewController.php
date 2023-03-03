@@ -13,7 +13,7 @@ use Auth;
 class ReviewController extends Controller
 {
    public function getReview() {
-        $id = Auth::user()->id;
+        $id = Auth::id();
         $reviews = DB::table('reviews')
         ->where('reviews.userId', $id)
         ->get();
