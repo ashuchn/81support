@@ -14,11 +14,21 @@ class ReviewController extends Controller
 {
    public function getReview(Request $request) {
         $id = $request->user()->id;
-        $reviews = DB::table('reviews')
+        if($request->has(stars)){
+            $stars = $request->stars;
+            $reviews = DB::table('reviews')
+            ->join('products', 'reviews.productId', '=', 'products.id')
+            ->select('reviews.*', 'products.productName as productName')
+            ->where('reviews.userID', $id)
+            ->where('reviews.rating', $stars)
+            ->get();
+        }else{
+            $reviews = DB::table('reviews')
             ->join('products', 'reviews.productId', '=', 'products.id')
             ->select('reviews.*', 'products.productName as productName')
             ->where('reviews.userID', $id)
             ->get();
+        }
         return response()->json( [
             'response_code' => 200,
             'data' => compact('reviews'),
