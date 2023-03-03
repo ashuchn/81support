@@ -16,7 +16,6 @@ class ReviewController extends Controller
         $rc_id = session()->get('subadminId');
         $reviews = DB::table('reviews')
             ->join('products', 'reviews.productId', '=', 'products.id')
-            ->join('users', 'reviews.userId', '=', 'users.id')
             ->select('reviews.*', 'products.productName as productName')
             ->where('products.rc_id', $rc_id)
             ->get();

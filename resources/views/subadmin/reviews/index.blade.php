@@ -87,7 +87,9 @@
                                             <tr>
                                                 <td>{{ $key + 1 }}</td>
                                                 <td>{{ $item->productName }}</td>
-                                                <td style="width:300px">{{ $item->userId }}</td>
+                                                <td style="width:300px">
+                                                    {{ DB::table('users')->where('id', $item->userId)->value('name')  }}
+                                                </td>
                                                 <td>{{ $item->rating }}</td>
                                                 <td style="width:600px">
                                                     @phpif (strlen($item->description) > 150) {echo substr($item->description, 0, 150) . ' ...';} else {echo $item->description;} @endphp ?> ?>
