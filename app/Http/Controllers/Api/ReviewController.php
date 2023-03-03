@@ -28,15 +28,16 @@ class ReviewController extends Controller
             ->select('reviews.*', 'products.productName as productName')
             ->where('reviews.userID', $id)
             ->get();
-        }if($reviews->isEmpty()){
+        }if($reviews->isNotEmpty()){
             return response()->json( [
                 'response_code' => 200,
                 'data' => compact('reviews'),
             ] );
+        }else{
+            return response()->json( [
+                'response_code' => 401,
+                'response_messege' => 'No Reviews Found',
+            ] );
         }
-        return response()->json( [
-            'response_code' => 401,
-            'response_messege' => 'No Reviews Found',
-        ] );
    }
 }
