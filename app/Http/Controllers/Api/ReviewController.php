@@ -12,8 +12,8 @@ use Auth;
 
 class ReviewController extends Controller
 {
-   public function getReview() {
-        $id = session()->get('subadminId');
+   public function getReview(Request $request) {
+        $id = request->user()->id;
         $reviews = DB::table('reviews')
             ->join('products', 'reviews.productId', '=', 'products.id')
             ->select('reviews.*', 'products.productName as productName')
@@ -21,7 +21,7 @@ class ReviewController extends Controller
             ->get();
         return response()->json( [
             'response_code' => 200,
-            'rc_id' => $id,
+            'id' => $id,
             'data' => compact('reviews'),
         ] );
    }
