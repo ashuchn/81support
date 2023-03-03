@@ -13,13 +13,12 @@ use Auth;
 class ReviewController extends Controller
 {
    public function getReview() {
-        $id = Auth::id();
+        $rc_id = Session::id();
         $reviews = DB::table('reviews')
-        ->join('products', 'reviews.productId', '=', 'products.id')
-        ->join('users', 'reviews.userId', '=', 'users.id')
-        ->select('reviews.*', 'products.productName as product_name', 'users.name as user_name')
-        ->where('reviews.userId', $id)
-        ->get();
+            ->join('products', 'reviews.productId', '=', 'products.id')
+            ->select('reviews.*', 'products.productName as productName')
+            ->where('products.rc_id', $rc_id)
+            ->get();
         return view('subadmin.reviews.index', compact('reviews'));
    }
 }
