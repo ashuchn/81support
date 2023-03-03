@@ -87,7 +87,7 @@
                                             <tr>
                                                 <td>{{ $key + 1 }}</td>
                                                 <td>{{ $item->productName }}</td>
-                                                <td style="width:300px">{{ $item->user_name }}</td>
+                                                <td style="width:300px">{{ $item->userId }}</td>
                                                 <td>{{ $item->rating }}</td>
                                                 <td>{{ $item->available_quantity }}</td>
                                                 <td style="width:600px">
