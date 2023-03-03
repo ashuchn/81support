@@ -14,7 +14,7 @@ class ReviewController extends Controller
 {
    public function getReview(Request $request) {
         $id = $request->user()->id;
-        if($request->has(stars)){
+        if($request->has('stars')){
             $stars = $request->stars;
             $reviews = DB::table('reviews')
             ->join('products', 'reviews.productId', '=', 'products.id')
