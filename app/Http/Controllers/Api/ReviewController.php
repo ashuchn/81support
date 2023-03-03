@@ -28,7 +28,7 @@ class ReviewController extends Controller
             ->select('reviews.*', 'products.productName as productName')
             ->where('reviews.userID', $id)
             ->get();
-        }if($reviews){
+        }if($reviews->isEmpty()){
             return response()->json( [
                 'response_code' => 200,
                 'data' => compact('reviews'),
