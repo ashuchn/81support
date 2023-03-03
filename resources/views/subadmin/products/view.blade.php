@@ -79,7 +79,7 @@
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-3">
                                             <label for="exampleInputEmail1">Choose Category:</label>
                                             <span class="text-danger">*</span>
                                             <select name="category" class="form-select select2" required>
@@ -92,7 +92,7 @@
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-3">
                                             <label for="exampleInputEmail1">Quantity:</label>
                                             <span class="text-danger">*</span>
                                             <input type="number" name="availavle_quantity" value="{{ isset($product->quantity) ? $product->quantity : '' }}" class="form-control @error('availavle_quantity') ? ' is-invalid' : '' @enderror" placeholder="Enter Product Quantity" required>
