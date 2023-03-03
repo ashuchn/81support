@@ -37,7 +37,7 @@
                         <!-- small box -->
                         <div class="small-box bg-success">
                             <div class="inner">
-                                <h3>{{ $ridingCharter }}<sup style="font-size: 20px">%</sup></h3>
+                                <h3>{{ $ridingCharter }}<sup style="font-size: 20px"></sup></h3>
 
                                 <p>Riding Charters</p>
                             </div>
