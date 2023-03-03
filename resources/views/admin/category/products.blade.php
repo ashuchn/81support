@@ -20,7 +20,7 @@
         </div>
 
         <section class="content">
-            <div class="col-9 mx-auto"> 
+            <div class="col-9 mx-auto">
                 <table class="table table-bordered table-striped">
                     <thead>
                         <tr>
@@ -47,7 +47,8 @@
                                                     echo 'active';
                                                 } ?>">
                                                     <img class="img-fluid card-img-top img-thumbnai"
-                                                        src="{{ $img }}" style="max-height: 300px; max-width: 400px;" alt="First slide">
+                                                        src="{{ $img }}"
+                                                        style="max-height: 300px; max-width: 400px;" alt="First slide">
                                                     <div class="card-img-overla">
 
                                                     </div>
@@ -96,9 +97,9 @@
                     </tfoot>
 
                 </table>
-            </div>
-            <div class="d-flex justify-content-end">
-                {{ $data->links() }}
+                <div class="d-flex justify-content-end">
+                    {{ $data->links() }}
+                </div>
             </div>
         </section>
     </div>
