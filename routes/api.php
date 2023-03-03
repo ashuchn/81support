@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\ProfileController;
 use App\Http\Controllers\Api\ShopController;
 use App\Http\Controllers\Api\NotificationController;
+use App\Http\Controllers\Api\ReviewController;
 use App\Mail\sendOtp;
 use Illuminate\Support\Facades\Mail;
 
@@ -52,6 +53,7 @@ Route::group(['middleware' => 'auth:sanctum'],function () {
     Route::get('getAddress',[ProfileController::class,'getAddress']);
     Route::post('editAddress',[ProfileController::class,'editAddress']);
     Route::post('updateAddress',[ProfileController::class,'updateAddress']);
+    Route::post('reviews', [ReviewController::class, 'getReview'])->name('subadmin.reviews');
 });
 
 
