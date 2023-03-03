@@ -86,15 +86,13 @@
                                         @foreach ($reviews as $key => $item)
                                             <tr>
                                                 <td>{{ $key + 1 }}</td>
-                                                <td>{{ $item->product_name }}</td>
+                                                <td>{{ $item->productName }}</td>
                                                 <td style="width:300px">{{ $item->user_name }}</td>
                                                 <td>{{ $item->rating }}</td>
                                                 <td>{{ $item->available_quantity }}</td>
-                                                <td style="width:600px">@phpif (strlen($item->description) > 150) {
-                                                        echo substr($item->description, 0, 150) . ' ...';
-                                                    } else {
-                                                        echo $item->description;
-                                                } @endphp</td>
+                                                <td style="width:600px">
+                                                    @phpif (strlen($item->description) > 150) {echo substr($item->description, 0, 150) . ' ...';} else {echo $item->description;} @endphp ?> ?>
+                                                </td>
                                             </tr>
                                         @endforeach
 
