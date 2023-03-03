@@ -12,6 +12,6 @@ use Session;
 class ReviewController extends Controller
 {
    public function getReview() {
-        return(view('subadmin.review'));
+        return(view('subadmin.review.index'));
    }
 }
