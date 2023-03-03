@@ -92,6 +92,14 @@
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
+                                        <div class="col-md-6">
+                                            <label for="exampleInputEmail1">Quantity:</label>
+                                            <span class="text-danger">*</span>
+                                            <input type="number" name="availavle_quantity" value="{{ isset($product->quantity) ? $product->quantity : '' }}" class="form-control @error('availavle_quantity') ? ' is-invalid' : '' @enderror" placeholder="Enter Product Quantity" required>
+                                            @error('availavle_quantity')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
                                     </div>
                                 </div>
                                 <!-- /.card-body -->
