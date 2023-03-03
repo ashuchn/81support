@@ -47,7 +47,13 @@ class AdminController extends Controller
         $ridingCharters = DB::table('riding_charter_users')->count();
         $products = DB::table('products')->count();
         $categories = DB::table('categories')->count();
-        return view('admin.app', compact('users', 'ridingCharters', 'products', 'categories'));
+        $params = [
+            'users' => $users,
+            'ridingCharter' => $ridingCharters,
+            'products' => $products,
+            'categories' => $categories
+        ];
+        return view('admin.app', $params);
     }
 
     public function logout()
