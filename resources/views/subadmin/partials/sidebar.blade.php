@@ -22,7 +22,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('subadmin.products.reviews') }}" class="waves-effect">
+                    <a href="{{ route('subadmin.reviews') }}" class="waves-effect">
                         <i class="ri-medal-line"></i>
                         <span>Reviews</span>
                     </a>
