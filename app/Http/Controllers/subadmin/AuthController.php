@@ -10,6 +10,7 @@ use DB;
 use Validator;
 use Hash;
 use stdClass;
+use Auth;
 
 class AuthController extends Controller
 {
