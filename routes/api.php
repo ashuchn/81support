@@ -53,7 +53,7 @@ Route::group(['middleware' => 'auth:sanctum'],function () {
     Route::get('getAddress',[ProfileController::class,'getAddress']);
     Route::post('editAddress',[ProfileController::class,'editAddress']);
     Route::post('updateAddress',[ProfileController::class,'updateAddress']);
-    Route::post('reviews', [ReviewController::class, 'getReview'])->name('subadmin.reviews');
+    Route::post('reviews', [ReviewController::class, 'getReview']);
 });
 
 

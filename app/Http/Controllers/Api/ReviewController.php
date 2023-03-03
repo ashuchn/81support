@@ -19,7 +19,6 @@ class ReviewController extends Controller
             ->select('reviews.*', 'products.productName as productName')
             ->where('products.rc_id', $rc_id)
             ->get();
-        // return view('subadmin.reviews.index', compact('reviews'));
         return response()->json( [
             'response_code' => 200,
             'data' => compact('reviews'),
