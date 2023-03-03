@@ -13,7 +13,7 @@ use Auth;
 class ReviewController extends Controller
 {
    public function getReview(Request $request) {
-        $id = request->user()->id;
+        $id = $request->user()->id;
         $reviews = DB::table('reviews')
             ->join('products', 'reviews.productId', '=', 'products.id')
             ->select('reviews.*', 'products.productName as productName')
