@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\FilterController;
 
 use App\Http\Controllers\subadmin\AuthController;
 use App\Http\Controllers\subadmin\ProductsController;
+use App\Http\Controllers\subadmin\ReviewController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
