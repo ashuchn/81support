@@ -17,7 +17,7 @@ class ReviewController extends Controller
         $reviews = DB::table('reviews')
             ->join('products', 'reviews.productId', '=', 'products.id')
             ->select('reviews.*', 'products.productName as productName')
-            ->where('reviews.userID', $rid)
+            ->where('reviews.userID', $id)
             ->get();
         return response()->json( [
             'response_code' => 200,
