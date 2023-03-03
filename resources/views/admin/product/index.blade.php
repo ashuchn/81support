@@ -113,10 +113,6 @@
                         {{ $data->links() }}
                     </div>
                 </div>
-            
-            <div class="d-flex justify-content-end">
-                {{ $data->links() }}
-            </div>
         </section>
     </div>
 @endsection
