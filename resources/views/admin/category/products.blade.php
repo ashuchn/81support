@@ -20,7 +20,7 @@
         </div>
 
         <section class="content">
-            <div class="col-9 mx-auto">
+            <div class="col-12 mx-auto">
                 <table class="table table-bordered table-striped">
                     <thead>
                         <tr>
