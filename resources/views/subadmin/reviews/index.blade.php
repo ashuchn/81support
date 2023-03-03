@@ -75,10 +75,9 @@
                                     <thead>
                                         <tr>
                                             <th>S.No</th>
-                                            <th>Category</th>
-                                            <th>Name</th>
-                                            <th>price</th>
-                                            <th>Quantity</th>
+                                            <th>Product</th>
+                                            <th>User</th>
+                                            <th>Rating</th>
                                             <th>description</th>
                                         </tr>
                                     </thead>
