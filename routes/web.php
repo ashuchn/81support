@@ -17,6 +17,7 @@ use App\Http\Controllers\Admin\FilterController;
 use App\Http\Controllers\subadmin\AuthController;
 use App\Http\Controllers\subadmin\ProductsController;
 use App\Http\Controllers\subadmin\ReviewController;
+use App\Http\Controllers\subadmin\OrderController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -113,5 +114,7 @@ Route::prefix('subadmin')->group(function(){
         ]);
 
         Route::get('reviews', [ReviewController::class, 'getReview'])->name('subadmin.reviews');
+
+        Route::get('orders', [OrderController::class, 'getOrder'])->name('subadmin.orders');
     });
 });

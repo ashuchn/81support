@@ -44,28 +44,20 @@
                                     <thead>
                                         <tr>
                                             <th>S.No</th>
+                                            <th>Order ID</th>
                                             <th>Product</th>
                                             <th>User</th>
-                                            <th>Rating</th>
-                                            <th>description</th>
+                                            <th>Price</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php $i = 1; ?>
-                                        @foreach ($reviews as $key => $item)
-                                            <tr>
-                                                <td>{{ $key + 1 }}</td>
-                                                <td>{{ $item->productName }}</td>
-                                                <td style="width:300px">
-                                                    {{ DB::table('new_users')->where('id', $item->userId)->value('name') }}
-                                                </td>
-                                                <td>{{ $item->rating }}</td>
-                                                <td style="width:600px">
-                                                    {{ substr($item->description, 0, 150) }}
-                                                </td>
-                                            </tr>
-                                        @endforeach
-
+                                        <tr>
+                                            <td>1</td>
+                                            <td>123456</td>
+                                            <td>Sample Product</td>
+                                            <td>Sample Username</td>
+                                            <td>Price</td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
