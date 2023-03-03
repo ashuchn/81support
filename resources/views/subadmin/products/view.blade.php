@@ -95,7 +95,7 @@
                                         <div class="col-md-3">
                                             <label for="exampleInputEmail1">Quantity:</label>
                                             <span class="text-danger">*</span>
-                                            <input type="number" name="availavle_quantity" value="{{ isset($product->quantity) ? $product->quantity : '' }}" class="form-control @error('availavle_quantity') ? ' is-invalid' : '' @enderror" placeholder="Enter Product Quantity" required>
+                                            <input type="number" name="availavle_quantity" value="{{ isset($product->available_quantity) ? $product->available_quantity : '' }}" class="form-control @error('availavle_quantity') ? ' is-invalid' : '' @enderror" placeholder="Enter Product Quantity" required>
                                             @error('availavle_quantity')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
