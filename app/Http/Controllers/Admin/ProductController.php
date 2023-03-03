@@ -20,7 +20,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $data = Product::orderBy('created_at','desc')->paginate(2);
+        $data = Product::orderBy('created_at','desc')->paginate(5);
         //for appending server url to public url
         foreach($data as $rows) {
             // return $new;
