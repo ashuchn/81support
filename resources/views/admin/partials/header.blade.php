@@ -94,7 +94,7 @@
               </li>
             
 
-              <li class="nav-item">
+              <li class="nav-item {{ Route::is('admin.notification') ? 'menu-open' : '' }}">
                 <a href="#" class="nav-link {{ Route::is('admin.notification') ? 'active' : '' }}">
                     <!--<i class="nav-icon far fa-envelope"></i>-->
                     <p>Notifications<i class="fas fa-angle-left right"></i></p>
