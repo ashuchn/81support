@@ -21,7 +21,6 @@ class ReviewController extends Controller
             ->get();
         return response()->json( [
             'response_code' => 200,
-            'id' => $id,
             'data' => compact('reviews'),
         ] );
    }
