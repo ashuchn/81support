@@ -21,7 +21,7 @@
                         <!-- small box -->
                         <div class="small-box bg-info">
                             <div class="inner">
-                                <h3>150</h3>
+                                <h3>{{ $users }}</h3>
 
                                 <p>Users</p>
                             </div>
@@ -37,7 +37,7 @@
                         <!-- small box -->
                         <div class="small-box bg-success">
                             <div class="inner">
-                                <h3>53<sup style="font-size: 20px">%</sup></h3>
+                                <h3>{{ $ridingCharters }}<sup style="font-size: 20px">%</sup></h3>
 
                                 <p>Riding Charters</p>
                             </div>
@@ -53,7 +53,7 @@
                         <!-- small box -->
                         <div class="small-box bg-warning">
                             <div class="inner">
-                                <h3>44</h3>
+                                <h3>{{ $products }}</h3>
 
                                 <p>Products</p>
                             </div>
@@ -69,7 +69,7 @@
                         <!-- small box -->
                         <div class="small-box bg-danger">
                             <div class="inner">
-                                <h3>65</h3>
+                                <h3>{{ $categories }}</h3>
 
                                 <p>Categories</p>
                             </div>

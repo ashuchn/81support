@@ -43,7 +43,11 @@ class AdminController extends Controller
 
     public function dashboard()
     {
-        return view('admin.app');
+        $users = DB::table('new_users')->count();
+        $ridingCharters = DB::table('riding_charter_users')->count();
+        $products = DB::table('products')->count();
+        $categories = DB::table('categories')->count();
+        return view('admin.app', compact('users', 'ridingCharters', 'products', 'categories'));
     }
 
     public function logout()
