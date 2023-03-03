@@ -110,5 +110,7 @@ Route::prefix('subadmin')->group(function(){
             'update' => 'subadmin.products.update',
             'destroy' => 'subadmin.products.destroy',
         ]);
+
+        Route::get('reviews', [ReviewController::class, 'getReview'])->name('subadmin.products.reviews');
     });
 });

@@ -22,8 +22,8 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="waves-effect">
-                        <i class="ri-account-circle-line"></i>
+                    <a href="{{ route('subadmin.products.reviews') }}" class="waves-effect">
+                        <i class="ri-medal-line"></i>
                         <span>Reviews</span>
                     </a>
                 </li>
