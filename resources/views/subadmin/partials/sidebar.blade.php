@@ -17,7 +17,7 @@
                 </li>
                 <li>
                     <a href="{{ route('subadmin.products.index') }}" class="waves-effect">
-                        <i class="ri-account-circle-line"></i>
+                        <i class="ri-dropbox-line"></i>
                         <span>Products</span>
                     </a>
                 </li>
