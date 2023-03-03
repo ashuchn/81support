@@ -38,7 +38,73 @@
                 <div class="row">
                     <div class="col-12">
 
-                        test
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <div class="p-2">
+                                            <h3 class="card-title"><a href="{{ route('subadmin.products.create') }}"><button
+                                                        type="button"
+                                                        class="btn btn-block bg-gradient-primary  btn-primary">Add
+                                                        Product</button></a></h3>
+                                        </div>
+                                    </div>
+                                    <div class="col-8">
+                                        <div class="d-flex justify-content-end">
+                                            <div class="p-2 ">
+                                                <select name="filter" id="" class="form-select float-right">
+                                                    <option value="">Filter By:</option>
+                                                    <option value="category">Category</option>
+                                                    <option value="price">Price</option>
+                                                </select>
+                                            </div>
+                                            <div class="p-2 ">
+                                                <input type="text" class="form-control" name="filter" id=""
+                                                    placeholder="Category, price" required>
+                                            </div>
+                                            <div class="p-2 ">
+                                                <button class="btn btn-success">Filter</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <table id="example1" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>S.No</th>
+                                            <th>Category</th>
+                                            <th>Name</th>
+                                            <th>price</th>
+                                            <th>Quantity</th>
+                                            <th>description</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php $i = 1; ?>
+                                        @foreach ($reviews as $key => $item)
+                                            <tr>
+                                                <td>{{ $key + 1 }}</td>
+                                                <td>{{ $item->product_name }}</td>
+                                                <td style="width:300px">{{ $item->user_name }}</td>
+                                                <td>{{ $item->rating }}</td>
+                                                <td>{{ $item->available_quantity }}</td>
+                                                <td style="width:600px">@phpif (strlen($item->description) > 150) {
+                                                        echo substr($item->description, 0, 150) . ' ...';
+                                                    } else {
+                                                        echo $item->description;
+                                                } @endphp</td>
+                                            </tr>
+                                        @endforeach
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
                     </div>
                     <!-- /.col -->
                 </div>

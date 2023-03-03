@@ -12,6 +12,13 @@ use Session;
 class ReviewController extends Controller
 {
    public function getReview() {
-        return(view('subadmin.reviews.index'));
+        $id = Auth::user()->id;
+        $reviews = DB::table('reviews')
+        ->join('products', 'reviews.productId', '=', 'products.id')
+        ->join('users', 'reviews.userId', '=', 'users.id')
+        ->select('reviews.*', 'products.name as product_name', 'users.name as user_name')
+        ->where('reviews.userId', $id)
+        ->get();
+        return view('subadmin.reviews.index', compact('reviews'));
    }
 }
