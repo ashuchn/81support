@@ -30,7 +30,7 @@
                 <li>
                     <a href="{{ route('subadmin.orders') }}" class="waves-effect">
                         <i class="ri-shopping-cart-line"></i>
-                        <span>Reviews</span>
+                        <span>Orders</span>
                     </a>
                 </li>
             </ul>
