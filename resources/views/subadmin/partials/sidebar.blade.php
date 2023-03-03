@@ -21,61 +21,12 @@
                         <span>Products</span>
                     </a>
                 </li>
-                {{-- <li>
-                    <a href="{{ route('filter.index') }}" class="waves-effect">
+                <li>
+                    <a href="#" class="waves-effect">
                         <i class="ri-account-circle-line"></i>
-                        <span>Product Filter</span>
+                        <span>Reviews</span>
                     </a>
-                </li> --}}
-    
-                <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="ri-store-2-line"></i>
-                        <span>Photos</span>
-                    </a>
-                    <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="#">All Photos</a></li>
-                        <li><a href="#">Single Photo Upload</a></li>
-                        <li><a href="#">Bulk Photo Upload</a></li>
-                    </ul>
                 </li>
-                
-                
-                <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="ri-store-2-line"></i>
-                        <span>Videos</span>
-                    </a>
-                    <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="#">All Videos</a></li>
-                        <li><a href="#">Single Videos Upload</a></li>
-                        <li><a href="#">Bulk Videos Upload</a></li>
-                    </ul>
-                </li>
-    
-                <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="ri-mail-send-line"></i>
-                        <span>Settings</span>
-                    </a>
-                    <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="#">Profile</a></li>
-                        <li><a href="#">Confiuration</a></li>
-                    </ul>
-                </li>
-    
-                
-    
-                
-    
-                
-    
-                
-    
-                
-    
-                
-    
             </ul>
         </div>
         <!-- Sidebar -->
