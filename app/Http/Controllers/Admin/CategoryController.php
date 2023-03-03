@@ -70,7 +70,7 @@ class CategoryController extends Controller
     public function show($id)
     {
         $category =  Category::where('id', $id)->pluck('categoryName');
-        $data = Product::where('categoryId', $id)->paginate(2);
+        $data = Product::where('categoryId', $id)->paginate(5);
         if(!empty($data)) {
             //for appending server url to public url
             foreach($data as $rows) {
