@@ -28,27 +28,27 @@ class ProfileController extends Controller {
         $id = $request->user()->id;
 
         $userprofile = New_User::find( $id );
-        if($request-has('name')){
+        if($request->has('name')){
             $userprofile->name = $request->name;
         }else{
             $userprofile->name = $userprofile->name;
         }
-        if($request-has('email')){
+        if($request->has('email')){
             $userprofile->email = $request->email;
         }else{
             $userprofile->email = $userprofile->email;
         }
-        if($request-has('mobile')){
+        if($request->has('mobile')){
             $userprofile->mobile = $request->mobile;
         }else{
             $userprofile->mobile = $userprofile->mobile;
         }
-        if($request-has('dob')){
+        if($request->has('dob')){
             $userprofile->dob = $request->dob;
         }else{
             $userprofile->dob = $userprofile->dob;
         }
-        if($request-has('image')){
+        if($request->has('image')){
             $userprofile->image = $request->image;
         }else{
             $userprofile->image = $userprofile->image;
