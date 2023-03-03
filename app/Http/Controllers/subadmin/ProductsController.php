@@ -77,6 +77,7 @@ class ProductsController extends Controller
         $insert->productName = $request->productName;
         $insert->price = $request->price;
         $insert->description = $request->description;
+        $insert->available_quantity = $request->available_quantity;
         $insert->rc_id = session()->get('subadminId');
         if($insert->save()) {
             if ($request->has('images')) {

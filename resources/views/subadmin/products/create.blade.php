@@ -74,7 +74,7 @@
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-3">
                                             <label for="exampleInputEmail1">Choose Category:</label>
                                             <span class="text-danger">*</span>
                                             <select name="category" class="form-select select2" required>
@@ -84,6 +84,14 @@
                                                 @endforeach
                                             </select>
                                             @error('category')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="exampleInputEmail1">Quantity:</label>
+                                            <span class="text-danger">*</span>
+                                            <input type="number" name="available_quantity" class="form-control @error('quantity') ? ' is-invalid' : '' @enderror" placeholder="Enter Product Quantity" required>
+                                            @error('available_quantity')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
