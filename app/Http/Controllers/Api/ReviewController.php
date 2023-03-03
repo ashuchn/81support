@@ -13,11 +13,11 @@ use Auth;
 class ReviewController extends Controller
 {
    public function getReview() {
-        $rc_id = session()->get('subadminId');
+        $id = session()->get('subadminId');
         $reviews = DB::table('reviews')
             ->join('products', 'reviews.productId', '=', 'products.id')
             ->select('reviews.*', 'products.productName as productName')
-            ->where('products.rc_id', $rc_id)
+            ->where('reviews.userID', $rid)
             ->get();
         return response()->json( [
             'response_code' => 200,
