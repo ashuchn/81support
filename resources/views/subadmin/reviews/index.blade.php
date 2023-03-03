@@ -88,7 +88,7 @@
                                                 <td>{{ $key + 1 }}</td>
                                                 <td>{{ $item->productName }}</td>
                                                 <td style="width:300px">
-                                                    {{ DB::table('users')->where('id', $item->userId)->value('name')  }}
+                                                    {{ DB::table('new_users')->where('id', $item->userId)->value('name')  }}
                                                 </td>
                                                 <td>{{ $item->rating }}</td>
                                                 <td style="width:600px">
