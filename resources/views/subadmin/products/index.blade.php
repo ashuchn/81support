@@ -73,6 +73,7 @@
                               <th>Category</th>
                               <th>Name</th>
                               <th>price</th>
+                              <th>Quantity</th>
                               <th>description</th>
                               <th>Action</th>
                             </tr>
@@ -85,6 +86,7 @@
                                       <td>{{ $item->categoryName }}</td>
                                       <td style="width:300px">{{ $item->productName }}</td>
                                       <td>{{$item->price}}</td>
+                                      <td>{{$item->available_quantity}}</td>
                                       <td style="width:600px">@php if(strlen($item->description) > 150){
                                         echo substr($item->description,0,150) . " ...";
                                     }
