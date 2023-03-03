@@ -27,6 +27,12 @@
                         <span>Reviews</span>
                     </a>
                 </li>
+                <li>
+                    <a href="{{ route('subadmin.orders') }}" class="waves-effect">
+                        <i class="ri-shopping-cart-line"></i>
+                        <span>Reviews</span>
+                    </a>
+                </li>
             </ul>
         </div>
         <!-- Sidebar -->
