@@ -8,6 +8,7 @@ use App\Models\Review;
 use Validator;
 use DB;
 use Session;
+use Auth;
 
 class ReviewController extends Controller
 {
