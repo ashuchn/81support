@@ -27,9 +27,12 @@ use App\Http\Controllers\subadmin\ProductsController;
 |
 */
 
-Route::get('/', function () {
-    return view('admin.app');
-});
+// Route::get('/', function () {
+//     return view('admin.app');
+// });
+
+Route::get('/', [AdminController::class,'dashboard'])->name('admin.dashboard');
+
 
 Route::prefix('admin')->group(function () {
     Route::get('login', [AdminController::class, 'login'])->name('admin.login');
