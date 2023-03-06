@@ -87,11 +87,11 @@
                                       <td style="width:300px">{{ $item->productName }}</td>
                                       <td>{{$item->price}}</td>
                                       <td>{{$item->available_quantity}}</td>
-                                      <td style="width:600px">@php if(strlen($item->images) > 150){
-                                        echo substr($item->images,0,150) . " ...";
+                                      <td style="width:600px">@php if(strlen($item->description) > 150){
+                                        echo substr($item->description,0,150) . " ...";
                                     }
                                     else{
-                                        echo $item->images;
+                                        echo $item->description;
                                     } @endphp</td>
                               <td class="d-flex">
                                     <a href="{{ route('subadmin.products.show',$item->id) }}">
