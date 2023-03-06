@@ -83,14 +83,14 @@
                     <!-- ./col -->
                 </div>
                 <!-- /.row -->
-                <div class="row p-2">
+                <div class="row p-2 pt-0">
                     <div id="map" style="height: 500px; width: 100%;"></div>
                 </div>
             </div> <!-- container fluid ends -->
         </div>
     </div>
 
-    <script type="text/javascript">
+    {{-- <script type="text/javascript">
         function initMap() {
             const myLatLng = {
                 lat: 22.2734719,
@@ -118,8 +118,32 @@
             }
         }
         window.initMap = initMap;
-    </script>
+    </script> --}}
 
+    <script type="text/javascript">
+        function initializeMap() {
+            const locations = <?php echo json_encode($locations) ?>;
+    
+            const map = new google.maps.Map(document.getElementById("map"));
+            var infowindow = new google.maps.InfoWindow();
+            var bounds = new google.maps.LatLngBounds();
+            for (var location of locations) {
+                var marker = new google.maps.Marker({
+                    position: new google.maps.LatLng(location.lat, location.lng),
+                    map: map
+                });
+                bounds.extend(marker.position);
+                google.maps.event.addListener(marker, 'click', (function(marker, location) {
+                    return function() {
+                        infowindow.setContent(location.lat + " & " + location.lng);
+                        infowindow.open(map, marker);
+                    }
+                })(marker, location));
+    
+            }
+            map.fitBounds(bounds);
+        }
+    </script>
 
 
     <script type="text/javascript"
