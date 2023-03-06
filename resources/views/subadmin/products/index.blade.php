@@ -134,7 +134,9 @@
     <script src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
     <script>
         $(document).ready(function() {
-            $('#example1').DataTable();
+            $('#example1').DataTable({
+                "paging": false
+            });
         });
     </script>
 @endsection
