@@ -50,7 +50,7 @@
                                             class="btn btn-block bg-gradient-primary">Add User</button></a></h3>
                             </div>
                             <!-- /.card-header -->
-                            <div class="card-body">
+                            <div class="card-body" style="overflow: auto; white-space: nowrap;">
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
