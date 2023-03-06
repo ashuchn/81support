@@ -57,8 +57,11 @@ class ShopController extends Controller {
                 } 
                 return $rv;
             });
-            
-            $dt->reviews = $reviews;
+            if($reviews->count() > 0){
+                $dt->reviews = $reviews;
+            } else {
+                $dt->reviews = "No Reviews";
+            }
             return $dt;
         });
         
