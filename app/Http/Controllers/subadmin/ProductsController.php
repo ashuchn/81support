@@ -30,11 +30,11 @@ class ProductsController extends Controller
             $data->get(['products.*','categories.categoryName']);;
         }
         
-        $products = $data->map(function($product){
-            $images = DB::table('product_images')->where('productId', $product->id)->pluck('image');
-            $product->images = $images;
-            return $product;
-        });
+        // $products = $data->map(function($product){
+        //     $images = DB::table('product_images')->where('productId', $product->id)->pluck('image');
+        //     $product->images = $images;
+        //     return $product;
+        // });
         
         return view('subadmin.products.index', compact('data'));
     }
