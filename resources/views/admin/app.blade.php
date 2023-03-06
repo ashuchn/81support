@@ -104,18 +104,23 @@
             console.log(locations);
             var infowindow = new google.maps.InfoWindow();
             var marker, i;
-            for (i = 0; i < locations.length; i++) {
-                marker = new google.maps.Marker({
-                    position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+            
+            var bounds = new google.maps.LatLngBounds();
+            for (var location of locations) {
+                var marker = new google.maps.Marker({
+                    position: new google.maps.LatLng(location.latitude, location.longitude),
                     map: map
                 });
-                google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                bounds.extend(marker.position);
+                google.maps.event.addListener(marker, 'click', (function(marker, location) {
                     return function() {
-                        infowindow.setContent(locations[i][0]);
+                        infowindow.setContent(location.name);
                         infowindow.open(map, marker);
                     }
-                })(marker, i));
+                })(marker, location));
+    
             }
+            map.fitBounds(bounds);
         }
         window.initializeMap = initializeMap;
     </script>
