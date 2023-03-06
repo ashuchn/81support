@@ -91,7 +91,7 @@
                                         echo substr($item->images,0,150) . " ...";
                                     }
                                     else{
-                                        echo $item->description;
+                                        echo $item->images;
                                     } @endphp</td>
                               <td class="d-flex">
                                     <a href="{{ route('subadmin.products.show',$item->id) }}">
