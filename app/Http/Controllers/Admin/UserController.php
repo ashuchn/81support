@@ -33,7 +33,7 @@ class UserController extends Controller
             "name" => "required|max:100|min:0",
             "mobile" => "required|max:10|min:10|unique:new_users",
             "email" => "required|email|max:100|min:0|unique:new_users",
-            "password" => "required|max:100|min:0",
+            "password" => "required|max:50|min:8",
             "file" => "mimes:jpg,jpeg,png,svg|max:2048",
         ]);
 
