@@ -55,11 +55,12 @@
                                                 <select name="filter" id="" class="form-select float-right">
                                                     <option value="">Filter By:</option>
                                                     <option value="category">Category</option>
+                                                    <option value="price">Price</option>
                                                 </select>
                                             </div>
                                             <div class="p-2 ">
-                                                <input type="text" class="form-control" name="category" id="category"
-                                                    placeholder="Category" required>
+                                                <input type="text" class="form-control" name="filter" id=""
+                                                    placeholder="Category, price" required>
                                             </div>
                                             <div class="p-2 ">
                                                 <button class="btn btn-success">Filter</button>
@@ -94,8 +95,9 @@
                                                 <td style="width:600px">
                                                     @if (strlen($item->description) > 150)
                                                         {
-                                                        echo substr($item->description, 0, 150) . ' ...';
-                                                        } else {
+                                                        echo substr($item->description,0,150) . " ...";
+                                                        }
+                                                        else{
                                                         echo $item->description;
                                                         }
                                                     @endif
@@ -132,36 +134,6 @@
             </div>
             <!-- /.container-fluid -->
 
-            <script>
-                $(document).ready(function() {
-                    $('#category').on('change', function() {
-                        var category = $(this).val();
-                        $.ajax({
-                            url: "{{ route('subadmin.products.index') }}",
-                            type: "GET",
-                            data: {
-                                category: category
-                            },
-                            dataType: "json",
-                            success: function(data) {
-                                console.log(data);
-                                $('tbody').empty();
-                                $.each(data, function(key, value) {
-                                    $('tbody').append('<tr>' +
-                                        '<td>' + value.id + '</td>' +
-                                        '<td>' + value.categoryName + '</td>' +
-                                        '<td>' + value.productName + '</td>' +
-                                        '<td>' + value.price + '</td>' +
-                                        '<td>' + value.available_quantity + '</td>' +
-                                        '<td>' + value.description + '</td>' +
-                                        '</tr>');
-                                });
-                            }
-                        });
-                    });
-
-                });
-            </script>
 
         </div>
     </div>

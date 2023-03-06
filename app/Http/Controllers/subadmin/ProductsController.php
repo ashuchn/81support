@@ -21,20 +21,15 @@ class ProductsController extends Controller
     {
         $data = Product::where('rc_id', session()->get('subadminId'))
                 ->join('categories', 'categories.id','=','products.categoryId')
-                ->orderBy('created_at','desc');
-
-        if($request->has('category') && $request->category != '') {
-            $data->where('categoryName', 'like', '%'.$request->category.'%')
-            ->get(['products.*','categories.categoryName']);
-        }else{
-            $data->get(['products.*','categories.categoryName']);;
-        }
-        
+                ->orderBy('created_at','desc')
+                ->get(['products.*','categories.categoryName']);
         // $products = $data->map(function($product){
         //     $images = DB::table('product_images')->where('productId', $product->id)->pluck('image');
+        //     // return $images;
         //     $product->images = $images;
         //     return $product;
         // });
+        // return $data;
         
         return view('subadmin.products.index', compact('data'));
     }
