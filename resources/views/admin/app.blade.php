@@ -101,6 +101,7 @@
                 center: myLatLng,
             });
             var locations = {{ Js::from($locations) }};
+            console.log(locations);
             var infowindow = new google.maps.InfoWindow();
             var marker, i;
             for (i = 0; i < locations.length; i++) {
@@ -108,12 +109,12 @@
                     position: new google.maps.LatLng(locations[i][0], locations[i][1]),
                     map: map
                 });
-                // google.maps.event.addListener(marker, 'click', (function(marker, i) {
-                //     return function() {
-                //         infowindow.setContent(locations[i][0]);
-                //         infowindow.open(map, marker);
-                //     }
-                // })(marker, i));
+                google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                    return function() {
+                        infowindow.setContent(locations[i][0]);
+                        infowindow.open(map, marker);
+                    }
+                })(marker, i));
             }
         }
         window.initMap = initMap;
