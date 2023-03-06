@@ -84,6 +84,9 @@
                 </div>
                 <!-- /.row -->
                 <div class="row p-2 pt-0">
+                    <div class="col-sm-6">
+                        <h1>Our Riding Charters</h1>
+                    </div>
                     <div id="map" style="height: 500px; width: 100%;"></div>
                 </div>
             </div> <!-- container fluid ends -->
