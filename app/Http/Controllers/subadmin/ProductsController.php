@@ -38,7 +38,7 @@ class ProductsController extends Controller
             'data' => $data
         ];
         
-        return view('subadmin.products.index', compact('params'));
+        return view('subadmin.products.index', $params);
     }
 
     /**
