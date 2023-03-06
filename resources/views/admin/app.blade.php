@@ -28,7 +28,7 @@
                             <div class="icon">
                                 <i class="ion ion-bag"></i>
                             </div>
-                            <a href="{{route('user.index')}}" class="small-box-footer">More info <i
+                            <a href="{{ route('user.index') }}" class="small-box-footer">More info <i
                                     class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
@@ -44,7 +44,7 @@
                             <div class="icon">
                                 <i class="ion ion-stats-bars"></i>
                             </div>
-                            <a href="{{route('ridingcharter.index')}}" class="small-box-footer">More info <i
+                            <a href="{{ route('ridingcharter.index') }}" class="small-box-footer">More info <i
                                     class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
@@ -83,6 +83,44 @@
                     <!-- ./col -->
                 </div>
                 <!-- /.row -->
+                <div class="row">
+                    <div id="map"></div>
+                </div>
+
+                <script type="text/javascript">
+                    function initMap() {
+                        const myLatLng = {
+                            lat: 22.2734719,
+                            lng: 70.7512559
+                        };
+                        const map = new google.maps.Map(document.getElementById("map"), {
+                            zoom: 5,
+                            center: myLatLng,
+                        });
+                        var locations = {{ Js::from($locations) }};
+                        var infowindow = new google.maps.InfoWindow();
+                        var marker, i;
+                        for (i = 0; i < locations.length; i++) {
+                            marker = new google.maps.Marker({
+                                position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                                map: map
+                            });
+                            google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                                return function() {
+                                    infowindow.setContent(locations[i][0]);
+                                    infowindow.open(map, marker);
+                                }
+                            })(marker, i));
+                        }
+                    }
+                    window.initMap = initMap;
+                </script>
+
+
+
+                <script type="text/javascript"
+                    src="https://maps.google.com/maps/api/js?key={{ env('GOOGLE_MAP_KEY') }}&callback=initMap"></script>
+
             </div> <!-- container fluid ends -->
         </div>
     </div>
