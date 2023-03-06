@@ -52,17 +52,10 @@
                                     <div class="col-8">
                                         <div class="d-flex justify-content-end">
                                             <div class="p-2 ">
-                                                <select name="filter" id="" class="form-select float-right">
-                                                    <option value="">Filter By:</option>
-                                                    <option value="category">Category</option>
-                                                    <option value="price">Price</option>
-                                                </select>
-                                            </div>
-                                            <div class="p-2 ">
                                                 <select name="category" id="category" class="form-select">
-                                                    <option value="">Select Category</option>
+                                                    <option value="">Filter Category</option>
                                                     @foreach ($categories as $category)
-                                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                                        <option value="{{ $category->id }}">{{ $category->name }}q</option>
                                                     @endforeach
                                                 </select>
                                             </div>
