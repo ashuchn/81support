@@ -55,7 +55,7 @@ class AdminController extends Controller
         //     ['Delhi', 28.7041,77.1025],
         //     ['Rajkot', 22.2734719,70.7512559],
         // ];
-        $locations = DB::table('new_users')->select('latitude', 'longitude')->get();
+        $locations = DB::table('riding_charter_users')->select('latitude', 'longitude')->get();
         $params = [
             'users' => $users,
             'ridingCharter' => $ridingCharters,
