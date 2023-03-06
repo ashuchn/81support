@@ -23,13 +23,12 @@ class ProductsController extends Controller
                 ->join('categories', 'categories.id','=','products.categoryId')
                 ->orderBy('created_at','desc')
                 ->get(['products.*','categories.categoryName']);
-        // $products = $data->map(function($product){
-        //     $images = DB::table('product_images')->where('productId', $product->id)->pluck('image');
-        //     // return $images;
-        //     $product->images = $images;
-        //     return $product;
-        // });
-        // return $data;
+        $products = $data->map(function($product){
+            $images = DB::table('product_images')->where('productId', $product->id)->pluck('image');
+            // return $images;
+            $product->images = $images;
+            return $product;
+        });
         
         return view('subadmin.products.index', compact('data'));
     }
