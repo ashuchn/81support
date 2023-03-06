@@ -24,7 +24,7 @@ class ProductsController extends Controller
         $data = Product::where('rc_id', session()->get('subadminId'))
                 ->join('categories', 'categories.id','=','products.categoryId')
                 ->orderBy('created_at','desc')
-                ->get(['products.*','categories.categoryName']);
+                ->get(['products.*','categories.categoryName'])->paginate(5) ;
 
         $products = $data->map(function($product){
             $images = DB::table('product_images')->where('productId', $product->id)->pluck('image');
