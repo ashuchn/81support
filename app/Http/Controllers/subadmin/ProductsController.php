@@ -22,10 +22,10 @@ class ProductsController extends Controller
         $data = Product::where('rc_id', session()->get('subadminId'))
                 ->join('categories', 'categories.id','=','products.categoryId')
                 ->orderBy('created_at','desc')
-                ->get(['products.*','categories.categoryName'])
                 ->query();
         if($request->has('category') && $request->category != '') {
-            $data->where('categoryName', 'like', '%'.$request->category.'%');
+            $data->where('categoryName', 'like', '%'.$request->category.'%')
+            ->get(['products.*','categories.categoryName']);
         }else{
             $data->all();
         }
