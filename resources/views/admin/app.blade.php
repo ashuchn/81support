@@ -89,7 +89,7 @@
             </div> <!-- container fluid ends -->
         </div>
     </div>
-    
+
     <script type="text/javascript">
         function initMap() {
             const myLatLng = {
@@ -101,6 +101,7 @@
                 center: myLatLng,
             });
             var locations = {{ Js::from($locations) }};
+            console.log(locations);
             var infowindow = new google.maps.InfoWindow();
             var marker, i;
             for (i = 0; i < locations.length; i++) {
