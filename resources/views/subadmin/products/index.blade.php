@@ -139,6 +139,9 @@
                         $.ajax({
                             url: "{{ route('subadmin.products.index') }}",
                             type: "GET",
+                            data: {
+                                category: category
+                            },
                             dataType: "json",
                             success: function(data) {
                                 console.log(data);
