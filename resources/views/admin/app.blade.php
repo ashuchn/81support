@@ -84,7 +84,7 @@
                 </div>
                 <!-- /.row -->
                 <div class="row p-2 pt-0">
-                    <div class="p-2 px-0">
+                    <div class="py-2 px-0">
                         <h1>Our Riding Charters</h1>
                     </div>
                     <div id="map" style="height: 500px; width: 100%;"></div>
