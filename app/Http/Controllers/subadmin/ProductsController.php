@@ -22,12 +22,12 @@ class ProductsController extends Controller
         $data = Product::where('rc_id', session()->get('subadminId'))
                 ->join('categories', 'categories.id','=','products.categoryId')
                 ->orderBy('created_at','desc');
-                
+
         if($request->has('category') && $request->category != '') {
             $data->where('categoryName', 'like', '%'.$request->category.'%')
             ->get(['products.*','categories.categoryName']);
         }else{
-            $data->all();
+            $data->get(['products.*','categories.categoryName']);;
         }
         
         $products = $data->map(function($product){
