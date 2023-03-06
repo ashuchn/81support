@@ -101,10 +101,8 @@
                 center: myLatLng,
             });
             var locations = {{ Js::from($locations) }};
-            console.log(locations);
             var infowindow = new google.maps.InfoWindow();
             var marker, i;
-            
             var bounds = new google.maps.LatLngBounds();
             for (var location of locations) {
                 var marker = new google.maps.Marker({
