@@ -21,7 +21,7 @@
 
         <section class="content">
             <div class="col-12 mx-auto">
-                <table class="table table-bordered table-striped">
+                <table class="table table-bordered table-striped table-responsive-sm">
                     <thead>
                         <tr>
                             <th>Image</th>
