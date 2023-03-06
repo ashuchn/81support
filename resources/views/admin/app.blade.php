@@ -83,8 +83,8 @@
                     <!-- ./col -->
                 </div>
                 <!-- /.row -->
-                <div class="row">
-                    <div id="map" style="height: 500px; width: 50%;"></div>
+                <div class="row p-2">
+                    <div id="map" style="height: 500px; width: 100%;"></div>
                 </div>
             </div> <!-- container fluid ends -->
         </div>
@@ -101,7 +101,6 @@
                 center: myLatLng,
             });
             var locations = {{ Js::from($locations) }};
-            console.log(locations);
             var infowindow = new google.maps.InfoWindow();
             var marker, i;
             for (i = 0; i < locations.length; i++) {
