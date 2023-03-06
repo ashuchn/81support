@@ -87,14 +87,7 @@
                                                 <td>{{ $item->price }}</td>
                                                 <td>{{ $item->available_quantity }}</td>
                                                 <td style="width:600px">
-                                                    @if (strlen($item->description) > 150)
-                                                        {
-                                                        echo substr($item->description,0,150) . " ...";
-                                                        }
-                                                        else{
-                                                        echo $item->description;
-                                                        }
-                                                    @endif
+                                                    {{ $item->description }}
                                                 </td>
                                                 <td class="d-flex">
                                                     <a href="{{ route('subadmin.products.show', $item->id) }}">
