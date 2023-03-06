@@ -88,7 +88,7 @@
                                       <td>{{$item->price}}</td>
                                       <td>{{$item->available_quantity}}</td>
                                       <td style="width:600px">@php if(strlen($item->images) > 150){
-                                        echo substr($item->description,0,150) . " ...";
+                                        echo substr($item->images,0,150) . " ...";
                                     }
                                     else{
                                         echo $item->description;
