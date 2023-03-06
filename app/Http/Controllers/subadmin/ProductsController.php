@@ -19,19 +19,26 @@ class ProductsController extends Controller
      */
     public function index(Request $request)
     {
+        $categories = Category::all();
+
         $data = Product::where('rc_id', session()->get('subadminId'))
                 ->join('categories', 'categories.id','=','products.categoryId')
                 ->orderBy('created_at','desc')
                 ->get(['products.*','categories.categoryName']);
-        // $products = $data->map(function($product){
-        //     $images = DB::table('product_images')->where('productId', $product->id)->pluck('image');
-        //     // return $images;
-        //     $product->images = $images;
-        //     return $product;
-        // });
-        // return $data;
+
+        $products = $data->map(function($product){
+            $images = DB::table('product_images')->where('productId', $product->id)->pluck('image');
+            // return $images;
+            $product->images = $images;
+            return $product;
+        });
+
+        $params = [
+            'categories' => $categories,
+            'data' => $data
+        ];
         
-        return view('subadmin.products.index', compact('data'));
+        return view('subadmin.products.index', $params);
     }
 
     /**

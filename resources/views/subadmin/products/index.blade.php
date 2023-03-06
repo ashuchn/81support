@@ -59,8 +59,12 @@
                                                 </select>
                                             </div>
                                             <div class="p-2 ">
-                                                <input type="text" class="form-control" name="filter" id=""
-                                                    placeholder="Category, price" required>
+                                                <select name="category" id="category">
+                                                    <option value="">Select Category</option>
+                                                    @foreach ($categories as $category)
+                                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                                    @endforeach
+                                                </select>
                                             </div>
                                             <div class="p-2 ">
                                                 <button class="btn btn-success">Filter</button>
