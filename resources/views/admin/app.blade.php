@@ -119,7 +119,7 @@
 
 
                 <script type="text/javascript"
-                    src="https://maps.google.com/maps/api/js?key={{ env('GOOGLE_MAP_KEY') }}&callback=initMap"></script>
+                    src="https://maps.google.com/maps/api/js?key={{ env('GOOGLE_MAPS_API') }}&callback=initMap"></script>
 
             </div> <!-- container fluid ends -->
         </div>
