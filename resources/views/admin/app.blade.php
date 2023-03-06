@@ -84,7 +84,7 @@
                 </div>
                 <!-- /.row -->
                 <div class="row">
-                    <div id="map"></div>
+                    <div id="map" style="height: 500px; width: 50%;"></div>
                 </div>
             </div> <!-- container fluid ends -->
         </div>
