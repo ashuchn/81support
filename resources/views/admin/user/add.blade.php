@@ -50,23 +50,23 @@
                 <div class="card-body">
                   <div class="form-group">
                     <label for="exampleInputEmail1">Name</label>
-                    <input type="text" name="name" class="form-control" placeholder="Enter Name">
+                    <input type="text" value="{{old('name')}}" name="name" class="form-control" placeholder="Enter Name">
                   </div>
 				  @csrf
 				  
 				  <div class="form-group">
                     <label for="exampleInputEmail1">Email</label>
-                    <input type="email" name="email" class="form-control"  placeholder="Enter Email">
+                    <input type="email" value="{{old('email')}}" name="email" class="form-control"  placeholder="Enter Email">
                   </div>
 				  
 				  <div class="form-group">
                     <label for="exampleInputEmail1">Mobile</label>
-                    <input type="number" name="mobile" class="form-control"  placeholder="Enter Mobile">
+                    <input type="number" value="{{old('mobile')}}" name="mobile" class="form-control"  placeholder="Enter Mobile">
                   </div>
 				  
 				  <div class="form-group">
                     <label for="exampleInputEmail1">Password</label>
-                    <input type="password" name="password" class="form-control"  placeholder="Enter Password">
+                    <input type="password" value="{{old('password')}}" name="password" class="form-control"  placeholder="Enter Password">
                   </div>
 				
 				<div class="form-group">
