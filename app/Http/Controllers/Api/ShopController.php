@@ -380,6 +380,7 @@ class ShopController extends Controller {
     {
         $userId = $req->user()->id;
         $data = Cart::where('userId', $userId)->get(['id as cartId','productId','userId','quantity']);
+        $cartProductCount =  count($data);
 
         if($cartProductCount > 0) {
             $cart = $data->map(function($dt) {
@@ -422,13 +423,10 @@ class ShopController extends Controller {
             })->reject(function ($value) {
                 return $value === false;
             });
-
-            $cartProductCount =  count($cart);
-
             return response()->json([
                 "response_message" => "Ok!",
                 "response_code"    => 200,
-                "cartProductCount" => $cartProductCount,
+                "cartProductCount" => count($cart),
                 "data"             => $cart
             ],200);
         } else {
