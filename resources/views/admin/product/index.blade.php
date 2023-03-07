@@ -27,13 +27,12 @@
                     {{ session()->get('success') }}
                 </div>
             @endif
-            <div class="row">
-                <div class="col-md-12 mb-3">
-                    <a href="{{ route('product.create') }}" class="btn btn-success float-right btn-sm">Add Product</a>
-                </div>
-            </div>
             <div class="col-12 mx-auto">
                 <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title"><a href="{{ route('product.create') }}"><button type="button"
+                                    class="btn btn-block bg-gradient-primary">Add Product</button></a></h3>
+                    </div>
                     <!-- /.card-header -->
                     <div class="card-body">
                         <table class="table table-bordered table-striped table-responsive-sm">
