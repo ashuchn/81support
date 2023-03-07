@@ -412,7 +412,10 @@ class ShopController extends Controller {
                     $review = [];
                 }
                 $dt->reviews = $reviews;
-                $dt->addedProduct = $product; 
+                $dt->addedProduct = $product;
+                if($dt->addedProduct == null) {
+                    $dt->delete();
+                }
                 unset($dt->userId);
                 unset($dt->productId);
                 return $dt;
