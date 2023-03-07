@@ -109,7 +109,7 @@
                 </ul>
               </li>
 
-              <li class="nav-item">
+              <li class="nav-item {{ (Route::is('admin.notification') || 1) ? 'menu-open' : '' }}">
                 <a href="#" class="nav-link">
                     <!--<i class="nav-icon far fa-envelope"></i>-->
                     <!--<i class="fa-regular fa-list-check"></i>-->
