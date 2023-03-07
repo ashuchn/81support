@@ -385,7 +385,39 @@ class ShopController extends Controller {
         if($cartProductCount > 0) {
             $cart = $data->map(function($dt) {
                 $product = Product::where('id', $dt->productId)->first();
-                $images = DB::table('product_images')->where('productId', $dt->productId)->pluck('image');
+                if($product) {
+                    $images = DB::table('product_images')->where('productId', $dt->productId)->pluck('image');
+                    $urlImages = $images->map(function($img) {
+                        $img = url('/').'/'.$img;
+                        return $img; 
+                    });
+                    $product->images = $urlImages;
+                
+                    $reviews = DB::table('reviews')->where('productId',$dt->productId)->get(['id','userId','productId','rating','description']);
+                    if(isset($reviews)) {
+                        $review = $reviews->map(function($rv){
+                             $user = New_User::find($rv->userId);
+                             if($user) {
+                                $rv->userName = $user->name;
+                                $rv->userImage = $user->image;
+                             } else {
+                                $rv->userName = null;
+                                $rv->userImage = null;
+                             }
+                             return $rv;
+                        });
+                    } else {
+                        $review = [];
+                    }
+                    $product->reviews = $reviews;
+                    $dt->addedProduct = $product; 
+                    unset($dt->userId);
+                    unset($dt->productId);
+                    return $dt;
+                } else {
+                    $dt->delete();
+                }
+                /*$images = DB::table('product_images')->where('productId', $dt->productId)->pluck('image');
                 if($images->isNotEmpty()) {
                     $urlImages = $images->map(function($img) {
                         $img = url('/').'/'.$img;
@@ -415,7 +447,7 @@ class ShopController extends Controller {
                 $dt->addedProduct = $product;
                 if($dt->addedProduct == null) {
                     $dt->delete();
-                }
+                }*/
                 unset($dt->userId);
                 unset($dt->productId);
                 return $dt;
