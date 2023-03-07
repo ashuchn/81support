@@ -443,7 +443,7 @@ class ShopController extends Controller {
                 $images = DB::table('product_images')->where('productId', $dt->productId)->pluck('image');
                 $urlImages = $images->map(function($img) {
                     $img = url('/').'/'.$img;
-                    return $img; 
+                    return $img;
                 });
                 $dt->images = $urlImages;
                 
