@@ -109,8 +109,8 @@
                 </ul>
               </li>
 
-              <li class="nav-item {{ (Route::is('category.index')) || (Route::is('product.index')) || (Route::is('static_content.index')) || (Route::is('filter.*'))) ? 'menu-open' : '' }}">
-                <a href="#" class="nav-link {{ (Route::is('category.index')) || (Route::is('product.index')) || (Route::is('static_content.index')) || (Route::is('filter.*'))) ? 'active' : '' }}">
+              <li class="nav-item {{ (Route::is('category.index')) || (Route::is('product.index')) || (Route::is('static_content.index')) || (Route::is('filter.*')) ? 'menu-open' : '' }}">
+                <a href="#" class="nav-link {{ (Route::is('category.index')) || (Route::is('product.index')) || (Route::is('static_content.index')) || (Route::is('filter.*')) ? 'active' : '' }}">
                     <!--<i class="nav-icon far fa-envelope"></i>-->
                     <!--<i class="fa-regular fa-list-check"></i>-->
                     <p>Management<i class="fas fa-angle-left right"></i></p>
