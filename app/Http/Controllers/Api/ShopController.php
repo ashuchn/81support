@@ -413,7 +413,7 @@ class ShopController extends Controller {
                     $dt->addedProduct = $product; 
                     unset($dt->userId);
                     unset($dt->productId);
-                    return array_values($dt);
+                    return $dt;
                 } else {
                     return false;
                 }
