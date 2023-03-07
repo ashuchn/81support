@@ -385,7 +385,7 @@ class ShopController extends Controller {
         if($cartProductCount > 0) {
             $cart = $data->map(function($dt) {
                 $product = Product::where('id', $dt->productId)->first();
-                if($product) {
+                if($product != null) {
                     $images = DB::table('product_images')->where('productId', $dt->productId)->pluck('image');
                     $urlImages = $images->map(function($img) {
                         $img = url('/').'/'.$img;
