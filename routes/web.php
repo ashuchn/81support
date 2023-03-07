@@ -45,7 +45,7 @@ Route::prefix('admin')->group(function () {
         Route::get('dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
         Route::resource('category', CategoryController::class);
         Route::resource('product', ProductController::class);
-        Route::resource('filter', [FilterController::class])->name('admin.filter');
+        Route::resource('filter', FilterController::class);
 
         /**
          * notifications

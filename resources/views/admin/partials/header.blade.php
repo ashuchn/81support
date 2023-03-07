@@ -137,7 +137,7 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="{{ route('filter.index') }}" class="nav-link {{ Route::is('admin.filter') ? 'active' : '' }}">
+                    <a href="{{ route('filter.index') }}" class="nav-link @if(request()->routeIs('*.filter.*')) active @endif">
                       <i class="far fa-circle nav-icon"></i>
                      <p>Filters</p>
                     </a>
