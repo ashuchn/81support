@@ -415,7 +415,7 @@ class ShopController extends Controller {
                     unset($dt->productId);
                     return $dt;
                 } else {
-                    $dt->delete();
+                    $cart->delete();
                 }
                 /*$images = DB::table('product_images')->where('productId', $dt->productId)->pluck('image');
                 if($images->isNotEmpty()) {
