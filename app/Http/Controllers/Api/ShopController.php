@@ -420,8 +420,6 @@ class ShopController extends Controller {
                 unset($dt->userId);
                 unset($dt->productId);
                 return $dt;
-            })->reject(function ($value) {
-                return $value === false;
             });
             return response()->json([
                 "response_message" => "Ok!",
