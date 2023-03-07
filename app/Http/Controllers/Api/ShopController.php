@@ -420,12 +420,14 @@ class ShopController extends Controller {
                 unset($dt->userId);
                 unset($dt->productId);
                 return $dt;
+            })->reject(function ($value) {
+                return $value === false;
             });
             return response()->json([
                 "response_message" => "Ok!",
                 "response_code"    => 200,
                 "cartProductCount" => count($cart),
-                "data"             => $cart
+                "data"             => $cart->all()
             ],200);
         } else {
             return response()->json([
