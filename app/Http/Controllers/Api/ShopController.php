@@ -391,9 +391,9 @@ class ShopController extends Controller {
                         $img = url('/').'/'.$img;
                         return $img; 
                     });
-                    $product->images = $urlImages;
+                    $dt->images = $urlImages;
                 } else {
-                    $product->images = [];
+                    $dt->images = [];
                 }
                 $reviews = DB::table('reviews')->where('productId',$dt->productId)->get(['id','userId','productId','rating','description']);
                 if(isset($reviews)) {
