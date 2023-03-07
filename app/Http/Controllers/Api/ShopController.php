@@ -416,8 +416,6 @@ class ShopController extends Controller {
                     return $dt;
                 } else {
                     return false;
-                    // unset($dt->cartId);
-                    // unset($dt->quantity);
                 }
                 unset($dt->userId);
                 unset($dt->productId);
@@ -448,34 +446,43 @@ class ShopController extends Controller {
         if($bookmarkCount > 0) {
             $bookmark = $data->map(function($dt) {
                 $product = Product::where('id', $dt->productId)->first();
-                $images = DB::table('product_images')->where('productId', $dt->productId)->pluck('image');
-                $urlImages = $images->map(function($img) {
-                    $img = url('/').'/'.$img;
-                    return $img;
-                });
-                $dt->images = $urlImages;
-                
-                $reviews = DB::table('reviews')->where('productId',$dt->productId)->get(['id','userId','productId','rating','description']);
-                if(isset($reviews)) {
-                    $review = $reviews->map(function($rv){
-                         $user = New_User::find($rv->userId);
-                         if($user) {
-                            $rv->userName = $user->name;
-                            $rv->userImage = $user->image;
-                         } else {
-                            $rv->userName = null;
-                            $rv->userImage = null;
-                         }
-                         return $rv;
+                if($product != null) {
+                    $images = DB::table('product_images')->where('productId', $dt->productId)->pluck('image');
+                    $urlImages = $images->map(function($img) {
+                        $img = url('/').'/'.$img;
+                        return $img; 
                     });
+                    $product->images = $urlImages;
+                
+                    $reviews = DB::table('reviews')->where('productId',$dt->productId)->get(['id','userId','productId','rating','description']);
+                    if(isset($reviews)) {
+                        $review = $reviews->map(function($rv){
+                             $user = New_User::find($rv->userId);
+                             if($user) {
+                                $rv->userName = $user->name;
+                                $rv->userImage = $user->image;
+                             } else {
+                                $rv->userName = null;
+                                $rv->userImage = null;
+                             }
+                             return $rv;
+                        });
+                    } else {
+                        $review = [];
+                    }
+                    $product->reviews = $reviews;
+                    $dt->addedProduct = $product; 
+                    unset($dt->userId);
+                    unset($dt->productId);
+                    return $dt;
                 } else {
-                    $review = [];
+                    return false;
                 }
-                $dt->reviews = $reviews;
-                $dt->addedProduct = $product; 
                 unset($dt->userId);
                 unset($dt->productId);
                 return $dt;
+            })->reject(function ($value) {
+                return $value === false;
             });
             return response()->json([
                 "response_message" => "Ok!",
