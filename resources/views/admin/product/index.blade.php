@@ -34,10 +34,6 @@
             </div>
             <div class="col-12 mx-auto">
                 <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title"><a href="{{ route('admin.add_user') }}"><button type="button"
-                                    class="btn btn-block bg-gradient-primary">Add User</button></a></h3>
-                    </div>
                     <!-- /.card-header -->
                     <div class="card-body">
                         <table class="table table-bordered table-striped table-responsive-sm">
