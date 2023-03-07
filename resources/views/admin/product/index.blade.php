@@ -22,97 +22,108 @@
 
         <section class="content">
 
-            @if(session()->has('success'))
-            <div class="alert alert-success p-2 alert-dismissable">
+            @if (session()->has('success'))
+                <div class="alert alert-success p-2 alert-dismissable">
                     {{ session()->get('success') }}
                 </div>
             @endif
-                <div class="row">
-                    <div class="col-md-12 mb-3">
-                        <a href="{{ route('product.create') }}" class="btn btn-success float-right btn-sm">Add Product</a>
-                    </div>
+            <div class="row">
+                <div class="col-md-12 mb-3">
+                    <a href="{{ route('product.create') }}" class="btn btn-success float-right btn-sm">Add Product</a>
                 </div>
-                <div class="col-12 mx-auto">
-                    <table class="table table-bordered table-striped table-responsive-sm">
-                        <thead>
-                            <tr>
-                                <th>Image</th>
-                                <th>Name</th>
-                                <th>Features</th>
-                                <th>Rating</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <?php $i = 1; ?>
-                        <tbody>
-                            @forelse($data as $item)
+            </div>
+            <div class="col-12 mx-auto">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title"><a href="{{ route('admin.add_user') }}"><button type="button"
+                                    class="btn btn-block bg-gradient-primary">Add User</button></a></h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table class="table table-bordered table-striped table-responsive-sm">
+                            <thead>
                                 <tr>
-                                    <td>
-                                        <div id="carouselExampleControls<?php echo $i; ?>" class="carousel slide"
-                                            data-ride="carousel">
-                                            <div class="carousel-inner">
-                                                <?php
-                                                $active = true;
-                                                ?>
-                                                @foreach ($item->images as $img)
-                                                    <div class="carousel-item <?php if ($active == true) {
-                                                        echo 'active';
-                                                    } ?>">
-                                                        <img class="img-fluid card-img-top img-thumbnai"
-                                                            src="{{ $img }}"
-                                                            style="max-height: 15vh; width: 100px;" alt="First slide">
-                                                        <div class="card-img-overla">
-    
-                                                        </div>
-                                                    </div>
-                                                    <?php $active = false; ?>
-                                                @endforeach
-    
-                                            </div>
-                                            <a class="carousel-control-prev" href="#carouselExampleControls<?php echo $i; ?>"
-                                                role="button" data-slide="prev">
-                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                                <span class="sr-only">Previous</span>
-                                            </a>
-                                            <a class="carousel-control-next" href="#carouselExampleControls<?php echo $i; ?>"
-                                                role="button" data-slide="next">
-                                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                                <span class="sr-only">Next</span>
-                                            </a>
-                                        </div>
-                                    </td>
-                                    <td>{{ $item->productName }}</td>
-                                    <td>{{ $item->description }}</td>
-                                    <td>
-                                        <div class="container">
-                                            <span class="fa fa-star checked"></span>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <a href="#" class="btn btn-light">Details</a>
-                                        <button class="btn btn-light">Edit</button>
-                                    </td>
+                                    <th>Image</th>
+                                    <th>Name</th>
+                                    <th>Features</th>
+                                    <th>Rating</th>
+                                    <th>Actions</th>
                                 </tr>
-                                <?php $i++; ?>
-                            @empty
-                                No record Found
-                            @endforelse
-                        </tbody>
-                        <tfoot>
-                            <tr>
-                                <th>Image</th>
-                                <th>Name</th>
-                                <th>Features</th>
-                                <th>Rating</th>
-                                <th>Actions</th>
-                            </tr>
-                        </tfoot>
-    
-                    </table>
-                    <div class="d-flex justify-content-end">
-                        {{ $data->links() }}
+                            </thead>
+                            <?php $i = 1; ?>
+                            <tbody>
+                                @forelse($data as $item)
+                                    <tr>
+                                        <td>
+                                            <div id="carouselExampleControls<?php echo $i; ?>" class="carousel slide"
+                                                data-ride="carousel">
+                                                <div class="carousel-inner">
+                                                    <?php
+                                                    $active = true;
+                                                    ?>
+                                                    @foreach ($item->images as $img)
+                                                        <div class="carousel-item <?php if ($active == true) {
+                                                            echo 'active';
+                                                        } ?>">
+                                                            <img class="img-fluid card-img-top img-thumbnai"
+                                                                src="{{ $img }}"
+                                                                style="max-height: 15vh; width: 100px;" alt="First slide">
+                                                            <div class="card-img-overla">
+
+                                                            </div>
+                                                        </div>
+                                                        <?php $active = false; ?>
+                                                    @endforeach
+
+                                                </div>
+                                                <a class="carousel-control-prev"
+                                                    href="#carouselExampleControls<?php echo $i; ?>" role="button"
+                                                    data-slide="prev">
+                                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                    <span class="sr-only">Previous</span>
+                                                </a>
+                                                <a class="carousel-control-next"
+                                                    href="#carouselExampleControls<?php echo $i; ?>" role="button"
+                                                    data-slide="next">
+                                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                    <span class="sr-only">Next</span>
+                                                </a>
+                                            </div>
+                                        </td>
+                                        <td>{{ $item->productName }}</td>
+                                        <td>{{ $item->description }}</td>
+                                        <td>
+                                            <div class="container">
+                                                <span class="fa fa-star checked"></span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <a href="#" class="btn btn-light">Details</a>
+                                            <button class="btn btn-light">Edit</button>
+                                        </td>
+                                    </tr>
+                                    <?php $i++; ?>
+                                @empty
+                                    No record Found
+                                @endforelse
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>Image</th>
+                                    <th>Name</th>
+                                    <th>Features</th>
+                                    <th>Rating</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </tfoot>
+
+                        </table>
                     </div>
                 </div>
+                <div class="d-flex justify-content-end">
+                    {{ $data->links() }}
+                </div>
+            </div>
         </section>
     </div>
 @endsection
