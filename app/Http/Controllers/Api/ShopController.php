@@ -411,7 +411,7 @@ class ShopController extends Controller {
                 } else {
                     $review = [];
                 }
-                $product->reviews = $reviews;
+                $dt->reviews = $reviews;
                 $dt->addedProduct = $product; 
                 unset($dt->userId);
                 unset($dt->productId);
