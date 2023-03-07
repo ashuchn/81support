@@ -415,45 +415,15 @@ class ShopController extends Controller {
                     unset($dt->productId);
                     return $dt;
                 } else {
-                    $dt->delete();
-                    unset($dt);
+                    return false;
                     // unset($dt->cartId);
                     // unset($dt->quantity);
                 }
-                /*$images = DB::table('product_images')->where('productId', $dt->productId)->pluck('image');
-                if($images->isNotEmpty()) {
-                    $urlImages = $images->map(function($img) {
-                        $img = url('/').'/'.$img;
-                        return $img; 
-                    });
-                    $dt->images = $urlImages;
-                } else {
-                    $dt->images = [];
-                }
-                $reviews = DB::table('reviews')->where('productId',$dt->productId)->get(['id','userId','productId','rating','description']);
-                if(isset($reviews)) {
-                    $review = $reviews->map(function($rv){
-                         $user = New_User::find($rv->userId);
-                         if($user) {
-                            $rv->userName = $user->name;
-                            $rv->userImage = $user->image;
-                         } else {
-                            $rv->userName = null;
-                            $rv->userImage = null;
-                         }
-                         return $rv;
-                    });
-                } else {
-                    $review = [];
-                }
-                $dt->reviews = $reviews;
-                $dt->addedProduct = $product;
-                if($dt->addedProduct == null) {
-                    $dt->delete();
-                }*/
                 unset($dt->userId);
                 unset($dt->productId);
                 return $dt;
+            })->reject(function ($value) {
+                return $value === false;
             });
             return response()->json([
                 "response_message" => "Ok!",
