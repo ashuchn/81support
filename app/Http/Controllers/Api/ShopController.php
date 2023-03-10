@@ -445,7 +445,7 @@ class ShopController extends Controller {
                     $img = url('/').'/'.$img;
                     return $img; 
                 });
-                $dt->images = $urlImages;
+                // $dt->images = $urlImages;
             
                 $reviews = DB::table('reviews')->where('productId',$dt->productId)->get(['id','userId','productId','rating','description']);
                 if(isset($reviews)) {
@@ -463,8 +463,9 @@ class ShopController extends Controller {
                 } else {
                     $review = [];
                 }
-                $dt->reviews = $reviews;
-                $dt->addedProduct = $product; 
+                // $dt->reviews = $reviews;
+                // $dt->addedProduct = $product; 
+                $dt->addedProduct = [$product, $urlImages, $review];
                 unset($dt->userId);
                 unset($dt->productId);
                 return $dt;
