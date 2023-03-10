@@ -466,7 +466,7 @@ class ShopController extends Controller {
                 // $dt->reviews = $reviews;
                 // $dt->addedProduct = $product; 
                 $dt->addedProduct = [
-                    'product' => $product, 
+                    $product, 
                     'images' => $urlImages,
                     'reviews' => $review
                 ];
