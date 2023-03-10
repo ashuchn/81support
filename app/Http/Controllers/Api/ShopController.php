@@ -464,9 +464,18 @@ class ShopController extends Controller {
                     $review = [];
                 }
                 // $dt->reviews = $reviews;
-                // $dt->addedProduct = $product; 
+                // $dt->addedProduct = $product;
                 $dt->addedProduct = [
-                    $product, 
+                    'id' => $product->id,
+                    'rc_id' => $product->rc_id,
+                    'categoryId' => $product->categoryId,
+                    'productName' => $product->productName,
+                    'price' => $product->price,
+                    'description' => $product->description,
+                    'available_quantity' => $product->available_quantity,
+                    'discount' => $product->discount,
+                    'created_at' => $product->created_at,
+                    'updated_at' => $product->updated_at,
                     'images' => $urlImages,
                     'reviews' => $review
                 ];
