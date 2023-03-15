@@ -80,8 +80,9 @@ Route::post('gEmail', function(Request $request){
 
 
 
-/**J Mail */
-
+/**
+ * J Mail 
+ */
 Route::post('jEmail', function(Request $request){
     $name = $request->name;
     $email = $request->email;
