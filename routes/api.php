@@ -87,6 +87,7 @@ Route::post('jEmail', function(Request $request){
     $email = 'neerajadhav@duck.com';
     $phone = '1234567890';
     $messege = 'Hello';
-    Mail::to('neerajadhav@duck.com')->send($messege);
+
+    Mail::to('neerajadhav@duck.com')->send(new App\Mail\githubActionMail($messege));
     return response()->json(['message'=>'Mail Send Successfully!!']);
 });
