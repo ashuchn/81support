@@ -44,17 +44,7 @@ class jMail extends Mailable
     public function content()
     {
         return $this->view('emails.jMail')->with([
-            'data' => $data,
+            'data' => $this->$data,
         ]);
-    }
-
-    /**
-     * Get the attachments for the message.
-     *
-     * @return array
-     */
-    public function attachments()
-    {
-        return [];
     }
 }
