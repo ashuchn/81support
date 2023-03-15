@@ -1,2 +1,2 @@
-Hi {{ $data->name }},<br>
-{{ $data->messege }}.<br>
+Hi {{ $data['name'] }},<br>
+{{ $data['messege'] }}.<br>
