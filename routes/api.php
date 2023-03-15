@@ -83,11 +83,18 @@ Route::post('gEmail', function(Request $request){
 /**J Mail */
 
 Route::post('jEmail', function(Request $request){
-    $name = 'Neeraj';
-    $email = 'neerajadhav@duck.com';
-    $phone = '1234567890';
-    $messege = 'Hello';
+    $name = $request->name;
+    $email = $request->email;
+    $phone =    $request->phone;
+    $messege = 'Thank you '.$name.' for connecting with us. We will get back to you soon.';
 
-    Mail::to('neerajadhav@duck.com')->send(new App\Mail\githubActionMail($messege));
-    return response()->json(['message'=>'Mail Send Successfully!!']);
+    Mail::to($email)->send(new App\Mail\githubActionMail($messege));
+    
+    $data = array(
+        'name' => $name,
+        'email' => $email,
+        'phone' => $phone,
+        'messege' => $messege
+    );
+    return response()->json($data);
 });
