@@ -86,15 +86,17 @@ Route::post('jEmail', function(Request $request){
     $name = $request->name;
     $email = $request->email;
     $phone =    $request->phone;
-    $messege = 'Thank you '.$name.' for connecting with us. We will get back to you soon.';
+    $messege = 'Thank you for connecting with us. We will get back to you soon.';
 
-    Mail::to($email)->send(new App\Mail\githubActionMail($messege));
-    
     $data = array(
         'name' => $name,
         'email' => $email,
         'phone' => $phone,
         'messege' => $messege
     );
+
+    Mail::to($email)->send(new App\Mail\jMail($data));
+
+    
     return response()->json($data);
 });
