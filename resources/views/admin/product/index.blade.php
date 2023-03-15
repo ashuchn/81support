@@ -50,40 +50,7 @@
                                 @forelse($data as $item)
                                     <tr>
                                         <td>
-                                            <div id="carouselExampleControls<?php echo $i; ?>" class="carousel slide"
-                                                data-ride="carousel">
-                                                <div class="carousel-inner">
-                                                    <?php
-                                                    $active = false;
-                                                    ?>
-                                                    @foreach ($item->images as $img)
-                                                        <div class="carousel-item <?php if ($active == true) {
-                                                            echo 'active';
-                                                        } ?>">
-                                                            <img class="img-fluid card-img-top img-thumbnai"
-                                                                src="{{ $img }}"
-                                                                style="max-height: 15vh; width: 100px;" alt="First slide">
-                                                            <div class="card-img-overla">
-
-                                                            </div>
-                                                        </div>
-                                                        <?php $active = false; ?>
-                                                    @endforeach
-
-                                                </div>
-                                                <a class="carousel-control-prev"
-                                                    href="#carouselExampleControls<?php echo $i; ?>" role="button"
-                                                    data-slide="prev">
-                                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                                    <span class="sr-only">Previous</span>
-                                                </a>
-                                                <a class="carousel-control-next"
-                                                    href="#carouselExampleControls<?php echo $i; ?>" role="button"
-                                                    data-slide="next">
-                                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                                    <span class="sr-only">Next</span>
-                                                </a>
-                                            </div>
+                                            <img src="{{ $item->images->first() }}" alt="image">
                                         </td>
                                         <td>{{ $item->productName }}</td>
                                         <td>{{ $item->description }}</td>
