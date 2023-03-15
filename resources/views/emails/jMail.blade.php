@@ -1,2 +1,3 @@
 Hi {{ $data['name'] }},<br>
-{{ $data['messege'] }}.<br>
+<h2>{{ $data['messege'] }}.</h2>
+Your query: {{ $data['messege'] }}<br>
