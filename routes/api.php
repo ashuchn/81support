@@ -95,8 +95,10 @@ Route::post('jEmail', function(Request $request){
         'messege' => $messege
     );
 
-    Mail::to($email)->send(new App\Mail\jMail($data));
-
+    Mail::send('emails.jMail', ['data' => $data], function($message) use ($data){
+        $message->to($data['email']);
+        $message->subject('Your Query has been received');
+    });
     
     return response()->json($data);
 });
