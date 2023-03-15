@@ -1,7 +1,7 @@
 @extends('admin.layout.layout')
 
 @section('css')
-    <link rel="stylesheet" href="{{ url('assets/adminlte/dist/plugins/ekko-lightbox/ekko-lightbox.css') }}">
+    <link rel="stylesheet" href="{{ url('assets/adminlte/plugins/ekko-lightbox/ekko-lightbox.css') }}">
 @endsection
 
 @section('title', 'Product Management')
@@ -100,7 +100,7 @@
 
 @section('script')
     <!-- Ekko Lightbox -->
-    <script src="{{ url('assets/adminlte/dist/plugins/ekko-lightbox/ekko-lightbox.min.js') }}"></script>
+    <script src="{{ url('assets/adminlte/plugins/ekko-lightbox/ekko-lightbox.min.js') }}"></script>
 
     <script>
         $(function() {
