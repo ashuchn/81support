@@ -50,7 +50,7 @@
                                 @forelse($data as $item)
                                     <tr>
                                         <td>
-                                            <img style="width: 100px; height: 120px; object-fit: cover;" src="{{ $item->images[0] }}" alt="image">
+                                            <img style="width: 110px; height: 150px; object-fit: cover;" src="{{ $item->images[0] }}" alt="image">
                                         </td>
                                         <td>{{ $item->productName }}</td>
                                         <td>{{ $item->description }}</td>
