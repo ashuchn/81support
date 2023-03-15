@@ -1,5 +1,9 @@
 @extends('admin.layout.layout')
 
+@section('css')
+    <link rel="stylesheet" href="{{ url('assets/adminlte/dist/plugins/ekko-lightbox/ekko-lightbox.css') }}">
+@endsection
+
 @section('title', 'Product Management')
 
 @section('content')
@@ -50,7 +54,11 @@
                                 @forelse($data as $item)
                                     <tr>
                                         <td>
-                                            <img style="width: 150px; height: auto; object-fit: cover;" src="{{ $item->images[0] }}" alt="image">
+                                            <a href="https://via.placeholder.com/1200/FFFFFF.png?text=1"
+                                                data-toggle="lightbox" data-title="sample 1 - white" data-gallery="gallery">
+                                                <img style="width: 150px; height: auto; object-fit: cover;"
+                                                    src="{{ $item->images[0] }}" alt="image">
+                                            </a>
                                         </td>
                                         <td>{{ $item->productName }}</td>
                                         <td>{{ $item->description }}</td>
@@ -88,4 +96,28 @@
             </div>
         </section>
     </div>
+@endsection
+
+@section('script')
+    <!-- Ekko Lightbox -->
+    <script src="{{ url('assets/adminlte/dist/plugins/ekko-lightbox/ekko-lightbox.min.js') }}"></script>
+
+    <script>
+        $(function() {
+            $(document).on('click', '[data-toggle="lightbox"]', function(event) {
+                event.preventDefault();
+                $(this).ekkoLightbox({
+                    alwaysShowClose: true
+                });
+            });
+
+            $('.filter-container').filterizr({
+                gutterPixels: 3
+            });
+            $('.btn[data-filter]').on('click', function() {
+                $('.btn[data-filter]').removeClass('active');
+                $(this).addClass('active');
+            });
+        })
+    </script>
 @endsection
