@@ -54,8 +54,8 @@
                                 @forelse($data as $item)
                                     <tr>
                                         <td>
-                                            <a href="https://via.placeholder.com/1200/FFFFFF.png?text=1"
-                                                data-toggle="lightbox" data-title="sample 1 - white" data-gallery="gallery">
+                                            <a href="{{ $item->images[0] }}"
+                                                data-toggle="lightbox" data-title="{{ $item->productName }}" data-gallery="gallery">
                                                 <img style="width: 150px; height: auto; object-fit: cover;"
                                                     src="{{ $item->images[0] }}" alt="image">
                                             </a>
