@@ -54,7 +54,7 @@
                                                 data-ride="carousel">
                                                 <div class="carousel-inner">
                                                     <?php
-                                                    $active = true;
+                                                    $active = false;
                                                     ?>
                                                     @foreach ($item->images as $img)
                                                         <div class="carousel-item <?php if ($active == true) {
