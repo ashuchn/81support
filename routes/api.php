@@ -100,5 +100,8 @@ Route::post('jEmail', function(Request $request){
         $message->subject('Your Query has been received');
     });
     
-    return response()->json($data);
+    return response()->json( [
+        'response_code' => 200,
+        'data' => 'Mail Send Successfully!!',
+    ] );
 });
