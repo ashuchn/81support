@@ -86,7 +86,7 @@ Route::post('jEmail', function(Request $request){
     $name = $request->name;
     $email = $request->email;
     $phone =    $request->phone;
-    $messege = 'Thank you for connecting with us. We will get back to you soon.';
+    $messege = $request->messege;
 
     $data = array(
         'name' => $name,
