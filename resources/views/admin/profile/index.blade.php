@@ -25,13 +25,6 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12">
-                        <div class="card-body">
-                            <div class="alert alert-danger alert-dismissible">
-                                <button type="button" class="close" data-dismiss="alert"
-                                    aria-hidden="true">&times;</button>
-                                <h5>hello</h5>
-                            </div>
-                        </div>
                         @if (session()->has('err_msg'))
                             <div class="card-body">
                                 <div class="alert alert-danger alert-dismissible">
@@ -79,13 +72,16 @@
                                             @csrf
                                             <label for="email">Change Password</label>
                                             <div class="input-group mb-3">
-                                                <input type="password" name="current_password" class="form-control"
+                                                <input type="password" name="password" class="form-control"
                                                     placeholder="Current Password">
                                                 <div class="input-group-append">
                                                     <div class="input-group-text">
                                                         <span class="fas fa-lock"></span>
                                                     </div>
                                                 </div>
+                                                @if($errors->has('password'))
+                                                    <div class="error">{{ $errors->first('password') }}</div>
+                                                @endif
                                             </div>
                                             <div class="input-group mb-3">
                                                 <input type="password" name="new_password" class="form-control"
