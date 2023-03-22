@@ -9,8 +9,8 @@ class ProfileController extends Controller
 {
     public function index(Request $request)
     {
-        $user_id = $req->user()->id;
-        
+        $user_id = $request->user()->id;
+
         return view('admin.profile.index' , compact('user_id'));
     }
 }
