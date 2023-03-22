@@ -41,7 +41,7 @@
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
-                                body
+                                Welcome {{ $user_id }}
                             </div>
                             <!-- /.card-body -->
                         </div>
