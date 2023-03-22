@@ -107,7 +107,7 @@
                                             @if ($errors->has('confirm_password'))
                                                 <div class="text-danger">{{ $errors->first('confirm_password') }}</div>
                                             @endif
-                                            <div class="row">
+                                            <div class="row mt-3">
                                                 <div class="col-4">
                                                     <button type="submit" class="btn btn-primary btn-block">Update</button>
                                                 </div>
