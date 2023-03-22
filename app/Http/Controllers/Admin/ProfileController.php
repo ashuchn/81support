@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Admin;
 use Validator;
 use Session;
+use Hash;
 
 use Illuminate\Http\Request;
 
