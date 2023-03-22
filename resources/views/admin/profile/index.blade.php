@@ -92,6 +92,9 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            @if ($errors->has('new_password'))
+                                                <div class="error">{{ $errors->first('new_password') }}</div>
+                                            @endif
                                             <div class="input-group mt-3">
                                                 <input type="password" name="confirm_password" class="form-control"
                                                     placeholder="Confirm Password">
