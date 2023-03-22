@@ -60,7 +60,7 @@
                                             @csrf
                                             <label for="email">Change Password</label>
                                             <div class="input-group mb-3">
-                                                <input type="current_password" class="form-control" placeholder="Current Password">
+                                                <input type="password" name="current_password" class="form-control" placeholder="Current Password">
                                                 <div class="input-group-append">
                                                     <div class="input-group-text">
                                                         <span class="fas fa-lock"></span>
@@ -68,7 +68,7 @@
                                                 </div>
                                             </div>
                                             <div class="input-group mb-3">
-                                                <input type="new_password" class="form-control" placeholder="New Password">
+                                                <input type="password" name="new_password" class="form-control" placeholder="New Password">
                                                 <div class="input-group-append">
                                                     <div class="input-group-text">
                                                         <span class="fas fa-lock"></span>
@@ -76,7 +76,7 @@
                                                 </div>
                                             </div>
                                             <div class="input-group mb-3">
-                                                <input type="confirm_password" class="form-control" placeholder="Confirm Password">
+                                                <input type="password" name="confirm_password" class="form-control" placeholder="Confirm Password">
                                                 <div class="input-group-append">
                                                     <div class="input-group-text">
                                                         <span class="fas fa-lock"></span>
