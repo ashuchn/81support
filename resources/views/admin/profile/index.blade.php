@@ -55,19 +55,19 @@
                                             </div>
                                         </form>
                                     </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <form>
-                                        <label for="email">Change Password</label>
-                                        <div class="input-group mb-3">
-                                            <input type="password" class="form-control" placeholder="Password">
-                                            <div class="input-group-append">
-                                                <div class="input-group-text">
-                                                    <span class="fas fa-lock"></span>
+                                    <div class="col-lg-6">
+                                        <form>
+                                            <label for="email">Change Password</label>
+                                            <div class="input-group mb-3">
+                                                <input type="password" class="form-control" placeholder="Password">
+                                                <div class="input-group-append">
+                                                    <div class="input-group-text">
+                                                        <span class="fas fa-lock"></span>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </form>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                             <!-- /.card-body -->
