@@ -25,26 +25,12 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12">
-                        @if (session()->has('err_msg'))
-                            <div class="card-body">
-                                <div class="alert alert-danger alert-dismissible">
-                                    <button type="button" class="close" data-dismiss="alert"
-                                        aria-hidden="true">&times;</button>
-                                    <h5>{{ Session::get('err_msg') }}</h5>
-                                    <?php Session::forget('err_msg'); ?>
-                                </div>
-                            </div>
+                        @if ($errors->has('err_msg'))
+                            <div class="text-danger">{{ $errors->first('err_msg') }}</div>
                         @endif
 
-                        @if (session()->has('success_msg'))
-                            <div class="card-body">
-                                <div class="alert alert-success alert-dismissible">
-                                    <button type="button" class="close" data-dismiss="alert"
-                                        aria-hidden="true">&times;</button>
-                                    <h5>{{ Session::get('success_msg') }}</h5>
-                                    <?php Session::forget('success_msg'); ?>
-                                </div>
-                            </div>
+                        @if ($errors->has('success_msg'))
+                            <div class="text-danger">{{ $errors->first('success_msg') }}</div>
                         @endif
                         <div class="card">
                             <div class="card-header">
