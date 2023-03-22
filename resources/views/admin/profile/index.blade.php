@@ -41,7 +41,7 @@
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
-                                Welcome {{ $params }}
+                                Welcome {{ $admin_email }}
                             </div>
                             <!-- /.card-body -->
                         </div>
