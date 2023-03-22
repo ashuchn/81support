@@ -10,7 +10,7 @@ class ProfileController extends Controller
 {
     public function index(Request $request)
     {
-        $user_id = Auth::guard('admin')->user()->id;
+        $user_id = Auth::user()->id;
 
         return view('admin.profile.index' , compact('user_id'));
     }
