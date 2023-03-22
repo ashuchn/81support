@@ -50,6 +50,7 @@ Route::prefix('admin')->group(function () {
 
         // user profile
         Route::get('profile', [ProfileController::class, 'index'])->name('admin.profile.index');
+        Route::post('profile/update', [ProfileController::class, 'update'])->name('admin.profile.update');
 
         /**
          * notifications
