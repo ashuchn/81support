@@ -21,30 +21,38 @@
             </div><!-- /.container-fluid -->
         </section>
 
-        @if (session()->has('err_msg'))
-            <div class="card-body">
-                <div class="alert alert-danger alert-dismissible">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    <h5>{{ Session::get('err_msg') }}</h5>
-                    <?php Session::forget('err_msg'); ?>
-                </div>
-            </div>
-        @endif
-
-        @if (session()->has('success_msg'))
-            <div class="card-body">
-                <div class="alert alert-success alert-dismissible">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    <h5>{{ Session::get('success_msg') }}</h5>
-                    <?php Session::forget('success_msg'); ?>
-                </div>
-            </div>
-        @endif
-
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12">
+                        <div class="card-body">
+                            <div class="alert alert-danger alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert"
+                                    aria-hidden="true">&times;</button>
+                                <h5>hello</h5>
+                            </div>
+                        </div>
+                        @if (session()->has('err_msg'))
+                            <div class="card-body">
+                                <div class="alert alert-danger alert-dismissible">
+                                    <button type="button" class="close" data-dismiss="alert"
+                                        aria-hidden="true">&times;</button>
+                                    <h5>{{ Session::get('err_msg') }}</h5>
+                                    <?php Session::forget('err_msg'); ?>
+                                </div>
+                            </div>
+                        @endif
+
+                        @if (session()->has('success_msg'))
+                            <div class="card-body">
+                                <div class="alert alert-success alert-dismissible">
+                                    <button type="button" class="close" data-dismiss="alert"
+                                        aria-hidden="true">&times;</button>
+                                    <h5>{{ Session::get('success_msg') }}</h5>
+                                    <?php Session::forget('success_msg'); ?>
+                                </div>
+                            </div>
+                        @endif
                         <div class="card">
                             <div class="card-header">
                                 <h3 class="card-title">Update Email and Password</h3>
@@ -56,7 +64,8 @@
                                         <form>
                                             <label for="email">Email</label>
                                             <div class="input-group mb-3">
-                                                <input type="email" class="form-control" placeholder="Email" value="{{ $admin_email }}" disabled>
+                                                <input type="email" class="form-control" placeholder="Email"
+                                                    value="{{ $admin_email }}" disabled>
                                                 <div class="input-group-append">
                                                     <div class="input-group-text">
                                                         <span class="fas fa-envelope"></span>
@@ -70,7 +79,8 @@
                                             @csrf
                                             <label for="email">Change Password</label>
                                             <div class="input-group mb-3">
-                                                <input type="password" name="current_password" class="form-control" placeholder="Current Password">
+                                                <input type="password" name="current_password" class="form-control"
+                                                    placeholder="Current Password">
                                                 <div class="input-group-append">
                                                     <div class="input-group-text">
                                                         <span class="fas fa-lock"></span>
@@ -78,7 +88,8 @@
                                                 </div>
                                             </div>
                                             <div class="input-group mb-3">
-                                                <input type="password" name="new_password" class="form-control" placeholder="New Password">
+                                                <input type="password" name="new_password" class="form-control"
+                                                    placeholder="New Password">
                                                 <div class="input-group-append">
                                                     <div class="input-group-text">
                                                         <span class="fas fa-lock"></span>
@@ -86,7 +97,8 @@
                                                 </div>
                                             </div>
                                             <div class="input-group mb-3">
-                                                <input type="password" name="confirm_password" class="form-control" placeholder="Confirm Password">
+                                                <input type="password" name="confirm_password" class="form-control"
+                                                    placeholder="Confirm Password">
                                                 <div class="input-group-append">
                                                     <div class="input-group-text">
                                                         <span class="fas fa-lock"></span>
