@@ -81,7 +81,7 @@
                                                 </div>
                                             </div>
                                             @if ($errors->has('password'))
-                                                <div class="error">{{ $errors->first('password') }}</div>
+                                                <div class="text-danger">{{ $errors->first('password') }}</div>
                                             @endif
                                             <div class="input-group mt-3">
                                                 <input type="password" name="new_password" class="form-control"
@@ -93,7 +93,7 @@
                                                 </div>
                                             </div>
                                             @if ($errors->has('new_password'))
-                                                <div class="error">{{ $errors->first('new_password') }}</div>
+                                                <div class="text-danger">{{ $errors->first('new_password') }}</div>
                                             @endif
                                             <div class="input-group mt-3">
                                                 <input type="password" name="confirm_password" class="form-control"
@@ -105,7 +105,7 @@
                                                 </div>
                                             </div>
                                             @if ($errors->has('confirm_password'))
-                                                <div class="error">{{ $errors->first('confirm_password') }}</div>
+                                                <div class="text-danger">{{ $errors->first('confirm_password') }}</div>
                                             @endif
                                             <div class="row">
                                                 <div class="col-4">
