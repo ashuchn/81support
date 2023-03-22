@@ -56,7 +56,8 @@
                                         </form>
                                     </div>
                                     <div class="col-lg-6">
-                                        <form>
+                                        <form method="post" action="{{ route('admin.profile.update') }}">
+                                            @csrf
                                             <label for="email">Change Password</label>
                                             <div class="input-group mb-3">
                                                 <input type="current_password" class="form-control" placeholder="Current Password">
