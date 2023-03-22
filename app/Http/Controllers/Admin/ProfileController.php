@@ -10,7 +10,7 @@ class ProfileController extends Controller
 {
     public function index(Request $request)
     {
-        $user_id = optional(Auth::user())->id;
+        $user_id = optional(Auth::adminId());
 
         return view('admin.profile.index' , compact('user_id'));
     }
