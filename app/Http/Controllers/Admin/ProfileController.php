@@ -10,7 +10,7 @@ class ProfileController extends Controller
 {
     public function index(Request $request)
     {
-        $user_id = User::adminId();
+        $user_id = Auth::adminId();
 
         return view('admin.profile.index' , compact('user_id'));
     }
