@@ -63,7 +63,7 @@
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
           
           <div class="info">
-            <a href="#" class="d-block">Welcome Shane</a>
+            <a href="{{url('/')}}" class="d-block">Welcome Shane</a>
           </div>
         </div>
   
