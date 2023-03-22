@@ -37,11 +37,21 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Update Form</h3>
+                                <h3 class="card-title">Update Email and Password</h3>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
-                                Welcome {{ $admin_email }}
+                                <form>
+                                    <label for="email">Email</label>
+                                    <div class="input-group mb-3">
+                                        <input type="email" class="form-control" placeholder="Email" value="{{Auth::user()->email}}">
+                                        <div class="input-group-append">
+                                            <div class="input-group-text">
+                                                <span class="fas fa-envelope"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                             <!-- /.card-body -->
                         </div>

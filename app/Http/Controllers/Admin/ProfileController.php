@@ -15,7 +15,8 @@ class ProfileController extends Controller
         $admin = Admin::where('id', $admin_id)->first();
         $params = [
             'admin_id' => $admin_id,
-            'admin_email' => $admin->email
+            'admin_email' => $admin->email,
+            'admin_pass' => $admin->password
         ];
         return view('admin.profile.index' , $params);
     }
