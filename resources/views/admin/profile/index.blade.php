@@ -71,7 +71,7 @@
                                         <form method="post" action="{{ route('admin.profile.update') }}">
                                             @csrf
                                             <label for="email">Change Password</label>
-                                            <div class="input-group mb-3">
+                                            <div class="input-group">
                                                 <input type="password" name="password" class="form-control"
                                                     placeholder="Current Password">
                                                 <div class="input-group-append">
@@ -79,11 +79,11 @@
                                                         <span class="fas fa-lock"></span>
                                                     </div>
                                                 </div>
-                                                @if($errors->has('password'))
-                                                    <div class="error">{{ $errors->first('password') }}</div>
-                                                @endif
                                             </div>
-                                            <div class="input-group mb-3">
+                                            @if ($errors->has('password'))
+                                                <div class="error">{{ $errors->first('password') }}</div>
+                                            @endif
+                                            <div class="input-group mt-3">
                                                 <input type="password" name="new_password" class="form-control"
                                                     placeholder="New Password">
                                                 <div class="input-group-append">
@@ -92,7 +92,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="input-group mb-3">
+                                            <div class="input-group mt-3">
                                                 <input type="password" name="confirm_password" class="form-control"
                                                     placeholder="Confirm Password">
                                                 <div class="input-group-append">
@@ -101,6 +101,9 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            @if ($errors->has('confirm_password'))
+                                                <div class="error">{{ $errors->first('confirm_password') }}</div>
+                                            @endif
                                             <div class="row">
                                                 <div class="col-4">
                                                     <button type="submit" class="btn btn-primary btn-block">Update</button>

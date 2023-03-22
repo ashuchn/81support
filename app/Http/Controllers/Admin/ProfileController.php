@@ -26,7 +26,8 @@ class ProfileController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'password' => 'required',
-            'confirm_password' => 'required|same:password'
+            'new_password' => 'required',
+            'confirm_password' => 'required|same:new_password'
         ], [
             'required' => ':attribute is required',
             'same' => ':attribute does not match'
