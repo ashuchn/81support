@@ -31,6 +31,12 @@
                                 {{ nl2br(Session::get('success_msg')) }}
                             </div>
                         @endif
+                        @if (Session::has('err_msg'))
+                            <div class="alert alert-block alert-danger">
+                                <i class=" fa fa-check cool-green "></i>
+                                {{ nl2br(Session::get('err_msg')) }}
+                            </div>
+                        @endif
                         <div class="card">
                             <div class="card-header">
                                 <h3 class="card-title">Update Email and Password</h3>
