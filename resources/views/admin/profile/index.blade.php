@@ -44,7 +44,7 @@
                                 <form>
                                     <label for="email">Email</label>
                                     <div class="input-group mb-3">
-                                        <input type="email" class="form-control" placeholder="Email" value="{{Auth::user()->email}}">
+                                        <input type="email" class="form-control" placeholder="Email" value="{{ $admin_email }}">
                                         <div class="input-group-append">
                                             <div class="input-group-text">
                                                 <span class="fas fa-envelope"></span>
