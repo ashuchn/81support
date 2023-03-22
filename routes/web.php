@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\UserController;
@@ -46,6 +47,9 @@ Route::prefix('admin')->group(function () {
         Route::resource('category', CategoryController::class);
         Route::resource('product', ProductController::class);
         Route::resource('filter', FilterController::class);
+
+        // user profile
+        Route::get('profile', [ProfileController::class, 'index'])->name('admin.profile.index');
 
         /**
          * notifications
