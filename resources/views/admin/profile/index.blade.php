@@ -25,12 +25,11 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12">
-                        @if ($errors->has('err_msg'))
-                            <div class="text-danger">{{ $errors->first('err_msg') }}</div>
-                        @endif
-
-                        @if ($errors->has('success_msg'))
-                            <div class="text-danger">{{ $errors->first('success_msg') }}</div>
+                        @if (Session::has('success_msg'))
+                            <div class="alert alert-block alert-success">
+                                <i class=" fa fa-check cool-green "></i>
+                                {{ nl2br(Session::get('success_msg')) }}
+                            </div>
                         @endif
                         <div class="card">
                             <div class="card-header">

@@ -43,11 +43,11 @@ class ProfileController extends Controller
         $admin = Admin::where('id', $admin_id)->first();
 
         if( !Hash::check($request->password , $admin->password)) {
-            return back()->withErrors('err_msg', 'Invalid Password');
+            return back()->with('err_msg','Invalid Password');
         } else {
             $admin->password = Hash::make($request->confirm_password);
             $admin->save();
-            return back()->withErrors('success_msg', 'Password updated successfully');
+            return back()->with('success_msg','Password updated successfully');
         }
         
         return redirect()->route('admin.profile.index');
