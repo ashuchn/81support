@@ -12,10 +12,10 @@ class ProfileController extends Controller
     public function index(Request $request)
     {
         $admin_id = Session::get('adminId');
-        $admin_email = Admin::where('id', $admin_id)->first();
+        $admin = Admin::where('id', $admin_id)->first();
         $params = [
             'admin_id' => $admin_id,
-            'admin_email' => $admin_email
+            'admin_email' => $admin->email
         ];
         return view('admin.profile.index' , $params);
     }
