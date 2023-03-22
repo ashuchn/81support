@@ -33,7 +33,7 @@
                         @endif
                         @if (Session::has('err_msg'))
                             <div class="alert alert-block alert-danger">
-                                <i class=" fa fa-check cool-green "></i>
+                                <i class=" fa fa-times cool-green "></i>
                                 {{ nl2br(Session::get('err_msg')) }}
                             </div>
                         @endif
