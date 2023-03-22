@@ -7,8 +7,10 @@ use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return view('admin.profile.index');
+        $user_id = $req->user()->id;
+
+        return view('admin.profile.index' , compact('user_id'));
     }
 }
