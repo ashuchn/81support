@@ -41,17 +41,34 @@
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
-                                <form>
-                                    <label for="email">Email</label>
-                                    <div class="input-group mb-3">
-                                        <input type="email" class="form-control" placeholder="Email" value="{{ $admin_email }}">
-                                        <div class="input-group-append">
-                                            <div class="input-group-text">
-                                                <span class="fas fa-envelope"></span>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <form>
+                                            <label for="email">Email</label>
+                                            <div class="input-group mb-3">
+                                                <input type="email" class="form-control" placeholder="Email" value="{{ $admin_email }}">
+                                                <div class="input-group-append">
+                                                    <div class="input-group-text">
+                                                        <span class="fas fa-envelope"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <form>
+                                        <label for="email">Change Password</label>
+                                        <div class="input-group mb-3">
+                                            <input type="password" class="form-control" placeholder="Password">
+                                            <div class="input-group-append">
+                                                <div class="input-group-text">
+                                                    <span class="fas fa-lock"></span>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </form>
+                                    </form>
+                                </div>
                             </div>
                             <!-- /.card-body -->
                         </div>
