@@ -50,6 +50,8 @@ class ProfileController extends Controller
         if($request->mobile){
             $subadmin->mobile = $request->mobile;
         }
+
+        $subadmin->save();
         
         return redirect()->route('subadmin.profile.index');
     }
