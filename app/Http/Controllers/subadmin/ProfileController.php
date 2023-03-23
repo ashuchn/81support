@@ -23,29 +23,19 @@ class ProfileController extends Controller
 
     public function update(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'password' => 'required',
-            'new_password' => 'required',
-            'confirm_password' => 'required|same:new_password'
-        ], [
-            'required' => ':attribute is required',
-            'same' => ':attribute does not match'
-        ]);
+        $subadmin_id = Session::get('subadminId');
+        $subadmin = Riding_Charter_User::where('id', $subadmin_id)->first();
 
-        if($validator->fails())
-        {
-            return back()->withErrors($validator)->withInput();
+        if($request->name){
+            $subadmin->name = $request->name;
         }
 
-        $admin_id = Session::get('adminId');
-        $admin = Admin::where('id', $admin_id)->first();
+        if($request->email){
+            $subadmin->email = $request->email;
+        }
 
-        if( !Hash::check($request->password , $admin->password)) {
-            return back()->with('err_msg','Invalid Password');
-        } else {
-            $admin->password = Hash::make($request->confirm_password);
-            $admin->save();
-            return back()->with('success_msg','Password updated successfully');
+        if($request->mobile){
+            $subadmin->mobile = $request->mobile;
         }
         
         return redirect()->route('admin.profile.index');
