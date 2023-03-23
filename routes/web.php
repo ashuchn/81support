@@ -19,6 +19,7 @@ use App\Http\Controllers\subadmin\AuthController;
 use App\Http\Controllers\subadmin\ProductsController;
 use App\Http\Controllers\subadmin\ReviewController;
 use App\Http\Controllers\subadmin\OrderController;
+use App\Http\Controllers\subadmin\ProfileController as SubProfileController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -117,6 +118,8 @@ Route::prefix('subadmin')->group(function(){
             'update' => 'subadmin.products.update',
             'destroy' => 'subadmin.products.destroy',
         ]);
+
+        Route::get('profile', [SubProfileController::class, 'index'])->name('subadmin.profile.index');
 
         Route::get('reviews', [ReviewController::class, 'getReview'])->name('subadmin.reviews');
 
