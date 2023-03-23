@@ -39,17 +39,9 @@ class ProfileController extends Controller
         $subadmin_id = Session::get('subadminId');
         $subadmin = Riding_Charter_User::where('id', $subadmin_id)->first();
 
-        if($request->name){
-            $subadmin->name = $request->name;
-        }
-
-        if($request->email){
-            $subadmin->email = $request->email;
-        }
-
-        if($request->mobile){
-            $subadmin->mobile = $request->mobile;
-        }
+        $subadmin->name = $request->name;
+        $subadmin->email = $request->email;
+        $subadmin->mobile = $request->mobile;
 
         $subadmin->save();
         
