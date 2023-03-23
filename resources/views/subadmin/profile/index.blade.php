@@ -86,7 +86,7 @@
                                                 <div class="row">
                                                     <div class="col">
                                                         <div class="row">
-                                                            <div class="col-12 col-lg-6">
+                                                            <div class="col-12 col-lg-6 mb-3">
                                                                 <div class="form-group">
                                                                     <div class="form-floating">
                                                                         <input name="name" type="text"
@@ -103,7 +103,7 @@
                                                                     @enderror
                                                                 </div>
                                                             </div>
-                                                            <div class="col-12 col-lg-6">
+                                                            <div class="col-12 col-lg-6 mb-3">
                                                                 <div class="form-group">
                                                                     <div class="form-floating">
                                                                         <input name="profession" type="text"
@@ -120,7 +120,7 @@
                                                                     @enderror
                                                                 </div>
                                                             </div>
-                                                            <div class="col-12 col-lg-6">
+                                                            <div class="col-12 col-lg-6 mb-3">
                                                                 <div class="form-group">
                                                                     <div class="form-floating">
                                                                         <input type="email" class="form-control"
@@ -131,7 +131,7 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-12 col-lg-6">
+                                                            <div class="col-12 col-lg-6 mb-3">
                                                                 <div class="form-group">
                                                                     <div class="form-floating">
                                                                         <input type="text" class="form-control"
