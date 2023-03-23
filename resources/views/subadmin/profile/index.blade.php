@@ -91,8 +91,8 @@
                                                                     <div class="form-floating">
                                                                         <input name="name" type="text"
                                                                             class="form-control @error('name') is-invalid @enderror"
-                                                                            value="" id="floatingInput"
-                                                                            placeholder="Username"
+                                                                            value="{{ old('name', $subadmin->name) }}"
+                                                                            id="floatingInput" placeholder="Username"
                                                                             onkeyup="turnButtonOn()" />
                                                                         <label for="floatingInput">Name</label>
                                                                     </div>
@@ -106,14 +106,14 @@
                                                             <div class="col-12 col-lg-6 mb-3">
                                                                 <div class="form-group">
                                                                     <div class="form-floating">
-                                                                        <input name="profession" type="text"
-                                                                            class="form-control @error('profession') is-invalid @enderror"
-                                                                            value="" id="floatingInput"
-                                                                            placeholder="Username"
+                                                                        <input name="mobile" type="text"
+                                                                            class="form-control @error('mobile') is-invalid @enderror"
+                                                                            value="{{ old('mobile', $subadmin->mobile) }}"
+                                                                            id="floatingInput" placeholder="Mobile"
                                                                             onkeyup="turnButtonOn()" />
-                                                                        <label for="floatingInput">Profession</label>
+                                                                        <label for="floatingInput">Mobile</label>
                                                                     </div>
-                                                                    @error('profession')
+                                                                    @error('name')
                                                                         <span class="text-danger" role="alert">
                                                                             <strong>{{ $message }}</strong>
                                                                         </span>
@@ -124,37 +124,25 @@
                                                                 <div class="form-group">
                                                                     <div class="form-floating">
                                                                         <input type="email" class="form-control"
-                                                                            value="" id="floatingInput"
-                                                                            placeholder="Email" onkeyup="turnButtonOn()"
-                                                                            disabled />
+                                                                            value="{{ old('email', $subadmin->email) }}"
+                                                                            id="floatingInput" placeholder="Email"
+                                                                            onkeyup="turnButtonOn()" disabled />
                                                                         <label for="floatingInput">Email</label>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                             <div class="col-12 col-lg-6 mb-3">
-                                                                <div class="form-group">
-                                                                    <div class="form-floating">
-                                                                        <input type="text" class="form-control"
-                                                                            value="" id="floatingInput"
-                                                                            placeholder="Username"
-                                                                            onkeyup="turnButtonOn()" disabled />
-                                                                        <label for="floatingInput">Username</label>
-                                                                    </div>
-                                                                </div>
+                                                                <button id="saveButton" class="btn btn-primary"
+                                                                    type="submit" disabled="true"
+                                                                    onclick="event.preventDefault(); document.getElementById('updateData').submit();">
+                                                                    Save Changes
+                                                                </button>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </form>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="row mb-4">
-                                    <div class="col d-flex justify-content-end">
-                                        <button id="saveButton" class="btn btn-primary" type="submit" disabled="true"
-                                            onclick="event.preventDefault(); document.getElementById('updateData').submit();">
-                                            Save Changes
-                                        </button>
                                     </div>
                                 </div>
                             </div>
