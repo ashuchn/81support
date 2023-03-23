@@ -16,9 +16,7 @@ class ProfileController extends Controller
         $subadmin_id = Session::get('subadminId');
         $subadmin = Riding_Charter_User::where('id', $subadmin_id)->first();
         $params = [
-            'subadmin_id' => $subadmin_id,
-            'subadmin_email' => $subadmin->email,
-            'subadmin_pass' => $subadmin->password
+            'subadmin' => $subadmin
         ];
         return view('subadmin.profile.index' , $params);
     }
