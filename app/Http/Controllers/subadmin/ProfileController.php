@@ -23,6 +23,8 @@ class ProfileController extends Controller
 
     public function update(Request $request)
     {
+        $input = $request->all();
+
         $validator = Validator::make($request->all(), [
             'email' => 'required',
             'name' => 'required',
@@ -39,9 +41,9 @@ class ProfileController extends Controller
         $subadmin_id = Session::get('subadminId');
         $subadmin = Riding_Charter_User::where('id', $subadmin_id)->first();
 
-        $subadmin->name = $request->name;
-        $subadmin->email = $request->email;
-        $subadmin->mobile = $request->mobile;
+        $subadmin->name = $input['name'];
+        $subadmin->email = $input['email'];
+        $subadmin->mobile = $input['mobile'];
 
         $subadmin->save();
         
