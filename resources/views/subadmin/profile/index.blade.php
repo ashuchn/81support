@@ -132,7 +132,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="col-12 mb-3">
-                                                                <button id="saveButton" class="ml-auto btn btn-primary"
+                                                                <button id="saveButton" class="ms-auto btn btn-primary"
                                                                     type="submit" disabled="true"
                                                                     onclick="event.preventDefault(); document.getElementById('updateData').submit();">
                                                                     Save Changes
