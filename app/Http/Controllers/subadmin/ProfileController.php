@@ -26,7 +26,6 @@ class ProfileController extends Controller
         $input = $request->all();
 
         $validator = Validator::make($request->all(), [
-            'email' => 'required',
             'name' => 'required',
             'mobile' => 'required'
         ], [
@@ -35,14 +34,13 @@ class ProfileController extends Controller
 
         if($validator->fails())
         {
-            return 'back()->withErrors($validator)->withInput()';
+            return back()->withErrors($validator)->withInput();
         }
 
         $subadmin_id = Session::get('subadminId');
         $subadmin = Riding_Charter_User::where('id', $subadmin_id)->first();
 
         $subadmin->name = $input['name'];
-        $subadmin->email = $input['email'];
         $subadmin->mobile = $input['mobile'];
 
         $subadmin->save();
