@@ -73,10 +73,15 @@
                                 </div>
                             </div>
                             <div class="col-lg-9">
+                                @if (session('success'))
+                                    <div class="alert alert-success"><strong>{{ Session::get('success') }}</strong></div>
+                                    <?php Session::forget('success'); ?>
+                                @endif
                                 <div class="card">
                                     <div class="card-body pb-0">
                                         <div class="row">
-                                            <form id="updateData" class="form" method="post" action="{{ route('subadmin.profile.update') }}"
+                                            <form id="updateData" class="form" method="post"
+                                                action="{{ route('subadmin.profile.update') }}"
                                                 enctype="multipart/form-data">
                                                 @csrf
                                                 <div class="d-none">

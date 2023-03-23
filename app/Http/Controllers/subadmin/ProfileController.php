@@ -45,6 +45,6 @@ class ProfileController extends Controller
 
         $subadmin->save();
 
-        return redirect()->route('subadmin.profile.index');
+        return redirect()->route('subadmin.profile.index')->with('success', 'Profile updated successfully');
     }
 }
