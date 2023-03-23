@@ -23,6 +23,19 @@ class ProfileController extends Controller
 
     public function update(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'email' => 'required',
+            'name' => 'required',
+            'mobile' => 'required'
+        ], [
+            'required' => ':attribute is required'
+        ]);
+
+        if($validator->fails())
+        {
+            return back()->withErrors($validator)->withInput();
+        }
+
         $subadmin_id = Session::get('subadminId');
         $subadmin = Riding_Charter_User::where('id', $subadmin_id)->first();
 
@@ -38,6 +51,6 @@ class ProfileController extends Controller
             $subadmin->mobile = $request->mobile;
         }
         
-        return redirect()->route('admin.profile.index');
+        return redirect()->route('subadmin.profile.index');
     }
 }
