@@ -35,7 +35,7 @@ class ProfileController extends Controller
 
         if($validator->fails())
         {
-            return back()->withErrors($validator)->withInput();
+            return 'back()->withErrors($validator)->withInput()';
         }
 
         $subadmin_id = Session::get('subadminId');
