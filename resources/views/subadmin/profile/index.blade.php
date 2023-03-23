@@ -20,7 +20,7 @@
                                 <ol class="breadcrumb m-0">
                                     <li class="breadcrumb-item">81 Support</li>
                                     <li class="breadcrumb-item active"><a
-                                            href="{{ route('subadmin.dashboard') }}">Profile</a></li>
+                                            href="{{ route('subadmin.profile.index') }}">Profile</a></li>
                                 </ol>
                             </div>
 
@@ -29,102 +29,160 @@
                 </div>
                 <!-- end page title -->
 
-                <!-- Main content -->
-                <section class="content">
-                    <div class="container-fluid">
+                <div class="row">
+                    <div class="col">
                         <div class="row">
-                            <div class="col-md-3">
-
-                                <!-- Profile Image -->
-                                <div class="card card-primary card-outline">
-                                    <div class="card-body box-profile">
-                                        <div class="text-center">
-                                            <img class="profile-user-img img-fluid img-circle"
-                                                src="../../dist/img/user4-128x128.jpg" alt="User profile picture">
-                                        </div>
-
-                                        <h3 class="profile-username text-center">Nina Mcintire</h3>
-
-                                        <p class="text-muted text-center">Software Engineer</p>
-
-                                        <ul class="list-group list-group-unbordered mb-3">
-                                            <li class="list-group-item">
-                                                <b>Followers</b> <a class="float-right">1,322</a>
-                                            </li>
-                                            <li class="list-group-item">
-                                                <b>Following</b> <a class="float-right">543</a>
-                                            </li>
-                                            <li class="list-group-item">
-                                                <b>Friends</b> <a class="float-right">13,287</a>
-                                            </li>
-                                        </ul>
-
-                                        <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>
-                                    </div>
-                                    <!-- /.card-body -->
-                                </div>
-                                <!-- /.card -->
-
-                                <!-- About Me Box -->
-                                <div class="card card-primary">
-                                    <div class="card-header">
-                                        <h3 class="card-title">About Me</h3>
-                                    </div>
-                                    <!-- /.card-header -->
-                                    <div class="card-body">
-                                        <strong><i class="fas fa-book mr-1"></i> Education</strong>
-
-                                        <p class="text-muted">
-                                            B.S. in Computer Science from the University of Tennessee at Knoxville
-                                        </p>
-
-                                        <hr>
-
-                                        <strong><i class="fas fa-map-marker-alt mr-1"></i> Location</strong>
-
-                                        <p class="text-muted">Malibu, California</p>
-
-                                        <hr>
-
-                                        <strong><i class="fas fa-pencil-alt mr-1"></i> Skills</strong>
-
-                                        <p class="text-muted">
-                                            <span class="tag tag-danger">UI Design</span>
-                                            <span class="tag tag-success">Coding</span>
-                                            <span class="tag tag-info">Javascript</span>
-                                            <span class="tag tag-warning">PHP</span>
-                                            <span class="tag tag-primary">Node.js</span>
-                                        </p>
-
-                                        <hr>
-
-                                        <strong><i class="far fa-file-alt mr-1"></i> Notes</strong>
-
-                                        <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
-                                            fermentum enim neque.</p>
-                                    </div>
-                                    <!-- /.card-body -->
-                                </div>
-                                <!-- /.card -->
-                            </div>
-                            <!-- /.col -->
-                            <div class="col-md-9">
+                            <div class="col-lg-3">
                                 <div class="card">
-                                    <div class="card-header p-2">
-                                        Head
-                                    </div><!-- /.card-header -->
                                     <div class="card-body">
-                                        Body
-                                    </div><!-- /.card-body -->
+                                        <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
+                                            <div class="text-sm-left mb-2 mb-sm-0">
+                                                <h3 class="p-0 m-0 text-nowrap">
+                                                    </h3>
+                                                <p class="mb-0"></p>
+                                                <div class="text-muted">
+                                                    <small>
+                                                        Joined 
+                                                    </small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="col-12 col-sm-auto justify-content-center d-flex">
+                                            @if ($profile->profile_image == 'default.png')
+                                                <img title="Change Image" onclick="chooseFile();" id="frame"
+                                                    style="width: 140px; height: 140px; cursor: pointer; object-fit: cover;"
+                                                    src="{{ asset('dist/assets/images/user/default.png') }}"
+                                                    class="rounded-circle" alt="user">
+                                            @else
+                                                <img title="Change Image" onclick="chooseFile();" id="frame"
+                                                    style="width: 140px; height: 140px; cursor: pointer; object-fit: cover;"
+                                                    src="{{ asset('dashboard-nazox/assets/images/users/avatar-2.jpg'}}"
+                                                    class="rounded-circle" alt="user">
+                                            @endif
+                                        </div>
+                                        @error('profile_image')
+                                            <span class="text-danger" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                        <hr>
+                                        <div class="d-flex gap-3">
+                                            <span style="font-size: 30px;"><i class="ti ti-lg ti-brand-twitter"></i></span>
+                                            <span style="font-size: 30px;"><i class="ti ti-lg ti-brand-facebook"></i></span>
+                                            <span style="font-size: 30px;"><i class="ti ti-lg ti-brand-linkedin"></i></span>
+                                            <span style="font-size: 30px;"><i
+                                                    class="ti ti-lg ti-brand-instagram"></i></span>
+                                            <span style="font-size: 30px;"><i class="ti ti-lg ti-brand-youtube"></i></span>
+                                        </div>
+                                    </div>
                                 </div>
-                                <!-- /.card -->
                             </div>
-                            <!-- /.col -->
+                            <div class="col-lg-9">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <form id="updateData" class="form" method="post"
+                                                action="" enctype="multipart/form-data">
+                                                @csrf
+                                                <div class="d-none">
+                                                    <input name="profile_image" class="form-control" type="file"
+                                                        id="formFile" accept="image/*" onchange="preview()">
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div class="row">
+                                                            <div class="col-12 col-lg-6">
+                                                                <div class="form-group">
+                                                                    <div class="form-floating">
+                                                                        <input name="name" type="text"
+                                                                            class="form-control @error('name') is-invalid @enderror"
+                                                                            value=""
+                                                                            id="floatingInput" placeholder="Username"
+                                                                            onkeyup="turnButtonOn()" />
+                                                                        <label for="floatingInput">Name</label>
+                                                                    </div>
+                                                                    @error('name')
+                                                                        <span class="text-danger" role="alert">
+                                                                            <strong>{{ $message }}</strong>
+                                                                        </span>
+                                                                    @enderror
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-12 col-lg-6">
+                                                                <div class="form-group">
+                                                                    <div class="form-floating">
+                                                                        <input name="profession" type="text"
+                                                                            class="form-control @error('profession') is-invalid @enderror"
+                                                                            value=""
+                                                                            id="floatingInput" placeholder="Username"
+                                                                            onkeyup="turnButtonOn()" />
+                                                                        <label for="floatingInput">Profession</label>
+                                                                    </div>
+                                                                    @error('profession')
+                                                                        <span class="text-danger" role="alert">
+                                                                            <strong>{{ $message }}</strong>
+                                                                        </span>
+                                                                    @enderror
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-12 col-lg-6">
+                                                                <div class="form-group">
+                                                                    <div class="form-floating">
+                                                                        <input type="email" class="form-control"
+                                                                            value=""
+                                                                            id="floatingInput" placeholder="Email"
+                                                                            onkeyup="turnButtonOn()" disabled />
+                                                                        <label for="floatingInput">Email</label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-12 col-lg-6">
+                                                                <div class="form-group">
+                                                                    <div class="form-floating">
+                                                                        <input type="text" class="form-control"
+                                                                            value=""
+                                                                            id="floatingInput" placeholder="Username"
+                                                                            onkeyup="turnButtonOn()" disabled />
+                                                                        <label for="floatingInput">Username</label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-4">
+                                    <div class="col d-flex justify-content-end">
+                                        <button id="saveButton" class="btn btn-primary" type="submit" disabled="true"
+                                            onclick="event.preventDefault(); document.getElementById('updateData').submit();">
+                                            Save Changes
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <!-- /.row -->
-                    </div><!-- /.container-fluid -->
-                </section>
-                <!-- /.content -->
+                    </div>
+
+                    <div class="col-12 col-md-3 mb-3">
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h6 class="card-title font-weight-bold">Logout</h6>
+                                <p class="card-text">Sign out of your account</p>
+                                <button type="button"
+                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                                    class="btn btn-outline-secondary">Logout</button>
+                                </a>
+                                <form id="logout-form" action="{{ route('subadmin.logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
             </div>
         </div>
