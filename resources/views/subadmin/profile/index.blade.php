@@ -184,7 +184,7 @@
     </div>
 @endsection
 
-@section(script)
+@section('script')
 
     <script>
         function chooseFile() {
