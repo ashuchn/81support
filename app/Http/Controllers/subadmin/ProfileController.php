@@ -20,7 +20,7 @@ class ProfileController extends Controller
             'subadmin_email' => $subadmin->email,
             'subadmin_pass' => $subadmin->password
         ];
-        return view('admin.profile.index' , $params);
+        return view('subadmin.profile.index' , $params);
     }
 
     public function update(Request $request)
