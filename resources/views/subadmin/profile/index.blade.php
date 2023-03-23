@@ -57,7 +57,7 @@
                                             @else
                                                 <img title="Change Image" onclick="chooseFile();" id="frame"
                                                     style="width: 140px; height: 140px; cursor: pointer; object-fit: cover;"
-                                                    src="{{ asset('dashboard-nazox/assets/images/users/avatar-2.jpg'}}"
+                                                    src="{{ asset('dashboard-nazox/assets/images/users/avatar-2.jpg')}}"
                                                     class="rounded-circle" alt="user">
                                             @endif
                                         </div>
