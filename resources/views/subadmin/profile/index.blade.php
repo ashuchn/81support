@@ -38,11 +38,11 @@
                                         <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
                                             <div class="text-sm-left mb-2 mb-sm-0">
                                                 <h3 class="p-0 m-0 text-nowrap">
-                                                    </h3>
+                                                </h3>
                                                 <p class="mb-0"></p>
                                                 <div class="text-muted">
                                                     <small>
-                                                        Joined 
+                                                        Joined
                                                     </small>
                                                 </div>
                                             </div>
@@ -50,9 +50,9 @@
                                         <hr>
                                         <div class="col-12 col-sm-auto justify-content-center d-flex">
                                             <img title="Change Image" onclick="chooseFile();" id="frame"
-                                                    style="width: 140px; height: 140px; cursor: pointer; object-fit: cover;"
-                                                    src="{{ asset('dashboard-nazox/assets/images/users/avatar-2.jpg')}}"
-                                                    class="rounded-circle" alt="user">
+                                                style="width: 140px; height: 140px; cursor: pointer; object-fit: cover;"
+                                                src="{{ asset('dashboard-nazox/assets/images/users/avatar-2.jpg') }}"
+                                                class="rounded-circle" alt="user">
                                         </div>
                                         @error('profile_image')
                                             <span class="text-danger" role="alert">
@@ -75,8 +75,8 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="row">
-                                            <form id="updateData" class="form" method="post"
-                                                action="" enctype="multipart/form-data">
+                                            <form id="updateData" class="form" method="post" action=""
+                                                enctype="multipart/form-data">
                                                 @csrf
                                                 <div class="d-none">
                                                     <input name="profile_image" class="form-control" type="file"
@@ -90,8 +90,8 @@
                                                                     <div class="form-floating">
                                                                         <input name="name" type="text"
                                                                             class="form-control @error('name') is-invalid @enderror"
-                                                                            value=""
-                                                                            id="floatingInput" placeholder="Username"
+                                                                            value="" id="floatingInput"
+                                                                            placeholder="Username"
                                                                             onkeyup="turnButtonOn()" />
                                                                         <label for="floatingInput">Name</label>
                                                                     </div>
@@ -107,8 +107,8 @@
                                                                     <div class="form-floating">
                                                                         <input name="profession" type="text"
                                                                             class="form-control @error('profession') is-invalid @enderror"
-                                                                            value=""
-                                                                            id="floatingInput" placeholder="Username"
+                                                                            value="" id="floatingInput"
+                                                                            placeholder="Username"
                                                                             onkeyup="turnButtonOn()" />
                                                                         <label for="floatingInput">Profession</label>
                                                                     </div>
@@ -123,9 +123,9 @@
                                                                 <div class="form-group">
                                                                     <div class="form-floating">
                                                                         <input type="email" class="form-control"
-                                                                            value=""
-                                                                            id="floatingInput" placeholder="Email"
-                                                                            onkeyup="turnButtonOn()" disabled />
+                                                                            value="" id="floatingInput"
+                                                                            placeholder="Email" onkeyup="turnButtonOn()"
+                                                                            disabled />
                                                                         <label for="floatingInput">Email</label>
                                                                     </div>
                                                                 </div>
@@ -134,8 +134,8 @@
                                                                 <div class="form-group">
                                                                     <div class="form-floating">
                                                                         <input type="text" class="form-control"
-                                                                            value=""
-                                                                            id="floatingInput" placeholder="Username"
+                                                                            value="" id="floatingInput"
+                                                                            placeholder="Username"
                                                                             onkeyup="turnButtonOn()" disabled />
                                                                         <label for="floatingInput">Username</label>
                                                                     </div>
@@ -169,7 +169,8 @@
                                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
                                     class="btn btn-outline-secondary">Logout</button>
                                 </a>
-                                <form id="logout-form" action="{{ route('subadmin.logout') }}" method="POST" class="d-none">
+                                <form id="logout-form" action="{{ route('subadmin.logout') }}" method="POST"
+                                    class="d-none">
                                     @csrf
                                 </form>
                             </div>
@@ -180,4 +181,30 @@
             </div>
         </div>
         <!-- End Page-content -->
-    @endsection
+    </div>
+@endsection
+
+@section(script)
+
+    <script>
+        function chooseFile() {
+            turnButtonOn();
+            document.getElementById("formFile").click();
+        }
+
+        function preview() {
+            frame.src = "";
+            frame.src = URL.createObjectURL(event.target.files[0]);
+        }
+
+        function clearImage() {
+            document.getElementById('formFile').value = null;
+            frame.src = "";
+        }
+
+        function turnButtonOn() {
+            document.getElementById("saveButton").disabled = false;
+        }
+    </script>
+
+@endsection
