@@ -113,7 +113,7 @@
                                                                             onkeyup="turnButtonOn()" />
                                                                         <label for="floatingInput">Mobile</label>
                                                                     </div>
-                                                                    @error('name')
+                                                                    @error('mobile')
                                                                         <span class="text-danger" role="alert">
                                                                             <strong>{{ $message }}</strong>
                                                                         </span>
