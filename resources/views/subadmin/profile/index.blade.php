@@ -74,7 +74,7 @@
                             </div>
                             <div class="col-lg-9">
                                 <div class="card">
-                                    <div class="card-body">
+                                    <div class="card-body pb-0">
                                         <div class="row">
                                             <form id="updateData" class="form" method="post" action=""
                                                 enctype="multipart/form-data">
