@@ -76,7 +76,7 @@
                                 <div class="card">
                                     <div class="card-body pb-0">
                                         <div class="row">
-                                            <form id="updateData" class="form" method="post" action=""
+                                            <form id="updateData" class="form" method="post" action="{{ route('subadmin.profile.update') }}"
                                                 enctype="multipart/form-data">
                                                 @csrf
                                                 <div class="d-none">

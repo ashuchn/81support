@@ -120,6 +120,7 @@ Route::prefix('subadmin')->group(function(){
         ]);
 
         Route::get('profile', [SubProfileController::class, 'index'])->name('subadmin.profile.index');
+        Route::post('profileUpdate', [SubProfileController::class, 'update'])->name('subadmin.profile.update');
 
         Route::get('reviews', [ReviewController::class, 'getReview'])->name('subadmin.reviews');
 
