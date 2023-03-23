@@ -131,7 +131,7 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-12 mb-3">
+                                                            <div class="col-12">
                                                                 <button id="saveButton" class="float-end btn btn-primary"
                                                                     type="submit" disabled="true"
                                                                     onclick="event.preventDefault(); document.getElementById('updateData').submit();">
