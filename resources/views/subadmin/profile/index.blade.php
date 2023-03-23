@@ -171,7 +171,6 @@
                                 </a>
                                 <form id="logout-form" action="{{ route('subadmin.logout') }}" method="get"
                                     class="d-none">
-                                    @csrf
                                 </form>
                             </div>
                         </div>
