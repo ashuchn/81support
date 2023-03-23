@@ -44,9 +44,7 @@ class ProfileController extends Controller
         $subadmin->mobile = $input['mobile'];
 
         $subadmin->save();
-        
-        return $input['name'];
 
-        // return redirect()->route('subadmin.profile.index');
+        return redirect()->route('subadmin.profile.index');
     }
 }
