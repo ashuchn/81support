@@ -13,7 +13,7 @@ class ProfileController extends Controller
 {
     public function index(Request $request)
     {
-        return view('subadmin.profile.index' , $params);
+        return view('subadmin.profile.index');
     }
 
     public function update(Request $request)
