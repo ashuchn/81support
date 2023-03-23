@@ -169,7 +169,7 @@
                                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
                                     class="btn btn-outline-secondary">Logout</button>
                                 </a>
-                                <form id="logout-form" action="{{ route('subadmin.logout') }}" method="POST"
+                                <form id="logout-form" action="{{ route('subadmin.logout') }}" method="get"
                                     class="d-none">
                                     @csrf
                                 </form>
