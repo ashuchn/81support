@@ -47,6 +47,8 @@ class ProfileController extends Controller
 
         $subadmin->save();
         
-        return redirect()->route('subadmin.profile.index');
+        return $input['name'];
+
+        // return redirect()->route('subadmin.profile.index');
     }
 }
