@@ -43,7 +43,7 @@
                                                 <p class="mb-0"></p>
                                                 <div class="text-muted">
                                                     <small>
-                                                        Joined {{ $subadmin->created_at }}
+                                                        Joined {{ $subadmin->created_at->diffForHumans() }}
                                                     </small>
                                                 </div>
                                             </div>
