@@ -76,8 +76,8 @@
                                 </div>
                             </div>
                             <div class="col-lg-8">
-                                <div class="col-12 d-flex align-items-end justify-content-center">
-                                    <button class="btn btn-outline-primary add-more">Add Color</button>
+                                <div class="col-12 d-flex justify-content-center">
+                                    <button class="ms-auto btn btn-outline-primary add-more">Add Color</button>
                                 </div>
                                 <div class="row">
                                     <div class="col-6">
