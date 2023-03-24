@@ -81,8 +81,8 @@
                                 </div>
                                 <hr>
                                 <div id="ColorsSizeItem"></div>
-                                <div class="ColorItem col-6">
-                                    <div class="col-12">
+                                <div class="row">
+                                    <div class="col-6">
                                         <table class="table">
                                             <thead>
                                                 <th>Color</th>
@@ -118,7 +118,7 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                    <div class="col-12">
+                                    <div class="col-6">
                                         <table class="table">
                                             <thead>
                                                 <th>Size</th>
@@ -341,8 +341,8 @@
                 e.preventDefault();
                 $("#ColorsSizeItem").prepend(`
 
-                    <div class="ColorItem col-6">
-                        <div class="col-12">
+                    <div class="row">
+                        <div class="col-6">
                             <table class="table">
                                 <thead>
                                     <th>Color</th>
@@ -378,7 +378,7 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div class="col-12">
+                        <div class="col-6">
                             <table class="table">
                                 <thead>
                                     <th>Size</th>
