@@ -198,6 +198,8 @@
                                         </table>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="col-lg-4">
                                 <div class="row border border-2 rounded" id="ColorsSizeItem">
                                     <div class="col-2">
                                         <table class="table">
@@ -210,7 +212,8 @@
                                                         <input type="color" name="color" id="color"
                                                             placeholder="Enter Last Name"
                                                             class="form-control @error('color') is-invalid @enderror p-0 mx-auto rounded"
-                                                            value="{{ old('color') }}" style="height: 40px; width: 100%;">
+                                                            value="{{ old('color') }}"
+                                                            style="height: 40px; width: 100%;">
                                                         @error('color')
                                                             <p class="invalid-feedback">{{ $message }}</p>
                                                         @enderror
