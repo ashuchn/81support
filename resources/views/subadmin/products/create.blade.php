@@ -75,8 +75,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-4">
-                                <div class="row" id="ColorsSizeItem">
+                            <div class="col-lg-4" id="ColorsSizeItem">
+                                <div class="row">
                                     <div class="col-6">
                                         <table class="table">
                                             <thead>
@@ -211,7 +211,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-4 d-flex align-items-center justify-content-center">
-                                <button class="btn btn-outline-primary">Add Color</button>
+                                <button class="btn btn-outline-primary add-more">Add Color</button>
                             </div>
                         </div>
                     </div>
@@ -330,7 +330,12 @@
 
     <script>
         $(document).ready(function() {
-
+            $(".add-more").click(function(e) {
+                e.preventDefault();
+                $("#ColorsSizeItem").prepend(`
+                hello
+                `);
+            });
         });
     </script>
 @endsection
