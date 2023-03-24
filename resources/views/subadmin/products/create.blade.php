@@ -340,8 +340,7 @@
             $(".add-more").click(function(e) {
                 e.preventDefault();
                 $("#ColorsSizeItem").prepend(`
-                  
-                    <hr>
+
                     <div class="row">
                         <div class="col-6">
                             <table class="table">
@@ -485,6 +484,7 @@
                             </table>
                         </div>
                     </div>
+                    <hr>
                                    
                 `);
             });
