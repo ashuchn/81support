@@ -78,7 +78,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-6">
-                                <div class="row border border-2 rounded">
+                                <div class="row border border-2 rounded" id="ColorsSizeItem">
                                     <div class="col-2">
                                         <table class="table">
                                             <thead>
@@ -90,7 +90,7 @@
                                                         <input type="color" name="color" id="color"
                                                             placeholder="Enter Last Name"
                                                             class="form-control @error('color') is-invalid @enderror"
-                                                            value="{{ old('color') }}" style="height: 50px;">
+                                                            value="{{ old('color') }}" style="height: 40px;">
                                                         @error('color')
                                                             <p class="invalid-feedback">{{ $message }}</p>
                                                         @enderror
@@ -316,5 +316,9 @@
         })
     </script>
 
-    <script></script>
+    <script>
+        $(document).ready(function(){
+
+        });
+    </script>
 @endsection
