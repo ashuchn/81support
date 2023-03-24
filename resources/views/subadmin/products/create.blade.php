@@ -211,7 +211,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-4 d-flex align-items-center justify-content-center">
-                                <button>Add Color</button>
+                                <button class="btn btn-outline-primary">Add Color</button>
                             </div>
                         </div>
                     </div>
