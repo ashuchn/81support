@@ -78,19 +78,22 @@
                                 </div>
                             </div>
                             <div class="col-lg-6">
-                                <div style="margin-top: 20px">
-                                    <div style="line-height: 50px">
-                                        <button type="button" class="btn btn-primary" id="add-tab-content">
-                                            Add New Tab
-                                        </button>
-                                        <button type="button" class="btn btn-danger"
-                                            onclick="nthTabs.delTab('role-manage')">
-                                            Close Tab
-                                        </button>
+                                <div class="col-md-12">
+                                    <p>
+                                        <button id="btn-add-tab" type="button" class="btn btn-primary pull-right">
+                                            Add Tab</button>
+                                    </p>
+                                    <!-- Nav tabs -->
+                                    <ul id="tab-list" class="nav nav-tabs" role="tablist">
+                                        <li class="active"><a href="#tab1" role="tab" data-toggle="tab"><span>Tab 1
+                                                </span><span class="glyphicon glyphicon-pencil text-muted edit"></span></a>
+                                        </li>
+                                    </ul>
+
+                                    <!-- Tab panes -->
+                                    <div id="tab-content" class="tab-content">
+                                        <div class="tab-pane fade in active" id="tab1">Tab 1 content</div>
                                     </div>
-                                </div>
-                                <div class="page-wrapper">
-                                    <div class="nth-tabs" id="main-tabs"></div>
                                 </div>
                             </div>
                         </div>
@@ -207,60 +210,8 @@
             dropdownAutoWidth: true
         })
     </script>
+
     <script>
-        var nthTabs;
-
-        $(function() {
-            nthTabs = $("#main-tabs").nthTabs();
-
-            nthTabs.addTab({
-                id: "home",
-                title: "Home",
-                url: "https://www.jqueryscript.net",
-                active: true,
-                allowClose: false,
-            });
-
-            nthTabs
-                .addTab({
-                    id: "menu-manage",
-                    title: "Menu",
-                    active: false,
-                    content: "Menu Content",
-                })
-                .addTab({
-                    id: "role-manage",
-                    title: "Role",
-                    active: false,
-                    content: "Role Content",
-                });
-
-            $("#add-tab-content").on("click", function() {
-                var id = Math.ceil(Math.random() * 1000);
-                nthTabs.addTab({
-                    id: "nth-tab-" + id,
-                    title: "Tab-" + id,
-                    content: "Tab Content " + id,
-                    active: true,
-                    allowClose: true,
-                    location: true,
-                    fadeIn: false,
-                });
-            });
-
-            $("#add-tabs").on("click", function() {
-                nthTabs.addTabs([{
-                        id: "user-manage",
-                        title: "User",
-                        content: "User Content",
-                    },
-                    {
-                        id: "auth-manage",
-                        title: "Auth",
-                        content: "Auth Content",
-                    },
-                ]);
-            });
-        });
+        
     </script>
 @endsection
