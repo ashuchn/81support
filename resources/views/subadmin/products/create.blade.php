@@ -75,9 +75,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <label for="color">Product Colors</label>
-                            </div>
                             <div class="col-lg-4">
                                 <div class="row border border-2 rounded" id="ColorsSizeItem">
                                     <div class="col-2">
