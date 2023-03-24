@@ -77,10 +77,11 @@
                             </div>
                             <div class="col-lg-4">
                                 <div class="row" id="ColorsSizeItem">
-                                    <div class="col-4">
+                                    <div class="col-6">
                                         <table class="table">
                                             <thead>
-                                                <th>Color/Images</th>
+                                                <th>Color</th>
+                                                <th>Images</th>
                                             </thead>
                                             <tbody>
                                                 <tr>
@@ -93,8 +94,6 @@
                                                             <p class="invalid-feedback">{{ $message }}</p>
                                                         @enderror
                                                     </td>
-                                                </tr>
-                                                <tr>
                                                     <td>
                                                         <div class="col-12">
                                                             <input type="file" name="image"
@@ -109,7 +108,7 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                    <div class="col-8">
+                                    <div class="col-6">
                                         <table class="table">
                                             <thead>
                                                 <th>Size</th>
