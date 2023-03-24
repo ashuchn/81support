@@ -79,6 +79,7 @@
                                 <div class="col-12 d-flex justify-content-center">
                                     <button class="ms-auto btn btn-outline-primary add-more">Add Color</button>
                                 </div>
+                                <div id="ColorsSizeItem"></div>
                                 <div class="row">
                                     <div class="col-6">
                                         <table class="table">
@@ -212,7 +213,6 @@
                                         </table>
                                     </div>
                                 </div>
-                                <div id="ColorsSizeItem"></div>
                             </div>
                         </div>
                     </div>
