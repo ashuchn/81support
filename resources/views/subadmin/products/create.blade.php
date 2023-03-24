@@ -79,20 +79,17 @@
                             </div>
                             <div class="col-lg-6">
                                 <div class="row border border-2 rounded">
-                                    <div class="col-3">
-                                        <div class="my-3 col-6">
-                                            <label for="color" class="form-label">Color</label>
-                                            <input type="color" name="color" id="color"
-                                                placeholder="Enter Last Name"
-                                                class="form-control @error('color') is-invalid @enderror"
-                                                value="{{ old('color') }}">
-                                            @error('color')
-                                                <p class="invalid-feedback">{{ $message }}</p>
-                                            @enderror
-                                        </div>
+                                    <div class="col-2">
+                                        <label for="color" class="form-label">Color</label>
+                                        <input type="color" name="color" id="color" placeholder="Enter Last Name"
+                                            class="form-control @error('color') is-invalid @enderror"
+                                            value="{{ old('color') }}" style="height: 40px;">
+                                        @error('color')
+                                            <p class="invalid-feedback">{{ $message }}</p>
+                                        @enderror
                                     </div>
-                                    <div class="col-9">
-                                        <table class="table table-stripped">
+                                    <div class="col-10">
+                                        <table class="table">
                                             <thead>
                                                 <th>Size</th>
                                                 <th>Quantity</th>
@@ -103,7 +100,7 @@
                                                         XS
                                                     </td>
                                                     <td>
-                                                        <div class="col-12 mb-3">
+                                                        <div class="col-12">
                                                             <input type="text" name="quantity"
                                                                 class="form-control @error('quantity') ? ' is-invalid' : '' @enderror"
                                                                 placeholder="Enter Quantity" required>
@@ -118,7 +115,7 @@
                                                         S
                                                     </td>
                                                     <td>
-                                                        <div class="col-12 mb-3">
+                                                        <div class="col-12">
                                                             <input type="text" name="quantity"
                                                                 class="form-control @error('quantity') ? ' is-invalid' : '' @enderror"
                                                                 placeholder="Enter Quantity" required>
@@ -133,7 +130,7 @@
                                                         M
                                                     </td>
                                                     <td>
-                                                        <div class="col-12 mb-3">
+                                                        <div class="col-12">
                                                             <input type="text" name="quantity"
                                                                 class="form-control @error('quantity') ? ' is-invalid' : '' @enderror"
                                                                 placeholder="Enter Quantity" required>
@@ -148,7 +145,7 @@
                                                         L
                                                     </td>
                                                     <td>
-                                                        <div class="col-12 mb-3">
+                                                        <div class="col-12">
                                                             <input type="text" name="quantity"
                                                                 class="form-control @error('quantity') ? ' is-invalid' : '' @enderror"
                                                                 placeholder="Enter Quantity" required>
@@ -163,7 +160,7 @@
                                                         XL
                                                     </td>
                                                     <td>
-                                                        <div class="col-12 mb-3">
+                                                        <div class="col-12">
                                                             <input type="text" name="quantity"
                                                                 class="form-control @error('quantity') ? ' is-invalid' : '' @enderror"
                                                                 placeholder="Enter Quantity" required>
@@ -178,7 +175,7 @@
                                                         XXL
                                                     </td>
                                                     <td>
-                                                        <div class="col-12 mb-3">
+                                                        <div class="col-12">
                                                             <input type="text" name="quantity"
                                                                 class="form-control @error('quantity') ? ' is-invalid' : '' @enderror"
                                                                 placeholder="Enter Quantity" required>
@@ -239,8 +236,8 @@
                                         <div class="col-md-12">
                                             <label for="price">Description</label>
                                             <span class="text-danger">*</span>
-                                            <textarea class="form-control @error('description') ? ' is-invalid' : '' @enderror" name="description" cols="30"
-                                                rows="10" placeholder="Product Description..." required></textarea>
+                                            <textarea class="form-control @error('description') ? ' is-invalid' : '' @enderror" name="description"
+                                                cols="30" rows="10" placeholder="Product Description..." required></textarea>
                                             @error('description')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
