@@ -78,8 +78,8 @@
                                 </div>
                             </div>
                             <div class="col-lg-6">
-                                <div class="row">
-                                    <div class="col-4">
+                                <div class="row border border-2 rounded">
+                                    <div class="col-3">
                                         <div class="my-3 col-6">
                                             <label for="color" class="form-label">Color</label>
                                             <input type="color" name="color" id="color"
@@ -91,29 +91,41 @@
                                             @enderror
                                         </div>
                                     </div>
-                                    <div class="col-4">
-                                        <div class="col-md-3">
-                                            <label for="exampleInputEmail1">Size:</label>
-                                            <span class="text-danger">*</span>
-                                            <input type="text" name="size"
-                                                class="form-control @error('size') ? ' is-invalid' : '' @enderror"
-                                                placeholder="Enter Product Size" required>
-                                            @error('size')
-                                                <span class="text-danger">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="col-4">
-                                        <div class="col-md-3">
-                                            <label for="exampleInputEmail1">Quantity:</label>
-                                            <span class="text-danger">*</span>
-                                            <input type="number" name="available_quantity"
-                                                class="form-control @error('quantity') ? ' is-invalid' : '' @enderror"
-                                                placeholder="Enter Product Quantity" required>
-                                            @error('available_quantity')
-                                                <span class="text-danger">{{ $message }}</span>
-                                            @enderror
-                                        </div>
+                                    <div class="col-9">
+                                        <table class="table table-stripped">
+                                            <thead>
+                                                <th>Size</th>
+                                                <th>Quantity</th>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <div class="col-12 mb-3">
+                                                            <label for="exampleInputEmail1">Size</label>
+                                                            <span class="text-danger">*</span>
+                                                            <input type="text" name="size"
+                                                                class="form-control @error('size') ? ' is-invalid' : '' @enderror"
+                                                                placeholder="Enter Size" required>
+                                                            @error('size')
+                                                                <span class="text-danger">{{ $message }}</span>
+                                                            @enderror
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="col-12 mb-3">
+                                                            <label for="exampleInputEmail1">Quantity</label>
+                                                            <span class="text-danger">*</span>
+                                                            <input type="text" name="quantity"
+                                                                class="form-control @error('quantity') ? ' is-invalid' : '' @enderror"
+                                                                placeholder="Enter Quantity" required>
+                                                            @error('quantity')
+                                                                <span class="text-danger">{{ $message }}</span>
+                                                            @enderror
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
