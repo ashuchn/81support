@@ -75,7 +75,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div id="ColorsSizeItem">
+                            <div id="ColorsSizeItem" class="col-lg-8">
                                 <div class="col-lg-4">
                                     <div class="row">
                                         <div class="col-6">
