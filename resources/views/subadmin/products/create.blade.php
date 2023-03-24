@@ -87,7 +87,7 @@
                                         </a>
                                     </li>
                                     <li class="nav-item m-2 mb-0">
-                                        <button class="btn btn-sm btn-outline-primary px-2">+</button>
+                                        <span class="font-size: 2em;">+</span>
                                     </li>
 
                                 </ul>
