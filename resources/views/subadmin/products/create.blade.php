@@ -64,7 +64,20 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-lg-9">
+                            <div class="col-lg-3">
+                                <div class="form-group row">
+                                    <div class="col-md-12">
+                                        <label for="price">Description</label>
+                                        <span class="text-danger">*</span>
+                                        <textarea class="form-control @error('description') ? ' is-invalid' : '' @enderror" name="description" cols="30"
+                                            rows="10" placeholder="Product Description..." required></textarea>
+                                        @error('description')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
                                 <!-- Nav tabs -->
                                 <ul class="nav nav-tabs" role="tablist">
                                     <li class="nav-item">
@@ -159,7 +172,8 @@
                                             <select name="category" class="form-select select2" required>
                                                 <option value="">Choose Category</option>
                                                 @foreach ($category as $item)
-                                                    <option value="{{ $item->id }}">{{ $item->categoryName }}</option>
+                                                    <option value="{{ $item->id }}">{{ $item->categoryName }}
+                                                    </option>
                                                 @endforeach
                                             </select>
                                             @error('category')
