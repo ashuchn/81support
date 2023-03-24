@@ -79,24 +79,30 @@
                                 <div class="col-12 d-flex justify-content-center">
                                     <button class="ms-auto btn btn-outline-primary add-more">Add Color</button>
                                 </div>
+                                <hr>
                                 <div id="ColorsSizeItem"></div>
                                 <div class="row">
                                     <div class="col-6">
                                         <table class="table">
                                             <thead>
-                                                <th>Color</th>
+                                                <th>Color select</th>
                                                 <th>Images</th>
                                             </thead>
                                             <tbody>
                                                 <tr>
                                                     <td>
-                                                        <input type="color" name="color" id="color"
-                                                            placeholder="Enter Last Name"
-                                                            class="form-control @error('color') is-invalid @enderror p-0 mx-auto rounded"
-                                                            value="{{ old('color') }}" style="height: 40px; width: 100%;">
-                                                        @error('color')
-                                                            <p class="invalid-feedback">{{ $message }}</p>
-                                                        @enderror
+                                                        <div class="col-12">
+                                                            <select name="color" class="form-select select2" required>
+                                                                <option value="">Choose Color</option>
+                                                                <option value="1">Red</option>
+                                                                <option value="2">Blue</option>
+                                                                <option value="3">Green</option>
+                                                                <option value="4">Yellow</option>
+                                                            </select>
+                                                            @error('color')
+                                                                <span class="text-danger">{{ $message }}</span>
+                                                            @enderror
+                                                        </div>
                                                     </td>
                                                     <td>
                                                         <div class="col-12">
@@ -335,139 +341,144 @@
                 e.preventDefault();
                 $("#ColorsSizeItem").prepend(`
                   
-                <div class="row">
-                                    <div class="col-6">
-                                        <table class="table">
-                                            <thead>
-                                                <th>Color</th>
-                                                <th>Images</th>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>
-                                                        <input type="color" name="color" id="color"
-                                                            placeholder="Enter Last Name"
-                                                            class="form-control @error('color') is-invalid @enderror p-0 mx-auto rounded"
-                                                            value="{{ old('color') }}" style="height: 40px; width: 100%;">
-                                                        @error('color')
-                                                            <p class="invalid-feedback">{{ $message }}</p>
-                                                        @enderror
-                                                    </td>
-                                                    <td>
-                                                        <div class="col-12">
-                                                            <input type="file" name="image"
-                                                                class="form-control @error('image') ? ' is-invalid' : '' @enderror"
-                                                                placeholder="Enter Quantity" required>
-                                                            @error('image')
-                                                                <span class="text-danger">{{ $message }}</span>
-                                                            @enderror
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <div class="col-6">
-                                        <table class="table">
-                                            <thead>
-                                                <th>Size</th>
-                                                <th>Quantity</th>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>
-                                                        XS
-                                                    </td>
-                                                    <td>
-                                                        <div class="col-12">
-                                                            <input type="text" name="quantity"
-                                                                class="form-control @error('quantity') ? ' is-invalid' : '' @enderror"
-                                                                placeholder="Enter Quantity" required>
-                                                            @error('quantity')
-                                                                <span class="text-danger">{{ $message }}</span>
-                                                            @enderror
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        S
-                                                    </td>
-                                                    <td>
-                                                        <div class="col-12">
-                                                            <input type="text" name="quantity"
-                                                                class="form-control @error('quantity') ? ' is-invalid' : '' @enderror"
-                                                                placeholder="Enter Quantity" required>
-                                                            @error('quantity')
-                                                                <span class="text-danger">{{ $message }}</span>
-                                                            @enderror
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        M
-                                                    </td>
-                                                    <td>
-                                                        <div class="col-12">
-                                                            <input type="text" name="quantity"
-                                                                class="form-control @error('quantity') ? ' is-invalid' : '' @enderror"
-                                                                placeholder="Enter Quantity" required>
-                                                            @error('quantity')
-                                                                <span class="text-danger">{{ $message }}</span>
-                                                            @enderror
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        L
-                                                    </td>
-                                                    <td>
-                                                        <div class="col-12">
-                                                            <input type="text" name="quantity"
-                                                                class="form-control @error('quantity') ? ' is-invalid' : '' @enderror"
-                                                                placeholder="Enter Quantity" required>
-                                                            @error('quantity')
-                                                                <span class="text-danger">{{ $message }}</span>
-                                                            @enderror
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        XL
-                                                    </td>
-                                                    <td>
-                                                        <div class="col-12">
-                                                            <input type="text" name="quantity"
-                                                                class="form-control @error('quantity') ? ' is-invalid' : '' @enderror"
-                                                                placeholder="Enter Quantity" required>
-                                                            @error('quantity')
-                                                                <span class="text-danger">{{ $message }}</span>
-                                                            @enderror
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        XXL
-                                                    </td>
-                                                    <td>
-                                                        <div class="col-12">
-                                                            <input type="text" name="quantity"
-                                                                class="form-control @error('quantity') ? ' is-invalid' : '' @enderror"
-                                                                placeholder="Enter Quantity" required>
-                                                            @error('quantity')
-                                                                <span class="text-danger">{{ $message }}</span>
-                                                            @enderror
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <table class="table">
+                                <thead>
+                                    <th>Color select</th>
+                                    <th>Images</th>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="col-12">
+                                                <select name="color" class="form-select select2" required>
+                                                    <option value="">Choose Color</option>
+                                                    <option value="1">Red</option>
+                                                    <option value="2">Blue</option>
+                                                    <option value="3">Green</option>
+                                                    <option value="4">Yellow</option>
+                                                </select>
+                                                @error('color')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="col-12">
+                                                <input type="file" name="image"
+                                                    class="form-control @error('image') ? ' is-invalid' : '' @enderror"
+                                                    placeholder="Enter Quantity" required>
+                                                @error('image')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-6">
+                            <table class="table">
+                                <thead>
+                                    <th>Size</th>
+                                    <th>Quantity</th>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            XS
+                                        </td>
+                                        <td>
+                                            <div class="col-12">
+                                                <input type="text" name="quantity"
+                                                    class="form-control @error('quantity') ? ' is-invalid' : '' @enderror"
+                                                    placeholder="Enter Quantity" required>
+                                                @error('quantity')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            S
+                                        </td>
+                                        <td>
+                                            <div class="col-12">
+                                                <input type="text" name="quantity"
+                                                    class="form-control @error('quantity') ? ' is-invalid' : '' @enderror"
+                                                    placeholder="Enter Quantity" required>
+                                                @error('quantity')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            M
+                                        </td>
+                                        <td>
+                                            <div class="col-12">
+                                                <input type="text" name="quantity"
+                                                    class="form-control @error('quantity') ? ' is-invalid' : '' @enderror"
+                                                    placeholder="Enter Quantity" required>
+                                                @error('quantity')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            L
+                                        </td>
+                                        <td>
+                                            <div class="col-12">
+                                                <input type="text" name="quantity"
+                                                    class="form-control @error('quantity') ? ' is-invalid' : '' @enderror"
+                                                    placeholder="Enter Quantity" required>
+                                                @error('quantity')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            XL
+                                        </td>
+                                        <td>
+                                            <div class="col-12">
+                                                <input type="text" name="quantity"
+                                                    class="form-control @error('quantity') ? ' is-invalid' : '' @enderror"
+                                                    placeholder="Enter Quantity" required>
+                                                @error('quantity')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            XXL
+                                        </td>
+                                        <td>
+                                            <div class="col-12">
+                                                <input type="text" name="quantity"
+                                                    class="form-control @error('quantity') ? ' is-invalid' : '' @enderror"
+                                                    placeholder="Enter Quantity" required>
+                                                @error('quantity')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                                    
                 `);
             });
