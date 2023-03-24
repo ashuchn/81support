@@ -384,7 +384,7 @@
                                     <th>Size</th>
                                     <th>Quantity</th>
                                     <th>
-                                        <button class="btn btn-sm rounded-circle btn-danger remove">Remove</button>
+                                        <button class="ms-auto btn btn-sm rounded-circle btn-danger remove">X</button>
                                     </th>
                                 </thead>
                                 <tbody>
