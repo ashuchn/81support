@@ -29,7 +29,7 @@
                     </div>
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-lg-3">
+                            <div class="col-lg-4">
                                 <div class="col-12 mb-3">
                                     <label for="exampleInputEmail1">Product Name</label>
                                     <span class="text-danger">*</span>
@@ -75,7 +75,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-6">
+                            <div class="col-lg-4">
                                 <div class="row border border-2 rounded" id="ColorsSizeItem">
                                     <div class="col-2">
                                         <table class="table">
