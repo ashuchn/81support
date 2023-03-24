@@ -26,27 +26,25 @@
                 <form>
                     <div class="row card">
                         <div class="col-lg-3">
-                            <div class="card-body">
-                                <div class="col-12">
-                                    <label for="exampleInputEmail1">Product Name</label>
-                                    <span class="text-danger">*</span>
-                                    <input type="text" name="productName"
-                                        class="form-control @error('productName') ? ' is-invalid' : '' @enderror"
-                                        placeholder="Enter Product Name" required>
-                                    @error('productName')
-                                        <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                                <div class="col-12">
-                                    <label for="price">Price (in $)</label>
-                                    <span class="text-danger">*</span>
-                                    <input type="text" name="price"
-                                        class="form-control @error('price') ? ' is-invalid' : '' @enderror"
-                                        placeholder="Enter Product Price" required>
-                                    @error('price')
-                                        <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div>
+                            <div class="col-12">
+                                <label for="exampleInputEmail1">Product Name</label>
+                                <span class="text-danger">*</span>
+                                <input type="text" name="productName"
+                                    class="form-control @error('productName') ? ' is-invalid' : '' @enderror"
+                                    placeholder="Enter Product Name" required>
+                                @error('productName')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                            <div class="col-12">
+                                <label for="price">Price (in $)</label>
+                                <span class="text-danger">*</span>
+                                <input type="text" name="price"
+                                    class="form-control @error('price') ? ' is-invalid' : '' @enderror"
+                                    placeholder="Enter Product Price" required>
+                                @error('price')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
                         </div>
                         <div class="col-lg-9">
