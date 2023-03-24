@@ -89,7 +89,7 @@
                                                     <td>
                                                         <input type="color" name="color" id="color"
                                                             placeholder="Enter Last Name"
-                                                            class="form-control @error('color') is-invalid @enderror"
+                                                            class="form-control @error('color') is-invalid @enderror p-0"
                                                             value="{{ old('color') }}" style="height: 40px; width: 50px;">
                                                         @error('color')
                                                             <p class="invalid-feedback">{{ $message }}</p>
