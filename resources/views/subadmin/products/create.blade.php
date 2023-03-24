@@ -79,7 +79,7 @@
                             </div>
                             <div class="col-lg-6">
                                 <div class="row border border-2 rounded">
-                                    <div class="col-2 py-2">
+                                    <div class="col-2">
                                         <table class="table">
                                             <thead>
                                                 <th>Color</th>
