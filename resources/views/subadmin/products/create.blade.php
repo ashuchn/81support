@@ -63,9 +63,7 @@
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
-                            </div>
-                            <div class="col-lg-3">
-                                <div class="form-group row">
+                                <div class="form-group col-12 mb-3">
                                     <div class="col-md-12">
                                         <label for="price">Description</label>
                                         <span class="text-danger">*</span>
@@ -317,7 +315,7 @@
     </script>
 
     <script>
-        $(document).ready(function(){
+        $(document).ready(function() {
 
         });
     </script>
