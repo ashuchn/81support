@@ -384,7 +384,7 @@
                                     <th>Size</th>
                                     <th>Quantity</th>
                                     <th>
-                                        <button style="width: 30px; height: 30px; line-height: 30px;" class="text-center float-end btn btn-sm rounded-circle btn-danger remove">X</button>
+                                        <button style="width: 30px; height: 30px;" class="p-2 text-center float-end btn btn-sm rounded-circle btn-danger remove">X</button>
                                     </th>
                                 </thead>
                                 <tbody>
