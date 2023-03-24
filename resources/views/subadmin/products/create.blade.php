@@ -78,32 +78,21 @@
                                 </div>
                             </div>
                             <div class="col-lg-6">
-                                <!-- Nav tabs -->
-                                <ul class="nav nav-tabs" role="tablist">
-                                    <li class="nav-item">
-                                        <a class="nav-link active d-flex align-items-center gap-2" data-bs-toggle="tab" href="#home" role="tab">
-                                            <span class="d-block" style="width: 20px; height: 20px; background: white; border: 2px solid black; border-radius: 5px;"></span>
-                                            <span class="d-none d-sm-block">Color</span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item m-2 mb-0">
-                                        <span class="text-2xl">+</span>
-                                    </li>
+                                <div class="col-md-12">
+                                    <p>
+                                        <button id="btn-add-tab" type="button" class="btn btn-primary pull-right">
+                                            Add Tab</button>
+                                    </p>
+                                    <!-- Nav tabs -->
+                                    <ul id="tab-list" class="nav nav-tabs" role="tablist">
+                                        <li class="active"><a href="#tab1" role="tab" data-toggle="tab"><span>Tab 1
+                                                </span><span class="glyphicon glyphicon-pencil text-muted edit"></span></a>
+                                        </li>
+                                    </ul>
 
-                                </ul>
-
-                                <!-- Tab panes -->
-                                <div class="tab-content p-3 text-muted">
-                                    <div class="tab-pane active" id="home" role="tabpanel">
-                                        <p class="mb-0">
-                                            Raw denim you probably haven't heard of them jean shorts Austin.
-                                            Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache
-                                            cliche tempor, williamsburg carles vegan helvetica. Reprehenderit
-                                            butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi,
-                                            qui irure terry richardson ex squid. Aliquip placeat salvia cillum
-                                            iphone. Seitan aliquip quis cardigan american apparel, butcher
-                                            voluptate nisi qui.
-                                        </p>
+                                    <!-- Tab panes -->
+                                    <div id="tab-content" class="tab-content">
+                                        <div class="tab-pane fade in active" id="tab1">Tab 1 content</div>
                                     </div>
                                 </div>
                             </div>
@@ -220,5 +209,57 @@
             theme: 'bootstrap4',
             dropdownAutoWidth: true
         })
+    </script>
+
+    <script>
+        var button = '<button class="close" type="button" title="Remove this page">×</button>';
+        var tabID = 1;
+
+        function resetTab() {
+            var tabs = $("#tab-list li:not(:first)");
+            var len = 1
+            $(tabs).each(function(k, v) {
+                len++;
+                $(this).find('a').html('Tab ' + len + button);
+            })
+            tabID--;
+        }
+
+        $(document).ready(function() {
+            $('#btn-add-tab').click(function() {
+                tabID++;
+                $('#tab-list').append($('<li><a href="#tab' + tabID +
+                    '" role="tab" data-toggle="tab"><span>Tab ' + tabID +
+                    '</span> <span class="glyphicon glyphicon-pencil text-muted edit"></span> <button class="close" type="button" title="Remove this page">×</button></a></li>'
+                    ));
+                $('#tab-content').append($('<div class="tab-pane fade" id="tab' + tabID + '">Tab ' + tabID +
+                    ' content</div>'));
+                $(".edit").click(editHandler);
+            });
+
+            $('#tab-list').on('click', '.close', function() {
+                var tabID = $(this).parents('a').attr('href');
+                $(this).parents('li').remove();
+                $(tabID).remove();
+
+                //display first tab
+                var tabFirst = $('#tab-list a:first');
+                resetTab();
+                tabFirst.tab('show');
+            });
+
+            var list = document.getElementById("tab-list");
+        });
+
+        var editHandler = function() {
+            var t = $(this);
+            t.css("visibility", "hidden");
+            $(this).prev().attr("contenteditable", "true").focusout(function() {
+                $(this).removeAttr("contenteditable").off("focusout");
+                t.css("visibility", "visible");
+            });
+        };
+
+        $(".edit").click(editHandler);
     </script>
 @endsection
