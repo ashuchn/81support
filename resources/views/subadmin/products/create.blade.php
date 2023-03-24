@@ -80,13 +80,24 @@
                             <div class="col-lg-6">
                                 <div class="row border border-2 rounded">
                                     <div class="col-2 py-2">
-                                        <label for="color" class="form-label">Color</label>
-                                        <input type="color" name="color" id="color" placeholder="Enter Last Name"
-                                            class="form-control @error('color') is-invalid @enderror"
-                                            value="{{ old('color') }}" style="height: 50px;">
-                                        @error('color')
-                                            <p class="invalid-feedback">{{ $message }}</p>
-                                        @enderror
+                                        <table class="table">
+                                            <thead>
+                                                <th>Color</th>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <input type="color" name="color" id="color"
+                                                            placeholder="Enter Last Name"
+                                                            class="form-control @error('color') is-invalid @enderror"
+                                                            value="{{ old('color') }}" style="height: 50px;">
+                                                        @error('color')
+                                                            <p class="invalid-feedback">{{ $message }}</p>
+                                                        @enderror
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
                                     <div class="col-10">
                                         <table class="table">
