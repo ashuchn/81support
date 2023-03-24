@@ -81,12 +81,12 @@
                                 <!-- Nav tabs -->
                                 <ul class="nav nav-tabs" role="tablist">
                                     <li class="nav-item">
-                                        <a class="nav-link active d-flex align-items-center gap-3" data-bs-toggle="tab" href="#home" role="tab">
+                                        <a class="nav-link active d-flex align-items-center gap-2" data-bs-toggle="tab" href="#home" role="tab">
                                             <span class="d-block" style="width: 20px; height: 20px; background: white; border: 2px solid black; border-radius: 5px;"></span>
                                             <span class="d-none d-sm-block">Color</span>
                                         </a>
                                     </li>
-                                    <li class="nav-item">
+                                    <li class="nav-item ml-3 my-2">
                                         <button class="btn btn-sm btn-outline-primary">+</button>
                                     </li>
 
