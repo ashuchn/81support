@@ -37,7 +37,7 @@
                                     <div class="card-body">
                                         <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
                                             <div class="text-sm-left mb-2 mb-sm-0">
-                                                <h3 class="p-0 m-0 text-nowrap">
+                                                <h3 class="p-0 m-0">
                                                     {{ $subadmin->name }}
                                                 </h3>
                                                 <p class="mb-0"></p>
