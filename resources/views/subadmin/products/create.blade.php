@@ -491,7 +491,7 @@
 
             $(document).on('click', '.remove', function(e) {
                 e.preventDefault();
-                $(this).closest('.ColorItem').remove();
+                $(this).closest('.row').remove();
             });
         });
     </script>
