@@ -86,8 +86,8 @@
                                             <span class="d-none d-sm-block">Color</span>
                                         </a>
                                     </li>
-                                    <li class="nav-item m-2">
-                                        <button class="btn btn-sm btn-outline-primary p-2">+</button>
+                                    <li class="nav-item m-2 mb-0">
+                                        <button class="btn btn-sm btn-outline-primary px-2">+</button>
                                     </li>
 
                                 </ul>
