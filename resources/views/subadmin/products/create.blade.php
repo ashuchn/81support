@@ -86,7 +86,7 @@
                                             <span class="d-none d-sm-block">Color</span>
                                         </a>
                                     </li>
-                                    <li class="nav-item ml-3 my-2">
+                                    <li class="nav-item m-2">
                                         <button class="btn btn-sm btn-outline-primary">+</button>
                                     </li>
 
