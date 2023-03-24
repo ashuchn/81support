@@ -90,7 +90,7 @@
                                                         <input type="color" name="color" id="color"
                                                             placeholder="Enter Last Name"
                                                             class="form-control @error('color') is-invalid @enderror"
-                                                            value="{{ old('color') }}" style="height: 40px; width: 30px;">
+                                                            value="{{ old('color') }}" style="height: 40px; width: 50px;">
                                                         @error('color')
                                                             <p class="invalid-feedback">{{ $message }}</p>
                                                         @enderror
