@@ -334,7 +334,7 @@
             $(".add-more").click(function(e) {
                 e.preventDefault();
                 $("#ColorsSizeItem").append(`
-                <div class="col-lg-4">
+                <div class="col-lg-8">
                                 <div class="row">
                                     <div class="col-6">
                                         <table class="table">
