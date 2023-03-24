@@ -24,8 +24,8 @@
                 </div>
 
                 <form>
-                    <div class="row">
-                        <div class="col-lg-3">
+                    <div class="row card">
+                        <div class="col-lg-3 card-body">
                             <div class="col-12">
                                 <label for="exampleInputEmail1">Product Name</label>
                                 <span class="text-danger">*</span>
@@ -47,7 +47,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-lg-9">
+                        <div class="col-lg-9 card-body">
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs" role="tablist">
                                 <li class="nav-item">
