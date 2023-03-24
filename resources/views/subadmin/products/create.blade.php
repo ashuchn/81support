@@ -384,7 +384,7 @@
                                     <th>Size</th>
                                     <th>Quantity</th>
                                     <th>
-                                        <button class="p-3 py-2 text-center float-end btn btn-sm rounded-circle btn-danger remove">X</button>
+                                        <button style="padding: 10px 20px;" class="text-center float-end btn btn-sm rounded-circle btn-danger remove">X</button>
                                     </th>
                                 </thead>
                                 <tbody>
