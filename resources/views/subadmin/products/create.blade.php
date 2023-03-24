@@ -76,6 +76,9 @@
                                 </div>
                             </div>
                             <div class="col-lg-8">
+                                <div class="col-lg-4 d-flex align-items-center justify-content-center">
+                                    <button class="btn btn-outline-primary add-more">Add Color</button>
+                                </div>
                                 <div class="row">
                                     <div class="col-6">
                                         <table class="table">
@@ -210,9 +213,6 @@
                                     </div>
                                 </div>
                                 <div id="ColorsSizeItem" class="col-lg-8"></div>
-                            </div>
-                            <div class="col-lg-4 d-flex align-items-center justify-content-center">
-                                <button class="btn btn-outline-primary add-more">Add Color</button>
                             </div>
                         </div>
                     </div>
