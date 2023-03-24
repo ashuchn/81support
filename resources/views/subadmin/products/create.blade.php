@@ -210,6 +210,9 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-lg-4 d-flex align-items-center justify-content-center">
+                                <button>Add Color</button>
+                            </div>
                         </div>
                     </div>
                 </form>
