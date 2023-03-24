@@ -123,14 +123,13 @@
                                             <thead>
                                                 <th>Size</th>
                                                 <th>Quantity</th>
-                                                <th>Remove</th>
                                             </thead>
                                             <tbody>
                                                 <tr>
                                                     <td>
                                                         XS
                                                     </td>
-                                                    <td colspan="2">
+                                                    <td>
                                                         <div class="col-12">
                                                             <input type="text" name="quantity"
                                                                 class="form-control @error('quantity') ? ' is-invalid' : '' @enderror"
@@ -145,7 +144,7 @@
                                                     <td>
                                                         S
                                                     </td>
-                                                    <td colspan="2">
+                                                    <td>
                                                         <div class="col-12">
                                                             <input type="text" name="quantity"
                                                                 class="form-control @error('quantity') ? ' is-invalid' : '' @enderror"
@@ -160,7 +159,7 @@
                                                     <td>
                                                         M
                                                     </td>
-                                                    <td colspan="2">
+                                                    <td>
                                                         <div class="col-12">
                                                             <input type="text" name="quantity"
                                                                 class="form-control @error('quantity') ? ' is-invalid' : '' @enderror"
@@ -175,7 +174,7 @@
                                                     <td>
                                                         L
                                                     </td>
-                                                    <td colspan="2">
+                                                    <td>
                                                         <div class="col-12">
                                                             <input type="text" name="quantity"
                                                                 class="form-control @error('quantity') ? ' is-invalid' : '' @enderror"
@@ -190,7 +189,7 @@
                                                     <td>
                                                         XL
                                                     </td>
-                                                    <td colspan="2">
+                                                    <td>
                                                         <div class="col-12">
                                                             <input type="text" name="quantity"
                                                                 class="form-control @error('quantity') ? ' is-invalid' : '' @enderror"
@@ -205,7 +204,7 @@
                                                     <td>
                                                         XXL
                                                     </td>
-                                                    <td colspan="2">
+                                                    <td>
                                                         <div class="col-12">
                                                             <input type="text" name="quantity"
                                                                 class="form-control @error('quantity') ? ' is-invalid' : '' @enderror"
@@ -384,13 +383,16 @@
                                 <thead>
                                     <th>Size</th>
                                     <th>Quantity</th>
+                                    <th>
+                                        <button class="btn btn-sm rounded-circle btn-danger remove">Remove</button>
+                                    </th>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <td>
                                             XS
                                         </td>
-                                        <td>
+                                        <td colspan="2">
                                             <div class="col-12">
                                                 <input type="text" name="quantity"
                                                     class="form-control @error('quantity') ? ' is-invalid' : '' @enderror"
@@ -405,7 +407,7 @@
                                         <td>
                                             S
                                         </td>
-                                        <td>
+                                        <td colspan="2">
                                             <div class="col-12">
                                                 <input type="text" name="quantity"
                                                     class="form-control @error('quantity') ? ' is-invalid' : '' @enderror"
@@ -420,7 +422,7 @@
                                         <td>
                                             M
                                         </td>
-                                        <td>
+                                        <td colspan="2">
                                             <div class="col-12">
                                                 <input type="text" name="quantity"
                                                     class="form-control @error('quantity') ? ' is-invalid' : '' @enderror"
@@ -435,7 +437,7 @@
                                         <td>
                                             L
                                         </td>
-                                        <td>
+                                        <td colspan="2">
                                             <div class="col-12">
                                                 <input type="text" name="quantity"
                                                     class="form-control @error('quantity') ? ' is-invalid' : '' @enderror"
@@ -450,7 +452,7 @@
                                         <td>
                                             XL
                                         </td>
-                                        <td>
+                                        <td colspan="2">
                                             <div class="col-12">
                                                 <input type="text" name="quantity"
                                                     class="form-control @error('quantity') ? ' is-invalid' : '' @enderror"
@@ -465,7 +467,7 @@
                                         <td>
                                             XXL
                                         </td>
-                                        <td>
+                                        <td colspan="2">
                                             <div class="col-12">
                                                 <input type="text" name="quantity"
                                                     class="form-control @error('quantity') ? ' is-invalid' : '' @enderror"
