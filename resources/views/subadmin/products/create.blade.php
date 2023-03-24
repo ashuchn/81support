@@ -209,8 +209,8 @@
                                         </table>
                                     </div>
                                 </div>
+                                <div id="ColorsSizeItem" class="col-lg-8"></div>
                             </div>
-                            <div id="ColorsSizeItem" class="col-lg-8"></div>
                             <div class="col-lg-4 d-flex align-items-center justify-content-center">
                                 <button class="btn btn-outline-primary add-more">Add Color</button>
                             </div>
