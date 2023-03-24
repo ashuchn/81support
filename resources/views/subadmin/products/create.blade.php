@@ -78,22 +78,19 @@
                                 </div>
                             </div>
                             <div class="col-lg-6">
-                                <div class="col-md-12">
-                                    <p>
-                                        <button id="btn-add-tab" type="button" class="btn btn-primary pull-right">
-                                            Add Tab</button>
-                                    </p>
-                                    <!-- Nav tabs -->
-                                    <ul id="tab-list" class="nav nav-tabs" role="tablist">
-                                        <li class="active"><a href="#tab1" role="tab" data-toggle="tab"><span>Tab 1
-                                                </span><span class="glyphicon glyphicon-pencil text-muted edit"></span></a>
-                                        </li>
-                                    </ul>
-
-                                    <!-- Tab panes -->
-                                    <div id="tab-content" class="tab-content">
-                                        <div class="tab-pane fade in active" id="tab1">Tab 1 content</div>
+                                <div style="margin-top: 20px">
+                                    <div style="line-height: 50px">
+                                        <button type="button" class="btn btn-primary" id="add-tab-content">
+                                            Add New Tab
+                                        </button>
+                                        <button type="button" class="btn btn-danger"
+                                            onclick="nthTabs.delTab('role-manage')">
+                                            Close Tab
+                                        </button>
                                     </div>
+                                </div>
+                                <div class="page-wrapper">
+                                    <div class="nth-tabs" id="main-tabs"></div>
                                 </div>
                             </div>
                         </div>
@@ -210,56 +207,60 @@
             dropdownAutoWidth: true
         })
     </script>
-
     <script>
-        var button = '<button class="close" type="button" title="Remove this page">×</button>';
-        var tabID = 1;
+        var nthTabs;
 
-        function resetTab() {
-            var tabs = $("#tab-list li:not(:first)");
-            var len = 1
-            $(tabs).each(function(k, v) {
-                len++;
-                $(this).find('a').html('Tab ' + len + button);
-            })
-            tabID--;
-        }
+        $(function() {
+            nthTabs = $("#main-tabs").nthTabs();
 
-        $(document).ready(function() {
-            $('#btn-add-tab').click(function() {
-                tabID++;
-                $('#tab-list').append($('<li><a href="#tab' + tabID +
-                    '" role="tab" data-toggle="tab"><span>Tab ' + tabID +
-                    '</span> <span class="glyphicon glyphicon-pencil text-muted edit"></span> <button class="close" type="button" title="Remove this page">×</button></a></li>'
-                    ));
-                $('#tab-content').append($('<div class="tab-pane fade" id="tab' + tabID + '">Tab ' + tabID +
-                    ' content</div>'));
-                $(".edit").click(editHandler);
+            nthTabs.addTab({
+                id: "home",
+                title: "Home",
+                url: "https://www.jqueryscript.net",
+                active: true,
+                allowClose: false,
             });
 
-            $('#tab-list').on('click', '.close', function() {
-                var tabID = $(this).parents('a').attr('href');
-                $(this).parents('li').remove();
-                $(tabID).remove();
+            nthTabs
+                .addTab({
+                    id: "menu-manage",
+                    title: "Menu",
+                    active: false,
+                    content: "Menu Content",
+                })
+                .addTab({
+                    id: "role-manage",
+                    title: "Role",
+                    active: false,
+                    content: "Role Content",
+                });
 
-                //display first tab
-                var tabFirst = $('#tab-list a:first');
-                resetTab();
-                tabFirst.tab('show');
+            $("#add-tab-content").on("click", function() {
+                var id = Math.ceil(Math.random() * 1000);
+                nthTabs.addTab({
+                    id: "nth-tab-" + id,
+                    title: "Tab-" + id,
+                    content: "Tab Content " + id,
+                    active: true,
+                    allowClose: true,
+                    location: true,
+                    fadeIn: false,
+                });
             });
 
-            var list = document.getElementById("tab-list");
+            $("#add-tabs").on("click", function() {
+                nthTabs.addTabs([{
+                        id: "user-manage",
+                        title: "User",
+                        content: "User Content",
+                    },
+                    {
+                        id: "auth-manage",
+                        title: "Auth",
+                        content: "Auth Content",
+                    },
+                ]);
+            });
         });
-
-        var editHandler = function() {
-            var t = $(this);
-            t.css("visibility", "hidden");
-            $(this).prev().attr("contenteditable", "true").focusout(function() {
-                $(this).removeAttr("contenteditable").off("focusout");
-                t.css("visibility", "visible");
-            });
-        };
-
-        $(".edit").click(editHandler);
     </script>
 @endsection
