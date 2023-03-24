@@ -79,11 +79,11 @@
                             </div>
                             <div class="col-lg-6">
                                 <div class="row border border-2 rounded">
-                                    <div class="col-2">
+                                    <div class="col-2 py-3">
                                         <label for="color" class="form-label">Color</label>
                                         <input type="color" name="color" id="color" placeholder="Enter Last Name"
                                             class="form-control @error('color') is-invalid @enderror"
-                                            value="{{ old('color') }}" style="height: 40px;">
+                                            value="{{ old('color') }}" style="height: 50px;">
                                         @error('color')
                                             <p class="invalid-feedback">{{ $message }}</p>
                                         @enderror
