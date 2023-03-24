@@ -341,6 +341,7 @@
                 e.preventDefault();
                 $("#ColorsSizeItem").prepend(`
                   
+                    <hr>
                     <div class="row">
                         <div class="col-6">
                             <table class="table">
