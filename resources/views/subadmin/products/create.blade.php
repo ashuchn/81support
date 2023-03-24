@@ -78,21 +78,42 @@
                                 </div>
                             </div>
                             <div class="col-lg-6">
-                                <div class="col-md-12">
-                                    <p>
-                                        <button id="btn-add-tab" type="button" class="btn btn-primary pull-right">
-                                            Add Tab</button>
-                                    </p>
-                                    <!-- Nav tabs -->
-                                    <ul id="tab-list" class="nav nav-tabs" role="tablist">
-                                        <li class="active"><a href="#tab1" role="tab" data-toggle="tab"><span>Tab 1
-                                                </span><span class="glyphicon glyphicon-pencil text-muted edit"></span></a>
-                                        </li>
-                                    </ul>
-
-                                    <!-- Tab panes -->
-                                    <div id="tab-content" class="tab-content">
-                                        <div class="tab-pane fade in active" id="tab1">Tab 1 content</div>
+                                <div class="row">
+                                    <div class="col-4">
+                                        <div class="my-3 col-6">
+                                            <label for="color" class="form-label">Color</label>
+                                            <input type="color" name="color" id="color"
+                                                placeholder="Enter Last Name"
+                                                class="form-control @error('color') is-invalid @enderror"
+                                                value="{{ old('color') }}">
+                                            @error('color')
+                                                <p class="invalid-feedback">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="col-md-3">
+                                            <label for="exampleInputEmail1">Size:</label>
+                                            <span class="text-danger">*</span>
+                                            <input type="text" name="size"
+                                                class="form-control @error('size') ? ' is-invalid' : '' @enderror"
+                                                placeholder="Enter Product Size" required>
+                                            @error('size')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="col-md-3">
+                                            <label for="exampleInputEmail1">Quantity:</label>
+                                            <span class="text-danger">*</span>
+                                            <input type="number" name="available_quantity"
+                                                class="form-control @error('quantity') ? ' is-invalid' : '' @enderror"
+                                                placeholder="Enter Product Quantity" required>
+                                            @error('available_quantity')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -211,7 +232,5 @@
         })
     </script>
 
-    <script>
-        
-    </script>
+    <script></script>
 @endsection
