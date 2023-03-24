@@ -25,7 +25,7 @@
 
                 <form>
                     <div class="row">
-                        <div class="lg-col-3">
+                        <div class="col-lg-3">
                             <div class="col-12">
                                 <label for="exampleInputEmail1">Product Name</label>
                                 <span class="text-danger">*</span>
@@ -47,7 +47,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="lg-col-9">
+                        <div class="col-lg-9">
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs" role="tablist">
                                 <li class="nav-item">
