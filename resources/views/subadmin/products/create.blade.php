@@ -76,7 +76,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-4">
-                                <div class="row border border-2 rounded" id="ColorsSizeItem">
+                                <div class="" id="ColorsSizeItem">
                                     <div class="col-2">
                                         <table class="table">
                                             <thead>
@@ -200,7 +200,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-4">
-                                <div class="row border border-2 rounded" id="ColorsSizeItem">
+                                <div class="" id="ColorsSizeItem">
                                     <div class="col-2">
                                         <table class="table">
                                             <thead>
