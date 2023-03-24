@@ -23,11 +23,11 @@
                     </div>
                 </div>
 
-                <form class="card">
-                    <div class="card-header">
+                <form class="car">
+                    <div class="card-heade">
                         <h3 class="card-title">Add Product</h3>
                     </div>
-                    <div class="card-body">
+                    <div class="card-bod">
                         <div class="row">
                             <div class="col-lg-4">
                                 <div class="col-12 mb-3">
