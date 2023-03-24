@@ -80,8 +80,7 @@
                                     <div class="col-4">
                                         <table class="table">
                                             <thead>
-                                                <th>Color</th>
-                                                <th>Images</th>
+                                                <th>Color/Images</th>
                                             </thead>
                                             <tbody>
                                                 <tr>
@@ -94,6 +93,8 @@
                                                             <p class="invalid-feedback">{{ $message }}</p>
                                                         @enderror
                                                     </td>
+                                                </tr>
+                                                <tr>
                                                     <td>
                                                         <div class="col-12">
                                                             <input type="file" name="image"
