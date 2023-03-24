@@ -22,8 +22,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <form>
+
+                <form>
+                    <div class="row">
                         <div class="lg-col-3">
                             <div class="col-12">
                                 <label for="exampleInputEmail1">Product Name</label>
@@ -122,7 +123,10 @@
                                 </div>
                             </div>
                         </div>
-                    </form>
+                    </div>
+                </form>
+
+                <div class="row">
                     <!-- left column -->
                     <div class="col-md-12">
                         <!-- jquery validation -->
