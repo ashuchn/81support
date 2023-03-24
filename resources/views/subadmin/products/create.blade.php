@@ -483,8 +483,8 @@
                                 </tbody>
                             </table>
                         </div>
+                        <hr>
                     </div>
-                    <hr>
                                    
                 `);
             });
