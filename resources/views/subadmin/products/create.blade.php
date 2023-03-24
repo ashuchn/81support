@@ -347,6 +347,11 @@
                                 <thead>
                                     <th>Color</th>
                                     <th>Images</th>
+                                    <th>
+                                        <button style="padding: 4px 9.5px;" class="d-lg-none text-center float-end btn btn-sm rounded-circle btn-danger remove">
+                                            <b>X</b>    
+                                        </button>
+                                    </th>
                                 </thead>
                                 <tbody>
                                     <tr>
@@ -364,7 +369,7 @@
                                                 @enderror
                                             </div>
                                         </td>
-                                        <td>
+                                        <td colspan="2">
                                             <div class="col-12">
                                                 <input type="file" name="image"
                                                     class="form-control @error('image') ? ' is-invalid' : '' @enderror"
@@ -384,7 +389,7 @@
                                     <th>Size</th>
                                     <th>Quantity</th>
                                     <th>
-                                        <button style="padding: 4px 9.5px;" class="text-center float-end btn btn-sm rounded-circle btn-danger remove">
+                                        <button style="padding: 4px 9.5px;" class="d-none d-lg-block text-center float-end btn btn-sm rounded-circle btn-danger remove">
                                             <b>X</b>    
                                         </button>
                                     </th>
