@@ -333,7 +333,7 @@
         $(document).ready(function() {
             $(".add-more").click(function(e) {
                 e.preventDefault();
-                $("#ColorsSizeItem").append(`
+                $("#ColorsSizeItem").prepend(`
                   
                 <div class="row">
                                     <div class="col-6">
