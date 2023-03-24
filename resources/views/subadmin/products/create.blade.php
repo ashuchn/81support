@@ -87,7 +87,7 @@
                                         </a>
                                     </li>
                                     <li class="nav-item m-2 mb-0">
-                                        <span class="font-size: 2em;">+</span>
+                                        <span class="text-2xl">+</span>
                                     </li>
 
                                 </ul>
