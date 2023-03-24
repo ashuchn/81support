@@ -77,7 +77,7 @@
                             </div>
                             <div class="col-lg-4">
                                 <div class="row" id="ColorsSizeItem">
-                                    <div class="col-2">
+                                    <div class="col-4">
                                         <table class="table">
                                             <thead>
                                                 <th>Color</th>
@@ -108,7 +108,7 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                    <div class="col-10">
+                                    <div class="col-8">
                                         <table class="table">
                                             <thead>
                                                 <th>Size</th>
