@@ -76,7 +76,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-8">
-                                <div class="col-lg-4 d-flex align-items-center justify-content-center">
+                                <div class="col-12 d-flex align-items-end justify-content-center">
                                     <button class="btn btn-outline-primary add-more">Add Color</button>
                                 </div>
                                 <div class="row">
@@ -212,7 +212,7 @@
                                         </table>
                                     </div>
                                 </div>
-                                <div id="ColorsSizeItem" class="col-lg-8"></div>
+                                <div id="ColorsSizeItem"></div>
                             </div>
                         </div>
                     </div>
@@ -334,8 +334,8 @@
             $(".add-more").click(function(e) {
                 e.preventDefault();
                 $("#ColorsSizeItem").append(`
-                <div class="col-lg-8">
-                                <div class="row">
+                  
+                <div class="row">
                                     <div class="col-6">
                                         <table class="table">
                                             <thead>
@@ -468,7 +468,7 @@
                                         </table>
                                     </div>
                                 </div>
-                            </div>
+                                   
                 `);
             });
         });
