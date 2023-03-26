@@ -204,10 +204,9 @@ class ProductsController extends Controller
             return back()->withErrors($valid);
         }
 
-        $product = new Product;
+        $product = Product::find($id);
         $product_images = new ProductImages;
 
-        $product->rc_id = session()->get('subadminId');
         $product->productName = $request->productName;
         $product->price = $request->price;
         $product->categoryId = $request->category;
@@ -220,7 +219,7 @@ class ProductsController extends Controller
 
         for($i=0; $i<$totalColors; $i++) {
             for($j=0; $j<$totalQty/$totalColors; $j++) {
-                $product_size_quantity = new ProductSizeQuantity;
+                $product_size_quantity = ProductSizeQuantity::where('product_id', $id)->where('color', $request->colors[$i])->where('size', $request->sizes[$j])->first();
                 $product_size_quantity->product_id = $product->id;
                 $product_size_quantity->color = $request->colors[$i];
                 $product_size_quantity->size = $request->sizes[$j];
