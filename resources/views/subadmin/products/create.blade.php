@@ -23,7 +23,8 @@
                     </div>
                 </div>
 
-                <form action="{{ route('subadmin.products.store') }}" role="form" id="quickForm" class="card" method="post" enctype="multipart/form-data">
+                <form action="{{ route('subadmin.products.store') }}" role="form" id="quickForm" class="card"
+                    method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="card-header">
                         <h3 class="card-title">Add Product</h3>
@@ -161,7 +162,8 @@
                                                 <tr>
                                                     <td>
                                                         M
-                                                        <input name="sizes[]" type="text" value="M" class="d-none">
+                                                        <input name="sizes[]" type="text" value="M"
+                                                            class="d-none">
                                                     </td>
                                                     <td>
                                                         <div class="col-12">
@@ -177,7 +179,8 @@
                                                 <tr>
                                                     <td>
                                                         L
-                                                        <input name="sizes[]" type="text" value="L" class="d-none">
+                                                        <input name="sizes[]" type="text" value="L"
+                                                            class="d-none">
                                                     </td>
                                                     <td>
                                                         <div class="col-12">
@@ -193,7 +196,8 @@
                                                 <tr>
                                                     <td>
                                                         XL
-                                                        <input name="sizes[]" type="text" value="XL" class="d-none">
+                                                        <input name="sizes[]" type="text" value="XL"
+                                                            class="d-none">
                                                     </td>
                                                     <td>
                                                         <div class="col-12">
@@ -209,7 +213,8 @@
                                                 <tr>
                                                     <td>
                                                         XXL
-                                                        <input name="sizes[]" type="text" value="XXL" class="d-none">
+                                                        <input name="sizes[]" type="text" value="XXL"
+                                                            class="d-none">
                                                     </td>
                                                     <td>
                                                         <div class="col-12">
@@ -233,101 +238,6 @@
                         <button type="submit" class="btn btn-primary">Add</button>
                     </div>
                 </form>
-
-                <div class="row">
-                    <!-- left column -->
-                    <div class="col-md-12">
-                        <!-- jquery validation -->
-                        <div class="card card-primary">
-                            <div class="card-header">
-                                <h3 class="card-title">Add Product</h3>
-                            </div>
-                            <!-- /.card-header -->
-                            <!-- form start -->
-                            <form action="{{ route('subadmin.products.store') }}" role="form" id="quickForm"
-                                method="post" enctype="multipart/form-data">
-                                @csrf
-                                <div class="card-body">
-                                    <div class="form-group row">
-                                        <div class="col-md-6">
-                                            <label for="exampleInputEmail1">Product Name</label>
-                                            <span class="text-danger">*</span>
-                                            <input type="text" name="productName"
-                                                class="form-control @error('productName') ? ' is-invalid' : '' @enderror"
-                                                placeholder="Enter Product Name" required>
-                                            @error('productName')
-                                                <span class="text-danger">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label for="price">Price (in $)</label>
-                                            <span class="text-danger">*</span>
-                                            <input type="text" name="price"
-                                                class="form-control @error('price') ? ' is-invalid' : '' @enderror"
-                                                placeholder="Enter Product Price" required>
-                                            @error('price')
-                                                <span class="text-danger">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-                                    </div>
-
-
-                                    <div class="form-group row">
-                                        <div class="col-md-12">
-                                            <label for="price">Description</label>
-                                            <span class="text-danger">*</span>
-                                            <textarea class="form-control @error('description') ? ' is-invalid' : '' @enderror" name="description"
-                                                cols="30" rows="10" placeholder="Product Description..." required></textarea>
-                                            @error('description')
-                                                <span class="text-danger">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group row">
-                                        <div class="col-md-6">
-                                            <label for="exampleInputEmail1">Images</label>
-                                            <input type="file" name="images[]" class="form-control" aria-required=""
-                                                multiple required>
-                                            @error('images')
-                                                <span class="text-danger">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-                                        <div class="col-md-3">
-                                            <label for="exampleInputEmail1">Choose Category:</label>
-                                            <span class="text-danger">*</span>
-                                            <select name="category" class="form-select select2" required>
-                                                <option value="">Choose Category</option>
-                                                @foreach ($category as $item)
-                                                    <option value="{{ $item->id }}">{{ $item->categoryName }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                            @error('category')
-                                                <span class="text-danger">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-                                        <div class="col-md-3">
-                                            <label for="exampleInputEmail1">Quantity:</label>
-                                            <span class="text-danger">*</span>
-                                            <input type="number" name="available_quantity"
-                                                class="form-control @error('quantity') ? ' is-invalid' : '' @enderror"
-                                                placeholder="Enter Product Quantity" required>
-                                            @error('available_quantity')
-                                                <span class="text-danger">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /.card-body -->
-                                <div class="card-footer">
-                                    <button type="submit" class="btn btn-primary">Add</button>
-                                </div>
-                            </form>
-                        </div>
-                        <!-- /.card -->
-                    </div>
-                </div>
             </div><!-- /.container-fluid -->
         </section>
         <!-- /.content -->
@@ -381,10 +291,10 @@
                                         </td>
                                         <td colspan="2">
                                             <div class="col-12">
-                                                <input type="file" name="image"
+                                                <input type="file" name="images[]"
                                                     class="form-control @error('image') ? ' is-invalid' : '' @enderror"
-                                                    placeholder="Enter Quantity" required>
-                                                @error('image')
+                                                    placeholder="Enter Quantity" multiple required>
+                                                @error('images')
                                                     <span class="text-danger">{{ $message }}</span>
                                                 @enderror
                                             </div>
