@@ -94,8 +94,10 @@ class ProductsController extends Controller
         $product->description = $request->description;
         $product->available_quantity = array_sum($request->quantity);
 
+        $totalSizes = count($request->quantity) / count($request->colors);
+
         foreach($request->quantity as $key => $value) {
-            $totalSizes = count($request->quantity) / count($request->colors);
+            //
         }
 
         return $totalSizes;
