@@ -5,6 +5,8 @@ namespace App\Http\Controllers\subadmin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\ProductSizeQuantity;
+use App\Models\ProductImages;
 use App\Models\Category; 
 use Validator;
 use DB;
@@ -79,11 +81,19 @@ class ProductsController extends Controller
             return back()->withErrors($valid);
         }
 
-        return $request->all();
+        // return $request->all();
 
+        $product = new Product;
+        $product_images = new ProductImages;
+        $product_size_quantity = new ProductSizeQuantity;
 
+        $product->productName = $request->productName;
+        $product->price = $request->price;
+        $product->categoryId = $request->category;
+        $product->description = $request->description;
+        $product->available_quantity = array_sum($request->quantity);
 
-
+        return $product;
 
         // $insert = new Product;
         // $insert->categoryId = $request->category;
