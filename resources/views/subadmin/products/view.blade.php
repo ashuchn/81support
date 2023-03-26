@@ -93,7 +93,7 @@
                                 </div>
                                 <hr>
                                 <div id="ColorsSizeItem"></div>
-                                @foreach($colors as $citem)
+                                @foreach($colors as $key => $citem)
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <table class="table">
