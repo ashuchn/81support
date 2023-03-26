@@ -132,7 +132,7 @@
                                                     </td>
                                                     <td>
                                                         <div class="col-12">
-                                                            <input type="number" name="quantity"
+                                                            <input type="number" name="quantity[]"
                                                                 class="form-control @error('quantity') ? ' is-invalid' : '' @enderror"
                                                                 placeholder="Enter Quantity" required>
                                                             @error('quantity')
@@ -147,7 +147,7 @@
                                                     </td>
                                                     <td>
                                                         <div class="col-12">
-                                                            <input type="number" name="quantity"
+                                                            <input type="number" name="quantity[]"
                                                                 class="form-control @error('quantity') ? ' is-invalid' : '' @enderror"
                                                                 placeholder="Enter Quantity" required>
                                                             @error('quantity')
@@ -162,7 +162,7 @@
                                                     </td>
                                                     <td>
                                                         <div class="col-12">
-                                                            <input type="number" name="quantity"
+                                                            <input type="number" name="quantity[]"
                                                                 class="form-control @error('quantity') ? ' is-invalid' : '' @enderror"
                                                                 placeholder="Enter Quantity" required>
                                                             @error('quantity')
@@ -177,7 +177,7 @@
                                                     </td>
                                                     <td>
                                                         <div class="col-12">
-                                                            <input type="number" name="quantity"
+                                                            <input type="number" name="quantity[]"
                                                                 class="form-control @error('quantity') ? ' is-invalid' : '' @enderror"
                                                                 placeholder="Enter Quantity" required>
                                                             @error('quantity')
@@ -192,7 +192,7 @@
                                                     </td>
                                                     <td>
                                                         <div class="col-12">
-                                                            <input type="number" name="quantity"
+                                                            <input type="number" name="quantity[]"
                                                                 class="form-control @error('quantity') ? ' is-invalid' : '' @enderror"
                                                                 placeholder="Enter Quantity" required>
                                                             @error('quantity')
@@ -207,7 +207,7 @@
                                                     </td>
                                                     <td>
                                                         <div class="col-12">
-                                                            <input type="number" name="quantity"
+                                                            <input type="number" name="quantity[]"
                                                                 class="form-control @error('quantity') ? ' is-invalid' : '' @enderror"
                                                                 placeholder="Enter Quantity" required>
                                                             @error('quantity')
@@ -405,7 +405,7 @@
                                         </td>
                                         <td colspan="2">
                                             <div class="col-12">
-                                                <input type="number" name="quantity"
+                                                <input type="number" name="quantity[]"
                                                     class="form-control @error('quantity') ? ' is-invalid' : '' @enderror"
                                                     placeholder="Enter Quantity" required>
                                                 @error('quantity')
@@ -420,7 +420,7 @@
                                         </td>
                                         <td colspan="2">
                                             <div class="col-12">
-                                                <input type="number" name="quantity"
+                                                <input type="number" name="quantity[]"
                                                     class="form-control @error('quantity') ? ' is-invalid' : '' @enderror"
                                                     placeholder="Enter Quantity" required>
                                                 @error('quantity')
@@ -435,7 +435,7 @@
                                         </td>
                                         <td colspan="2">
                                             <div class="col-12">
-                                                <input type="number" name="quantity"
+                                                <input type="number" name="quantity[]"
                                                     class="form-control @error('quantity') ? ' is-invalid' : '' @enderror"
                                                     placeholder="Enter Quantity" required>
                                                 @error('quantity')
@@ -450,7 +450,7 @@
                                         </td>
                                         <td colspan="2">
                                             <div class="col-12">
-                                                <input type="number" name="quantity"
+                                                <input type="number" name="quantity[]"
                                                     class="form-control @error('quantity') ? ' is-invalid' : '' @enderror"
                                                     placeholder="Enter Quantity" required>
                                                 @error('quantity')
@@ -465,7 +465,7 @@
                                         </td>
                                         <td colspan="2">
                                             <div class="col-12">
-                                                <input type="number" name="quantity"
+                                                <input type="number" name="quantity[]"
                                                     class="form-control @error('quantity') ? ' is-invalid' : '' @enderror"
                                                     placeholder="Enter Quantity" required>
                                                 @error('quantity')
@@ -480,7 +480,7 @@
                                         </td>
                                         <td colspan="2">
                                             <div class="col-12">
-                                                <input type="number" name="quantity"
+                                                <input type="number" name="quantity[]"
                                                     class="form-control @error('quantity') ? ' is-invalid' : '' @enderror"
                                                     placeholder="Enter Quantity" required>
                                                 @error('quantity')
