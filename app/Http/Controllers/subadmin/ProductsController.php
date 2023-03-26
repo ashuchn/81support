@@ -205,7 +205,7 @@ class ProductsController extends Controller
         }
 
         $product = Product::find($id);
-        $product_images = new ProductImages;
+        // $product_images = new ProductImages;
 
         $product->productName = $request->productName;
         $product->price = $request->price;
