@@ -31,8 +31,8 @@
                 </div>
 
 
-                <form action="{{ route('subadmin.products.store') }}" role="form" id="quickForm" class="card"
-                    method="post" enctype="multipart/form-data">
+                <form action="{{ route('subadmin.products.update', ['product' => $product->id]) }}" role="form" id="quickForm" class="card"
+                    method="patch" enctype="multipart/form-data">
                     @csrf
                     <div class="card-header">
                         <h3 class="card-title">Add Product</h3>

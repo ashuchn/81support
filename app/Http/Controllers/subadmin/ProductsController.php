@@ -204,28 +204,53 @@ class ProductsController extends Controller
             return back()->withErrors($valid);
         }
 
-        $insert = new Product;
-        $insert->categoryId = $request->category;
-        $insert->productName = $request->productName;
-        $insert->price = $request->price;
-        $insert->description = $request->description;
-        // $insert->rc_id = session()->get('subadminId');
-        if($insert->save()) {
-            if ($request->has('images')) {
-                foreach ($request->images as $key => $file) {
-                    $name = time() . $key . '.' . $file->extension();
-                    // $dest_path='public/Place_upload';
-                    $file->move(public_path('product_images'), $name);
-                    DB::table('product_images')->insert([
-                        'productId' => $insert->id,
-                        'image' => 'public/product_images/'.$name
-                    ]);
-                }
-            } 
-            return redirect()->route('subadmin.products.index')->with('success','Product Added');
-        } else {
-            return redirect()->route('subadmin.products.index')->with('success','Oops! Some error Occured');
+        $product = new Product;
+        $product_images = new ProductImages;
+
+        $product->rc_id = session()->get('subadminId');
+        $product->productName = $request->productName;
+        $product->price = $request->price;
+        $product->categoryId = $request->category;
+        $product->description = $request->description;
+        $product->available_quantity = array_sum($request->quantity);
+        $product->save();
+
+        $totalColors = count($request->colors);
+        $totalQty = count($request->quantity);
+
+        for($i=0; $i<$totalColors; $i++) {
+            for($j=0; $j<$totalQty/$totalColors; $j++) {
+                $product_size_quantity = new ProductSizeQuantity;
+                $product_size_quantity->product_id = $product->id;
+                $product_size_quantity->color = $request->colors[$i];
+                $product_size_quantity->size = $request->sizes[$j];
+                $product_size_quantity->quantity = $request->quantity[$i*$totalQty/$totalColors+$j];
+                $product_size_quantity->save();
+            }
         }
+
+        // $insert = new Product;
+        // $insert->categoryId = $request->category;
+        // $insert->productName = $request->productName;
+        // $insert->price = $request->price;
+        // $insert->description = $request->description;
+        // // $insert->rc_id = session()->get('subadminId');
+        // if($insert->save()) {
+        //     if ($request->has('images')) {
+        //         foreach ($request->images as $key => $file) {
+        //             $name = time() . $key . '.' . $file->extension();
+        //             // $dest_path='public/Place_upload';
+        //             $file->move(public_path('product_images'), $name);
+        //             DB::table('product_images')->insert([
+        //                 'productId' => $insert->id,
+        //                 'image' => 'public/product_images/'.$name
+        //             ]);
+        //         }
+        //     } 
+        //     return redirect()->route('subadmin.products.index')->with('success','Product Added');
+        // } else {
+        //     return redirect()->route('subadmin.products.index')->with('success','Oops! Some error Occured');
+        // }
     }
 
     /**
