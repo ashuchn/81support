@@ -152,7 +152,7 @@ class ProductsController extends Controller
             }
         }
         
-        return compact('sizeTable');
+        // return compact('sizeTable');
 
         return view('subadmin.products.view', compact('product', 'productImages', 'category', 'colors', 'sizes', 'quantities', 'sizeTable'));
     }
