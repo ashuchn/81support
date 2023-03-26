@@ -141,7 +141,7 @@ class ProductsController extends Controller
         $totalColors = ProductSizeQuantity::where('product_id', $id)->distinct('color')->count('color');
         $totalQty = ProductSizeQuantity::where('product_id', $id)->count('color');
 
-        $product_size_quantity = ProductSizeQuantity::where('product_id', $id)->get();
+        $product_size_quantity = ProductSizeQuantity::where('product_id', $id)->distinct('color')->get();
         
         return $product_size_quantity;
         
