@@ -45,7 +45,7 @@
                                     <span class="text-danger">*</span>
                                     <input type="text" name="productName"
                                         class="form-control @error('productName') ? ' is-invalid' : '' @enderror"
-                                        value="{{ old('productName') }}"
+                                        value="{{ isset($product->productName) ? $product->productName : old('productName') }}"
                                         placeholder="Enter Product Name" required>
                                     @error('productName')
                                         <span class="text-danger">{{ $message }}</span>
@@ -56,7 +56,7 @@
                                     <span class="text-danger">*</span>
                                     <input type="number" name="price"
                                         class="form-control @error('price') ? ' is-invalid' : '' @enderror"
-                                        value="{{ old('price') }}"
+                                        value="{{ isset($product->price) ? $product->price : old('price') }}"
                                         placeholder="Enter Product Price" required>
                                     @error('price')
                                         <span class="text-danger">{{ $message }}</span>
@@ -80,7 +80,7 @@
                                         <label for="price">Description</label>
                                         <span class="text-danger">*</span>
                                         <textarea class="form-control @error('description') ? ' is-invalid' : '' @enderror" name="description" cols="30"
-                                            rows="10" placeholder="Product Description..." required>{{ old('description') }}</textarea>
+                                            rows="10" placeholder="Product Description..." required>{{ isset($product->description) ? $product->description : old('description') }}</textarea>
                                         @error('description')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
