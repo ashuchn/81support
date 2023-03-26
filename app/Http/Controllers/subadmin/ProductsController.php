@@ -94,13 +94,21 @@ class ProductsController extends Controller
         $product->description = $request->description;
         $product->available_quantity = array_sum($request->quantity);
 
-        $totalSizes = count($request->quantity) / count($request->colors);
+        $totalColors = count($request->colors);
+        $totalQty = count($request->quantity);
+        $totalSizes = $totalQty / $totalColors;
 
-        foreach($request->quantity as $key => $value) {
-            //
+        for($i=0; $i<$totalColors; $i++) {
+            for($j=0; $j<$totalSizes; $j++) {
+                $product_size_quantity->color = $request->colors[$i];
+                $product_size_quantity->size = $request->sizes[$j];
+                $product_size_quantity->quantity = $request->quantity[$i*$totalSizes + $j];
+            }
         }
 
-        return $totalSizes;
+        
+
+        return $product_size_quantity;
 
         // $insert = new Product;
         // $insert->categoryId = $request->category;
