@@ -93,7 +93,7 @@
                                 </div>
                                 <hr>
                                 <div id="ColorsSizeItem"></div>
-                                @foreach($colors as $color)
+                                @foreach($colors as $citem)
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <table class="table">
@@ -107,10 +107,10 @@
                                                         <div class="col-12">
                                                             <select name="colors[]" class="form-select select2" required>
                                                                 <option value="">Choose Color</option>
-                                                                <option @if($color == '1') selected @endif value="1">Red</option>
-                                                                <option @if($color == '2') selected @endif value="2">Blue</option>
-                                                                <option @if($color == '3') selected @endif value="3">Green</option>
-                                                                <option @if($color == '4') selected @endif value="4">Yellow</option>
+                                                                <option @if($citem->color == '1') selected @endif value="1">Red</option>
+                                                                <option @if($citem->color == '2') selected @endif value="2">Blue</option>
+                                                                <option @if($citem->color == '3') selected @endif value="3">Green</option>
+                                                                <option @if($citem->color == '4') selected @endif value="4">Yellow</option>
                                                             </select>
                                                             @error('colors')
                                                                 <span class="text-danger">{{ $message }}</span>
