@@ -81,29 +81,29 @@ class ProductsController extends Controller
 
         return $request->all()
 
-        $insert = new Product;
-        $insert->categoryId = $request->category;
-        $insert->productName = $request->productName;
-        $insert->price = $request->price;
-        $insert->description = $request->description;
-        $insert->available_quantity = $request->available_quantity;
-        $insert->rc_id = session()->get('subadminId');
-        if($insert->save()) {
-            if ($request->has('images')) {
-                foreach ($request->images as $key => $file) {
-                    $name = time() . $key . '.' . $file->extension();
-                    // $dest_path='public/Place_upload';
-                    $file->move(public_path('product_images'), $name);
-                    DB::table('product_images')->insert([
-                        'productId' => $insert->id,
-                        'image' => 'public/product_images/'.$name
-                    ]);
-                }
-            } 
-            return redirect()->route('subadmin.products.index')->with('success','Product Added');
-        } else {
-            return redirect()->route('subadmin.products.index')->with('success','Oops! Some error Occured');
-        }
+        // $insert = new Product;
+        // $insert->categoryId = $request->category;
+        // $insert->productName = $request->productName;
+        // $insert->price = $request->price;
+        // $insert->description = $request->description;
+        // $insert->available_quantity = $request->available_quantity;
+        // $insert->rc_id = session()->get('subadminId');
+        // if($insert->save()) {
+        //     if ($request->has('images')) {
+        //         foreach ($request->images as $key => $file) {
+        //             $name = time() . $key . '.' . $file->extension();
+        //             // $dest_path='public/Place_upload';
+        //             $file->move(public_path('product_images'), $name);
+        //             DB::table('product_images')->insert([
+        //                 'productId' => $insert->id,
+        //                 'image' => 'public/product_images/'.$name
+        //             ]);
+        //         }
+        //     } 
+        //     return redirect()->route('subadmin.products.index')->with('success','Product Added');
+        // } else {
+        //     return redirect()->route('subadmin.products.index')->with('success','Oops! Some error Occured');
+        // }
         
     }
 
