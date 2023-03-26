@@ -137,7 +137,10 @@ class ProductsController extends Controller
         $category = Category::all();
         $product = Product::find($id);
         $productImages = DB::table('product_images')->where('productId', $id)->pluck('image');
-        // return $product;
+
+        $product_size_quantity = ProductSizeQuantity::where('product_id', $id)->groupBy('color')->get();
+        
+        return $product_size_quantity;
         
         return view('subadmin.products.view', compact('product','productImages','category'));
     }
