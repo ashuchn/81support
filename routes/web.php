@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\UserController;
@@ -16,6 +17,9 @@ use App\Http\Controllers\Admin\FilterController;
 
 use App\Http\Controllers\subadmin\AuthController;
 use App\Http\Controllers\subadmin\ProductsController;
+use App\Http\Controllers\subadmin\ReviewController;
+use App\Http\Controllers\subadmin\OrderController;
+use App\Http\Controllers\subadmin\ProfileController as SubProfileController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,9 +31,12 @@ use App\Http\Controllers\subadmin\ProductsController;
 |
 */
 
-Route::get('/', function () {
-    return view('admin.app');
-});
+// Route::get('/', function () {
+//     return view('admin.app');
+// });
+
+Route::get('/', [AdminController::class,'dashboard'])->name('admin.dashboard');
+
 
 Route::prefix('admin')->group(function () {
     Route::get('login', [AdminController::class, 'login'])->name('admin.login');
@@ -41,6 +48,10 @@ Route::prefix('admin')->group(function () {
         Route::resource('category', CategoryController::class);
         Route::resource('product', ProductController::class);
         Route::resource('filter', FilterController::class);
+
+        // user profile
+        Route::get('profile', [ProfileController::class, 'index'])->name('admin.profile.index');
+        Route::post('profile/update', [ProfileController::class, 'update'])->name('admin.profile.update');
 
         /**
          * notifications
@@ -64,8 +75,8 @@ Route::prefix('admin')->group(function () {
         
         //riding charter
         Route::get('add_ridingcharter', [RidingCharterController::class, 'add_ridingcharter'])->name('admin.add_ridingcharter');
-        
-        Route::post('change-status-ridingcharter', [App\Http\Controllers\AdminController::class, 'change_status_ridingcharter'])->name('change-status-ridingcharter');
+    
+        Route::post('change_status_ridingcharter', [RidingCharterController::class, 'change_status_ridingcharter'])->name('change_status_ridingcharter');
         
         Route::get('view_ridingcharter/{id}', [RidingCharterController::class, 'view_ridingcharter'])->name('admin.view_ridingcharter');
         
@@ -107,5 +118,12 @@ Route::prefix('subadmin')->group(function(){
             'update' => 'subadmin.products.update',
             'destroy' => 'subadmin.products.destroy',
         ]);
+
+        Route::get('profile', [SubProfileController::class, 'index'])->name('subadmin.profile.index');
+        Route::post('profileUpdate', [SubProfileController::class, 'update'])->name('subadmin.profile.update');
+
+        Route::get('reviews', [ReviewController::class, 'getReview'])->name('subadmin.reviews');
+
+        Route::get('orders', [OrderController::class, 'getOrder'])->name('subadmin.orders');
     });
 });

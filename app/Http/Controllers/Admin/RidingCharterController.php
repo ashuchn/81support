@@ -86,21 +86,20 @@ class RidingCharterController extends Controller
 	return redirect()->route('ridingcharter.index');
     }
     
-    	public function change_status_ridingcharter(Request $request)
+    public function change_status_ridingcharter(Request $request)
 	{
 		$status = $request->status;
-		 $id = $request->riding_charter_id;
-			
-		if($status=='0'){
-		$res=Riding_Charter_User::find($id);
-		$res->status='1';
-		$res->save();
+		$id = $request->id;
+		$usr = Riding_Charter_User::find($id);
+		$res = $usr->status;
+		if($res == 0){
+			$usr->status = 1;
+			$usr->save();
 		}else{
-		$res=Riding_Charter_User::find($id);
-		$res->status='0';
-		$res->save();
+			$usr->status = 0;
+			$usr->save();
 		}
-		
+		return response()->json(['success'=>'Status change successfully','status'=>$status,'id'=>$id]);
 	}
     
     public function view_ridingcharter($id)

@@ -93,7 +93,7 @@
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-3">
                                             <label for="exampleInputEmail1">Choose Category:</label>
                                             <select name="category" class="form-select select2" data-width="100%" required>
                                                 <option value="">Choose Category</option>
@@ -102,6 +102,13 @@
                                                 @endforeach
                                             </select>
                                             @error('category')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="exampleInputEmail1">Quantity:</label>
+                                            <input type="number" name="available_quantity" class="form-control" placeholder="Enter Quantity" aria-required="" required>
+                                            @error('available_quantity')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>

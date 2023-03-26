@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\ProfileController;
 use App\Http\Controllers\Api\ShopController;
 use App\Http\Controllers\Api\NotificationController;
+use App\Http\Controllers\Api\ReviewController;
 use App\Mail\sendOtp;
 use Illuminate\Support\Facades\Mail;
 
@@ -20,6 +21,7 @@ use Illuminate\Support\Facades\Mail;
 |
 */
 
+Route::post('fcm', [AuthController::class, 'fcm']);
 Route::get('test', [AuthController::class, 'test']);
 
 Route::middleware('auth:sanctum')->get('/profile/view', function (Request $request) {
@@ -44,11 +46,15 @@ Route::group(['middleware' => 'auth:sanctum'],function () {
     Route::post('getDeals',[ShopController::class,'getDeals']);
     Route::post('increaseCartProductCount',[ShopController::class,'increaseCartProductCount']);
     Route::post('decreaseCartProductCount',[ShopController::class,'decreaseCartProductCount']);
+    Route::post('getProductsByCategory',[ShopController::class,'getProductsByCategory']);
     
+    Route::post('getProfile',[ProfileController::class,'getProfile']);
+    Route::post('updateProfile',[ProfileController::class,'updateProfile']);
     Route::post('addAddress',[ProfileController::class,'addAddress']);
     Route::get('getAddress',[ProfileController::class,'getAddress']);
     Route::post('editAddress',[ProfileController::class,'editAddress']);
     Route::post('updateAddress',[ProfileController::class,'updateAddress']);
+    Route::get('myreviews', [ReviewController::class, 'getReview']);
 });
 
 
@@ -75,3 +81,29 @@ Route::post('gEmail', function(Request $request){
 
 
 
+/**
+ * J Mail 
+ */
+Route::post('jEmail', function(Request $request){
+    $name = $request->name;
+    $email = $request->email;
+    $phone =    $request->phone;
+    $messege = $request->messege;
+
+    $data = array(
+        'name' => $name,
+        'email' => $email,
+        'phone' => $phone,
+        'messege' => $messege
+    );
+
+    Mail::send('emails.jMail', ['data' => $data], function($message) use ($data){
+        $message->to($data['email']);
+        $message->subject('Your Query has been received');
+    });
+    
+    return response()->json( [
+        'response_code' => 200,
+        'data' => 'Mail Send Successfully!!',
+    ] );
+});

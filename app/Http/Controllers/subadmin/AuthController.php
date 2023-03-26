@@ -10,6 +10,7 @@ use DB;
 use Validator;
 use Hash;
 use stdClass;
+use Auth;
 
 class AuthController extends Controller
 {
@@ -26,7 +27,10 @@ class AuthController extends Controller
         {
             return back()->withErrors($validator)->withInput();
         }
-
+        $checkStatus = Riding_Charter_User::where(['email'=>$request->email])->first();
+        if($checkStatus->status == 0) {
+            return back()->with('err_msg', 'Your account is deactivated. Please contact admin.');
+        }
         $checkEmail = Riding_Charter_User::where(['email'=>$request->email])->first();
         if( !$checkEmail || !Hash::check($request->password , $checkEmail->password)) {
             return back()->with('err_msg', 'Invalid Email or Password');

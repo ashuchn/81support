@@ -5,6 +5,8 @@ namespace App\Http\Controllers\subadmin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\ProductSizeQuantity;
+use App\Models\ProductImages;
 use App\Models\Category; 
 use Validator;
 use DB;
@@ -19,19 +21,26 @@ class ProductsController extends Controller
      */
     public function index(Request $request)
     {
+        $categories = Category::all();
+
         $data = Product::where('rc_id', session()->get('subadminId'))
                 ->join('categories', 'categories.id','=','products.categoryId')
                 ->orderBy('created_at','desc')
-                ->get(['products.*','categories.categoryName']);
-        // $products = $data->map(function($product){
-        //     $images = DB::table('product_images')->where('productId', $product->id)->pluck('image');
-        //     // return $images;
-        //     $product->images = $images;
-        //     return $product;
-        // });
-        // return $data;
+                ->select(['products.*','categories.categoryName'])->paginate(5);
+
+        $products = $data->map(function($product){
+            $images = DB::table('product_images')->where('productId', $product->id)->pluck('image');
+            // return $images;
+            $product->images = $images;
+            return $product;
+        });
+
+        $params = [
+            'categories' => $categories,
+            'data' => $data
+        ];
         
-        return view('subadmin.products.index', compact('data'));
+        return view('subadmin.products.index', $params);
     }
 
     /**
@@ -72,29 +81,49 @@ class ProductsController extends Controller
             return back()->withErrors($valid);
         }
 
-        $insert = new Product;
-        $insert->categoryId = $request->category;
-        $insert->productName = $request->productName;
-        $insert->price = $request->price;
-        $insert->description = $request->description;
-        $insert->rc_id = session()->get('subadminId');
-        if($insert->save()) {
-            if ($request->has('images')) {
-                foreach ($request->images as $key => $file) {
-                    $name = time() . $key . '.' . $file->extension();
-                    // $dest_path='public/Place_upload';
-                    $file->move(public_path('product_images'), $name);
-                    DB::table('product_images')->insert([
-                        'productId' => $insert->id,
-                        'image' => 'public/product_images/'.$name
-                    ]);
-                }
-            } 
-            return redirect()->route('subadmin.products.index')->with('success','Product Added');
-        } else {
-            return redirect()->route('subadmin.products.index')->with('success','Oops! Some error Occured');
+        // return $request->all();
+
+        $product = new Product;
+        $product_images = new ProductImages;
+
+        $product->rc_id = session()->get('subadminId');
+        $product->productName = $request->productName;
+        $product->price = $request->price;
+        $product->categoryId = $request->category;
+        $product->description = $request->description;
+        $product->available_quantity = array_sum($request->quantity);
+        $product->save();
+
+        $totalColors = count($request->colors);
+        $totalQty = count($request->quantity);
+
+        for($i=0; $i<$totalColors; $i++) {
+            for($j=0; $j<$totalQty/$totalColors; $j++) {
+                $product_size_quantity = new ProductSizeQuantity;
+                $product_size_quantity->product_id = $product->id;
+                $product_size_quantity->color = $request->colors[$i];
+                $product_size_quantity->size = $request->sizes[$j];
+                $product_size_quantity->quantity = $request->quantity[$i*$totalQty/$totalColors+$j];
+                $product_size_quantity->save();
+            }
         }
-        
+
+        // if ($request->has('images')) {
+        //     for($i=0; $i<$totalColors; $i++) {
+        //         foreach ($request->images as $key => $file) {
+        //             $name = time() . $key . '.' . $file->extension();
+        //             // $dest_path='public/Place_upload';
+        //             $file->move(public_path('product_images'), $name);
+        //             DB::table('product_images')->insert([
+        //                 'productId' => $product->id,
+        //                 'image' => 'public/product_images/'.$name,
+        //                 'color' => $request->colors[$i]
+        //             ]);
+        //         }
+        //     }
+        // }
+
+        return redirect()->route('subadmin.products.index')->with('success','Product Added');
     }
 
     /**
@@ -108,9 +137,31 @@ class ProductsController extends Controller
         $category = Category::all();
         $product = Product::find($id);
         $productImages = DB::table('product_images')->where('productId', $id)->pluck('image');
-        // return $product;
+
+        $totalColors = ProductSizeQuantity::where('product_id', $id)->distinct('color')->count('color');
+        $totalQty = ProductSizeQuantity::where('product_id', $id)->count('color');
+
+        $colors = ProductSizeQuantity::where('product_id', $id)->select('color')->groupBy('color')->get();
+        $sizes = ProductSizeQuantity::where('product_id', $id)->select('size')->groupBy('size')->get();
+
+        for($i=0; $i<$totalColors; $i++) {
+            for($j=0; $j<$totalQty/$totalColors; $j++) {
+                $quantities[$i][$j] = ProductSizeQuantity::where('product_id', $id)->where('color', $colors[$i]->color)->where('size', $sizes[$j]->size)->first()->quantity;
+            }
+        }
         
-        return view('subadmin.products.view', compact('product','productImages','category'));
+        $params = [
+            'product' => $product,
+            'productImages' => $productImages,
+            'category' => $category,
+            'colors' => $colors,
+            'sizes' => $sizes,
+            'quantities' => $quantities
+        ];
+        
+        // return compact('product', 'productImages', 'category', 'colors', 'sizes', 'quantities');
+
+        return view('subadmin.products.view', compact('product', 'productImages', 'category', 'colors', 'sizes', 'quantities'));
     }
 
     /**

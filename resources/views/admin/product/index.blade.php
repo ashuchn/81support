@@ -1,5 +1,9 @@
 @extends('admin.layout.layout')
 
+@section('css')
+    <link rel="stylesheet" href="{{ url('assets/adminlte/plugins/ekko-lightbox/ekko-lightbox.css') }}">
+@endsection
+
 @section('title', 'Product Management')
 
 @section('content')
@@ -22,103 +26,98 @@
 
         <section class="content">
 
-            @if(session()->has('success'))
-            <div class="alert alert-success p-2 alert-dismissable">
+            @if (session()->has('success'))
+                <div class="alert alert-success p-2 alert-dismissable">
                     {{ session()->get('success') }}
                 </div>
             @endif
-                <div class="row">
-                    <div class="col-md-12 mb-3">
-                        <a href="{{ route('product.create') }}" class="btn btn-success float-right btn-sm">Add Product</a>
+            <div class="col-12 mx-auto">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title"><a href="{{ route('product.create') }}"><button type="button"
+                                    class="btn btn-block bg-gradient-primary">Add Product</button></a></h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table class="table table-bordered table-striped table-responsive-sm">
+                            <thead>
+                                <tr>
+                                    <th>Image</th>
+                                    <th>Name</th>
+                                    <th>Features</th>
+                                    <th>Rating</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <?php $i = 1; ?>
+                            <tbody>
+                                @forelse($data as $item)
+                                    <tr>
+                                        <td>
+                                            <a href="{{ $item->images[0] }}"
+                                                data-toggle="lightbox" data-title="{{ $item->productName }}" data-gallery="gallery">
+                                                <img style="width: 150px; height: auto; object-fit: cover;"
+                                                    src="{{ $item->images[0] }}" alt="image">
+                                            </a>
+                                        </td>
+                                        <td>{{ $item->productName }}</td>
+                                        <td>{{ $item->description }}</td>
+                                        <td>
+                                            <div class="container">
+                                                <span class="fa fa-star checked"></span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <a href="#" class="btn btn-light">Details</a>
+                                            <button class="btn btn-light">Edit</button>
+                                        </td>
+                                    </tr>
+                                    <?php $i++; ?>
+                                @empty
+                                    No record Found
+                                @endforelse
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>Image</th>
+                                    <th>Name</th>
+                                    <th>Features</th>
+                                    <th>Rating</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </tfoot>
+
+                        </table>
                     </div>
                 </div>
-            <div class="container-fluid">
-                {{-- <button ></button> --}}
-                <div class="row">
-                    <?php $i = 1; ?>
-                      @forelse($data as $item)
-                      
-                        <!-- <div class="col-sm-12 col-md-6 col-lg-4 col-lg-2 mb-4"> -->
-                        <div class="col-sm-12  mb-4">
-                        <div class="card">
-                            <!-- <img class="card-img-top" src="" alt="Card image cap"> -->
-                            <div class="row">
-                                    <div class="col-md-4">
-                                          <div id="carouselExampleControls<?php echo $i ?>" class="carousel slide" data-ride="carousel">
-                                              <div class="carousel-inner">
-                                                <?php
-                                                  $active = TRUE;
-                                                ?>
-                                                @foreach($item->images as $img)
-                                                    <div class="carousel-item <?php if($active == TRUE) { echo "active" ;} ?>">
-                                                      <img class="img-fluid card-img-top img-thumbnail" src="{{ $img }}" style="height: 30%" alt="First slide">
-                                                      <div class="card-img-overlay">
-                                                            
-                                                      </div>
-                                                    </div>
-                                                    <?php  $active = FALSE; ?>
-                                                @endforeach
-                                                    
-                                              </div>
-                                              <a class="carousel-control-prev" href="#carouselExampleControls<?php echo $i ?>" role="button" data-slide="prev">
-                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                                <span class="sr-only">Previous</span>
-                                              </a>
-                                              <a class="carousel-control-next" href="#carouselExampleControls<?php echo $i ?>" role="button" data-slide="next">
-                                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                                <span class="sr-only">Next</span>
-                                              </a>
-                                          </div>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <div class="card-body">
-                                           
-                                                <div class="row">
-                                                  <div class="col-md-12">
-                                                      <h5 class="card-title pb-2">
-                                                        <b>{{ $item->productName }}</b>
-                                                      </h5>
-                                                  </div>     
-                                                </div>
-                                              
-                                              
-                                            
-                                            {{-- <p class="card-text"><small class="text-muted">{{ $hotel['propertyDetails']['address']['fullAddress'] }}</small></p> --}}
-                                            <p class="card-text"><small class="text-muted"></small></p>
-                                            <hr class="hr hr-blurry" />
-                                            <div class="container">
-                                                  <span class="fa fa-star checked"></span>
-                                                  {{-- {{ $hotel['propertyDetails']['starRatingTitle'] }} --}}
-                                            </div>
-                                            <h6>Features:</h6>
-                                            <p class="card-text">
-                                                {{ $item->description }}
-                                                {{-- @foreach($hotel['ameneties'][0]['content'] as $features)
-                                                    <button class="btn btn-outline-light text-dark shadow-none rounded-pill" style=" height: 30px;">{{ $features }}</button>
-                                                @endforeach --}}
-                                                <?php 
-                                                  //for($x = 0; $x < count())
-                                                ?>
-                                            </p>
-                                                <a href="#" class="btn btn-light">Details</a>
-                                                <button class="btn btn-light">Edit</button>
-                                        </div>
-                                    </div>
-                            </div>
-                            
-                              
-                        </div>
-                        </div><!-- col ends -->
-                        <?php $i++; ?>
-                        @empty
-                        No record Found
-                      @endforelse
-                        
-                    </div> <!-- row ends -->
-            </div>
-            <div class="d-flex justify-content-end">
-                {{ $data->links() }}
+                <div class="d-flex justify-content-end">
+                    {{ $data->links() }}
+                </div>
             </div>
         </section>
     </div>
+@endsection
+
+@section('script')
+    <!-- Ekko Lightbox -->
+    <script src="{{ url('assets/adminlte/plugins/ekko-lightbox/ekko-lightbox.min.js') }}"></script>
+
+    <script>
+        $(function() {
+            $(document).on('click', '[data-toggle="lightbox"]', function(event) {
+                event.preventDefault();
+                $(this).ekkoLightbox({
+                    alwaysShowClose: true
+                });
+            });
+
+            $('.filter-container').filterizr({
+                gutterPixels: 3
+            });
+            $('.btn[data-filter]').on('click', function() {
+                $('.btn[data-filter]').removeClass('active');
+                $(this).addClass('active');
+            });
+        })
+    </script>
 @endsection

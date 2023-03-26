@@ -12,17 +12,47 @@ use DB;
 use Mail;
 
 class ProfileController extends Controller {
+
+    public function getProfile( Request $request ) {
+        $id = $request->user()->id;
+        $user = New_User::where( 'id', $id )->first(['id','name','email','mobile','image']);
+        return response()->json( [
+            'response_message' => 'Profile',
+            'response_code' => 200,
+            'data' => $user,
+        ] );
+    }
     
-     public function update( Request $request ) {
+     public function updateProfile( Request $request ) {
         
-        $id = $request->id;
+        $id = $request->user()->id;
 
         $userprofile = New_User::find( $id );
-        $userprofile->name = $request->name;
-        $userprofile->email = $request->email;
-        $userprofile->mobile = $request->mobile;
-        $userprofile->dob = $request->dob;
-        $userprofile->image = $request->image;
+        if($request->has('name')){
+            $userprofile->name = $request->name;
+        }else{
+            $userprofile->name = $userprofile->name;
+        }
+        if($request->has('email')){
+            $userprofile->email = $request->email;
+        }else{
+            $userprofile->email = $userprofile->email;
+        }
+        if($request->has('mobile')){
+            $userprofile->mobile = $request->mobile;
+        }else{
+            $userprofile->mobile = $userprofile->mobile;
+        }
+        if($request->has('dob')){
+            $userprofile->dob = $request->dob;
+        }else{
+            $userprofile->dob = $userprofile->dob;
+        }
+        if($request->has('image')){
+            $userprofile->image = $request->image;
+        }else{
+            $userprofile->image = $userprofile->image;
+        }
         $userprofile->save();
         return response()->json( [
             'response_message' => 'Profile Updated',

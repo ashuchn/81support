@@ -206,4 +206,60 @@ class AuthController extends Controller {
     }
 
 
+    public function fcm(Request $request)
+  {
+    $server_key = env('FIREBASE_SERVER_KEY');
+
+    // Prep the Bundle
+    $msg = [
+      'message' => $request->message,
+    ];
+    $notify_data = [
+      'body' => $request->message,
+      'title' => $request->title,
+    ];
+    $registration_ids = $request->tokens;
+
+    if (count($request->tokens) > 1) {
+      // For Multiple Users
+      $fields = [
+        'registration_ids' => $registration_ids,
+        'notification' => $notify_data,
+        'data' => $msg,
+        'priority' => 'high'
+      ];
+    } else {
+      // For Single User
+      $fields = [
+        'to' => $registration_ids[0],
+        'notification' => $notify_data,
+        'data' => $msg,
+        'priority' => 'high'
+      ];
+    }
+
+    $headers[] = 'Content-Type: application/json';
+    $headers[] = 'Authorization: key=' . $server_key;
+
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send');
+    curl_setopt($ch, CURLOPT_POST, true);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($fields));
+
+    $result = curl_exec($ch);
+    if ($result === FALSE) {
+      return [
+        'result' => false,
+        'message' => curl_error($ch)
+      ];
+    }
+    curl_close($ch);
+    return [
+      'result' => true,
+      'message' => $result,
+    ];
+  }
+
 }

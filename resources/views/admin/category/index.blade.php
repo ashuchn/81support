@@ -39,7 +39,7 @@
                         <div class="card">
                             <div class="card-header"><a href="{{ route('category.create') }}" class="btn btn-success float-right btn-sm"><i class="fas fa-plus fa-xs"></i> Add New</a></div>
                             <div class="card-body">
-                                <table id="example" class="table table-bordered table-striped">
+                                <table id="example" class="table table-bordered table-striped table-responsive-sm">
                                     <thead>
                                         <tr>
                                             <th>#</th>
