@@ -149,7 +149,7 @@
                                                                 <input type="number" name="quantity[]"
                                                                     class="form-control @error('quantity') ? ' is-invalid' : '' @enderror"
                                                                     value="{{ $quantities[$key][$j] }}"
-                                                                    placeholder="Enter Quantity" value="{{ $qitem }}" required>
+                                                                    placeholder="Enter Quantity" value="{{ $quantities[$key][$j] }}" required>
                                                                 @error('quantity')
                                                                     <span class="text-danger">{{ $message }}</span>
                                                                 @enderror
