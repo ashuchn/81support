@@ -138,7 +138,10 @@ class ProductsController extends Controller
         $product = Product::find($id);
         $productImages = DB::table('product_images')->where('productId', $id)->pluck('image');
 
-        $product_size_quantity = ProductSizeQuantity::where('product_id', $id)->distinct('color')->count('color');
+        $totalColors = ProductSizeQuantity::where('product_id', $id)->distinct('color')->count('color');
+        $totalQty = ProductSizeQuantity::where('product_id', $id)->count('color');
+
+        $product_size_quantity = ProductSizeQuantity::where('product_id', $id)->get();
         
         return $product_size_quantity;
         
