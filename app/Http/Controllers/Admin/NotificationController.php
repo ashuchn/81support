@@ -22,6 +22,16 @@ class NotificationController extends Controller
             'data' => $data,
             'categories' => $categories
         ];
+        
+        /**
+         * refer to https://php-flasher.io/laravel/
+        * flash()->addFlash(
+            * string $type, eg.success, info, error, waring
+            *string $message, 
+            *string $title = null, , eg, data saved etc 
+            *array $options = [])
+         */
+        // flash()->addFlash('success','Data Saved Successfully!!','Data Saved!');
         return view('admin.notification.index', $params);
     }
 
@@ -75,7 +85,9 @@ class NotificationController extends Controller
             'data' => $data,
             'categories' => $categories
         ];
-        return view('admin.notification.index', $params)->with('success','Notification sent successfully');
+        // return view('admin.notification.index', $params)->with('success','Notification sent successfully');
+        flash()->addFlash('success','Notification Sent.','Yayy!');
+        return redirect()->route('admin.notification');
 
         // return $request->file('image');
     }
