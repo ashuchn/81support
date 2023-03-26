@@ -83,6 +83,7 @@
                                 </div>
                                 <hr>
                                 <div id="ColorsSizeItem"></div>
+                                
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <table class="table">
