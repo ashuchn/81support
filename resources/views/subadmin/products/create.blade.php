@@ -222,6 +222,9 @@
                             </div>
                         </div>
                     </div>
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-primary">Add</button>
+                    </div>
                 </form>
 
                 <div class="row">
