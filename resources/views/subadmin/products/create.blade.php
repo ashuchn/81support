@@ -24,6 +24,7 @@
                 </div>
 
                 <form action="{{ route('subadmin.products.store') }}" role="form" id="quickForm" class="card" method="post" enctype="multipart/form-data">
+                    @csrf
                     <div class="card-header">
                         <h3 class="card-title">Add Product</h3>
                     </div>
@@ -106,9 +107,9 @@
                                                     </td>
                                                     <td>
                                                         <div class="col-12">
-                                                            <input type="file" name="image"
+                                                            <input type="file" name="image[]"
                                                                 class="form-control @error('image') ? ' is-invalid' : '' @enderror"
-                                                                placeholder="Enter Quantity" required>
+                                                                placeholder="Enter Quantity" multiple required>
                                                             @error('image')
                                                                 <span class="text-danger">{{ $message }}</span>
                                                             @enderror
