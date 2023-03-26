@@ -101,7 +101,7 @@ class ProductsController extends Controller
         for($i=0; $i<$totalColors; $i++) {
             for($j=0; $j<$totalSizes; $j++) {
                 $product_size_quantity = new ProductSizeQuantity;
-                $product_size_quantity->productId = $product->id;
+                $product_size_quantity->product_id = $product->id;
                 $product_size_quantity->color = $request->colors[$i];
                 $product_size_quantity->size = $request->sizes[$j];
                 $product_size_quantity->quantity = $request->quantity[$i*$totalSizes + $j];
