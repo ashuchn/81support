@@ -159,7 +159,7 @@ class ProductsController extends Controller
             'quantities' => $quantities
         ];
         
-        // return compact('product', 'productImages', 'category', 'colors', 'sizes', 'quantities');
+        return compact('product', 'productImages', 'category', 'colors', 'sizes', 'quantities');
 
         return view('subadmin.products.view', compact('product', 'productImages', 'category', 'colors', 'sizes', 'quantities'));
     }
