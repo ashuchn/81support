@@ -93,14 +93,14 @@
                                                 <tr>
                                                     <td>
                                                         <div class="col-12">
-                                                            <select name="color[]" class="form-select select2" required>
+                                                            <select name="colors[]" class="form-select select2" required>
                                                                 <option value="">Choose Color</option>
                                                                 <option value="1">Red</option>
                                                                 <option value="2">Blue</option>
                                                                 <option value="3">Green</option>
                                                                 <option value="4">Yellow</option>
                                                             </select>
-                                                            @error('color')
+                                                            @error('colors')
                                                                 <span class="text-danger">{{ $message }}</span>
                                                             @enderror
                                                         </div>
@@ -374,7 +374,7 @@
                                                     <option value="3">Green</option>
                                                     <option value="4">Yellow</option>
                                                 </select>
-                                                @error('color')
+                                                @error('colors')
                                                     <span class="text-danger">{{ $message }}</span>
                                                 @enderror
                                             </div>
