@@ -23,7 +23,7 @@
                     </div>
                 </div>
 
-                <form class="card">
+                <form action="{{ route('subadmin.products.store') }}" role="form" id="quickForm" class="card" method="post" enctype="multipart/form-data">
                     <div class="card-header">
                         <h3 class="card-title">Add Product</h3>
                     </div>
