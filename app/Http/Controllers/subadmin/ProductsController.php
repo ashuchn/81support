@@ -141,9 +141,11 @@ class ProductsController extends Controller
         $totalColors = ProductSizeQuantity::where('product_id', $id)->distinct('color')->count('color');
         $totalQty = ProductSizeQuantity::where('product_id', $id)->count('color');
 
-        $product_size_quantity = ProductSizeQuantity::where('product_id', $id)->select('color')->groupBy('color')->get();
+        $colors = ProductSizeQuantity::where('product_id', $id)->select('color')->groupBy('color')->get();
+
+        $sizes = ProductSizeQuantity::where('product_id', $id)->select('size')->groupBy('size')->get();
         
-        return $product_size_quantity;
+        return $sizes;
         
         return view('subadmin.products.view', compact('product','productImages','category'));
     }
