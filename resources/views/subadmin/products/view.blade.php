@@ -142,7 +142,7 @@
                                                     <tr>
                                                         <td>
                                                             {{ $sizes[$key] }}
-                                                            <input name="sizes[]" type="text" value="{{ $qitem->size }}" class="d-none">
+                                                            <input name="sizes[]" type="text" value="{{ $sizes[$key] }}" class="d-none">
                                                         </td>
                                                         <td>
                                                             <div class="col-12">
