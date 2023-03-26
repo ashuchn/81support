@@ -85,7 +85,6 @@ class ProductsController extends Controller
 
         $product = new Product;
         $product_images = new ProductImages;
-        $product_size_quantity = new ProductSizeQuantity;
 
         $product->rc_id = session()->get('subadminId');
         $product->productName = $request->productName;
@@ -93,6 +92,7 @@ class ProductsController extends Controller
         $product->categoryId = $request->category;
         $product->description = $request->description;
         $product->available_quantity = array_sum($request->quantity);
+        $product->save();
 
         $totalColors = count($request->colors);
         $totalQty = count($request->quantity);
@@ -100,15 +100,17 @@ class ProductsController extends Controller
 
         for($i=0; $i<$totalColors; $i++) {
             for($j=0; $j<$totalSizes; $j++) {
+                $product_size_quantity = new ProductSizeQuantity;
                 $product_size_quantity->color = $request->colors[$i];
                 $product_size_quantity->size = $request->sizes[$j];
                 $product_size_quantity->quantity = $request->quantity[$i*$totalSizes + $j];
+                $product_size_quantity->save();
             }
         }
 
         
 
-        return $product_size_quantity;
+        return back();
 
         // $insert = new Product;
         // $insert->categoryId = $request->category;
