@@ -141,7 +141,7 @@
                                                 @foreach($quantities as $j => $qitem)
                                                     <tr>
                                                         <td>
-                                                            {{ $sizes->size[$j] }}
+                                                            {{ $sizes->[$j][1] }}
                                                             <input name="sizes[]" type="text" value="{{ $sizes[$key] }}" class="d-none">
                                                         </td>
                                                         <td>
