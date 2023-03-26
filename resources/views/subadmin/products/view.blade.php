@@ -93,6 +93,7 @@
                                 </div>
                                 <hr>
                                 <div id="ColorsSizeItem"></div>
+                                @foreach($colors as $color)
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <table class="table">
@@ -241,6 +242,7 @@
                                         </table>
                                     </div>
                                 </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>
