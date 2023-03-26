@@ -97,7 +97,6 @@ class ProductsController extends Controller
         foreach($request->size as $key => $size) {
             $product_size_quantity->size = $size;
             $product_size_quantity->quantity = $request->quantity[$key];
-            $product_size_quantity->save();
         }
 
         return $product_size_quantity;
