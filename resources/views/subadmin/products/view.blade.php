@@ -107,10 +107,10 @@
                                                         <div class="col-12">
                                                             <select name="colors[]" class="form-select select2" required>
                                                                 <option value="">Choose Color</option>
-                                                                <option value="1">Red</option>
-                                                                <option value="2">Blue</option>
-                                                                <option value="3">Green</option>
-                                                                <option value="4">Yellow</option>
+                                                                <option {{ $color == '1' ? echo'selectec' : '' }} value="1">Red</option>
+                                                                <option {{ $color == '2' ? echo'selectec' : '' }} value="2">Blue</option>
+                                                                <option {{ $color == '3' ? echo'selectec' : '' }} value="3">Green</option>
+                                                                <option {{ $color == '4' ? echo'selectec' : '' }} value="4">Yellow</option>
                                                             </select>
                                                             @error('colors')
                                                                 <span class="text-danger">{{ $message }}</span>
