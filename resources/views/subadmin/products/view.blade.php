@@ -141,7 +141,7 @@
                                                 @foreach($sizes as $j => $sitem)
                                                     <tr>
                                                         <td>
-                                                            {{ $sizeTable }}
+                                                            {{ $sizeTable[$key]->size }}
                                                             <input name="sizes[]" type="text" value="{{ $sizes[$key] }}" class="d-none">
                                                         </td>
                                                         <td>
