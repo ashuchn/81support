@@ -214,13 +214,14 @@ class ProductsController extends Controller
         $product->available_quantity = array_sum($request->quantity);
         $product->save();
 
+        return 'level 1';
+
         $totalColors = count($request->colors);
         $totalQty = count($request->quantity);
 
         for($i=0; $i<$totalColors; $i++) {
             for($j=0; $j<$totalQty/$totalColors; $j++) {
                 $product_size_quantity = ProductSizeQuantity::where('product_id', $id)->where('color', $request->colors[$i])->where('size', $request->sizes[$j])->first();
-                $product_size_quantity->product_id = $product->id;
                 $product_size_quantity->color = $request->colors[$i];
                 $product_size_quantity->size = $request->sizes[$j];
                 $product_size_quantity->quantity = $request->quantity[$i*$totalQty/$totalColors+$j];
@@ -228,7 +229,7 @@ class ProductsController extends Controller
             }
         }
 
-        return 'success';
+        return 'level 2';
 
         // $insert = new Product;
         // $insert->categoryId = $request->category;
