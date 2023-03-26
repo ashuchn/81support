@@ -201,7 +201,7 @@ class ProductsController extends Controller
             // 'images.max' => 'Image size limit Exceeded',
         ]);
         if($valid->fails()) {
-            return back()->withErrors($valid);
+            return 'back()->withErrors($valid)';
         }
 
         $product = Product::find($id);
