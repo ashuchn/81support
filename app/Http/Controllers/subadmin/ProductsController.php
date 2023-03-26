@@ -144,7 +144,7 @@ class ProductsController extends Controller
         $colors = ProductSizeQuantity::where('product_id', $id)->select('color')->groupBy('color')->get();
         $sizes = ProductSizeQuantity::where('product_id', $id)->select('size')->groupBy('size')->get();
 
-        // $sizeID = ProductSizeQuantity::where('product_id', $id)->select('id')->groupBy('size')->get();
+        $sizeTable = DB::table('sizes');
 
         for($i=0; $i<$totalColors; $i++) {
             for($j=0; $j<$totalQty/$totalColors; $j++) {
@@ -152,18 +152,9 @@ class ProductsController extends Controller
             }
         }
         
-        $params = [
-            'product' => $product,
-            'productImages' => $productImages,
-            'category' => $category,
-            'colors' => $colors,
-            'sizes' => $sizes,
-            'quantities' => $quantities
-        ];
-        
-        // return compact('product', 'productImages', 'category', 'colors', 'sizes', 'quantities');
+        return compact('sizeTable');
 
-        return view('subadmin.products.view', compact('product', 'productImages', 'category', 'colors', 'sizes', 'quantities'));
+        return view('subadmin.products.view', compact('product', 'productImages', 'category', 'colors', 'sizes', 'quantities', 'sizeTable'));
     }
 
     /**

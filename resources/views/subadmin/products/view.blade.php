@@ -141,7 +141,7 @@
                                                 @foreach($sizes as $j => $sitem)
                                                     <tr>
                                                         <td>
-                                                            {{ \DB::table('sizes')::where('size', $sitem->size)->first()->size }}
+                                                            {{ $sizeTable }}
                                                             <input name="sizes[]" type="text" value="{{ $sizes[$key] }}" class="d-none">
                                                         </td>
                                                         <td>
