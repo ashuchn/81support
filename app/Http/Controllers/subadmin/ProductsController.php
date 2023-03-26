@@ -92,7 +92,7 @@ class ProductsController extends Controller
         $product->categoryId = $request->category;
         $product->description = $request->description;
         $product->available_quantity = array_sum($request->quantity);
-        // $product->save();
+        $product->save();
 
         $totalColors = count($request->colors);
         $totalQty = count($request->quantity);
@@ -104,51 +104,26 @@ class ProductsController extends Controller
                 $product_size_quantity->color = $request->colors[$i];
                 $product_size_quantity->size = $request->sizes[$j];
                 $product_size_quantity->quantity = $request->quantity[$i*$totalQty/$totalColors+$j];
-                // $product_size_quantity->save();
+                $product_size_quantity->save();
             }
         }
 
-        if ($request->has('images')) {
-            for($i=0; $i<$totalColors; $i++) {
-                foreach ($request->images as $key => $file) {
-                    $name = time() . $key . '.' . $file->extension();
-                    // $dest_path='public/Place_upload';
-                    $file->move(public_path('product_images'), $name);
-                    DB::table('product_images')->insert([
-                        'productId' => $product->id,
-                        'image' => 'public/product_images/'.$name,
-                        'color' => $request->colors[$i]
-                    ]);
-                }
-            }
-        }
-
-        return back();
-
-        // $insert = new Product;
-        // $insert->categoryId = $request->category;
-        // $insert->productName = $request->productName;
-        // $insert->price = $request->price;
-        // $insert->description = $request->description;
-        // $insert->available_quantity = $request->available_quantity;
-        // $insert->rc_id = session()->get('subadminId');
-        // if($insert->save()) {
-        //     if ($request->has('images')) {
+        // if ($request->has('images')) {
+        //     for($i=0; $i<$totalColors; $i++) {
         //         foreach ($request->images as $key => $file) {
         //             $name = time() . $key . '.' . $file->extension();
         //             // $dest_path='public/Place_upload';
         //             $file->move(public_path('product_images'), $name);
         //             DB::table('product_images')->insert([
-        //                 'productId' => $insert->id,
-        //                 'image' => 'public/product_images/'.$name
+        //                 'productId' => $product->id,
+        //                 'image' => 'public/product_images/'.$name,
+        //                 'color' => $request->colors[$i]
         //             ]);
         //         }
-        //     } 
-        //     return redirect()->route('subadmin.products.index')->with('success','Product Added');
-        // } else {
-        //     return redirect()->route('subadmin.products.index')->with('success','Oops! Some error Occured');
+        //     }
         // }
-        
+
+        return redirect()->route('subadmin.products.index')->with('success','Product Added');
     }
 
     /**
