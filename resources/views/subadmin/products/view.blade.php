@@ -138,6 +138,25 @@
                                                 <th>Quantity</th>
                                             </thead>
                                             <tbody>
+                                                @foreach($quantities as $j => qitem)
+                                                    <tr>
+                                                        <td>
+                                                            {{ $sizes[$key] }}
+                                                            <input name="sizes[]" type="text" value="{{ $qitem->size }}" class="d-none">
+                                                        </td>
+                                                        <td>
+                                                            <div class="col-12">
+                                                                <input type="number" name="quantity[]"
+                                                                    class="form-control @error('quantity') ? ' is-invalid' : '' @enderror"
+                                                                    value="{{ $quantities[$key][$j] }}"
+                                                                    placeholder="Enter Quantity" value="{{ $qitem->quantity }}" required>
+                                                                @error('quantity')
+                                                                    <span class="text-danger">{{ $message }}</span>
+                                                                @enderror
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
                                                 <tr>
                                                     <td>
                                                         XS
