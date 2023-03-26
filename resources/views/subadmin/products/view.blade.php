@@ -45,6 +45,7 @@
                                     <span class="text-danger">*</span>
                                     <input type="text" name="productName"
                                         class="form-control @error('productName') ? ' is-invalid' : '' @enderror"
+                                        value="{{ old('productName') }}"
                                         placeholder="Enter Product Name" required>
                                     @error('productName')
                                         <span class="text-danger">{{ $message }}</span>
@@ -55,6 +56,7 @@
                                     <span class="text-danger">*</span>
                                     <input type="number" name="price"
                                         class="form-control @error('price') ? ' is-invalid' : '' @enderror"
+                                        value="{{ old('price') }}"
                                         placeholder="Enter Product Price" required>
                                     @error('price')
                                         <span class="text-danger">{{ $message }}</span>
@@ -66,7 +68,7 @@
                                     <select name="category" class="form-select select2" required>
                                         <option value="">Choose Category</option>
                                         @foreach ($category as $item)
-                                            <option value="{{ $item->id }}">{{ $item->categoryName }}</option>
+                                            <option value="{{ $item->id }}" @php if($item->id == $product->categoryId) { echo 'selected'; } @endphp>{{ $item->categoryName }}</option>
                                         @endforeach
                                     </select>
                                     @error('category')
@@ -78,7 +80,7 @@
                                         <label for="price">Description</label>
                                         <span class="text-danger">*</span>
                                         <textarea class="form-control @error('description') ? ' is-invalid' : '' @enderror" name="description" cols="30"
-                                            rows="10" placeholder="Product Description..." required></textarea>
+                                            rows="10" placeholder="Product Description..." required>{{ old('description') }}</textarea>
                                         @error('description')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
