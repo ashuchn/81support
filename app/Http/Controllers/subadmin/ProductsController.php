@@ -79,7 +79,7 @@ class ProductsController extends Controller
             return back()->withErrors($valid);
         }
 
-        return $request->all()
+        return $request->all();
 
         // $insert = new Product;
         // $insert->categoryId = $request->category;
