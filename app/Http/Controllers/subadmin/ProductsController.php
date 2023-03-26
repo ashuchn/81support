@@ -87,13 +87,20 @@ class ProductsController extends Controller
         $product_images = new ProductImages;
         $product_size_quantity = new ProductSizeQuantity;
 
+        $product->rc_id = session()->get('subadminId');
         $product->productName = $request->productName;
         $product->price = $request->price;
         $product->categoryId = $request->category;
         $product->description = $request->description;
         $product->available_quantity = array_sum($request->quantity);
 
-        return $product;
+        foreach($request->size as $key => $size) {
+            $product_size_quantity->size = $size;
+            $product_size_quantity->quantity = $request->quantity[$key];
+            $product_size_quantity->save();
+        }
+
+        return $product_size_quantity;
 
         // $insert = new Product;
         // $insert->categoryId = $request->category;
