@@ -138,7 +138,7 @@
                                                 <th>Quantity</th>
                                             </thead>
                                             <tbody>
-                                                @foreach($quantities as $j => qitem)
+                                                @foreach($quantities as $j => $qitem)
                                                     <tr>
                                                         <td>
                                                             {{ $sizes[$key] }}
