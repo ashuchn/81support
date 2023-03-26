@@ -107,10 +107,10 @@
                                                     </td>
                                                     <td>
                                                         <div class="col-12">
-                                                            <input type="file" name="image[]"
+                                                            <input type="file" name="images[]"
                                                                 class="form-control @error('image') ? ' is-invalid' : '' @enderror"
                                                                 placeholder="Enter Quantity" multiple required>
-                                                            @error('image')
+                                                            @error('images')
                                                                 <span class="text-danger">{{ $message }}</span>
                                                             @enderror
                                                         </div>

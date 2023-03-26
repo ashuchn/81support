@@ -81,6 +81,10 @@ class ProductsController extends Controller
 
         return $request->all();
 
+
+
+
+
         // $insert = new Product;
         // $insert->categoryId = $request->category;
         // $insert->productName = $request->productName;
