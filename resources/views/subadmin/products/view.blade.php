@@ -93,12 +93,14 @@
                                 </div>
                                 <hr>
                                 <div id="ColorsSizeItem"></div>
-                                
-                                @foreach($rows as $key => $item)
-                                    {{$colors[$key]}}
+                                @php $i=0 @endphp
+                                @foreach($rows as $item)
+                                    {{$colors[$i]}}
                                     @for($i=0; $i < count($sizes); $i++)
-                                    {{$item->size}} - {{$item->quantity}}<br>
+                                        {{$item->size}} - {{$item->quantity}}
+                                        <br>
                                     @endfor
+                                    @php $i++ @endphp
                                 @endforeach
                                 
                                 
