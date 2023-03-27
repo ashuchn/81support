@@ -31,8 +31,8 @@
                 </div>
 
 
-                <form action="{{ route('subadmin.products.update', ['product' => $product->id]) }}" role="form" id="quickForm" class="card"
-                    method="patch" enctype="multipart/form-data">
+                <form action="{{ route('subadmin.products.update', ['product' => $product->id]) }}" role="form"
+                    id="quickForm" class="card" method="patch" enctype="multipart/form-data">
                     @csrf
                     <div class="card-header">
                         <h3 class="card-title">Add Product</h3>
@@ -68,7 +68,9 @@
                                     <select name="category" class="form-select select2" required>
                                         <option value="">Choose Category</option>
                                         @foreach ($category as $item)
-                                            <option value="{{ $item->id }}" @php if($item->id == $product->categoryId) { echo 'selected'; } @endphp>{{ $item->categoryName }}</option>
+                                            <option value="{{ $item->id }}"
+                                                @php if($item->id == $product->categoryId) { echo 'selected'; } @endphp>
+                                                {{ $item->categoryName }}</option>
                                         @endforeach
                                     </select>
                                     @error('category')
@@ -94,18 +96,90 @@
                                 <hr>
                                 <div id="ColorsSizeItem"></div>
                                 @php $i=0 @endphp
-                                @foreach($rows as $item)
-                                    {{$colors[$i]->color}}
-                                    <br>
-                                    @foreach($item as $key => $value)
-                                        {{$value->size}} - {{$value->quantity}}
-                                        <br>
-                                    @endforeach
+                                @foreach ($rows as $item)
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <table class="table">
+                                                <thead>
+                                                    <th>Color</th>
+                                                    <th>Images</th>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            <div class="col-12">
+                                                                <select name="colors[]" class="form-select select2"
+                                                                    required>
+                                                                    <option value="">Choose Color</option>
+                                                                    <option
+                                                                        @if ($colors[$i]->color == '1') selected @endif
+                                                                        value="1">Red</option>
+                                                                    <option
+                                                                        @if ($colors[$i]->color == '2') selected @endif
+                                                                        value="2">Blue</option>
+                                                                    <option
+                                                                        @if ($colors[$i]->color == '3') selected @endif
+                                                                        value="3">Green</option>
+                                                                    <option
+                                                                        @if ($colors[$i]->color == '4') selected @endif
+                                                                        value="4">Yellow</option>
+                                                                </select>
+                                                                @error('colors')
+                                                                    <span class="text-danger">{{ $message }}</span>
+                                                                @enderror
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="col-12">
+                                                                <input type="file" name="images[]"
+                                                                    class="form-control @error('image') ? ' is-invalid' : '' @enderror"
+                                                                    placeholder="Enter Quantity" multiple required>
+                                                                @error('images')
+                                                                    <span class="text-danger">{{ $message }}</span>
+                                                                @enderror
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <table class="table">
+                                                <thead>
+                                                    <th>Size</th>
+                                                    <th>Quantity</th>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach ($item as $key => $value)
+                                                        <tr>
+                                                            <td>
+                                                                {{ $value->size }}
+                                                                <input name="sizes[]" type="text"
+                                                                    value="{{ $value->size }}" class="d-none">
+                                                            </td>
+                                                            <td>
+                                                                <div class="col-12">
+                                                                    <input type="number" name="quantity[]"
+                                                                        class="form-control @error('quantity') ? ' is-invalid' : '' @enderror"
+                                                                        value="{{ $value->quantity }}"
+                                                                        placeholder="Enter Quantity"
+                                                                        value="{{ $value->quantity }}" required>
+                                                                    @error('quantity')
+                                                                        <span class="text-danger">{{ $message }}</span>
+                                                                    @enderror
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
                                     @php $i++ @endphp
                                 @endforeach
-                                
-                                
-                                {{-- @foreach($colors as $key => $citem)
+
+
+                                {{-- @foreach ($colors as $key => $citem)
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <table class="table">
@@ -119,10 +193,10 @@
                                                         <div class="col-12">
                                                             <select name="colors[]" class="form-select select2" required>
                                                                 <option value="">Choose Color</option>
-                                                                <option @if($citem->color == '1') selected @endif value="1">Red</option>
-                                                                <option @if($citem->color == '2') selected @endif value="2">Blue</option>
-                                                                <option @if($citem->color == '3') selected @endif value="3">Green</option>
-                                                                <option @if($citem->color == '4') selected @endif value="4">Yellow</option>
+                                                                <option @if ($citem->color == '1') selected @endif value="1">Red</option>
+                                                                <option @if ($citem->color == '2') selected @endif value="2">Blue</option>
+                                                                <option @if ($citem->color == '3') selected @endif value="3">Green</option>
+                                                                <option @if ($citem->color == '4') selected @endif value="4">Yellow</option>
                                                             </select>
                                                             @error('colors')
                                                                 <span class="text-danger">{{ $message }}</span>
@@ -150,7 +224,7 @@
                                                 <th>Quantity</th>
                                             </thead>
                                             <tbody>
-                                                @foreach($sizes as $j => $sitem)
+                                                @foreach ($sizes as $j => $sitem)
                                                     <tr>
                                                         <td>
                                                             {{ $sitem->size }}
