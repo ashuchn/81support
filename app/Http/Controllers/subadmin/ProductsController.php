@@ -158,7 +158,7 @@ class ProductsController extends Controller
             }
         }
 
-        return compact('rows');
+        // return compact('rows');
 
         return view('subadmin.products.view', compact('product', 'productImages', 'category', 'colors', 'sizes', 'quantities', 'rows'));
     }

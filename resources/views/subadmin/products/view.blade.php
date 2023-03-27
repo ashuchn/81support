@@ -96,10 +96,10 @@
                                 @php $i=0 @endphp
                                 @foreach($rows as $item)
                                     {{$colors[$i]}}
-                                    @for($i=0; $i < count($sizes); $i++)
-                                        {{$item->size}} - {{$item->quantity}}
+                                    @foreach($item as $key => $value)
+                                        {{$value->size}} - {{$value->quantity}}
                                         <br>
-                                    @endfor
+                                    @endforeach
                                     @php $i++ @endphp
                                 @endforeach
                                 
