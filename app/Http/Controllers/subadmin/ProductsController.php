@@ -152,7 +152,13 @@ class ProductsController extends Controller
             }
         }
         
-        // return compact('sizeTable');
+        for($i=0; $i<$totalColors; $i++) {
+            for($j=0; $j<$totalQty/$totalColors; $j++) {
+                $rows[$i][$j] = ProductSizeQuantity::where('product_id', $id)->where('color', $colors[$i]->color)->where('size', $sizes[$j]->size)->first();
+            }
+        }
+
+        return compact('rows');
 
         return view('subadmin.products.view', compact('product', 'productImages', 'category', 'colors', 'sizes', 'quantities', 'sizeTable'));
     }
