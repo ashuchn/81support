@@ -90,7 +90,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-8">
-                                <div class="col-12 d-flex justify-content-center">
+                                <div class="col-12">
                                     <div class="my-4 text-center">
                                         <button type="button" class="btn btn-primary waves-effect waves-light"
                                             data-bs-toggle="modal" data-bs-target="#myModal">Add Color</button>
@@ -102,13 +102,14 @@
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="myModalLabel">Modal Heading</h5>
+                                                    <h5 class="modal-title" id="myModalLabel">Add More Color Variants</h5>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                         aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
                                                     <div class="col-12 d-flex justify-content-center">
-                                                        <button class="ms-auto btn btn-outline-primary add-more">Add More</button>
+                                                        <button class="ms-auto btn btn-outline-primary add-more">Add
+                                                            More</button>
                                                     </div>
                                                     <div id="ColorsSizeItem"></div>
                                                     <hr>
@@ -230,12 +231,10 @@
     </script>
     <script>
         $(document).ready(function() {
-            $(".add-more").click(function(e) {
-                e.preventDefault();
-                $("#ColorsSizeItem").prepend(`
+            $("#ColorsSizeItem").prepend(`
 
                     <div class="row">
-                        <div class="col-lg-6">
+                        <div class="col-12">
                             <table class="table">
                                 <thead>
                                     <th>Color</th>
@@ -276,7 +275,168 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-12">
+                            <table class="table">
+                                <thead>
+                                    <th>Size</th>
+                                    <th>Quantity</th>
+                                    <th>
+                                        <button style="padding: 4px 9.5px;" class="d-none d-lg-block text-center float-end btn btn-sm rounded-circle btn-danger remove">
+                                            <b>X</b>    
+                                        </button>
+                                    </th>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            XS
+                                            <input name="sizes[]" type="text" value="XS" class="d-none">
+                                        </td>
+                                        <td colspan="2">
+                                            <div class="col-12">
+                                                <input type="number" name="quantity[]"
+                                                    class="form-control @error('quantity') ? ' is-invalid' : '' @enderror"
+                                                    placeholder="Enter Quantity" required>
+                                                @error('quantity')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            S
+                                            <input name="sizes[]" type="text" value="S" class="d-none">
+                                        </td>
+                                        <td colspan="2">
+                                            <div class="col-12">
+                                                <input type="number" name="quantity[]"
+                                                    class="form-control @error('quantity') ? ' is-invalid' : '' @enderror"
+                                                    placeholder="Enter Quantity" required>
+                                                @error('quantity')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            M
+                                            <input name="sizes[]" type="text" value="M" class="d-none">
+                                        </td>
+                                        <td colspan="2">
+                                            <div class="col-12">
+                                                <input type="number" name="quantity[]"
+                                                    class="form-control @error('quantity') ? ' is-invalid' : '' @enderror"
+                                                    placeholder="Enter Quantity" required>
+                                                @error('quantity')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            L
+                                            <input name="sizes[]" type="text" value="L" class="d-none">
+                                        </td>
+                                        <td colspan="2">
+                                            <div class="col-12">
+                                                <input type="number" name="quantity[]"
+                                                    class="form-control @error('quantity') ? ' is-invalid' : '' @enderror"
+                                                    placeholder="Enter Quantity" required>
+                                                @error('quantity')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            XL
+                                            <input name="sizes[]" type="text" value="XL" class="d-none">
+                                        </td>
+                                        <td colspan="2">
+                                            <div class="col-12">
+                                                <input type="number" name="quantity[]"
+                                                    class="form-control @error('quantity') ? ' is-invalid' : '' @enderror"
+                                                    placeholder="Enter Quantity" required>
+                                                @error('quantity')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            XXL
+                                            <input name="sizes[]" type="text" value="XXL" class="d-none">
+                                        </td>
+                                        <td colspan="2">
+                                            <div class="col-12">
+                                                <input type="number" name="quantity[]"
+                                                    class="form-control @error('quantity') ? ' is-invalid' : '' @enderror"
+                                                    placeholder="Enter Quantity" required>
+                                                @error('quantity')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <hr>
+                    </div>
+                                   
+                `);
+            $(".add-more").click(function(e) {
+                e.preventDefault();
+                $("#ColorsSizeItem").prepend(`
+
+                    <div class="row">
+                        <div class="col-12">
+                            <table class="table">
+                                <thead>
+                                    <th>Color</th>
+                                    <th>Images</th>
+                                    <th>
+                                        <button style="padding: 4px 9.5px;" class="d-lg-none text-center float-end btn btn-sm rounded-circle btn-danger remove">
+                                            <b>X</b>    
+                                        </button>
+                                    </th>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="col-12">
+                                                <select name="colors[]" class="form-select select2" required>
+                                                    <option value="">Choose Color</option>
+                                                    <option value="1">Red</option>
+                                                    <option value="2">Blue</option>
+                                                    <option value="3">Green</option>
+                                                    <option value="4">Yellow</option>
+                                                </select>
+                                                @error('colors')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </td>
+                                        <td colspan="2">
+                                            <div class="col-12">
+                                                <input type="file" name="images[]"
+                                                    class="form-control @error('image') ? ' is-invalid' : '' @enderror"
+                                                    placeholder="Enter Quantity" multiple required>
+                                                @error('images')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-12">
                             <table class="table">
                                 <thead>
                                     <th>Size</th>
