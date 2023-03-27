@@ -96,6 +96,7 @@
                                 @php $i=0 @endphp
                                 @foreach($rows as $item)
                                     {{$colors[$i]->color}}
+                                    <br>
                                     @foreach($item as $key => $value)
                                         {{$value->size}} - {{$value->quantity}}
                                         <br>
