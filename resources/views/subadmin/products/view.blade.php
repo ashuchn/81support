@@ -92,7 +92,7 @@
                             <div class="col-lg-8">
                                 <div class="col-12">
                                     <div class="my-4 text-center">
-                                        <button type="button" class="btn btn-primary waves-effect waves-light"
+                                        <button type="button" class="ms-auto btn btn-primary waves-effect waves-light"
                                             data-bs-toggle="modal" data-bs-target="#myModal">Add Color</button>
                                     </div>
 
