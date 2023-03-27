@@ -93,6 +93,15 @@
                                 </div>
                                 <hr>
                                 <div id="ColorsSizeItem"></div>
+                                
+                                @foreach($rows as $key => $item)
+                                    {{$colors[$key]}}
+                                    @for($i=0; $i < count($sizes); $i++)
+                                    {{$item->size}} - {{$item->quantity}}<br>
+                                    @endfor
+                                @endforeach
+                                
+                                
                                 {{-- @foreach($colors as $key => $citem)
                                 <div class="row">
                                     <div class="col-lg-6">
@@ -169,7 +178,7 @@
                         <button type="submit" class="btn btn-primary">Update</button>
                     </div>
                 </form>
-                <div class="row">
+                {{-- <div class="row">
                     <div class="col-12">
 
                         <div class="card card-primary">
@@ -266,7 +275,7 @@
                         <!-- /.card -->
                     </div>
                     <!-- /.col -->
-                </div>
+                </div> --}}
                 <!-- /.row -->
             </div>
             <!-- /.container-fluid -->
