@@ -111,7 +111,6 @@
                                                             More</button>
                                                     </div>
                                                     <div id="ColorsSizeItem"></div>
-                                                    <hr>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-light waves-effect"
