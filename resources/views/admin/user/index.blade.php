@@ -177,7 +177,7 @@
                                 id: id,
                                 _token: '{{ csrf_token() }}',
                                 status: 0
-                            }
+                            },
                         });
                     } else if ($(this).prop("checked") == false) {
                         var id = $(this).prop('id');
