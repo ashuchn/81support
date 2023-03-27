@@ -140,17 +140,16 @@ class ProductsController extends Controller
 
         $totalColors = ProductSizeQuantity::where('product_id', $id)->distinct('color')->count('color');
         $totalQty = ProductSizeQuantity::where('product_id', $id)->count('color');
-
         $colors = ProductSizeQuantity::where('product_id', $id)->select('color')->groupBy('color')->get();
         $sizes = ProductSizeQuantity::where('product_id', $id)->select('size')->groupBy('size')->get();
 
-        $sizeTable = DB::table('sizes')->get();
-        
         for($i=0; $i<$totalColors; $i++) {
             for($j=0; $j<$totalQty/$totalColors; $j++) {
                 $rows[$i][$j] = ProductSizeQuantity::where('product_id', $id)->where('color', $colors[$i]->color)->where('size', $sizes[$j]->size)->first();
             }
         }
+
+        $sizeTable = DB::table('sizes')->get();
 
         // return compact('rows');
 

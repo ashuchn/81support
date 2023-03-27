@@ -91,10 +91,39 @@
                             </div>
                             <div class="col-lg-8">
                                 <div class="col-12 d-flex justify-content-center">
-                                    <button class="ms-auto btn btn-outline-primary add-more">Add Color</button>
+                                    <div class="my-4 text-center">
+                                        <button type="button" class="btn btn-primary waves-effect waves-light"
+                                            data-bs-toggle="modal" data-bs-target="#myModal">Add Color</button>
+                                    </div>
+
+                                    <!-- sample modal content -->
+                                    <div id="myModal" class="modal fade" tabindex="-1" role="dialog"
+                                        aria-labelledby="myModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="myModalLabel">Modal Heading</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="col-12 d-flex justify-content-center">
+                                                        <button class="ms-auto btn btn-outline-primary add-more">Add More</button>
+                                                    </div>
+                                                    <div id="ColorsSizeItem"></div>
+                                                    <hr>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-light waves-effect"
+                                                        data-bs-dismiss="modal">Close</button>
+                                                    <button type="button"
+                                                        class="btn btn-primary waves-effect waves-light">Save
+                                                        changes</button>
+                                                </div>
+                                            </div><!-- /.modal-content -->
+                                        </div><!-- /.modal-dialog -->
+                                    </div><!-- /.modal -->
                                 </div>
-                                <hr>
-                                <div id="ColorsSizeItem"></div>
                                 @php $i=0 @endphp
                                 @foreach ($rows as $item)
                                     <div class="row">
