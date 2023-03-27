@@ -95,7 +95,7 @@
                                 <div id="ColorsSizeItem"></div>
                                 @php $i=0 @endphp
                                 @foreach($rows as $item)
-                                    {{$colors[$i]}}
+                                    {{$colors[$i]->color}}
                                     @foreach($item as $key => $value)
                                         {{$value->size}} - {{$value->quantity}}
                                         <br>
