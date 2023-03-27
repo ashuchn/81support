@@ -86,7 +86,7 @@
                 <div class="row">
                     <div class="col-md-12 col-lg-6">
                         <div class="card">
-                            <div class="card-header text-white" style="background-color: #6610f2                            "><h4>Our Riding Charters</h4></div>
+                            <div class="card-header text-white" style="background-color: #6610f2"><h4>Our Riding Charters</h4></div>
                             <div class="card-body">
                                 <div id="map" style="height: 500px; width: 100%;"></div>
                             </div>
