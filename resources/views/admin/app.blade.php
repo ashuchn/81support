@@ -131,5 +131,7 @@
     </script>
 
     <script type="text/javascript"
-        src="https://maps.google.com/maps/api/js?key={{ env('GOOGLE_MAPS_API') }}&callback=initializeMap"></script>
+    src="https://maps.google.com/maps/api/js?key={{ config('app.GOOGLE_MAPS_API') }}&callback=initializeMap"></script>
+        {{-- src="https://maps.google.com/maps/api/js?key={{ env('GOOGLE_MAPS_API') }}&callback=initializeMap"></script> --}}
+
 @endsection

@@ -123,6 +123,8 @@ return [
 
     'cipher' => 'AES-256-CBC',
 
+    'GOOGLE_MAPS_API' => env('GOOGLE_MAPS_API'),
+
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers
