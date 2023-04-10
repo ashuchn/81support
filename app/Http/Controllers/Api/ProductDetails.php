@@ -86,11 +86,18 @@ class ProductDetails extends Controller
             $current_color = ProductSizeQuantity::where('product_id', $productId)->first()->color;
         }
 
+        $sizes = ProductSizeQuantity::where('product_id', $productId)->where('color', $current_color)->select('size')->groupBy('size')->get();
+
+        for($i = 0; $i < count($sizes); $i++){
+            $size[$i] = $sizes[$i]->size;
+        }
+
         return response()->json([
             "response_message" => "Ok!",
             "response_code" => 200,
             "available_colors" => $colors,
             "current_color" => $current_color,
+            "available_sizes" => $size,
         ], 200);
     }
 
