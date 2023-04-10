@@ -85,7 +85,7 @@ class ProductDetails extends Controller
             "response_message" => "Ok!",
             "response_code" => 200,
             "colors" => $colors,
-            "current_color" => $current_color,
+            "current_color" => compact('current_color'),
         ], 200);
     }
 
