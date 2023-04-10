@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\ProfileController;
 use App\Http\Controllers\Api\ShopController;
+use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\NotificationController;
 use App\Http\Controllers\Api\ReviewController;
 use App\Mail\sendOtp;
@@ -41,6 +42,7 @@ Route::group(['middleware' => 'auth:sanctum'],function () {
     Route::post('bookmarkProduct', [ShopController::class, 'bookmarkProduct']);
     Route::delete('deleteBookmarkedProduct/{id}',[ShopController::class, 'deleteBookmarkedProduct']);    
     Route::get('getProduct',[ShopController::class,'getProduct']);
+    Route::get('getProductDetails',[ProductController::class,'getProductDetails']);
     Route::get('getCart',[ShopController::class,'getCart']);
     Route::get('getBookmarks',[ShopController::class,'getBookmarks']);
     Route::post('getDeals',[ShopController::class,'getDeals']);
