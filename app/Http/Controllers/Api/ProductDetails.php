@@ -87,7 +87,7 @@ class ProductDetails extends Controller
 
         $product = Product::find($req->id);
 
-        $sizes = DB::table('sizes')->get();
+        $sizes = DB::table('sizes')->get('size');
 
         for($i = 0; $i < $sizes->count(); $i++){
             $size = $sizes[$i];
@@ -128,7 +128,7 @@ class ProductDetails extends Controller
         return response()->json([
             "response_message" => "Ok!",
             "response_code" => 200,
-            "data" => compact('colors','current_color','product','size','review'),
+            "data" => compact('colors','current_color','product','sizes','review'),
         ], 200);
     }
 
