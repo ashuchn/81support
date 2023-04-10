@@ -75,19 +75,22 @@ class ProductDetails extends Controller
         $id = $req->id;
         $cols = ProductSizeQuantity::where('product_id', $id)->select('color')->groupBy('color')->get();
         $colors = null;
-        for ($i = 0; $i <  $cols->count(); $i++) {
+        for ($i = 0; $i < $cols->count(); $i++) {
             $colors[$i] = $cols[$i]->color;
         }
 
-        if($req->color != null){
+        if ($req->color != null) {
             $current_color = $req->color;
-        }else{
+        } else {
             $current_color = ProductSizeQuantity::where('product_id', $id)->select('color')->groupBy('color')->first();
         }
 
         $product = Product::find($req->id);
 
-        $sizes = ProductSizeQuantity::where('product_id', $id)->where('color', $current_color)->get();
+        $sizes = ProductSizeQuantity::where([
+            ['product_id', '=', $id],
+            ['color', '=', $current_color],
+        ])->get();
 
         $totalRatings = DB::table('reviews')->where('productId', $product->id)->count();
 
@@ -123,7 +126,7 @@ class ProductDetails extends Controller
         return response()->json([
             "response_message" => "Ok!",
             "response_code" => 200,
-            "data" => compact('colors','current_color','product','sizes','review'),
+            "data" => compact('colors', 'current_color', 'product', 'sizes', 'review'),
         ], 200);
     }
 
