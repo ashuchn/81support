@@ -62,7 +62,7 @@
                                                         src="{{ $item->images[0] }}" alt="image">
                                                 </a>
                                             @else
-                                                img
+                                                No Image Found
                                             @endif
                                         </td>
                                         <td>{{ $item->productName }}</td>
