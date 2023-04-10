@@ -42,7 +42,6 @@ class ProductDetails extends Controller
                 "productImages" => $productImages,
                 "category" => $category,
                 "colors" => $colors,
-                "rows" => $rows,
                 "sizeTable" => $sizeTable,
             ],
         ], 200);
