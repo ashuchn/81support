@@ -84,8 +84,7 @@ class ProductDetails extends Controller
         return response()->json([
             "response_message" => "Ok!",
             "response_code" => 200,
-            "colors" => $colors,
-            "current_color" => compact('current_color'),
+            "data" => compact('colors','current_color'),
         ], 200);
     }
 
