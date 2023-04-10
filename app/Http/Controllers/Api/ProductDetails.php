@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\New_User;
 use App\Models\Product;
 use App\Models\ProductImages;
 use App\Models\ProductSizeQuantity;
-use App\Models\New_User;
 use DB;
 use Illuminate\Http\Request;
 use Validator;
