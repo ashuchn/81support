@@ -86,7 +86,16 @@ class ProductDetails extends Controller
         }
 
         $product = Product::find($req->id);
+
+        $sizes = DB::table('sizes')->get();
+
+        for($i = 0; $i < $sizes->count(); $i++){
+            $size = $sizes[i];
+            $size->quantity = ProductSizeQuantity::where('product_id', $id)->where('color', $current_color)->where('size', $size->size)->first()->quantity;
+        }
+
         $totalRatings = DB::table('reviews')->where('productId', $product->id)->count();
+
         if ($totalRatings > 0) {
             $ratings = DB::table('reviews')->where('productId', $product->id)->sum('rating');
             $avgRating = $ratings / $totalRatings;
@@ -94,6 +103,7 @@ class ProductDetails extends Controller
             $avgRating = 0;
         }
         $product->avgRating = $avgRating;
+
         $images = DB::table('product_images')->where('productId', $product->id)->pluck('image');
         if (isset($images)) {
             $img = $images->map(function ($im) {
