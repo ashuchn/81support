@@ -10,7 +10,7 @@ use DB;
 
 class ProductDetails extends Controller {
     
-    public function getProductDetails(Request $req)
+    public function ProductDetails(Request $req)
     {
         $valid = Validator::make($req->all(),[
             "productId" => "Required|exists:products,id",
