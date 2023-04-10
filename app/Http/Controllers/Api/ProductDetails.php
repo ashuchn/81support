@@ -85,10 +85,40 @@ class ProductDetails extends Controller
             $colors[$i] = $cols[$i]->color;
         }
 
+        $data = Product::find($req->id);
+        $totalRatings = DB::table('reviews')->where('productId', $data->id)->count();
+        if ($totalRatings > 0) {
+            $ratings = DB::table('reviews')->where('productId', $data->id)->sum('rating');
+            $avgRating = $ratings / $totalRatings;
+        } else {
+            $avgRating = 0;
+        }
+        $data->avgRating = $avgRating;
+        $images = DB::table('product_images')->where('productId', $data->id)->pluck('image');
+        if (isset($images)) {
+            $img = $images->map(function ($im) {
+                return url('/') . '/' . $im;
+            });
+        }
+        $data->image = $img;
+
+        $reviews = DB::table('reviews')->where('productId', $data->id)->get(['id', 'userId', 'productId', 'rating', 'description']);
+        $review = (isset($reviews)) ? $reviews->map(function ($rv) {
+            $user = New_User::find($rv->userId);
+            if ($user) {
+                $rv->userName = $user->name;
+                $rv->userImage = $user->image;
+            } else {
+                $rv->userName = null;
+                $rv->userImage = null;
+            }
+            return $rv;
+        }) : [];
+
         return response()->json([
             "response_message" => "Ok!",
             "response_code" => 200,
-            "data" => compact('colors','current_color'),
+            "data" => compact('colors','current_color','data','review'),
         ], 200);
     }
 
