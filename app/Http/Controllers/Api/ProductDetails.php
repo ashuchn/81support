@@ -38,11 +38,7 @@ class ProductDetails extends Controller
             "response_message" => "Ok!",
             "response_code" => 200,
             "data" => [
-                "product" => $product,
-                "productImages" => $productImages,
-                "category" => $category,
-                "colors" => $colors,
-                "sizeTable" => $sizeTable,
+                "rows" => $rows,
             ],
         ], 200);
     }
