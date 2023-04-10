@@ -51,21 +51,17 @@ class ProductDetails extends Controller
         $data->image = $img;
 
         $reviews = DB::table('reviews')->where('productId', $data->id)->get(['id', 'userId', 'productId', 'rating', 'description']);
-        if (isset($reviews)) {
-            $review = $reviews->map(function ($rv) {
-                $user = New_User::find($rv->userId);
-                if ($user) {
-                    $rv->userName = $user->name;
-                    $rv->userImage = $user->image;
-                } else {
-                    $rv->userName = null;
-                    $rv->userImage = null;
-                }
-                return $rv;
-            });
-        } else {
-            $review = [];
-        }
+        $review = (isset($reviews)) ? $reviews->map(function ($rv) {
+            $user = New_User::find($rv->userId);
+            if ($user) {
+                $rv->userName = $user->name;
+                $rv->userImage = $user->image;
+            } else {
+                $rv->userName = null;
+                $rv->userImage = null;
+            }
+            return $rv;
+        }) : [];
 
         return response()->json([
             "response_message" => "Ok!",
