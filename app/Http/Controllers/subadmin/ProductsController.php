@@ -151,7 +151,7 @@ class ProductsController extends Controller
 
         $sizeTable = DB::table('sizes')->get();
 
-        // return compact('rows');
+        return compact('rows');
 
         return view('subadmin.products.view', compact('product', 'productImages', 'category', 'colors', 'rows'));
     }
