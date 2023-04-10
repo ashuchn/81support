@@ -81,7 +81,7 @@ class ProductDetails extends Controller
             $current_color = ProductSizeQuantity::where('product_id', $id)->select('color')->groupBy('color')->first();
         }
 
-        for ($i = 0; $i <  $colors->count(); $j++) {
+        for ($i = 0; $i <  $colors->count(); $i++) {
             $cols[$i] = $colors[$i]->color;
         }
 
