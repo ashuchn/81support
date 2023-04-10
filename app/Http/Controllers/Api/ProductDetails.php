@@ -89,7 +89,8 @@ class ProductDetails extends Controller
         $sizes = ProductSizeQuantity::where('product_id', $productId)->where('color', $current_color)->select('size')->groupBy('size')->get();
 
         for($i = 0; $i < count($sizes); $i++){
-            $size[$i] = $sizes[$i]->size;
+            $size[$i][0] = $sizes[$i]->size;
+            $size[$i][1] = ProductSizeQuantity::where('product_id', $productId)->where('color', $current_color)->where('size', $sizes[$i]->size)->first()->quantity;
         }
 
         return response()->json([
