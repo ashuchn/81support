@@ -87,11 +87,11 @@ class ProductDetails extends Controller
 
         $product = Product::find($req->id);
 
-        $sizes = ProductSizeQuantity::where('product_id', $id)->where('color', $current_color)->get();
+        $variants = ProductSizeQuantity::where('product_id', $id)->where('color', $current_color)->get();
 
-        for($i = 0; $i < $sizes->count(); $i++){
-            $size = $sizes[$i];
-            $size->quantity = ProductSizeQuantity::where('product_id', $id)->where('color', $current_color)->first();
+        for($i = 0; $i < $variants->count(); $i++){
+            $size = $variants[$i];
+            $quantity = $size->quantity;
         }
 
         $totalRatings = DB::table('reviews')->where('productId', $product->id)->count();
