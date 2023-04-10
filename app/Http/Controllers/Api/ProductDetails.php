@@ -37,7 +37,14 @@ class ProductDetails extends Controller
         return response()->json([
             "response_message" => "Ok!",
             "response_code" => 200,
-            "data" => $rows
+            "data" => [
+                "product" => $product,
+                "productImages" => $productImages,
+                "category" => $category,
+                "colors" => $colors,
+                "rows" => $rows,
+                "sizeTable" => $sizeTable,
+            ],
         ], 200);
     }
 
