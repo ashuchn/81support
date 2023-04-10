@@ -15,7 +15,7 @@ use Validator;
 class ProductDetails extends Controller
 {
 
-    public function ProductDetails(Request $req)
+    public function ProductDetailsV1(Request $req)
     {
         $id = $req->id;
         $category = Category::all();
@@ -67,6 +67,23 @@ class ProductDetails extends Controller
             "response_message" => "Ok!",
             "response_code" => 200,
             "data" => $data,
+        ], 200);
+    }
+
+    public function ProductDetails(Request $req)
+    {
+        $id = $req->id;
+        
+        if($req->color != null){
+            $color = $req->color;
+        }else{
+            $color = ProductSizeQuantity::where('product_id', $id)->select('color')->groupBy('color')->first();
+        }
+
+        return response()->json([
+            "response_message" => "Ok!",
+            "response_code" => 200,
+            "data" => $color,
         ], 200);
     }
 
