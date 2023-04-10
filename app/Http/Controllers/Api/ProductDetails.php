@@ -73,7 +73,7 @@ class ProductDetails extends Controller
     public function ProductDetails(Request $req)
     {
         $id = $req->id;
-        $colors = ProductSizeQuantity::where('product_id', $id)->select('color')->groupBy('color')->get();
+        $cols = ProductSizeQuantity::where('product_id', $id)->select('color')->groupBy('color')->get();
         
         if($req->color != null){
             $current_color = $req->color;
@@ -81,14 +81,14 @@ class ProductDetails extends Controller
             $current_color = ProductSizeQuantity::where('product_id', $id)->select('color')->groupBy('color')->first();
         }
 
-        for ($i = 0; $i <  $colors->count(); $i++) {
-            $cols[$i] = $colors[$i]->color;
+        for ($i = 0; $i <  $cols->count(); $i++) {
+            $colors[$i] = $cols[$i]->color;
         }
 
         return response()->json([
             "response_message" => "Ok!",
             "response_code" => 200,
-            "data" => compact('cols','current_color'),
+            "data" => compact('colors','current_color'),
         ], 200);
     }
 
