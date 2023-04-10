@@ -122,9 +122,10 @@ class ProductDetails extends Controller
             for($i = 0; $i < count($sizes); $i++){
                 $size[$i][0] = $sizes[$i]->size;
                 $size[$i][1] = ProductSizeQuantity::where('product_id', $productId)->where('color', $current_color)->where('size', $sizes[$i]->size)->first()->quantity;
+                $data->sizes = $size;
             }
         }else{
-            $size = [];
+            $data->sizes = [];
         }
 
         return response()->json([
@@ -133,7 +134,6 @@ class ProductDetails extends Controller
             "available_colors" => $colors,
             "current_color" => $current_color,
             "product" => $data,
-            "available_sizes" => $size,
         ], 200);
     }
 
