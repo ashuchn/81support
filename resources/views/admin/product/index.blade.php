@@ -55,7 +55,7 @@
                                 @forelse($data as $item)
                                     <tr>
                                         <td>
-                                            @if ($item->images[0])
+                                            @if ($item->images[0] != null)
                                                 <a href="{{ $item->images[0] }}" data-toggle="lightbox"
                                                     data-title="{{ $item->productName }}" data-gallery="gallery">
                                                     <img style="width: 150px; height: auto; object-fit: cover;"
