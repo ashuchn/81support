@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\ProductImages;
 use App\Models\ProductSizeQuantity;
+use App\Models\New_User;
 use DB;
 use Illuminate\Http\Request;
 use Validator;
