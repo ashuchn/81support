@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use DB;
-use Vallidator;
+use Validator;
 
 class ProductDetails extends Controller {
     
