@@ -73,6 +73,7 @@ class ProductDetails extends Controller
     public function ProductDetails(Request $req)
     {
         $id = $req->id;
+        $colors = ProductSizeQuantity::where('product_id', $id)->select('color')->groupBy('color')->get();
         
         if($req->color != null){
             $current_color = $req->color;
@@ -83,7 +84,7 @@ class ProductDetails extends Controller
         return response()->json([
             "response_message" => "Ok!",
             "response_code" => 200,
-            "colors" => ProductSizeQuantity::where('product_id', $id)->select('color')->groupBy('color')->get(),
+            "colors" => $colors,
             "current_color" => $current_color,
         ], 200);
     }
