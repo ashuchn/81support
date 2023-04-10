@@ -85,24 +85,24 @@ class ProductDetails extends Controller
             $current_color = ProductSizeQuantity::where('product_id', $id)->select('color')->groupBy('color')->first();
         }
 
-        $data = Product::find($req->id);
-        $totalRatings = DB::table('reviews')->where('productId', $data->id)->count();
+        $product = Product::find($req->id);
+        $totalRatings = DB::table('reviews')->where('productId', $product->id)->count();
         if ($totalRatings > 0) {
-            $ratings = DB::table('reviews')->where('productId', $data->id)->sum('rating');
+            $ratings = DB::table('reviews')->where('productId', $product->id)->sum('rating');
             $avgRating = $ratings / $totalRatings;
         } else {
             $avgRating = 0;
         }
-        $data->avgRating = $avgRating;
-        $images = DB::table('product_images')->where('productId', $data->id)->pluck('image');
+        $product->avgRating = $avgRating;
+        $images = DB::table('product_images')->where('productId', $product->id)->pluck('image');
         if (isset($images)) {
             $img = $images->map(function ($im) {
                 return url('/') . '/' . $im;
             });
         }
-        $data->image = $img;
+        $product->image = $img;
 
-        $reviews = DB::table('reviews')->where('productId', $data->id)->get(['id', 'userId', 'productId', 'rating', 'description']);
+        $reviews = DB::table('reviews')->where('productId', $product->id)->get(['id', 'userId', 'productId', 'rating', 'description']);
         $review = (isset($reviews)) ? $reviews->map(function ($rv) {
             $user = New_User::find($rv->userId);
             if ($user) {
@@ -118,7 +118,7 @@ class ProductDetails extends Controller
         return response()->json([
             "response_message" => "Ok!",
             "response_code" => 200,
-            "data" => compact('colors','current_color','data','review'),
+            "data" => compact('colors','current_color','product','review'),
         ], 200);
     }
 
