@@ -87,7 +87,7 @@ class ProductDetails extends Controller
 
         $product = Product::find($req->id);
 
-        $sizes = DB::table('sizes')->get('size');
+        $sizes = ProductSizeQuantity::where('product_id', $id)->where('color', $current_color)->select('size')->groupBy('size')->get();
 
         for($i = 0; $i < $sizes->count(); $i++){
             $size = $sizes[$i];
