@@ -74,6 +74,8 @@ class ProductDetails extends Controller
     {
         $productId = $req->productId;
 
+        $colors = ProductSizeQuantity::where('product_id', $productId)->select('color')->groupBy('color')->get();
+
         if(isset($req->color)){
             $current_color = $req->color;
         }else{
@@ -83,7 +85,7 @@ class ProductDetails extends Controller
         return response()->json([
             "response_message" => "Ok!",
             "response_code" => 200,
-            "data" => compact('productId', 'current_color'),
+            "data" => compact('colors', 'current_color'),
         ], 200);
     }
 
