@@ -42,7 +42,6 @@ Route::group(['middleware' => 'auth:sanctum'],function () {
     Route::post('bookmarkProduct', [ShopController::class, 'bookmarkProduct']);
     Route::delete('deleteBookmarkedProduct/{id}',[ShopController::class, 'deleteBookmarkedProduct']);    
     Route::get('getProduct',[ShopController::class,'getProduct']);
-    Route::get('getProductDetails',[ProductController::class,'getProductDetails']);
     Route::get('getCart',[ShopController::class,'getCart']);
     Route::get('getBookmarks',[ShopController::class,'getBookmarks']);
     Route::post('getDeals',[ShopController::class,'getDeals']);
