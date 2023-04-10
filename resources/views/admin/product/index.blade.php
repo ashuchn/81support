@@ -55,10 +55,11 @@
                                 @forelse($data as $item)
                                     <tr>
                                         <td>
-                                            <a href="{{ $item->images[0] }}"
+                                            {{-- <a href="{{ $item->images[0] }}"
                                                 data-toggle="lightbox" data-title="{{ $item->productName }}" data-gallery="gallery">
                                                 <img style="width: 150px; height: auto; object-fit: cover;"
-                                                    src="{{ $item->images[0] }}" alt="image">
+                                                    src="{{ $item->images[0] }}" alt="image"> --}}
+                                                    img
                                             </a>
                                         </td>
                                         <td>{{ $item->productName }}</td>
