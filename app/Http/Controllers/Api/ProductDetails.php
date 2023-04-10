@@ -70,7 +70,7 @@ class ProductDetails extends Controller
             "response_message" => "Ok!",
             "response_code" => 200,
             "data" => [
-                "rows" => compact('rows', 'data'),
+                "rows" => compact('data'),
             ],
         ], 200);
     }
