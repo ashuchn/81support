@@ -74,7 +74,11 @@ class ProductDetails extends Controller
     {
         $productId = $req->productId;
 
-        $colors = ProductSizeQuantity::where('product_id', $productId)->select('color')->groupBy('color')->get();
+        $cols = ProductSizeQuantity::where('product_id', $productId)->select('color')->groupBy('color')->get();
+
+        for($i = 0; $i < count($cols); $i++){
+            $colors[$i] = $cols[$i]->color;
+        }
 
         if(isset($req->color)){
             $current_color = $req->color;
