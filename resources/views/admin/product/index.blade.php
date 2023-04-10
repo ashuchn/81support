@@ -55,12 +55,15 @@
                                 @forelse($data as $item)
                                     <tr>
                                         <td>
-                                            {{-- <a href="{{ $item->images[0] }}"
-                                                data-toggle="lightbox" data-title="{{ $item->productName }}" data-gallery="gallery">
-                                                <img style="width: 150px; height: auto; object-fit: cover;"
-                                                    src="{{ $item->images[0] }}" alt="image"> --}}
-                                                    img
-                                            </a>
+                                            @if ($item->images[0])
+                                                <a href="{{ $item->images[0] }}" data-toggle="lightbox"
+                                                    data-title="{{ $item->productName }}" data-gallery="gallery">
+                                                    <img style="width: 150px; height: auto; object-fit: cover;"
+                                                        src="{{ $item->images[0] }}" alt="image">
+                                                </a>
+                                            @else
+                                                img
+                                            @endif
                                         </td>
                                         <td>{{ $item->productName }}</td>
                                         <td>{{ $item->description }}</td>
@@ -72,11 +75,13 @@
                                         </td>
                                         <td class="d-flex">
                                             {{-- <a href="#" class="btn btn-primary">Details</a> --}}
-                                            <button href="#" type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Details">
+                                            <button href="#" type="button" class="btn btn-primary"
+                                                data-toggle="tooltip" data-placement="top" title="Details">
                                                 <i class="fa-solid fa-circle-info"></i>
                                             </button>
                                             {{-- <button class="btn" style="background-color: #01ff70">Edit</button> --}}
-                                            <button class="btn" type="button" style="background-color: #01ff70" data-toggle="tooltip" data-placement="top" title="Edit">
+                                            <button class="btn" type="button" style="background-color: #01ff70"
+                                                data-toggle="tooltip" data-placement="top" title="Edit">
                                                 <i class="fa-solid fa-pen-to-square"></i>
                                             </button>
                                         </td>
