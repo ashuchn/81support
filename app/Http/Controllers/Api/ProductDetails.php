@@ -86,7 +86,7 @@ class ProductDetails extends Controller
             $current_color = ProductSizeQuantity::where('product_id', $productId)->first()->color;
         }
 
-        $data = Product::find($req->id);
+        $data = Product::find($req->productId);
         $totalRatings = DB::table('reviews')->where('productId', $data->id)->count();
         if ($totalRatings > 0) {
             $ratings = DB::table('reviews')->where('productId', $data->id)->sum('rating');
