@@ -32,7 +32,7 @@ class ProductController extends Controller
             }
             $rows->images = $new;
         }
-        return $data;
+        // return $data;
         return view('admin.product.index', compact('data'));
     }
 
