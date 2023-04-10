@@ -32,13 +32,45 @@ class ProductDetails extends Controller
             }
         }
 
-        $sizeTable = DB::table('sizes')->get();
+        $data = Product::find($req->productId);
+        $totalRatings = DB::table('reviews')->where('productId', $data->id)->count();
+        if ($totalRatings > 0) {
+            $ratings = DB::table('reviews')->where('productId', $data->id)->sum('rating');
+            $avgRating = $ratings / $totalRatings;
+        } else {
+            $avgRating = 0;
+        }
+        $data->avgRating = $avgRating;
+        $images = DB::table('product_images')->where('productId', $data->id)->pluck('image');
+        if (isset($images)) {
+            $img = $images->map(function ($im) {
+                return url('/') . '/' . $im;
+            });
+        }
+        $data->image = $img;
+
+        $reviews = DB::table('reviews')->where('productId', $data->id)->get(['id', 'userId', 'productId', 'rating', 'description']);
+        if (isset($reviews)) {
+            $review = $reviews->map(function ($rv) {
+                $user = New_User::find($rv->userId);
+                if ($user) {
+                    $rv->userName = $user->name;
+                    $rv->userImage = $user->image;
+                } else {
+                    $rv->userName = null;
+                    $rv->userImage = null;
+                }
+                return $rv;
+            });
+        } else {
+            $review = [];
+        }
 
         return response()->json([
             "response_message" => "Ok!",
             "response_code" => 200,
             "data" => [
-                "rows" => $rows,
+                "rows" => compact('rows', 'data'),
             ],
         ], 200);
     }
