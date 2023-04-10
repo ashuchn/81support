@@ -86,6 +86,36 @@ class ProductDetails extends Controller
             $current_color = ProductSizeQuantity::where('product_id', $productId)->first()->color;
         }
 
+        $data = Product::find($req->id);
+        $totalRatings = DB::table('reviews')->where('productId', $data->id)->count();
+        if ($totalRatings > 0) {
+            $ratings = DB::table('reviews')->where('productId', $data->id)->sum('rating');
+            $avgRating = $ratings / $totalRatings;
+        } else {
+            $avgRating = 0;
+        }
+        $data->avgRating = $avgRating;
+        $images = DB::table('product_images')->where('productId', $data->id)->pluck('image');
+        if (isset($images)) {
+            $img = $images->map(function ($im) {
+                return url('/') . '/' . $im;
+            });
+        }
+        $data->image = $img;
+
+        $reviews = DB::table('reviews')->where('productId', $data->id)->get(['id', 'userId', 'productId', 'rating', 'description']);
+        $review = (isset($reviews)) ? $reviews->map(function ($rv) {
+            $user = New_User::find($rv->userId);
+            if ($user) {
+                $rv->userName = $user->name;
+                $rv->userImage = $user->image;
+            } else {
+                $rv->userName = null;
+                $rv->userImage = null;
+            }
+            return $rv;
+        }) : [];
+
         $sizes = ProductSizeQuantity::where('product_id', $productId)->where('color', $current_color)->select('size')->groupBy('size')->get();
 
         if(count($sizes) > 0){
@@ -102,6 +132,7 @@ class ProductDetails extends Controller
             "response_code" => 200,
             "available_colors" => $colors,
             "current_color" => $current_color,
+            "product" => $data,
             "available_sizes" => $size,
         ], 200);
     }
