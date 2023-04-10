@@ -72,60 +72,18 @@ class ProductDetails extends Controller
 
     public function ProductDetails(Request $req)
     {
-        $id = $req->id;
-        $cols = ProductSizeQuantity::where('product_id', $id)->select('color')->groupBy('color')->get();
-        $colors = null;
-        for ($i = 0; $i < $cols->count(); $i++) {
-            $colors[$i] = $cols[$i]->color;
-        }
+        $productId = $req->productId;
 
-        if ($req->color != null) {
+        if(isset($req->color)){
             $current_color = $req->color;
-        } else {
-            $current_color = ProductSizeQuantity::where('product_id', $id)->select('color')->groupBy('color')->first();
+        }else{
+            $current_color = ProductSizeQuantity::where('product_id', $productId)->first()->color;
         }
-
-        $product = Product::find($req->id);
-
-        $sizes = ProductSizeQuantity::where([
-            ['product_id', '=', $id],
-        ])->select('size','quantity')->get();
-
-        $totalRatings = DB::table('reviews')->where('productId', $product->id)->count();
-
-        if ($totalRatings > 0) {
-            $ratings = DB::table('reviews')->where('productId', $product->id)->sum('rating');
-            $avgRating = $ratings / $totalRatings;
-        } else {
-            $avgRating = 0;
-        }
-        $product->avgRating = $avgRating;
-
-        $images = DB::table('product_images')->where('productId', $product->id)->pluck('image');
-        if (isset($images)) {
-            $img = $images->map(function ($im) {
-                return url('/') . '/' . $im;
-            });
-        }
-        $product->image = $img;
-
-        $reviews = DB::table('reviews')->where('productId', $product->id)->get(['id', 'userId', 'productId', 'rating', 'description']);
-        $review = (isset($reviews)) ? $reviews->map(function ($rv) {
-            $user = New_User::find($rv->userId);
-            if ($user) {
-                $rv->userName = $user->name;
-                $rv->userImage = $user->image;
-            } else {
-                $rv->userName = null;
-                $rv->userImage = null;
-            }
-            return $rv;
-        }) : [];
 
         return response()->json([
             "response_message" => "Ok!",
             "response_code" => 200,
-            "data" => compact('colors', 'current_color', 'product', 'sizes', 'review'),
+            "data" => compact('productId', 'current_color'),
         ], 200);
     }
 
