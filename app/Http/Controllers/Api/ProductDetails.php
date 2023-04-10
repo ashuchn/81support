@@ -89,6 +89,7 @@ class ProductDetails extends Controller
 
         $sizes = ProductSizeQuantity::where([
             ['product_id', '=', $id],
+            ['color', '=', '1'],
         ])->select('size','quantity')->get();
 
         $totalRatings = DB::table('reviews')->where('productId', $product->id)->count();
