@@ -34,9 +34,11 @@ class ProductDetails extends Controller
 
         $sizeTable = DB::table('sizes')->get();
 
-        // return compact('rows');
-
-        return view('subadmin.products.view', compact('product', 'productImages', 'category', 'colors', 'rows'));
+        return response()->json([
+            "response_message" => "Ok!",
+            "response_code" => 200,
+            "data" => $rows
+        ], 200);
     }
 
 }
