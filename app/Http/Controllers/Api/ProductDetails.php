@@ -32,7 +32,7 @@ class ProductDetails extends Controller
             }
         }
 
-        $data = Product::find($req->productId);
+        $data = Product::find($req->id);
         $totalRatings = DB::table('reviews')->where('productId', $data->id)->count();
         if ($totalRatings > 0) {
             $ratings = DB::table('reviews')->where('productId', $data->id)->sum('rating');
