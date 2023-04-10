@@ -89,11 +89,6 @@ class ProductDetails extends Controller
 
         $sizes = ProductSizeQuantity::where('product_id', $id)->where('color', $current_color)->get();
 
-        for($i = 0; $i < $sizes->count(); $i++){
-            $size = $sizes[$i];
-            $size->quantity = ProductSizeQuantity::where('product_id', $id)->where('color', $current_color)->where('size', $size->size)->first()->quantity;
-        }
-
         $totalRatings = DB::table('reviews')->where('productId', $product->id)->count();
 
         if ($totalRatings > 0) {
@@ -128,7 +123,7 @@ class ProductDetails extends Controller
         return response()->json([
             "response_message" => "Ok!",
             "response_code" => 200,
-            "data" => compact('colors','current_color','product','size','review'),
+            "data" => compact('colors','current_color','product','sizes','review'),
         ], 200);
     }
 
