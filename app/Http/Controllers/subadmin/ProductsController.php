@@ -107,7 +107,7 @@ class ProductsController extends Controller
                 $product_size_quantity->size = $request->sizes[$j];
                 $product_size_quantity->quantity = $request->quantity[$i*$totalQty/$totalColors+$j];
                 // $product_size_quantity->save();
-                $psq += $product_size_quantity;
+                $psq[$j] = $product_size_quantity;
             }
         }
 
