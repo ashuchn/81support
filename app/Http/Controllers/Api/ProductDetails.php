@@ -12,6 +12,9 @@ use DB;
 use Illuminate\Http\Request;
 use Validator;
 
+/**
+ * Summary of ProductDetails
+ */
 class ProductDetails extends Controller
 {
 
@@ -70,6 +73,11 @@ class ProductDetails extends Controller
         ], 200);
     }
 
+    /**
+     * Summary of ProductDetails
+     * @param Request $req
+     * @return mixed
+     */
     public function ProductDetails(Request $req)
     {
         $productId = $req->productId;
@@ -80,11 +88,7 @@ class ProductDetails extends Controller
             $colors[$i] = $cols[$i]->color;
         }
 
-        if(isset($req->color)){
-            $current_color = $req->color;
-        }else{
-            $current_color = ProductSizeQuantity::where('product_id', $productId)->first()->color;
-        }
+        $current_color = (isset($req->color)) ? $req->color : ProductSizeQuantity::where('product_id', $productId)->first()->color;
 
         $data = Product::find($req->productId);
         $totalRatings = DB::table('reviews')->where('productId', $data->id)->count();
