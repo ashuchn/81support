@@ -1,5 +1,4 @@
 
-text/x-generic api.php ( PHP script text )
 <?php
 
 use Illuminate\Http\Request;
