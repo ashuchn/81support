@@ -318,7 +318,7 @@
                                     <tr>
                                         <td>
                                             XS
-                                            <input name="sizes[]" type="text" value="XS" class="d-none">
+                                            <input name="sizes[]" type="text" value="1" class="d-none">
                                         </td>
                                         <td colspan="2">
                                             <div class="col-12">
@@ -334,7 +334,7 @@
                                     <tr>
                                         <td>
                                             S
-                                            <input name="sizes[]" type="text" value="S" class="d-none">
+                                            <input name="sizes[]" type="text" value="2" class="d-none">
                                         </td>
                                         <td colspan="2">
                                             <div class="col-12">
@@ -350,7 +350,7 @@
                                     <tr>
                                         <td>
                                             M
-                                            <input name="sizes[]" type="text" value="M" class="d-none">
+                                            <input name="sizes[]" type="text" value="3" class="d-none">
                                         </td>
                                         <td colspan="2">
                                             <div class="col-12">
@@ -366,7 +366,7 @@
                                     <tr>
                                         <td>
                                             L
-                                            <input name="sizes[]" type="text" value="L" class="d-none">
+                                            <input name="sizes[]" type="text" value="4" class="d-none">
                                         </td>
                                         <td colspan="2">
                                             <div class="col-12">
@@ -382,7 +382,7 @@
                                     <tr>
                                         <td>
                                             XL
-                                            <input name="sizes[]" type="text" value="XL" class="d-none">
+                                            <input name="sizes[]" type="text" value="5" class="d-none">
                                         </td>
                                         <td colspan="2">
                                             <div class="col-12">
@@ -398,7 +398,7 @@
                                     <tr>
                                         <td>
                                             XXL
-                                            <input name="sizes[]" type="text" value="XXL" class="d-none">
+                                            <input name="sizes[]" type="text" value="6" class="d-none">
                                         </td>
                                         <td colspan="2">
                                             <div class="col-12">
