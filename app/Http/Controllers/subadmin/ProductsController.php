@@ -126,7 +126,7 @@ class ProductsController extends Controller
         //     }
         // }
 
-        return compact('product', 'product_size_quantity', 'psq');
+        return compact('product', 'psq');
 
         return redirect()->route('subadmin.products.index')->with('success','Product Added');
     }
