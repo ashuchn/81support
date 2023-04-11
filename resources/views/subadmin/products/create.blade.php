@@ -317,7 +317,7 @@
                                 <tbody>
                                     <tr>
                                         <td>
-                                            XSs
+                                            XS
                                             <input name="sizes[]" type="number" value="1" class="d-none">
                                         </td>
                                         <td colspan="2">
