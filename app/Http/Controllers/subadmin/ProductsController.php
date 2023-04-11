@@ -81,7 +81,7 @@ class ProductsController extends Controller
             return back()->withErrors($valid);
         }
 
-        // return $request->all();
+        return $request->all();
 
         $product = new Product;
         $product_images = new ProductImages;
