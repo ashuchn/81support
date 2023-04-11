@@ -80,11 +80,7 @@ class ProductDetails extends Controller
             $colors[$i] = $cols[$i]->color;
         }
 
-        if(isset($req->color)){
-            $current_color = $req->color;
-        }else{
-            $current_color = ProductSizeQuantity::where('product_id', $productId)->first()->color;
-        }
+        $current_color = (isset($req->color)) ? $req->color : ProductSizeQuantity::where('product_id', $productId)->first()->color;
 
         $data = Product::find($req->productId);
         $totalRatings = DB::table('reviews')->where('productId', $data->id)->count();
@@ -94,6 +90,7 @@ class ProductDetails extends Controller
         } else {
             $avgRating = 0;
         }
+        
         $data->avgRating = $avgRating;
         $images = DB::table('product_images')->where('productId', $data->id)->pluck('image');
         if (isset($images)) {
