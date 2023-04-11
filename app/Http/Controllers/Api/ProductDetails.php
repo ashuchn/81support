@@ -120,7 +120,7 @@ class ProductDetails extends Controller
 
         if(count($sizes) > 0){
             for($i = 0; $i < count($sizes); $i++){
-                $size[$i][0] = DB::table('sizes')::where('size', $size[$i][0])->first()->size;
+                $size[$i][0] = DB::table('sizes')->where('size', $size[$i][0])->first()->size;
                 $size[$i][1] = ProductSizeQuantity::where('product_id', $productId)->where('color', $current_color)->where('size', $sizes[$i]->size)->first()->quantity;
                 $data->sizes = $size;
             }
