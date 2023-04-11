@@ -97,6 +97,8 @@ class ProductsController extends Controller
         $totalColors = count($request->colors);
         $totalQty = count($request->quantity);
 
+        $psq = [];
+
         for($i=0; $i<$totalColors; $i++) {
             for($j=0; $j<$totalQty/$totalColors; $j++) {
                 $product_size_quantity = new ProductSizeQuantity;
