@@ -105,6 +105,7 @@ class ProductsController extends Controller
                 $product_size_quantity->size = $request->sizes[$j];
                 $product_size_quantity->quantity = $request->quantity[$i*$totalQty/$totalColors+$j];
                 // $product_size_quantity->save();
+                $psq += $product_size_quantity;
             }
         }
 
@@ -123,7 +124,7 @@ class ProductsController extends Controller
         //     }
         // }
 
-        return compact('product', 'product_size_quantity', 'product_images');
+        return compact('product', 'product_size_quantity', 'psq');
 
         return redirect()->route('subadmin.products.index')->with('success','Product Added');
     }
