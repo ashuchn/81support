@@ -1,5 +1,5 @@
 @extends('subadmin.layout.layout')
-@section('title', 'Add Product')
+@section('title', 'Add Product Size Quantity')
 @section('css')
     <link rel="stylesheet" href="{{ url('assets/adminlte/plugins/select2/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ url('assets/adminlte/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
