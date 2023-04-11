@@ -92,10 +92,12 @@ class ProductsController extends Controller
         $product->categoryId = $request->category;
         $product->description = $request->description;
         $product->available_quantity = array_sum($request->quantity);
-        $product->save();
+        // $product->save();
 
         $totalColors = count($request->colors);
         $totalQty = count($request->quantity);
+
+        $psq = [];
 
         for($i=0; $i<$totalColors; $i++) {
             for($j=0; $j<$totalQty/$totalColors; $j++) {
@@ -104,7 +106,8 @@ class ProductsController extends Controller
                 $product_size_quantity->color = $request->colors[$i];
                 $product_size_quantity->size = $request->sizes[$j];
                 $product_size_quantity->quantity = $request->quantity[$i*$totalQty/$totalColors+$j];
-                $product_size_quantity->save();
+                // $product_size_quantity->save();
+                $psq[$j] = $product_size_quantity;
             }
         }
 
@@ -122,6 +125,8 @@ class ProductsController extends Controller
         //         }
         //     }
         // }
+
+        return compact('product', 'psq');
 
         return redirect()->route('subadmin.products.index')->with('success','Product Added');
     }
