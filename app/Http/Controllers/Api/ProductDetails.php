@@ -83,7 +83,7 @@ class ProductDetails extends Controller
         $productId = $req->productId;
 
         $cols = ProductSizeQuantity::where('product_id', $productId)->select('color')->groupBy('color')->get();
-
+        $colors = [];
         for($i = 0; $i < count($cols); $i++){
             $colors[$i] = $cols[$i]->color;
         }
@@ -135,7 +135,7 @@ class ProductDetails extends Controller
         return response()->json([
             "response_message" => "Ok!",
             "response_code" => 200,
-            "available_colors" => $cols,
+            "available_colors" => $colors,
             "current_color" => $current_color,
             "product" => $data,
         ], 200);
