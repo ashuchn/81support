@@ -135,6 +135,7 @@ class ProductDetails extends Controller
             foreach($sizes as $key => $value){
                 $sizes[$key][0] = DB::table('sizes')->where('id', $value->size)->first()->size;
             }
+            $data->sizes = $sizes;
         }else{
             $data->sizes = [];
         }
