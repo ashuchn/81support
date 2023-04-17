@@ -120,6 +120,8 @@ class ProductDetails extends Controller
             return $rv;
         }) : [];
 
+        $data->reviews = $review;
+
         $sizes = ProductSizeQuantity::where('product_id', $productId)->where('color', $current_color)->select('size')->groupBy('size')->get();
 
         if(count($sizes) > 0){
