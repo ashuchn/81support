@@ -518,7 +518,7 @@ class ShopController extends Controller
         $data = Deal::where('rc_id', $shopId)->get();
         $deals = $data->map(function ($dt) {
             $p = Product::findorFail($dt->rc_id);
-            $dt->product = $p->id;
+            $dt->productId = $p->id;
             return $dt;
         });
         return $deals;
