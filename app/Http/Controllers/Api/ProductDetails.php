@@ -133,7 +133,7 @@ class ProductDetails extends Controller
             //     $data->sizes = $size;
             // }
             foreach($sizes as $key => $value){
-                $sizes[$key][0] = DB::table('sizes')->where('id', $value->size)->first()->size;
+                $sizes[$key] = DB::table('sizes')->where('id', $value->size)->first()->size;
             }
             $data->sizes = $sizes;
         }else{
