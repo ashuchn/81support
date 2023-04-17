@@ -81,6 +81,15 @@ class ProductDetails extends Controller
     public function ProductDetails(Request $req)
     {
         $productId = $req->productId;
+        $data = Product::find($req->productId);
+
+        if($data == null){
+            return response()->json([
+                "response_message" => "Product not found!",
+                "response_code" => 404,
+                "data" => null,
+            ], 404);
+        }
 
         $cols = ProductSizeQuantity::where('product_id', $productId)->select('color')->groupBy('color')->get();
         $colors = [];
@@ -92,7 +101,6 @@ class ProductDetails extends Controller
 
         $current_color = ((isset($req->color)) ? $req->color : $psq) ? $psq->color: null;
 
-        $data = Product::find($req->productId);
         $totalRatings = DB::table('reviews')->where('productId', $data->id)->count();
         if ($totalRatings > 0) {
             $ratings = DB::table('reviews')->where('productId', $data->id)->sum('rating');
