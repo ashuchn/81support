@@ -132,9 +132,9 @@ class ProductDetails extends Controller
             //     $size[$i][1] = ProductSizeQuantity::where('product_id', $productId)->where('color', $current_color)->where('size', $sizes[$i]->size)->first()->quantity;
             //     $data->sizes = $size;
             // }
-            foreach($sizes as $siz){
-                $siz->size = DB::table('sizes')->where('id', $siz->size)->first()->size;
-                $siz->quantity = ProductSizeQuantity::where('product_id', $productId)->where('color', $current_color)->where('size', $siz->size)->first()->quantity;
+            foreach($sizes as $s){
+                $s->size = DB::table('sizes')->where('id', $s->size)->first()->size;
+                $s->quantity = ProductSizeQuantity::where('product_id', $productId)->where('color', $current_color)->where('size', $s->size)->first()->quantity;
             }
             $data->sizes = $sizes;
         }else{
