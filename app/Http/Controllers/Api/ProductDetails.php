@@ -127,14 +127,11 @@ class ProductDetails extends Controller
         $sizes = ProductSizeQuantity::where('product_id', $productId)->where('color', $current_color)->select('size')->groupBy('size')->get();
 
         if(count($sizes) > 0){
-            // for($i = 0; $i < count($sizes); $i++){
-            //     $size[$i][0] = DB::table('sizes')->where('id', $sizes[$i]->size)->first()->size;
-            //     $size[$i][1] = ProductSizeQuantity::where('product_id', $productId)->where('color', $current_color)->where('size', $sizes[$i]->size)->first()->quantity;
-            //     $data->sizes = $size;
-            // }
-            foreach($sizes as $s){
-                $s->initial = DB::table('sizes')->where('id', $s->size)->first()->size;
-                $s->quantity = ProductSizeQuantity::where('product_id', $productId)->where('color', $current_color)->where('size', $s->size)->first()->quantity;
+            foreach($sizes as $key => $value){
+                // $s->initial = DB::table('sizes')->where('id', $s->size)->first()->size;
+                // $s->quantity = ProductSizeQuantity::where('product_id', $productId)->where('color', $current_color)->where('size', $s->size)->first()->quantity;
+                $sizes[$key]->initial = DB::table('sizes')->where('id', $value->size)->first()->size;
+                $sizes[$key]->quantity = ProductSizeQuantity::where('product_id', $productId)->where('color', $current_color)->where('size', $value->size)->first()->quantity;
             }
             $data->sizes = $sizes;
         }else{
