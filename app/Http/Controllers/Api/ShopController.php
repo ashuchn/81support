@@ -519,7 +519,7 @@ class ShopController extends Controller
         $deals = $data->map(function ($dt) {
             $p = Product::findorFail($dt->rc_id);
             $dt->product = $p;
-            return $dt->id;
+            return $dt;
         });
         return $deals;
     }
