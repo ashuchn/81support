@@ -93,7 +93,7 @@ class ProductDetails extends Controller
         // Colors
         $psq = ProductSizeQuantity::where('product_id', $productId)->first();
         $cols = ProductSizeQuantity::where('product_id', $productId)->select('color')->groupBy('color')->get();
-        if($cols == null){
+        if($cols->count() == 0){
             return response()->json([
                 "response_message" => "Color not found!",
                 "response_code" => 404,
