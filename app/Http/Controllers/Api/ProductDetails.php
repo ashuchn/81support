@@ -93,8 +93,9 @@ class ProductDetails extends Controller
 
         $cols = ProductSizeQuantity::where('product_id', $productId)->select('color')->groupBy('color')->get();
         $colors = [];
-        for($i = 0; $i < count($cols); $i++){
-            $colors[$i] = $cols[$i]->color;
+
+        foreach($cols as $key => $value){
+            $colors[$key] = $value->color;
         }
 
         $psq = ProductSizeQuantity::where('product_id', $productId)->first();
