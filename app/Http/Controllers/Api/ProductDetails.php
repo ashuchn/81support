@@ -90,13 +90,6 @@ class ProductDetails extends Controller
             ], 404);
         }
 
-
-        // Colors
-        $cols = ProductSizeQuantity::where('product_id', $productId)->select('color')->groupBy('color')->get();
-        foreach($cols as $key => $value){
-            $cols[$key]->hex = DB::table('colors')->where('id', $value->color)->first()->hex;
-        }
-        $colors = $cols;
         $psq = ProductSizeQuantity::where('product_id', $productId)->first();
         if($psq == null){
             return response()->json([
@@ -105,6 +98,13 @@ class ProductDetails extends Controller
                 "data" => null,
             ], 404);
         }
+
+        // Colors
+        $cols = ProductSizeQuantity::where('product_id', $productId)->select('color')->groupBy('color')->get();
+        foreach($cols as $key => $value){
+            $cols[$key]->hex = DB::table('colors')->where('id', $value->color)->first()->hex;
+        }
+        $colors = $cols;
         $curr_color = (isset($req->color)) ? $req->color : ((isset($psq->color)) ? $psq->color : null);
         $current_color = (isset($curr_color)) ? DB::table('colors')->where('id', $curr_color)->first()->hex : null;
 
