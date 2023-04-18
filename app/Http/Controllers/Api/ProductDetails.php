@@ -95,7 +95,7 @@ class ProductDetails extends Controller
         // Colors
         $cols = ProductSizeQuantity::where('product_id', $productId)->select('color')->groupBy('color')->get();
         foreach($cols as $key => $value){
-            $cols[$key]->code = $value->color;
+            $cols[$key]->hex = DB::table('colors')->where('id', $value->color)->first()->hex;
         }
         $colors = $cols;
 
