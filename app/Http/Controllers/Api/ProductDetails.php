@@ -91,17 +91,18 @@ class ProductDetails extends Controller
             ], 404);
         }
 
-        $cols = ProductSizeQuantity::where('product_id', $productId)->select('color')->groupBy('color')->get();
-        $colors = [];
 
+        // Colors
+        $cols = ProductSizeQuantity::where('product_id', $productId)->select('color')->groupBy('color')->get();
         foreach($cols as $key => $value){
-            $colors[$key]->code = $value->color;
+            $cols[$key]->code = $value->color;
         }
+        $colors = $cols;
 
         $psq = ProductSizeQuantity::where('product_id', $productId)->first();
-
         $current_color = (isset($req->color)) ? $req->color : ((isset($psq->color)) ? $psq->color : null);
 
+        // Ratings
         $totalRatings = DB::table('reviews')->where('productId', $data->id)->count();
         if ($totalRatings > 0) {
             $ratings = DB::table('reviews')->where('productId', $data->id)->sum('rating');
@@ -110,6 +111,8 @@ class ProductDetails extends Controller
             $avgRating = 0;
         }
         $data->avgRating = $avgRating;
+
+        // Images
         $images = DB::table('product_images')->where('productId', $data->id)->pluck('image');
         if (isset($images)) {
             $img = $images->map(function ($im) {
@@ -118,6 +121,7 @@ class ProductDetails extends Controller
         }
         $data->image = $img;
 
+        // Reviews
         $reviews = DB::table('reviews')->where('productId', $data->id)->get(['id', 'userId', 'productId', 'rating', 'description']);
         $review = (isset($reviews)) ? $reviews->map(function ($rv) {
             $user = New_User::find($rv->userId);
@@ -130,15 +134,12 @@ class ProductDetails extends Controller
             }
             return $rv;
         }) : [];
-
         $data->reviews = $review;
 
+        // Sizes
         $sizes = ProductSizeQuantity::where('product_id', $productId)->where('color', $current_color)->select('size')->groupBy('size')->get();
-
         if(count($sizes) > 0){
             foreach($sizes as $key => $value){
-                // $s->initial = DB::table('sizes')->where('id', $s->size)->first()->size;
-                // $s->quantity = ProductSizeQuantity::where('product_id', $productId)->where('color', $current_color)->where('size', $s->size)->first()->quantity;
                 $sizes[$key]->initial = DB::table('sizes')->where('id', $value->size)->first()->size;
                 $sizes[$key]->quantity = ProductSizeQuantity::where('product_id', $productId)->where('color', $current_color)->where('size', $value->size)->first()->quantity;
             }
