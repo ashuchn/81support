@@ -99,7 +99,6 @@ class ProductDetails extends Controller
         $colors = $cols;
         $psq = ProductSizeQuantity::where('product_id', $productId)->first();
         $curr_color = (isset($req->color)) ? $req->color : ((isset($psq->color)) ? $psq->color : null);
-        $current_color = (isset($curr_color)) ? DB::table('colors')->where('id', $curr_color)->first()->hex : null;
         if($curr_color == null){
             return response()->json([
                 "response_message" => "Color not found!",
@@ -107,6 +106,7 @@ class ProductDetails extends Controller
                 "data" => null,
             ], 404);
         }
+        $current_color = (isset($curr_color)) ? DB::table('colors')->where('id', $curr_color)->first()->hex : null;
 
         // Ratings
         $totalRatings = DB::table('reviews')->where('productId', $data->id)->count();
