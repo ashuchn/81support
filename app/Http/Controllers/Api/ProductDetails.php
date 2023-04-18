@@ -95,7 +95,7 @@ class ProductDetails extends Controller
         $colors = [];
 
         foreach($cols as $key => $value){
-            $colors[$key] = $value->color;
+            $colors[$key]->code = $value->color;
         }
 
         $psq = ProductSizeQuantity::where('product_id', $productId)->first();
