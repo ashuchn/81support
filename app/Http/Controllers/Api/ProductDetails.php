@@ -90,17 +90,16 @@ class ProductDetails extends Controller
             ], 404);
         }
 
+        // Colors
         $psq = ProductSizeQuantity::where('product_id', $productId)->first();
-        if($psq == null){
+        $cols = ProductSizeQuantity::where('product_id', $productId)->select('color')->groupBy('color')->get();
+        if($cols == null){
             return response()->json([
                 "response_message" => "Color not found!",
                 "response_code" => 404,
                 "data" => null,
             ], 404);
         }
-
-        // Colors
-        $cols = ProductSizeQuantity::where('product_id', $productId)->select('color')->groupBy('color')->get();
         foreach($cols as $key => $value){
             $cols[$key]->hex = DB::table('colors')->where('id', $value->color)->first()->hex;
         }
