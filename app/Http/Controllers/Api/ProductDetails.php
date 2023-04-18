@@ -99,7 +99,7 @@ class ProductDetails extends Controller
         $colors = $cols;
         $psq = ProductSizeQuantity::where('product_id', $productId)->first();
         $curr_color = (isset($req->color)) ? $req->color : ((isset($psq->color)) ? $psq->color : null);
-        if($curr_color == null){
+        if($psq == null){
             return response()->json([
                 "response_message" => "Color not found!",
                 "response_code" => 404,
