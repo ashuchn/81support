@@ -82,7 +82,7 @@ class ProductDetails extends Controller
     {
         $productId = $req->productId;
         $data = Product::find($req->productId);
-        if($data == null){
+        if ($data == null) {
             return response()->json([
                 "response_message" => "Product not found!",
                 "response_code" => 404,
@@ -93,14 +93,7 @@ class ProductDetails extends Controller
         // Colors
         $psq = ProductSizeQuantity::where('product_id', $productId)->first();
         $cols = ProductSizeQuantity::where('product_id', $productId)->select('color')->groupBy('color')->get();
-        if($cols->count() == 0){
-            return response()->json([
-                "response_message" => "Color not found!",
-                "response_code" => 404,
-                "data" => null,
-            ], 404);
-        }
-        foreach($cols as $key => $value){
+        foreach ($cols as $key => $value) {
             $cols[$key]->hex = DB::table('colors')->where('id', $value->color)->first()->hex;
         }
         $colors = $cols;
@@ -143,13 +136,13 @@ class ProductDetails extends Controller
 
         // Sizes
         $sizes = ProductSizeQuantity::where('product_id', $productId)->where('color', $current_color)->select('size')->groupBy('size')->get();
-        if(count($sizes) > 0){
-            foreach($sizes as $key => $value){
+        if (count($sizes) > 0) {
+            foreach ($sizes as $key => $value) {
                 $sizes[$key]->initial = DB::table('sizes')->where('id', $value->size)->first()->size;
                 $sizes[$key]->quantity = ProductSizeQuantity::where('product_id', $productId)->where('color', $current_color)->where('size', $value->size)->first()->quantity;
             }
             $data->sizes = $sizes;
-        }else{
+        } else {
             $data->sizes = [];
         }
 
