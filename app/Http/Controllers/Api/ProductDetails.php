@@ -99,7 +99,7 @@ class ProductDetails extends Controller
 
         $psq = ProductSizeQuantity::where('product_id', $productId)->first();
 
-        $current_color = ((isset($req->color)) ? $req->color : $psq) ? $psq->color: null;
+        $current_color = (isset($req->color)) ? $req->color : $psq->color;
 
         $totalRatings = DB::table('reviews')->where('productId', $data->id)->count();
         if ($totalRatings > 0) {
