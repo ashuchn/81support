@@ -82,8 +82,7 @@ class ProductDetails extends Controller
     {
         $productId = $req->productId;
         $data = Product::find($req->productId);
-
-        if($data == null){
+        if ($data == null) {
             return response()->json([
                 "response_message" => "Product not found!",
                 "response_code" => 404,
@@ -91,17 +90,17 @@ class ProductDetails extends Controller
             ], 404);
         }
 
-
         // Colors
+        $psq = ProductSizeQuantity::where('product_id', $productId)->first();
         $cols = ProductSizeQuantity::where('product_id', $productId)->select('color')->groupBy('color')->get();
-        foreach($cols as $key => $value){
+        foreach ($cols as $key => $value) {
             $cols[$key]->hex = DB::table('colors')->where('id', $value->color)->first()->hex;
         }
         $colors = $cols;
-
-        $psq = ProductSizeQuantity::where('product_id', $productId)->first();
         $curr_color = (isset($req->color)) ? $req->color : ((isset($psq->color)) ? $psq->color : null);
-        $current_color = (isset($curr_color)) ? DB::table('colors')->where('id', $curr_color)->first()->hex : null;
+        $current_color['color'] = (isset($curr_color)) ? DB::table('colors')->where('id', $curr_color)->first()->id : null;
+        $current_color['hex'] = (isset($curr_color)) ? DB::table('colors')->where('id', $curr_color)->first()->hex : null;
+
 
         // Ratings
         $totalRatings = DB::table('reviews')->where('productId', $data->id)->count();
@@ -139,13 +138,13 @@ class ProductDetails extends Controller
 
         // Sizes
         $sizes = ProductSizeQuantity::where('product_id', $productId)->where('color', $current_color)->select('size')->groupBy('size')->get();
-        if(count($sizes) > 0){
-            foreach($sizes as $key => $value){
+        if (count($sizes) > 0) {
+            foreach ($sizes as $key => $value) {
                 $sizes[$key]->initial = DB::table('sizes')->where('id', $value->size)->first()->size;
-                $sizes[$key]->quantity = ProductSizeQuantity::where('product_id', $productId)->where('color', $current_color)->where('size', $value->size)->first()->quantity;
+                $sizes[$key]->quantity = ProductSizeQuantity::where('product_id', $productId)->where('color', $current_color['color'])->where('size', $value->size)->first()->quantity;
             }
             $data->sizes = $sizes;
-        }else{
+        } else {
             $data->sizes = [];
         }
 
