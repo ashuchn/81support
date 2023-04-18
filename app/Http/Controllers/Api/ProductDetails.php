@@ -82,7 +82,6 @@ class ProductDetails extends Controller
     {
         $productId = $req->productId;
         $data = Product::find($req->productId);
-
         if($data == null){
             return response()->json([
                 "response_message" => "Product not found!",
@@ -98,10 +97,16 @@ class ProductDetails extends Controller
             $cols[$key]->hex = DB::table('colors')->where('id', $value->color)->first()->hex;
         }
         $colors = $cols;
-
         $psq = ProductSizeQuantity::where('product_id', $productId)->first();
         $curr_color = (isset($req->color)) ? $req->color : ((isset($psq->color)) ? $psq->color : null);
         $current_color = (isset($curr_color)) ? DB::table('colors')->where('id', $curr_color)->first()->hex : null;
+        if($curr_color == null){
+            return response()->json([
+                "response_message" => "Color not found!",
+                "response_code" => 404,
+                "data" => null,
+            ], 404);
+        }
 
         // Ratings
         $totalRatings = DB::table('reviews')->where('productId', $data->id)->count();
