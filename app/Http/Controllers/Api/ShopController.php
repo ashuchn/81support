@@ -59,7 +59,13 @@ class ShopController extends Controller
             // });
             // $dt->reviews = $reviews;
 
-            return $dt;
+            return $dt = [
+                'id' => $dt->id,
+                'productName' => $dt->productName,
+                'productDescription' => $dt->productDescription,
+                'productPrice' => $dt->productPrice,
+                'productImage' => url('/') . '/' . $dt->productImage,
+            ];
         });
 
         return response()->json([
