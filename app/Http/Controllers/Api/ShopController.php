@@ -129,7 +129,7 @@ class ShopController extends Controller
             ], 404);
         }else{
             $bookmark->delete();
-            $remaining = Bookmark::where('userId', $userId)->get(['id as bookmarkId', 'productId']);
+            $remaining = Bookmark::where('userId', $userId)->get();
             return response()->json([
                 "response_message" => "Product Deleted from Bookmarks",
                 "response_code" => 200,
