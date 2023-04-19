@@ -74,7 +74,7 @@ class ShopController extends Controller
             $bookmark = $data->map(function ($dt) {
                 $product = Product::where('id', $dt->productId)->first();
 
-                $images = DB::table('product_images')->where('productId', $dt->id)->pluck('image');
+                $images = DB::table('product_images')->where('productId', $product->id)->pluck('image');
                 $urlImages = $images->map(function ($img) {
                     $img = url('/') . '/' . $img;
                     return $img;
