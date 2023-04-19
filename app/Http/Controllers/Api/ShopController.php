@@ -47,17 +47,6 @@ class ShopController extends Controller
                 return $img;
             });
             $dt->images = $urlImages;
-            // $review = DB::table('reviews')->where('productId', $dt->id)
-            //     ->join('new_users', 'new_users.id', '=', 'reviews.userId')
-            //     ->get(['reviews.rating', 'reviews.description', 'reviews.created_at', 'new_users.name as userName', 'new_users.image as userImage']);
-
-            // $reviews = $review->map(function ($rv) {
-            //     if ($rv->userImage != NULL || $rv->userImage != '') {
-            //         $rv->userImage = url('/') . '/' . $rv->userImage;
-            //     }
-            //     return $rv;
-            // });
-            // $dt->reviews = $reviews;
 
             return $dt = [
                 'id' => $dt->id,
