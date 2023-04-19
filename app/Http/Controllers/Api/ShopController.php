@@ -53,7 +53,7 @@ class ShopController extends Controller
                 'productName' => $dt->productName,
                 'productDescription' => $dt->productDescription,
                 'productPrice' => $dt->productPrice,
-                'productImage' => url('/') . '/' . $dt->images,
+                'productImage' => $dt->images,
             ];
         });
 
