@@ -51,7 +51,8 @@ class ProductsController extends Controller
     public function create()
     {
         $category = Category::all();
-        return view('subadmin.products.create', compact('category'));
+        $colors = DB::table('colors')->get();
+        return view('subadmin.products.create', compact('category', 'colors'));
     }
  
     /**
