@@ -40,7 +40,7 @@ class ShopController extends Controller
 
             $name = Riding_Charter_User::find($dt->rc_id)->pluck('name');
             $dt->shopName = isset($name) ? $name[0] : '';
-            $images = DB::table('product_images')->where('productId', $dt->id)->pluck('image');
+            $images = DB::table('product_images')->where('productId', $dt->id)->pluck('image')->first();
             $urlImages = $images->map(function ($img) {
                 $img = url('/') . '/' . $img;
                 return $img;
@@ -59,7 +59,7 @@ class ShopController extends Controller
             //     return $rv;
             // });
             // $dt->reviews = $reviews;
-            
+
             return $dt;
         });
 
