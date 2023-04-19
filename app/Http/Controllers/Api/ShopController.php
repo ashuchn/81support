@@ -488,7 +488,9 @@ class ShopController extends Controller
                 "response_message" => "Ok!",
                 "response_code" => 200,
                 "bookmarkProductCount" => count($bookmark),
-                "data" => $bookmark
+                "data" => $bookmark,
+                "userId" => $userId
+
             ], 200);
         } else {
             return response()->json([
