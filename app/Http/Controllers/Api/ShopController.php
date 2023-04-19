@@ -122,7 +122,9 @@ class ShopController extends Controller
         $userId = $req->user()->id;
 
         $delete = Bookmark::find($id);
-        if ($delete->delete()) {
+        
+        if ($delete != null) {
+            $delete->delete()
             $userId = $req->user()->id;
             $data = Bookmark::where('userId', $userId)->get(['id as bookmarkId', 'productId']);
             $bookmarkCount = count($data);
