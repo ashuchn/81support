@@ -120,11 +120,35 @@ class ShopController extends Controller
         }
 
         $userId = $req->user()->id;
+        $bookmark = Bookmark::find($id);
+
+        if($bookmark == NULL){
+            return response()->json([
+                "response_message" => "No Product Found",
+                "response_code" => 404,
+            ], 404);
+        }else{
+            $bookmark->delete();
+            return response()->json([
+                "response_message" => "Product Deleted from Bookmarks",
+                "response_code" => 200,
+            ], 200);
+        }
+    }
+
+    public function deleteBookmarkedProductV1(Request $req, $id)
+    {
+        if ($id == NULL || $id == '') {
+            return response()->json([
+                "response_message" => "Bookmark Id is Required",
+                "response_code" => 401,
+            ], 401);
+        }
+
+        $userId = $req->user()->id;
 
         $delete = Bookmark::find($id);
-        
-        if ($delete != null) {
-            $delete->delete()
+        if ($delete->delete()) {
             $userId = $req->user()->id;
             $data = Bookmark::where('userId', $userId)->get(['id as bookmarkId', 'productId']);
             $bookmarkCount = count($data);
