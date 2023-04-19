@@ -457,14 +457,15 @@ class ShopController extends Controller
                     $img = url('/') . '/' . $img;
                     return $img;
                 });
+                $product->images = $urlImages;
                 
-                return $dt->addedProduct = [
-                    'id' => $product->id,
-                    'productName' => $product->productName,
-                    'price' => $product->price,
-                    'description' => $product->description,
-                    'images' => $urlImages,
-                ];
+                $dt->addedProduct = $product;
+                unset($dt->userId);
+                unset($dt->productId);
+                return $dt;
+                unset($dt->userId);
+                unset($dt->productId);
+                return $dt;
             });
             return response()->json([
                 "response_message" => "Ok!",
