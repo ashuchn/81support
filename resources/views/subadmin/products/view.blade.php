@@ -31,8 +31,8 @@
                 </div>
 
 
-                <form action="{{ route('subadmin.products.store') }}" role="form" id="quickForm" class="card"
-                    method="post" enctype="multipart/form-data">
+                <form action="{{ route('subadmin.products.update', ['product' => $product->id]) }}" role="form"
+                    id="quickForm" class="card" method="patch" enctype="multipart/form-data">
                     @csrf
                     <div class="card-header">
                         <h3 class="card-title">Add Product</h3>
@@ -68,7 +68,9 @@
                                     <select name="category" class="form-select select2" required>
                                         <option value="">Choose Category</option>
                                         @foreach ($category as $item)
-                                            <option value="{{ $item->id }}" @php if($item->id == $product->categoryId) { echo 'selected'; } @endphp>{{ $item->categoryName }}</option>
+                                            <option value="{{ $item->id }}"
+                                                @php if($item->id == $product->categoryId) { echo 'selected'; } @endphp>
+                                                {{ $item->categoryName }}</option>
                                         @endforeach
                                     </select>
                                     @error('category')
@@ -88,190 +90,129 @@
                                 </div>
                             </div>
                             <div class="col-lg-8">
-                                <div class="col-12 d-flex justify-content-center">
-                                    <button class="ms-auto btn btn-outline-primary add-more">Add Color</button>
-                                </div>
-                                <hr>
-                                <div id="ColorsSizeItem"></div>
-                                @foreach($colors as $key => $citem)
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <table class="table">
-                                            <thead>
-                                                <th>Color</th>
-                                                <th>Images</th>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>
-                                                        <div class="col-12">
-                                                            <select name="colors[]" class="form-select select2" required>
-                                                                <option value="">Choose Color</option>
-                                                                <option @if($citem->color == '1') selected @endif value="1">Red</option>
-                                                                <option @if($citem->color == '2') selected @endif value="2">Blue</option>
-                                                                <option @if($citem->color == '3') selected @endif value="3">Green</option>
-                                                                <option @if($citem->color == '4') selected @endif value="4">Yellow</option>
-                                                            </select>
-                                                            @error('colors')
-                                                                <span class="text-danger">{{ $message }}</span>
-                                                            @enderror
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="col-12">
-                                                            <input type="file" name="images[]"
-                                                                class="form-control @error('image') ? ' is-invalid' : '' @enderror"
-                                                                placeholder="Enter Quantity" multiple required>
-                                                            @error('images')
-                                                                <span class="text-danger">{{ $message }}</span>
-                                                            @enderror
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+                                <div class="col-12">
+                                    <div class="col-12 d-flex justify-content-center">
+                                        <button type="button" class="ms-auto btn btn-outline-primary add-more" data-bs-toggle="modal" data-bs-target="#myModal">Add Color</button>
                                     </div>
-                                    <div class="col-lg-6">
-                                        <table class="table">
-                                            <thead>
-                                                <th>Size</th>
-                                                <th>Quantity</th>
-                                            </thead>
-                                            <tbody>
-                                                @foreach($sizes as $j => $sitem)
+
+                                    <!-- sample modal content -->
+                                    <div id="myModal" class="modal fade" tabindex="-1" role="dialog"
+                                        aria-labelledby="myModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="myModalLabel">Add More Color Variants</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="col-12 d-flex justify-content-center">
+                                                        <button class="ms-auto btn btn-outline-primary add-more">Add
+                                                            More</button>
+                                                    </div>
+                                                    <div id="ColorsSizeItem"></div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-light waves-effect"
+                                                        data-bs-dismiss="modal">Close</button>
+                                                    <button type="button"
+                                                        class="btn btn-primary waves-effect waves-light">Save
+                                                        changes</button>
+                                                </div>
+                                            </div><!-- /.modal-content -->
+                                        </div><!-- /.modal-dialog -->
+                                    </div><!-- /.modal -->
+                                </div>
+                                @php $i=0 @endphp
+                                @foreach ($rows as $item)
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <table class="table">
+                                                <thead>
+                                                    <th>Color</th>
+                                                    <th>Images</th>
+                                                </thead>
+                                                <tbody>
                                                     <tr>
                                                         <td>
-                                                            {{ $sitem->size }}
-                                                            <input name="sizes[]" type="text" value="{{ $sizes[$key] }}" class="d-none">
+                                                            <div class="col-12">
+                                                                <select name="colors[]" class="form-select select2"
+                                                                    required>
+                                                                    <option value="">Choose Color</option>
+                                                                    <option
+                                                                        @if ($colors[$i]->color == '1') selected @endif
+                                                                        value="1">Red</option>
+                                                                    <option
+                                                                        @if ($colors[$i]->color == '2') selected @endif
+                                                                        value="2">Blue</option>
+                                                                    <option
+                                                                        @if ($colors[$i]->color == '3') selected @endif
+                                                                        value="3">Green</option>
+                                                                    <option
+                                                                        @if ($colors[$i]->color == '4') selected @endif
+                                                                        value="4">Yellow</option>
+                                                                </select>
+                                                                @error('colors')
+                                                                    <span class="text-danger">{{ $message }}</span>
+                                                                @enderror
+                                                            </div>
                                                         </td>
                                                         <td>
                                                             <div class="col-12">
-                                                                <input type="number" name="quantity[]"
-                                                                    class="form-control @error('quantity') ? ' is-invalid' : '' @enderror"
-                                                                    value="{{ $quantities[$key][$j] }}"
-                                                                    placeholder="Enter Quantity" value="{{ $quantities[$key][$j] }}" required>
-                                                                @error('quantity')
+                                                                <input type="file" name="images[]"
+                                                                    class="form-control @error('image') ? ' is-invalid' : '' @enderror"
+                                                                    placeholder="Enter Quantity" multiple required>
+                                                                @error('images')
                                                                     <span class="text-danger">{{ $message }}</span>
                                                                 @enderror
                                                             </div>
                                                         </td>
                                                     </tr>
-                                                @endforeach
-                                            </tbody>
-                                        </table>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <table class="table">
+                                                <thead>
+                                                    <th>Size</th>
+                                                    <th>Quantity</th>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach ($item as $key => $value)
+                                                        <tr>
+                                                            <td>
+                                                                {{ $value->size }}
+                                                                <input name="sizes[]" type="text"
+                                                                    value="{{ $value->size }}" class="d-none">
+                                                            </td>
+                                                            <td>
+                                                                <div class="col-12">
+                                                                    <input type="number" name="quantity[]"
+                                                                        class="form-control @error('quantity') ? ' is-invalid' : '' @enderror"
+                                                                        value="{{ $value->quantity }}"
+                                                                        placeholder="Enter Quantity"
+                                                                        value="{{ $value->quantity }}" required>
+                                                                    @error('quantity')
+                                                                        <span class="text-danger">{{ $message }}</span>
+                                                                    @enderror
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
-                                </div>
+                                    @php $i++ @endphp
                                 @endforeach
                             </div>
                         </div>
                     </div>
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-primary">Add</button>
+                        <button type="submit" class="btn btn-primary">Update</button>
                     </div>
                 </form>
-                <div class="row">
-                    <div class="col-12">
-
-                        <div class="card card-primary">
-                            <div class="card-header">
-                                <h3 class="card-title">View Product</h3>
-                            </div>
-                            <!-- /.card-header -->
-                            <!-- form start -->
-                            <form action="{{ route('subadmin.products.update', ['product' => $product->id]) }}"
-                                role="form" id="quickForm" method="patch" enctype="multipart/form-data">
-                                @csrf
-                                @method('patch')
-                                <div class="card-body">
-                                    <div class="form-group row">
-                                        <div class="col-md-6">
-                                            <label for="exampleInputEmail1">Product Name</label>
-                                            <span class="text-danger">*</span>
-                                            <input type="text" name="productName"
-                                                value="{{ isset($product->productName) ? $product->productName : '' }}"
-                                                class="form-control @error('productName') ? ' is-invalid' : '' @enderror"
-                                                placeholder="Enter Product Name" required>
-                                            @error('productName')
-                                                <span class="text-danger">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label for="price">Price (in $)</label>
-                                            <span class="text-danger">*</span>
-                                            <input type="text" name="price"
-                                                value="{{ isset($product->price) ? $product->price : '' }}"
-                                                class="form-control @error('price') ? ' is-invalid' : '' @enderror"
-                                                placeholder="Enter Product Price" required>
-                                            @error('price')
-                                                <span class="text-danger">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-                                    </div>
-
-
-                                    <div class="form-group row">
-                                        <div class="col-md-12">
-                                            <label for="price">Description</label>
-                                            <span class="text-danger">*</span>
-                                            <textarea class="form-control @error('description') ? ' is-invalid' : '' @enderror" name="description"
-                                                cols="30" rows="10" placeholder="Product Description..." required>{{ isset($product->description) ? $product->description : '' }}</textarea>
-                                            @error('description')
-                                                <span class="text-danger">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group row">
-                                        <div class="col-md-6">
-                                            <label for="exampleInputEmail1">Images</label>
-                                            <input type="file" name="images[]" class="form-control" multiple>
-                                            @error('images')
-                                                <span class="text-danger">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-                                        <div class="col-md-3">
-                                            <label for="exampleInputEmail1">Choose Category:</label>
-                                            <span class="text-danger">*</span>
-                                            <select name="category" class="form-select select2" required>
-                                                <option value="">Choose Category</option>
-                                                @foreach ($category as $item)
-                                                    <option value="{{ $item->id }}"
-                                                        @php if($item->id == $product->categoryId) { echo 'selected'; } @endphp>
-                                                        {{ $item->categoryName }}</option>
-                                                @endforeach
-                                            </select>
-                                            @error('category')
-                                                <span class="text-danger">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-                                        <div class="col-md-3">
-                                            <label for="exampleInputEmail1">Quantity:</label>
-                                            <span class="text-danger">*</span>
-                                            <input type="number" name="availavle_quantity"
-                                                value="{{ isset($product->available_quantity) ? $product->available_quantity : '' }}"
-                                                class="form-control @error('availavle_quantity') ? ' is-invalid' : '' @enderror"
-                                                placeholder="Enter Product Quantity" required>
-                                            @error('availavle_quantity')
-                                                <span class="text-danger">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /.card-body -->
-                                <div class="card-footer">
-                                    <button type="submit" class="btn btn-primary">Add</button>
-                                </div>
-                            </form>
-                        </div>
-                        <!-- /.card -->
-                    </div>
-                    <!-- /.col -->
-                </div>
-                <!-- /.row -->
             </div>
-            <!-- /.container-fluid -->
-
-
         </div>
     </div>
 
@@ -293,7 +234,7 @@
                 $("#ColorsSizeItem").prepend(`
 
                     <div class="row">
-                        <div class="col-lg-6">
+                        <div class="col-12">
                             <table class="table">
                                 <thead>
                                     <th>Color</th>
@@ -334,7 +275,7 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-12">
                             <table class="table">
                                 <thead>
                                     <th>Size</th>

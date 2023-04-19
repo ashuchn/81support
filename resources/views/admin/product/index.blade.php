@@ -40,11 +40,12 @@
                     <!-- /.card-header -->
                     <div class="card-body">
                         <table class="table table-bordered table-striped table-responsive-sm">
-                            <thead>
+                            <thead style="background-color:#B9D9EB" class="">
                                 <tr>
                                     <th>Image</th>
                                     <th>Name</th>
                                     <th>Features</th>
+                                    <th>Stock Count</th>
                                     <th>Rating</th>
                                     <th>Actions</th>
                                 </tr>
@@ -54,22 +55,35 @@
                                 @forelse($data as $item)
                                     <tr>
                                         <td>
-                                            <a href="{{ $item->images[0] }}"
-                                                data-toggle="lightbox" data-title="{{ $item->productName }}" data-gallery="gallery">
-                                                <img style="width: 150px; height: auto; object-fit: cover;"
-                                                    src="{{ $item->images[0] }}" alt="image">
-                                            </a>
+                                            @if ($item->images != null)
+                                                <a href="{{ $item->images[0] }}" data-toggle="lightbox"
+                                                    data-title="{{ $item->productName }}" data-gallery="gallery">
+                                                    <img style="width: 150px; height: auto; object-fit: cover;"
+                                                        src="{{ $item->images[0] }}" alt="image">
+                                                </a>
+                                            @else
+                                                No Image Found
+                                            @endif
                                         </td>
                                         <td>{{ $item->productName }}</td>
                                         <td>{{ $item->description }}</td>
+                                        <td>{{ $item->available_quantity }}</td>
                                         <td>
                                             <div class="container">
                                                 <span class="fa fa-star checked"></span>
                                             </div>
                                         </td>
-                                        <td>
-                                            <a href="#" class="btn btn-light">Details</a>
-                                            <button class="btn btn-light">Edit</button>
+                                        <td class="d-flex">
+                                            {{-- <a href="#" class="btn btn-primary">Details</a> --}}
+                                            <button href="#" type="button" class="btn btn-primary"
+                                                data-toggle="tooltip" data-placement="top" title="Details">
+                                                <i class="fa-solid fa-circle-info"></i>
+                                            </button>
+                                            {{-- <button class="btn" style="background-color: #01ff70">Edit</button> --}}
+                                            <button class="btn" type="button" style="background-color: #01ff70"
+                                                data-toggle="tooltip" data-placement="top" title="Edit">
+                                                <i class="fa-solid fa-pen-to-square"></i>
+                                            </button>
                                         </td>
                                     </tr>
                                     <?php $i++; ?>
@@ -82,6 +96,7 @@
                                     <th>Image</th>
                                     <th>Name</th>
                                     <th>Features</th>
+                                    <th>Stock Count</th>
                                     <th>Rating</th>
                                     <th>Actions</th>
                                 </tr>

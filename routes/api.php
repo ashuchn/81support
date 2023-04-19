@@ -1,3 +1,4 @@
+
 <?php
 
 use Illuminate\Http\Request;
@@ -5,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\ProfileController;
 use App\Http\Controllers\Api\ShopController;
+use App\Http\Controllers\Api\ProductDetails;
 use App\Http\Controllers\Api\NotificationController;
 use App\Http\Controllers\Api\ReviewController;
 use App\Mail\sendOtp;
@@ -29,11 +31,11 @@ Route::middleware('auth:sanctum')->get('/profile/view', function (Request $reque
      return $request->user();
 });
 
+    Route::get('allProducts', [ShopController::class, 'allProducts']);
 Route::group(['middleware' => 'auth:sanctum'],function () {
     Route::get('authenticate', [AuthController::class, 'authenticate']);
     Route::apiResource('profile', ProfileController::class);
     Route::post('getNearestShops', [ShopController::class, 'getNearestShops']);
-    Route::get('allProducts', [ShopController::class, 'allProducts']);
     Route::get('getNotifications', [NotificationController::class, 'getNotifications']);
     Route::get('getCategories', [ShopController::class, 'getCategories']);
     Route::post('addProductToCart', [ShopController::class, 'addProductToCart']);
@@ -41,6 +43,7 @@ Route::group(['middleware' => 'auth:sanctum'],function () {
     Route::post('bookmarkProduct', [ShopController::class, 'bookmarkProduct']);
     Route::delete('deleteBookmarkedProduct/{id}',[ShopController::class, 'deleteBookmarkedProduct']);    
     Route::get('getProduct',[ShopController::class,'getProduct']);
+    Route::post('ProductDetails',[ProductDetails::class,'ProductDetails']);
     Route::get('getCart',[ShopController::class,'getCart']);
     Route::get('getBookmarks',[ShopController::class,'getBookmarks']);
     Route::post('getDeals',[ShopController::class,'getDeals']);

@@ -51,12 +51,13 @@
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
       <!-- Brand Logo -->
-      <a href="index3.html" class="brand-link ">
-        <img src="{{url('assets/adminlte/dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+      <a href="{{ route('admin.dashboard') }}" class="brand-link ">
+        <img src="{{ url('public/website_logo.png') }}" alt="Support81 Logo" class="brand-image img-circle elevation-3"
              style="opacity: .8">
         <span class="brand-text font-weight-light">81 Support</span>
       </a>
   
+      
       <!-- Sidebar -->
       <div class="sidebar">
         <!-- Sidebar user panel (optional) -->
@@ -105,7 +106,7 @@
                 </a>
                 <ul class="nav nav-treeview" >
                     <li class="nav-item">
-                        <a href="{{ route('admin.notification') }}" class="nav-link text-white {{ Route::is('admin.notification') ? 'active' : '' }}">
+                        <a href="{{ route('admin.notification') }}" class="nav-link {{ Route::is('admin.notification') ? 'active text-black' : 'text-white' }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>App Notifications</p>
                         </a>
@@ -123,26 +124,26 @@
                 <ul class="nav nav-treeview" >
                   
                   <li class="nav-item">
-                    <a href="{{ route('category.index') }}" class="nav-link text-white {{ Route::is('category.index') ? 'active' : '' }}">
+                    <a href="{{ route('category.index') }}" class="nav-link {{ Route::is('category.index') ? 'active text-black' : 'text-white' }}">
                       <i class="far fa-circle nav-icon"></i>
                      <p>Category Management</p>
                     </a>
                   </li>
 
                   <li class="nav-item">
-                    <a href="{{ route('product.index') }}" class="nav-link text-white {{ Route::is('product.index') ? 'active' : '' }}">
+                    <a href="{{ route('product.index') }}" class="nav-link  {{ Route::is('product.index') ? 'active text-black' : 'text-white' }}">
                       <i class="far fa-circle nav-icon"></i>
                      <p>Products Management</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="{{ route('static_content.index') }}" class="nav-link text-white {{ Route::is('static_content.index') ? 'active' : '' }}">
+                    <a href="{{ route('static_content.index') }}" class="nav-link  {{ Route::is('static_content.index') ? 'active text-black' : 'text-white' }}">
                       <i class="far fa-circle nav-icon"></i>
                      <p>Static Content</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="{{ route('filter.index') }}" class="nav-link text-white {{ Route::is('filter.*') ? 'active' : '' }}">
+                    <a href="{{ route('filter.index') }}" class="nav-link {{ Route::is('filter.*') ? 'active text-black' : 'text-white' }}">
                       <i class="far fa-circle nav-icon"></i>
                      <p>Filters</p>
                     </a>
@@ -151,6 +152,7 @@
                 </ul>
                 <li class="nav-item">
                     <a href="{{route('admin.logout')}}" class="nav-link text-white">
+                      <i class="fa-solid fa-arrow-right-from-bracket nav-icon"></i>
                         <p>Logout</p>
                     </a>
                 </li>

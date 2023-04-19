@@ -1,5 +1,5 @@
 @extends('subadmin.layout.layout')
-@section('title', 'Add Product')
+@section('title', 'Add Product Size Quantity')
 @section('css')
     <link rel="stylesheet" href="{{ url('assets/adminlte/plugins/select2/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ url('assets/adminlte/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
@@ -96,10 +96,10 @@
                                                         <div class="col-12">
                                                             <select name="colors[]" class="form-select select2" required>
                                                                 <option value="">Choose Color</option>
-                                                                <option value="1">Red</option>
-                                                                <option value="2">Blue</option>
-                                                                <option value="3">Green</option>
-                                                                <option value="4">Yellow</option>
+                                                                @foreach ($colors as $item)
+                                                                    <option value="{{ $item->id }}">{{ $item->name }}
+                                                                    </option>
+                                                                @endforeach
                                                             </select>
                                                             @error('colors')
                                                                 <span class="text-danger">{{ $message }}</span>
@@ -130,7 +130,7 @@
                                                 <tr>
                                                     <td>
                                                         XS
-                                                        <input name="sizes[]" type="text" value="XS" class="d-none">
+                                                        <input name="sizes[]" type="number" value="1" class="d-none">
                                                     </td>
                                                     <td>
                                                         <div class="col-12">
@@ -146,7 +146,7 @@
                                                 <tr>
                                                     <td>
                                                         S
-                                                        <input name="sizes[]" type="text" value="S" class="d-none">
+                                                        <input name="sizes[]" type="number" value="2" class="d-none">
                                                     </td>
                                                     <td>
                                                         <div class="col-12">
@@ -162,7 +162,7 @@
                                                 <tr>
                                                     <td>
                                                         M
-                                                        <input name="sizes[]" type="text" value="M"
+                                                        <input name="sizes[]" type="number" value="3"
                                                             class="d-none">
                                                     </td>
                                                     <td>
@@ -179,7 +179,7 @@
                                                 <tr>
                                                     <td>
                                                         L
-                                                        <input name="sizes[]" type="text" value="L"
+                                                        <input name="sizes[]" type="number" value="4"
                                                             class="d-none">
                                                     </td>
                                                     <td>
@@ -196,7 +196,7 @@
                                                 <tr>
                                                     <td>
                                                         XL
-                                                        <input name="sizes[]" type="text" value="XL"
+                                                        <input name="sizes[]" type="number" value="5"
                                                             class="d-none">
                                                     </td>
                                                     <td>
@@ -213,7 +213,7 @@
                                                 <tr>
                                                     <td>
                                                         XXL
-                                                        <input name="sizes[]" type="text" value="XXL"
+                                                        <input name="sizes[]" type="number" value="6"
                                                             class="d-none">
                                                     </td>
                                                     <td>
@@ -279,10 +279,9 @@
                                             <div class="col-12">
                                                 <select name="colors[]" class="form-select select2" required>
                                                     <option value="">Choose Color</option>
-                                                    <option value="1">Red</option>
-                                                    <option value="2">Blue</option>
-                                                    <option value="3">Green</option>
-                                                    <option value="4">Yellow</option>
+                                                    @foreach ($colors as $item)
+                                                         <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                                    @endforeach
                                                 </select>
                                                 @error('colors')
                                                     <span class="text-danger">{{ $message }}</span>
@@ -318,7 +317,7 @@
                                     <tr>
                                         <td>
                                             XS
-                                            <input name="sizes[]" type="text" value="XS" class="d-none">
+                                            <input name="sizes[]" type="number" value="1" class="d-none">
                                         </td>
                                         <td colspan="2">
                                             <div class="col-12">
@@ -334,7 +333,7 @@
                                     <tr>
                                         <td>
                                             S
-                                            <input name="sizes[]" type="text" value="S" class="d-none">
+                                            <input name="sizes[]" type="number" value="2" class="d-none">
                                         </td>
                                         <td colspan="2">
                                             <div class="col-12">
@@ -350,7 +349,7 @@
                                     <tr>
                                         <td>
                                             M
-                                            <input name="sizes[]" type="text" value="M" class="d-none">
+                                            <input name="sizes[]" type="number" value="3" class="d-none">
                                         </td>
                                         <td colspan="2">
                                             <div class="col-12">
@@ -366,7 +365,7 @@
                                     <tr>
                                         <td>
                                             L
-                                            <input name="sizes[]" type="text" value="L" class="d-none">
+                                            <input name="sizes[]" type="number" value="4" class="d-none">
                                         </td>
                                         <td colspan="2">
                                             <div class="col-12">
@@ -382,7 +381,7 @@
                                     <tr>
                                         <td>
                                             XL
-                                            <input name="sizes[]" type="text" value="XL" class="d-none">
+                                            <input name="sizes[]" type="number" value="5" class="d-none">
                                         </td>
                                         <td colspan="2">
                                             <div class="col-12">
@@ -398,7 +397,7 @@
                                     <tr>
                                         <td>
                                             XXL
-                                            <input name="sizes[]" type="text" value="XXL" class="d-none">
+                                            <input name="sizes[]" type="number" value="6" class="d-none">
                                         </td>
                                         <td colspan="2">
                                             <div class="col-12">
