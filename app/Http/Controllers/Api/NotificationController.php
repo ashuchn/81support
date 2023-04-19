@@ -16,9 +16,7 @@ class NotificationController extends Controller {
     {
         $user_id = $req->user()->id;
         
-        $data = Notification::where('user_id', $user_id)->map(function($dt) {
-            return $dt;
-        });
+        $data = Notification::where('user_id', $user_id)->get() ?? [];
         
         if($data->count() == 0){
             return response()->json([
