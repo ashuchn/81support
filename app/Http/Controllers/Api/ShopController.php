@@ -64,6 +64,50 @@ class ShopController extends Controller
         ]);
     }
 
+    public function getBookmarks(Request $req)
+    {
+        $userId = $req->user()->id;
+        $data = Bookmark::where('userId', $userId)->get(['id as bookmarkId', 'productId']);
+        $bookmarkCount = count($data);
+
+        if ($bookmarkCount > 0) {
+            $bookmark = $data->map(function ($dt) {
+                $product = Product::where('id', $dt->productId)->first();
+                
+                $images = DB::table('product_images')->where('productId', $dt->productId)->where('color', $dt->color)->pluck('image'); 
+                $urlImages = $images->map(function ($img) {
+                    $img = url('/') . '/' . $img;
+                    return $img;
+                });
+
+                $dt->addedProduct = [
+                    'id' => $product->id,
+                    'productName' => $product->productName,
+                    'price' => $product->price,
+                    'description' => $product->description,
+                    'images' => $urlImages,
+                ];
+                unset($dt->userId);
+                unset($dt->productId);
+                return $dt;
+            });
+            
+            return response()->json([
+                "response_message" => "Ok!",
+                "response_code" => 200,
+                "bookmarkProductCount" => count($bookmark),
+                "data" => $bookmark,
+
+            ], 200);
+        } else {
+            return response()->json([
+                "response_message" => "No products in Bookmarks",
+                "response_code" => 404,
+                "userId" => $userId
+            ], 404);
+        }
+    }
+
     public function getNearestShops(Request $req)
     {
         $valid = Validator::make($req->all(), [
@@ -419,74 +463,6 @@ class ShopController extends Controller
             return response()->json([
                 "response_message" => "No products in Cart",
                 "response_code" => 404,
-            ], 404);
-        }
-    }
-
-    public function getBookmarks(Request $req)
-    {
-        $userId = $req->user()->id;
-        $data = Bookmark::where('userId', $userId)->get(['id as bookmarkId', 'productId']);
-        $bookmarkCount = count($data);
-
-        if ($bookmarkCount > 0) {
-            $bookmark = $data->map(function ($dt) {
-                $product = Product::where('id', $dt->productId)->first();
-                $images = DB::table('product_images')->where('productId', $dt->productId)->where('color', $dt->color)->pluck('image');
-                $urlImages = $images->map(function ($img) {
-                    $img = url('/') . '/' . $img;
-                    return $img;
-                });
-                // $dt->images = $urlImages;
-
-                $reviews = DB::table('reviews')->where('productId', $dt->productId)->get(['id', 'userId', 'productId', 'rating', 'description']);
-                if (isset($reviews)) {
-                    $review = $reviews->map(function ($rv) {
-                        $user = New_User::find($rv->userId);
-                        if ($user) {
-                            $rv->userName = $user->name;
-                            $rv->userImage = $user->image;
-                        } else {
-                            $rv->userName = null;
-                            $rv->userImage = null;
-                        }
-                        return $rv;
-                    });
-                } else {
-                    $review = [];
-                }
-                // $dt->reviews = $reviews;
-                // $dt->addedProduct = $product;
-                $dt->addedProduct = [
-                    'id' => $product->id,
-                    'rc_id' => $product->rc_id,
-                    'categoryId' => $product->categoryId,
-                    'productName' => $product->productName,
-                    'price' => $product->price,
-                    'description' => $product->description,
-                    'available_quantity' => $product->available_quantity,
-                    'discount' => $product->discount,
-                    'created_at' => $product->created_at,
-                    'updated_at' => $product->updated_at,
-                    'images' => $urlImages,
-                    'reviews' => $review
-                ];
-                unset($dt->userId);
-                unset($dt->productId);
-                return $dt;
-            });
-            return response()->json([
-                "response_message" => "Ok!",
-                "response_code" => 200,
-                "bookmarkProductCount" => count($bookmark),
-                "data" => $bookmark,
-
-            ], 200);
-        } else {
-            return response()->json([
-                "response_message" => "No products in Bookmarks",
-                "response_code" => 404,
-                "userId" => $userId
             ], 404);
         }
     }
