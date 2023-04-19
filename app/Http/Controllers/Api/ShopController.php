@@ -457,32 +457,14 @@ class ShopController extends Controller
                     $img = url('/') . '/' . $img;
                     return $img;
                 });
-                $product->images = $urlImages;
-
-                $reviews = DB::table('reviews')->where('productId', $dt->productId)->get(['id', 'userId', 'productId', 'rating', 'description']);
-                if (isset($reviews)) {
-                    $review = $reviews->map(function ($rv) {
-                        $user = New_User::find($rv->userId);
-                        if ($user) {
-                            $rv->userName = $user->name;
-                            $rv->userImage = $user->image;
-                        } else {
-                            $rv->userName = null;
-                            $rv->userImage = null;
-                        }
-                        return $rv;
-                    });
-                } else {
-                    $review = [];
-                }
-                $product->reviews = $reviews;
-                $dt->addedProduct = $product;
-                unset($dt->userId);
-                unset($dt->productId);
-                return $dt;
-                unset($dt->userId);
-                unset($dt->productId);
-                return $dt;
+                
+                return $dt->addedProduct = [
+                    'id' => $product->id,
+                    'productName' => $product->productName,
+                    'price' => $product->price,
+                    'description' => $product->description,
+                    'images' => $urlImages,
+                ];
             });
             return response()->json([
                 "response_message" => "Ok!",
