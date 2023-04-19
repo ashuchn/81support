@@ -489,13 +489,13 @@ class ShopController extends Controller
                 "response_code" => 200,
                 "bookmarkProductCount" => count($bookmark),
                 "data" => $bookmark,
-                "userId" => $userId
 
             ], 200);
         } else {
             return response()->json([
                 "response_message" => "No products in Bookmarks",
                 "response_code" => 404,
+                "userId" => $userId
             ], 404);
         }
     }
