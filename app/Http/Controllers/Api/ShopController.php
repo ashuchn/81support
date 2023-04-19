@@ -19,6 +19,8 @@ use Mail;
 class ShopController extends Controller
 {
 
+    // completed
+
     public function allProducts(Request $req)
     {
 
@@ -104,10 +106,82 @@ class ShopController extends Controller
             return response()->json([
                 "response_message" => "No products in Bookmarks",
                 "response_code" => 404,
-                "userId" => $userId
             ], 404);
         }
     }
+
+    public function deleteBookmarkedProduct(Request $req, $id)
+    {
+        if ($id == NULL || $id == '') {
+            return response()->json([
+                "response_message" => "Bookmark Id is Required",
+                "response_code" => 401,
+            ], 401);
+        }
+
+        $userId = $req->user()->id;
+
+        $delete = Bookmark::find($id);
+        if ($delete->delete()) {
+            $userId = $req->user()->id;
+            $data = Bookmark::where('userId', $userId)->get(['id as bookmarkId', 'productId']);
+            $bookmarkCount = count($data);
+
+            if ($bookmarkCount > 0) {
+                $bookmark = $data->map(function ($dt) {
+                    $product = Product::where('id', $dt->productId)->first();
+                    $images = DB::table('product_images')->where('productId', $dt->productId)->pluck('image');
+                    $urlImages = $images->map(function ($img) {
+                        $img = url('/') . '/' . $img;
+                        return $img;
+                    });
+                    $product->images = $urlImages;
+
+                    $reviews = DB::table('reviews')->where('productId', $dt->productId)->get(['id', 'userId', 'productId', 'rating', 'description']);
+                    if (isset($reviews)) {
+                        $review = $reviews->map(function ($rv) {
+                            $user = New_User::find($rv->userId);
+                            if ($user) {
+                                $rv->userName = $user->name;
+                                $rv->userImage = $user->image;
+                            } else {
+                                $rv->userName = null;
+                                $rv->userImage = null;
+                            }
+                            return $rv;
+                        });
+                    } else {
+                        $review = [];
+                    }
+                    $product->reviews = $reviews;
+                    $dt->addedProduct = $product;
+                    unset($dt->userId);
+                    unset($dt->productId);
+                    return $dt;
+                });
+                return response()->json([
+                    "response_message" => "Ok!",
+                    "response_code" => 200,
+                    "bookmarkProductCount" => $bookmarkCount,
+                    "data" => $bookmark
+                ], 200);
+            } else {
+                return response()->json([
+                    "response_message" => "No products in Bookmarks",
+                    "response_code" => 404,
+                ], 404);
+            }
+        } else {
+            return response()->json([
+                "response_message" => "Some error Occured",
+                "response_code" => 401,
+            ], 401);
+        }
+
+    }
+
+
+    // rest all
 
     public function getNearestShops(Request $req)
     {
@@ -280,76 +354,6 @@ class ShopController extends Controller
             ], 401);
         }
 
-
-    }
-
-    public function deleteBookmarkedProduct(Request $req, $id)
-    {
-        if ($id == NULL || $id == '') {
-            return response()->json([
-                "response_message" => "Bookmark Id is Required",
-                "response_code" => 401,
-            ], 401);
-        }
-
-        $userId = $req->user()->id;
-
-        $delete = Bookmark::find($id);
-        if ($delete->delete()) {
-            $userId = $req->user()->id;
-            $data = Bookmark::where('userId', $userId)->get(['id as bookmarkId', 'productId']);
-            $bookmarkCount = count($data);
-
-            if ($bookmarkCount > 0) {
-                $bookmark = $data->map(function ($dt) {
-                    $product = Product::where('id', $dt->productId)->first();
-                    $images = DB::table('product_images')->where('productId', $dt->productId)->pluck('image');
-                    $urlImages = $images->map(function ($img) {
-                        $img = url('/') . '/' . $img;
-                        return $img;
-                    });
-                    $product->images = $urlImages;
-
-                    $reviews = DB::table('reviews')->where('productId', $dt->productId)->get(['id', 'userId', 'productId', 'rating', 'description']);
-                    if (isset($reviews)) {
-                        $review = $reviews->map(function ($rv) {
-                            $user = New_User::find($rv->userId);
-                            if ($user) {
-                                $rv->userName = $user->name;
-                                $rv->userImage = $user->image;
-                            } else {
-                                $rv->userName = null;
-                                $rv->userImage = null;
-                            }
-                            return $rv;
-                        });
-                    } else {
-                        $review = [];
-                    }
-                    $product->reviews = $reviews;
-                    $dt->addedProduct = $product;
-                    unset($dt->userId);
-                    unset($dt->productId);
-                    return $dt;
-                });
-                return response()->json([
-                    "response_message" => "Ok!",
-                    "response_code" => 200,
-                    "bookmarkProductCount" => $bookmarkCount,
-                    "data" => $bookmark
-                ], 200);
-            } else {
-                return response()->json([
-                    "response_message" => "No products in Bookmarks",
-                    "response_code" => 404,
-                ], 404);
-            }
-        } else {
-            return response()->json([
-                "response_message" => "Some error Occured",
-                "response_code" => 401,
-            ], 401);
-        }
 
     }
 
