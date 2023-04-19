@@ -138,76 +138,6 @@ class ShopController extends Controller
         }
     }
 
-    public function deleteBookmarkedProductV1(Request $req, $id)
-    {
-        if ($id == NULL || $id == '') {
-            return response()->json([
-                "response_message" => "Bookmark Id is Required",
-                "response_code" => 401,
-            ], 401);
-        }
-
-        $userId = $req->user()->id;
-
-        $delete = Bookmark::find($id);
-        if ($delete->delete()) {
-            $userId = $req->user()->id;
-            $data = Bookmark::where('userId', $userId)->get(['id as bookmarkId', 'productId']);
-            $bookmarkCount = count($data);
-
-            if ($bookmarkCount > 0) {
-                $bookmark = $data->map(function ($dt) {
-                    $product = Product::where('id', $dt->productId)->first();
-                    $images = DB::table('product_images')->where('productId', $dt->productId)->pluck('image');
-                    $urlImages = $images->map(function ($img) {
-                        $img = url('/') . '/' . $img;
-                        return $img;
-                    });
-                    $product->images = $urlImages;
-
-                    $reviews = DB::table('reviews')->where('productId', $dt->productId)->get(['id', 'userId', 'productId', 'rating', 'description']);
-                    if (isset($reviews)) {
-                        $review = $reviews->map(function ($rv) {
-                            $user = New_User::find($rv->userId);
-                            if ($user) {
-                                $rv->userName = $user->name;
-                                $rv->userImage = $user->image;
-                            } else {
-                                $rv->userName = null;
-                                $rv->userImage = null;
-                            }
-                            return $rv;
-                        });
-                    } else {
-                        $review = [];
-                    }
-                    $product->reviews = $reviews;
-                    $dt->addedProduct = $product;
-                    unset($dt->userId);
-                    unset($dt->productId);
-                    return $dt;
-                });
-                return response()->json([
-                    "response_message" => "Ok!",
-                    "response_code" => 200,
-                    "bookmarkProductCount" => $bookmarkCount,
-                    "data" => $bookmark
-                ], 200);
-            } else {
-                return response()->json([
-                    "response_message" => "No products in Bookmarks",
-                    "response_code" => 404,
-                ], 404);
-            }
-        } else {
-            return response()->json([
-                "response_message" => "Some error Occured",
-                "response_code" => 401,
-            ], 401);
-        }
-
-    }
-
     public function getCart(Request $req)
     {
         $userId = $req->user()->id;
@@ -284,8 +214,207 @@ class ShopController extends Controller
         ], 200);
     }
 
+    public function increaseCartProductCount(Request $req)
+    {
+        $valid = Validator::make($req->all(), [
+            "cartId" => "Required|exists:carts,id",
+        ], [
+                "cartId.required" => "Provide cart Id",
+                "cartId.exists" => "No Products in Cart"
+            ]);
+
+        if ($valid->fails()) {
+            return response()->json([
+                "response_message" => $valid->errors()->first(),
+                "response_code" => 401,
+            ], 401);
+        }
+
+        $increment = Cart::where('id', $req->cartId)->increment('quantity', 1);
+        if ($increment) {
+
+            $userId = $req->user()->id;
+            $data = Cart::where('userId', $userId)->get(['id as cartId', 'productId', 'userId', 'quantity']);
+            $cartProductCount = count($data);
+
+            $cart = $data->map(function ($dt) {
+                $product = Product::where('id', $dt->productId)->first();
+                $images = DB::table('product_images')->where('productId', $dt->productId)->pluck('image');
+                $urlImages = $images->map(function ($img) {
+                    $img = url('/') . '/' . $img;
+                    return $img;
+                });
+                $product->images = $urlImages;
+
+                $reviews = DB::table('reviews')->where('productId', $dt->productId)->get(['id', 'userId', 'productId', 'rating', 'description']);
+                if (isset($reviews)) {
+                    $review = $reviews->map(function ($rv) {
+                        $user = New_User::find($rv->userId);
+                        if ($user) {
+                            $rv->userName = $user->name;
+                            $rv->userImage = $user->image;
+                        } else {
+                            $rv->userName = null;
+                            $rv->userImage = null;
+                        }
+                        return $rv;
+                    });
+                } else {
+                    $review = [];
+                }
+                $product->reviews = $reviews;
+                $dt->addedProduct = $product;
+                unset($dt->userId);
+                unset($dt->productId);
+                return $dt;
+            });
+
+            return response()->json([
+                "response_message" => "Ok!",
+                "response_code" => 200,
+                "cartProductCount" => $cartProductCount,
+                "data" => $cart
+            ]);
+        }
+
+    }
+
+    public function decreaseCartProductCount(Request $req)
+    {
+        $valid = Validator::make($req->all(), [
+            "cartId" => "Required|exists:carts,id",
+        ], [
+                "cartId.required" => "Provide cart Id",
+                "cartId.exists" => "No Products in Cart"
+            ]);
+
+        if ($valid->fails()) {
+            return response()->json([
+                "response_message" => $valid->errors()->first(),
+                "response_code" => 401,
+            ], 401);
+        }
+
+        $decrement = Cart::where('id', $req->cartId)->decrement('quantity', 1);
+        if ($decrement) {
+
+            $userId = $req->user()->id;
+            $data = Cart::where('userId', $userId)->get(['id as cartId', 'productId', 'userId', 'quantity']);
+            $cartProductCount = count($data);
+
+            $cart = $data->map(function ($dt) {
+                $product = Product::where('id', $dt->productId)->first();
+                $images = DB::table('product_images')->where('productId', $dt->productId)->pluck('image');
+                $urlImages = $images->map(function ($img) {
+                    $img = url('/') . '/' . $img;
+                    return $img;
+                });
+                $product->images = $urlImages;
+
+                $reviews = DB::table('reviews')->where('productId', $dt->productId)->get(['id', 'userId', 'productId', 'rating', 'description']);
+                if (isset($reviews)) {
+                    $review = $reviews->map(function ($rv) {
+                        $user = New_User::find($rv->userId);
+                        if ($user) {
+                            $rv->userName = $user->name;
+                            $rv->userImage = $user->image;
+                        } else {
+                            $rv->userName = null;
+                            $rv->userImage = null;
+                        }
+                        return $rv;
+                    });
+                } else {
+                    $review = [];
+                }
+                $product->reviews = $reviews;
+                $dt->addedProduct = $product;
+                unset($dt->userId);
+                unset($dt->productId);
+                return $dt;
+            });
+
+            return response()->json([
+                "response_message" => "Ok!",
+                "response_code" => 200,
+                "cartProductCount" => $cartProductCount,
+                "data" => $cart
+            ]);
+        }
+
+    }
+
     // rest all
 
+    public function deleteBookmarkedProductV1(Request $req, $id)
+    {
+        if ($id == NULL || $id == '') {
+            return response()->json([
+                "response_message" => "Bookmark Id is Required",
+                "response_code" => 401,
+            ], 401);
+        }
+
+        $userId = $req->user()->id;
+
+        $delete = Bookmark::find($id);
+        if ($delete->delete()) {
+            $userId = $req->user()->id;
+            $data = Bookmark::where('userId', $userId)->get(['id as bookmarkId', 'productId']);
+            $bookmarkCount = count($data);
+
+            if ($bookmarkCount > 0) {
+                $bookmark = $data->map(function ($dt) {
+                    $product = Product::where('id', $dt->productId)->first();
+                    $images = DB::table('product_images')->where('productId', $dt->productId)->pluck('image');
+                    $urlImages = $images->map(function ($img) {
+                        $img = url('/') . '/' . $img;
+                        return $img;
+                    });
+                    $product->images = $urlImages;
+
+                    $reviews = DB::table('reviews')->where('productId', $dt->productId)->get(['id', 'userId', 'productId', 'rating', 'description']);
+                    if (isset($reviews)) {
+                        $review = $reviews->map(function ($rv) {
+                            $user = New_User::find($rv->userId);
+                            if ($user) {
+                                $rv->userName = $user->name;
+                                $rv->userImage = $user->image;
+                            } else {
+                                $rv->userName = null;
+                                $rv->userImage = null;
+                            }
+                            return $rv;
+                        });
+                    } else {
+                        $review = [];
+                    }
+                    $product->reviews = $reviews;
+                    $dt->addedProduct = $product;
+                    unset($dt->userId);
+                    unset($dt->productId);
+                    return $dt;
+                });
+                return response()->json([
+                    "response_message" => "Ok!",
+                    "response_code" => 200,
+                    "bookmarkProductCount" => $bookmarkCount,
+                    "data" => $bookmark
+                ], 200);
+            } else {
+                return response()->json([
+                    "response_message" => "No products in Bookmarks",
+                    "response_code" => 404,
+                ], 404);
+            }
+        } else {
+            return response()->json([
+                "response_message" => "Some error Occured",
+                "response_code" => 401,
+            ], 401);
+        }
+
+    }
     public function getNearestShops(Request $req)
     {
         $valid = Validator::make($req->all(), [
@@ -510,136 +639,6 @@ class ShopController extends Controller
             return $dt;
         });
         return $deals;
-    }
-
-    public function increaseCartProductCount(Request $req)
-    {
-        $valid = Validator::make($req->all(), [
-            "cartId" => "Required|exists:carts,id",
-        ], [
-                "cartId.required" => "Provide cart Id",
-                "cartId.exists" => "No Products in Cart"
-            ]);
-
-        if ($valid->fails()) {
-            return response()->json([
-                "response_message" => $valid->errors()->first(),
-                "response_code" => 401,
-            ], 401);
-        }
-
-        $increment = Cart::where('id', $req->cartId)->increment('quantity', 1);
-        if ($increment) {
-
-            $userId = $req->user()->id;
-            $data = Cart::where('userId', $userId)->get(['id as cartId', 'productId', 'userId', 'quantity']);
-            $cartProductCount = count($data);
-
-            $cart = $data->map(function ($dt) {
-                $product = Product::where('id', $dt->productId)->first();
-                $images = DB::table('product_images')->where('productId', $dt->productId)->pluck('image');
-                $urlImages = $images->map(function ($img) {
-                    $img = url('/') . '/' . $img;
-                    return $img;
-                });
-                $product->images = $urlImages;
-
-                $reviews = DB::table('reviews')->where('productId', $dt->productId)->get(['id', 'userId', 'productId', 'rating', 'description']);
-                if (isset($reviews)) {
-                    $review = $reviews->map(function ($rv) {
-                        $user = New_User::find($rv->userId);
-                        if ($user) {
-                            $rv->userName = $user->name;
-                            $rv->userImage = $user->image;
-                        } else {
-                            $rv->userName = null;
-                            $rv->userImage = null;
-                        }
-                        return $rv;
-                    });
-                } else {
-                    $review = [];
-                }
-                $product->reviews = $reviews;
-                $dt->addedProduct = $product;
-                unset($dt->userId);
-                unset($dt->productId);
-                return $dt;
-            });
-
-            return response()->json([
-                "response_message" => "Ok!",
-                "response_code" => 200,
-                "cartProductCount" => $cartProductCount,
-                "data" => $cart
-            ]);
-        }
-
-    }
-
-    public function decreaseCartProductCount(Request $req)
-    {
-        $valid = Validator::make($req->all(), [
-            "cartId" => "Required|exists:carts,id",
-        ], [
-                "cartId.required" => "Provide cart Id",
-                "cartId.exists" => "No Products in Cart"
-            ]);
-
-        if ($valid->fails()) {
-            return response()->json([
-                "response_message" => $valid->errors()->first(),
-                "response_code" => 401,
-            ], 401);
-        }
-
-        $decrement = Cart::where('id', $req->cartId)->decrement('quantity', 1);
-        if ($decrement) {
-
-            $userId = $req->user()->id;
-            $data = Cart::where('userId', $userId)->get(['id as cartId', 'productId', 'userId', 'quantity']);
-            $cartProductCount = count($data);
-
-            $cart = $data->map(function ($dt) {
-                $product = Product::where('id', $dt->productId)->first();
-                $images = DB::table('product_images')->where('productId', $dt->productId)->pluck('image');
-                $urlImages = $images->map(function ($img) {
-                    $img = url('/') . '/' . $img;
-                    return $img;
-                });
-                $product->images = $urlImages;
-
-                $reviews = DB::table('reviews')->where('productId', $dt->productId)->get(['id', 'userId', 'productId', 'rating', 'description']);
-                if (isset($reviews)) {
-                    $review = $reviews->map(function ($rv) {
-                        $user = New_User::find($rv->userId);
-                        if ($user) {
-                            $rv->userName = $user->name;
-                            $rv->userImage = $user->image;
-                        } else {
-                            $rv->userName = null;
-                            $rv->userImage = null;
-                        }
-                        return $rv;
-                    });
-                } else {
-                    $review = [];
-                }
-                $product->reviews = $reviews;
-                $dt->addedProduct = $product;
-                unset($dt->userId);
-                unset($dt->productId);
-                return $dt;
-            });
-
-            return response()->json([
-                "response_message" => "Ok!",
-                "response_code" => 200,
-                "cartProductCount" => $cartProductCount,
-                "data" => $cart
-            ]);
-        }
-
     }
 
     public function getProductsByCategory(Request $req)
