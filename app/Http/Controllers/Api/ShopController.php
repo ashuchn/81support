@@ -64,8 +64,6 @@ class ShopController extends Controller
         ]);
     }
 
-
-
     public function getNearestShops(Request $req)
     {
         $valid = Validator::make($req->all(), [
@@ -99,6 +97,7 @@ class ShopController extends Controller
 
 
     }
+
     public function getCategories()
     {
 
@@ -118,7 +117,6 @@ class ShopController extends Controller
             "data" => $dt
         ], 200);
     }
-
 
     public function addProductToCart(Request $req)
     {
@@ -163,7 +161,6 @@ class ShopController extends Controller
             ], 401);
         }
     }
-
 
     public function removeProductFromCart($id, Request $req)
     {
@@ -494,7 +491,6 @@ class ShopController extends Controller
         }
     }
 
-
     public function getDeals(Request $req)
     {
         $valid = Validator::make($req->all(), [
@@ -519,7 +515,6 @@ class ShopController extends Controller
         });
         return $deals;
     }
-
 
     public function increaseCartProductCount(Request $req)
     {
@@ -702,5 +697,4 @@ class ShopController extends Controller
             "data" => $products
         ], 200);
     }
-
 }
