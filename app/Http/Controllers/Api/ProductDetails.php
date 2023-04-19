@@ -113,7 +113,7 @@ class ProductDetails extends Controller
         $data->avgRating = $avgRating;
 
         // Images
-        $images = DB::table('product_images')->where('productId', $data->id)->pluck('image');
+        $images = DB::table('product_images')->where('productId', $data->id)->where('color', $current_color['color'])->pluck('image');
         if (isset($images)) {
             $img = $images->map(function ($im) {
                 return url('/') . '/' . $im;
