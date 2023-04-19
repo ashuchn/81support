@@ -206,6 +206,48 @@ class ShopController extends Controller
 
     }
 
+    public function getCart(Request $req)
+    {
+        $userId = $req->user()->id;
+        $data = Cart::where('userId', $userId)->get(['id as cartId', 'productId', 'userId', 'quantity']);
+        $cartProductCount = count($data);
+
+        if ($cartProductCount > 0) {
+            $cart = $data->map(function ($dt) {
+                $product = Product::where('id', $dt->productId)->first();
+                
+                $images = DB::table('product_images')->where('productId', $dt->productId)->pluck('image');
+                $urlImages = $images->map(function ($img) {
+                    $img = url('/') . '/' . $img;
+                    return $img;
+                });
+                $product->images = $urlImages;
+
+                $dt->addedProduct = [
+                    'id' => $product->id,
+                    'productName' => $product->productName,
+                    'price' => $product->price,
+                    'description' => $product->description,
+                    'images' => $urlImages,
+                ];
+
+                unset($dt->userId);
+                unset($dt->productId);
+                return $dt;
+            });
+            return response()->json([
+                "response_message" => "Ok!",
+                "response_code" => 200,
+                "cartProductCount" => count($cart),
+                "data" => $cart->all()
+            ], 200);
+        } else {
+            return response()->json([
+                "response_message" => "No products in Cart",
+                "response_code" => 404,
+            ], 404);
+        }
+    }
 
     // rest all
 
@@ -441,44 +483,6 @@ class ShopController extends Controller
         ], 200);
 
 
-    }
-
-    public function getCart(Request $req)
-    {
-        $userId = $req->user()->id;
-        $data = Cart::where('userId', $userId)->get(['id as cartId', 'productId', 'userId', 'quantity']);
-        $cartProductCount = count($data);
-
-        if ($cartProductCount > 0) {
-            $cart = $data->map(function ($dt) {
-                $product = Product::where('id', $dt->productId)->first();
-                $images = DB::table('product_images')->where('productId', $dt->productId)->pluck('image');
-                $urlImages = $images->map(function ($img) {
-                    $img = url('/') . '/' . $img;
-                    return $img;
-                });
-                $product->images = $urlImages;
-                
-                $dt->addedProduct = $product;
-                unset($dt->userId);
-                unset($dt->productId);
-                return $dt;
-                unset($dt->userId);
-                unset($dt->productId);
-                return $dt;
-            });
-            return response()->json([
-                "response_message" => "Ok!",
-                "response_code" => 200,
-                "cartProductCount" => count($cart),
-                "data" => $cart->all()
-            ], 200);
-        } else {
-            return response()->json([
-                "response_message" => "No products in Cart",
-                "response_code" => 404,
-            ], 404);
-        }
     }
 
     public function getDeals(Request $req)
