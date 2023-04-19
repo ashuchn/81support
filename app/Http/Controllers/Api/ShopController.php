@@ -73,25 +73,27 @@ class ShopController extends Controller
         if ($bookmarkCount > 0) {
             $bookmark = $data->map(function ($dt) {
                 $product = Product::where('id', $dt->productId)->first();
-                
-                $images = DB::table('product_images')->where('productId', $dt->productId)->where('color', $dt->color)->pluck('image'); 
+
+                $images = DB::table('product_images')->where('productId', $dt->id)->pluck('image');
                 $urlImages = $images->map(function ($img) {
                     $img = url('/') . '/' . $img;
                     return $img;
                 });
+                $dt->images = $urlImages;
 
                 $dt->addedProduct = [
                     'id' => $product->id,
                     'productName' => $product->productName,
                     'price' => $product->price,
                     'description' => $product->description,
-                    'images' => $urlImages,
+                    'images' => $dt->images,
                 ];
+
                 unset($dt->userId);
                 unset($dt->productId);
                 return $dt;
             });
-            
+
             return response()->json([
                 "response_message" => "Ok!",
                 "response_code" => 200,
