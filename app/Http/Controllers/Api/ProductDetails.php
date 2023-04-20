@@ -114,7 +114,8 @@ class ProductDetails extends Controller
         } else {
             $avgRating = 0;
         }
-        $data->avgRating = $avgRating;
+        //  float 
+        $data->avgRating = number_format( (float) $avgRating, 1, '.', '');
 
         // Images
         $images = DB::table('product_images')->where('productId', $data->id)->where('color', $current_color['color'])->pluck('image');
