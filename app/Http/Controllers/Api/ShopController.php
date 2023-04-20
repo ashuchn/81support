@@ -40,23 +40,12 @@ class ShopController extends Controller
         // $data = Product::all();
         $data = Product::where('rc_id', $req->shopId)->paginate(10)->through(function ($dt) {
 
-            // $name = Riding_Charter_User::find($dt->rc_id)->pluck('name');
-            // $dt->shopName = isset($name) ? $name[0] : '';
-
             $images = DB::table('product_images')->where('productId', $dt->id)->pluck('image');
             $urlImages = $images->map(function ($img) {
                 $img = url('/') . '/' . $img;
                 return $img;
             });
             $dt->images = $urlImages;
-
-            // return $dt = [
-            //     'id' => $dt->id,
-            //     'productName' => $dt->productName,
-            //     'productDescription' => $dt->productDescription,
-            //     'productPrice' => $dt->productPrice,
-            //     'productImage' => $dt->images,
-            // ];
 
             return $dt->addedProduct = [
                 'id' => $dt->id,
