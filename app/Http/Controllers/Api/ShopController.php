@@ -329,6 +329,20 @@ class ShopController extends Controller
             ], 401);
         }
 
+        $cart = Cart::where('id', $req->cartId)->first();
+        $size = $cart->size;
+        $color = $cart->color;
+        $productId = $cart->productId;
+        $qty = $cart->quantity;
+        $available_quantity = ProductSizeQuantity::where('product_id', $productId)->where('color', $color)->where('size', $size)->first()->quantity;
+
+        if ($available_quantity <=  $qty) {
+            return response()->json([
+                "response_message" => "Quantity not available",
+                "response_code" => 401,
+            ], 401);
+        }
+
         $increment = Cart::where('id', $req->cartId)->increment('quantity', 1);
         if ($increment) {
 
@@ -390,19 +404,6 @@ class ShopController extends Controller
         if ($valid->fails()) {
             return response()->json([
                 "response_message" => $valid->errors()->first(),
-                "response_code" => 401,
-            ], 401);
-        }
-
-        $cart = Cart::where('id', $req->cartId)->first();
-        $size = $cart->size;
-        $color = $cart->color;
-        $productId = $cart->productId;
-        $available_quantity = ProductSizeQuantity::where('product_id', $productId)->where('color', $color)->where('size', $size)->first()->quantity;
-
-        if ($available_quantity <= $cart->quantity) {
-            return response()->json([
-                "response_message" => "Quantity not available",
                 "response_code" => 401,
             ], 401);
         }
