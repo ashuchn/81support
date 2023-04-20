@@ -50,12 +50,20 @@ class ShopController extends Controller
             });
             $dt->images = $urlImages;
 
-            return $dt = [
+            // return $dt = [
+            //     'id' => $dt->id,
+            //     'productName' => $dt->productName,
+            //     'productDescription' => $dt->productDescription,
+            //     'productPrice' => $dt->productPrice,
+            //     'productImage' => $dt->images,
+            // ];
+
+            return $dt->addedProduct = [
                 'id' => $dt->id,
                 'productName' => $dt->productName,
-                'productDescription' => $dt->productDescription,
-                'productPrice' => $dt->productPrice,
-                'productImage' => $dt->images,
+                'price' => $dt->price,
+                'description' => $dt->description,
+                'images' => $urlImages,
             ];
         });
 
