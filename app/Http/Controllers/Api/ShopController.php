@@ -400,7 +400,7 @@ class ShopController extends Controller
         $productId = $cart->productId;
         $available_quantity = ProductSizeQuantity::where('product_id', $productId)->where('color', $color)->where('size', $size)->first()->quantity;
 
-        if ($available_quantity < $cart->quantity) {
+        if ($available_quantity <= $cart->quantity) {
             return response()->json([
                 "response_message" => "Quantity not available",
                 "response_code" => 401,
