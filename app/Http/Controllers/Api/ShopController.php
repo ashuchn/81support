@@ -67,6 +67,8 @@ class ShopController extends Controller
         ]);
     }
 
+    // Bookmark
+
     public function getBookmarks(Request $req)
     {
         $userId = $req->user()->id;
@@ -111,110 +113,6 @@ class ShopController extends Controller
         }
     }
 
-    public function deleteBookmarkedProduct(Request $req, $id)
-    {
-        if ($id == NULL || $id == '') {
-            return response()->json([
-                "response_message" => "Bookmark Id is Required",
-                "response_code" => 401,
-            ], 401);
-        }
-
-        $userId = $req->user()->id;
-        $bookmark = Bookmark::find($id);
-
-        if ($bookmark == NULL) {
-            return response()->json([
-                "response_message" => "No Product Found",
-                "response_code" => 404,
-            ], 404);
-        } else {
-            $bookmark->delete();
-            $remaining = Bookmark::where('userId', $userId)->get();
-            return response()->json([
-                "response_message" => "Product Deleted from Bookmarks",
-                "response_code" => 200,
-                "data" => $remaining,
-            ], 200);
-        }
-    }
-
-    public function getCart(Request $req)
-    {
-        $userId = $req->user()->id;
-        $data = Cart::where('userId', $userId)->get(['id as cartId', 'productId', 'userId', 'quantity']);
-        $cartProductCount = count($data);
-
-        if ($cartProductCount > 0) {
-            $cart = $data->map(function ($dt) {
-                $product = Product::where('id', $dt->productId)->first();
-
-                $images = DB::table('product_images')->where('productId', $dt->productId)->pluck('image');
-                $urlImages = $images->map(function ($img) {
-                    $img = url('/') . '/' . $img;
-                    return $img;
-                });
-                $product->images = $urlImages;
-
-                $dt->addedProduct = [
-                    'id' => $product->id,
-                    'productName' => $product->productName,
-                    'price' => $product->price,
-                    'description' => $product->description,
-                    'images' => $urlImages,
-                ];
-
-                unset($dt->userId);
-                unset($dt->productId);
-                return $dt;
-            });
-            return response()->json([
-                "response_message" => "Ok!",
-                "response_code" => 200,
-                "cartProductCount" => count($cart),
-                "data" => $cart->all()
-            ], 200);
-        } else {
-            return response()->json([
-                "response_message" => "No products in Cart",
-                "response_code" => 404,
-            ], 404);
-        }
-    }
-
-    public function removeProductFromCart($id, Request $req)
-    {
-        if ($id == NULL || $id == '') {
-            return response()->json([
-                "response_message" => "Product Id is Required",
-                "response_code" => 401,
-            ], 401);
-        }
-        $product_id = $id;
-        $userId = $req->user()->id;
-        $product = Cart::where('userId', $userId)->where('productId', $product_id)->first();
-        if ($product == NULL || $product == '') {
-            return response()->json([
-                "response_message" => "Product not found in cart",
-                "response_code" => 404,
-            ], 401);
-        }
-        $product->delete();
-        $cart = Cart::where('userId', $userId)->get();
-        if ($cart == NULL || $cart == '') {
-            return response()->json([
-                "response_message" => "Cart is Empty",
-                "response_code" => 200,
-                "data" => $cart
-            ], 200);
-        }
-        return response()->json([
-            "response_message" => "Product removed from cart",
-            "response_code" => 200,
-            "data" => $cart
-        ], 200);
-    }
-
     public function bookmarkProduct(Request $req)
     {
         $valid = Validator::make($req->all(), [
@@ -257,6 +155,79 @@ class ShopController extends Controller
         }
 
 
+    }
+
+    public function deleteBookmarkedProduct(Request $req, $id)
+    {
+        if ($id == NULL || $id == '') {
+            return response()->json([
+                "response_message" => "Bookmark Id is Required",
+                "response_code" => 401,
+            ], 401);
+        }
+
+        $userId = $req->user()->id;
+        $bookmark = Bookmark::find($id);
+
+        if ($bookmark == NULL) {
+            return response()->json([
+                "response_message" => "No Product Found",
+                "response_code" => 404,
+            ], 404);
+        } else {
+            $bookmark->delete();
+            $remaining = Bookmark::where('userId', $userId)->get();
+            return response()->json([
+                "response_message" => "Product Deleted from Bookmarks",
+                "response_code" => 200,
+                "data" => $remaining,
+            ], 200);
+        }
+    }
+
+    // Cart
+
+    public function getCart(Request $req)
+    {
+        $userId = $req->user()->id;
+        $data = Cart::where('userId', $userId)->get(['id as cartId', 'productId', 'userId', 'quantity']);
+        $cartProductCount = count($data);
+
+        if ($cartProductCount > 0) {
+            $cart = $data->map(function ($dt) {
+                $product = Product::where('id', $dt->productId)->first();
+
+                $images = DB::table('product_images')->where('productId', $dt->productId)->pluck('image');
+                $urlImages = $images->map(function ($img) {
+                    $img = url('/') . '/' . $img;
+                    return $img;
+                });
+                $product->images = $urlImages;
+
+                $dt->addedProduct = [
+                    'id' => $product->id,
+                    'productName' => $product->productName,
+                    'price' => $product->price,
+                    'description' => $product->description,
+                    'images' => $urlImages,
+                ];
+
+                unset($dt->userId);
+                unset($dt->productId);
+                return $dt;
+            });
+            return response()->json([
+                "response_message" => "Ok!",
+                "response_code" => 200,
+                "cartProductCount" => count($cart),
+                "data" => $cart->all()
+            ], 200);
+        } else {
+            return response()->json([
+                "response_message" => "No products in Cart",
+                "response_code" => 404,
+            ], 404);
+        }
     }
 
     public function addProductToCart(Request $req)
@@ -468,6 +439,39 @@ class ShopController extends Controller
 
     }
 
+    public function removeProductFromCart($id, Request $req)
+    {
+        if ($id == NULL || $id == '') {
+            return response()->json([
+                "response_message" => "Product Id is Required",
+                "response_code" => 401,
+            ], 401);
+        }
+        $product_id = $id;
+        $userId = $req->user()->id;
+        $product = Cart::where('userId', $userId)->where('productId', $product_id)->first();
+        if ($product == NULL || $product == '') {
+            return response()->json([
+                "response_message" => "Product not found in cart",
+                "response_code" => 404,
+            ], 401);
+        }
+        $product->delete();
+        $cart = Cart::where('userId', $userId)->get();
+        if ($cart == NULL || $cart == '') {
+            return response()->json([
+                "response_message" => "Cart is Empty",
+                "response_code" => 200,
+                "data" => $cart
+            ], 200);
+        }
+        return response()->json([
+            "response_message" => "Product removed from cart",
+            "response_code" => 200,
+            "data" => $cart
+        ], 200);
+    }
+
     // rest all
 
     public function deleteBookmarkedProductV1(Request $req, $id)
@@ -539,6 +543,7 @@ class ShopController extends Controller
         }
 
     }
+    
     public function getNearestShops(Request $req)
     {
         $valid = Validator::make($req->all(), [
