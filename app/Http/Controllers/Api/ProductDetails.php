@@ -153,8 +153,6 @@ class ProductDetails extends Controller
         return response()->json([
             "response_message" => "Ok!",
             "response_code" => 200,
-            "available_colors" => $colors,
-            "current_color" => $current_color,
             "product" => $data,
         ], 200);
     }
