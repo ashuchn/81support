@@ -47,9 +47,14 @@ class ShopController extends Controller
             });
             $dt->images = $urlImages;
 
+            $category = Category::where('id', $dt->categoryId)->first();
+            $color = DB::table('product_colors')->where('productId', $dt->id)->pluck('color');
+
             return $dt->addedProduct = [
                 'id' => $dt->id,
                 'productName' => $dt->productName,
+                'category' => $category->categoryName,
+                'color' => $color,
                 'price' => $dt->price,
                 'description' => $dt->description,
                 'images' => $urlImages,
