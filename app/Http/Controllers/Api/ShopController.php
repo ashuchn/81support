@@ -344,6 +344,50 @@ class ShopController extends Controller
 
     }
 
+    public function bookmarkProduct(Request $req)
+    {
+        $valid = Validator::make($req->all(), [
+            "productId" => "Required",
+        ], [
+                "productId.required" => "Provide Product Id",
+            ]);
+
+        if ($valid->fails()) {
+            return response()->json([
+                "response_message" => $valid->errors()->first(),
+                "response_code" => 401,
+            ], 401);
+        }
+
+        $userId = $req->user()->id;
+        $exists = Bookmark::where('userId', $userId)->where('productId', $req->productId)->exists();
+
+        if (!$exists) {
+            $insert = new Bookmark;
+            $insert->productId = $req->productId;
+            $insert->userId = $userId;
+            $insert->color = $req->color;
+            if ($insert->save()) {
+                return response()->json([
+                    "response_message" => "Bookmark Added",
+                    "response_code" => 200,
+                ], 200);
+            } else {
+                return response()->json([
+                    "response_message" => "Some error Occured",
+                    "response_code" => 401,
+                ], 401);
+            }
+        } else {
+            return response()->json([
+                "response_message" => "Already Bookmarked",
+                "response_code" => 401,
+            ], 401);
+        }
+
+
+    }
+
     // rest all
 
     public function deleteBookmarkedProductV1(Request $req, $id)
@@ -511,49 +555,6 @@ class ShopController extends Controller
                 "response_code" => 401,
             ], 401);
         }
-    }
-
-    public function bookmarkProduct(Request $req)
-    {
-        $valid = Validator::make($req->all(), [
-            "productId" => "Required",
-        ], [
-                "productId.required" => "Provide Product Id",
-            ]);
-
-        if ($valid->fails()) {
-            return response()->json([
-                "response_message" => $valid->errors()->first(),
-                "response_code" => 401,
-            ], 401);
-        }
-
-        $userId = $req->user()->id;
-        $exists = Bookmark::where('userId', $userId)->where('productId', $req->productId)->exists();
-
-        if (!$exists) {
-            $insert = new Bookmark;
-            $insert->productId = $req->productId;
-            $insert->userId = $userId;
-            if ($insert->save()) {
-                return response()->json([
-                    "response_message" => "Bookmark Added",
-                    "response_code" => 200,
-                ], 200);
-            } else {
-                return response()->json([
-                    "response_message" => "Some error Occured",
-                    "response_code" => 401,
-                ], 401);
-            }
-        } else {
-            return response()->json([
-                "response_message" => "Already Bookmarked",
-                "response_code" => 401,
-            ], 401);
-        }
-
-
     }
 
     public function getProduct(Request $req)
