@@ -215,6 +215,104 @@ class ShopController extends Controller
         ], 200);
     }
 
+    public function bookmarkProduct(Request $req)
+    {
+        $valid = Validator::make($req->all(), [
+            "productId" => "Required",
+        ], [
+                "productId.required" => "Provide Product Id",
+            ]);
+
+        if ($valid->fails()) {
+            return response()->json([
+                "response_message" => $valid->errors()->first(),
+                "response_code" => 401,
+            ], 401);
+        }
+
+        $userId = $req->user()->id;
+        $exists = Bookmark::where('userId', $userId)->where('productId', $req->productId)->exists();
+
+        if (!$exists) {
+            $insert = new Bookmark;
+            $insert->productId = $req->productId;
+            $insert->userId = $userId;
+            $insert->color = $req->color;
+            if ($insert->save()) {
+                return response()->json([
+                    "response_message" => "Bookmark Added",
+                    "response_code" => 200,
+                ], 200);
+            } else {
+                return response()->json([
+                    "response_message" => "Some error Occured",
+                    "response_code" => 401,
+                ], 401);
+            }
+        } else {
+            return response()->json([
+                "response_message" => "Already Bookmarked",
+                "response_code" => 401,
+            ], 401);
+        }
+
+
+    }
+
+    public function addProductToCart(Request $req)
+    {
+        $valid = Validator::make($req->all(), [
+            "productId" => "Required",
+            "quantity" => "Required"
+        ], [
+                "productId.required" => "Provide Product Id",
+                "quantity.required" => "Provide Product Quantity",
+            ]);
+
+        if ($valid->fails()) {
+            return response()->json([
+                "response_message" => $valid->errors()->first(),
+                "response_code" => 401,
+            ], 401);
+        }
+
+        $userId = $req->user()->id;
+        $exists = Cart::where('userId', $userId)->where('productId', $req->productId)->exists();
+
+        $available_quantity = ProductSizeQuantity::where('product_id', $req->productId)->where('color', $req->color)->where('size', $req->size)->first()->quantity;
+        if ($available_quantity < $req->quantity) {
+            return response()->json([
+                "response_message" => "Quantity not available",
+                "response_code" => 401,
+            ], 401);
+        }
+
+        if (!$exists) {
+            $insert = new Cart;
+            $insert->productId = $req->productId;
+            $insert->userId = $userId;
+            $insert->quantity = $req->quantity;
+            $insert->color = $req->color;
+            $insert->size = $req->size;
+            if ($insert->save()) {
+                return response()->json([
+                    "response_message" => "Added to Cart!",
+                    "response_code" => 200,
+                ], 200);
+            } else {
+                return response()->json([
+                    "response_message" => "Some error Occured",
+                    "response_code" => 401,
+                ], 401);
+            }
+        } else {
+            return response()->json([
+                "response_message" => "Already Added to cart",
+                "response_code" => 401,
+            ], 401);
+        }
+    }
+
     public function increaseCartProductCount(Request $req)
     {
         $valid = Validator::make($req->all(), [
@@ -296,6 +394,19 @@ class ShopController extends Controller
             ], 401);
         }
 
+        $cart = Cart::where('id', $req->cartId)->first();
+        $size = $cart->size;
+        $color = $cart->color;
+        $productId = $cart->productId;
+        $available_quantity = ProductSizeQuantity::where('product_id', $productId)->where('color', $color)->where('size', $size)->first()->quantity;
+
+        if ($available_quantity < $cart->quantity) {
+            return response()->json([
+                "response_message" => "Quantity not available",
+                "response_code" => 401,
+            ], 401);
+        }
+
         $decrement = Cart::where('id', $req->cartId)->decrement('quantity', 1);
         if ($decrement) {
 
@@ -343,104 +454,6 @@ class ShopController extends Controller
             ]);
         }
 
-    }
-
-    public function bookmarkProduct(Request $req)
-    {
-        $valid = Validator::make($req->all(), [
-            "productId" => "Required",
-        ], [
-                "productId.required" => "Provide Product Id",
-            ]);
-
-        if ($valid->fails()) {
-            return response()->json([
-                "response_message" => $valid->errors()->first(),
-                "response_code" => 401,
-            ], 401);
-        }
-
-        $userId = $req->user()->id;
-        $exists = Bookmark::where('userId', $userId)->where('productId', $req->productId)->exists();
-
-        if (!$exists) {
-            $insert = new Bookmark;
-            $insert->productId = $req->productId;
-            $insert->userId = $userId;
-            $insert->color = $req->color;
-            if ($insert->save()) {
-                return response()->json([
-                    "response_message" => "Bookmark Added",
-                    "response_code" => 200,
-                ], 200);
-            } else {
-                return response()->json([
-                    "response_message" => "Some error Occured",
-                    "response_code" => 401,
-                ], 401);
-            }
-        } else {
-            return response()->json([
-                "response_message" => "Already Bookmarked",
-                "response_code" => 401,
-            ], 401);
-        }
-
-
-    }
-
-    public function addProductToCart(Request $req)
-    {
-        $valid = Validator::make($req->all(), [
-            "productId" => "Required",
-            "quantity" => "Required"
-        ], [
-                "productId.required" => "Provide Product Id",
-                "quantity.required" => "Provide Product Quantity",
-            ]);
-
-        if ($valid->fails()) {
-            return response()->json([
-                "response_message" => $valid->errors()->first(),
-                "response_code" => 401,
-            ], 401);
-        }
-
-        $userId = $req->user()->id;
-        $exists = Cart::where('userId', $userId)->where('productId', $req->productId)->exists();
-
-        $available_quantity = ProductSizeQuantity::where('product_id', $req->productId)->where('color', $req->color)->where('size', $req->size)->first()->quantity;
-        if($available_quantity < $req->quantity){
-            return response()->json([
-                "response_message" => "Quantity not available",
-                "response_code" => 401,
-            ], 401);
-        }
-
-        if (!$exists) {
-            $insert = new Cart;
-            $insert->productId = $req->productId;
-            $insert->userId = $userId;
-            $insert->quantity = $req->quantity;
-            $insert->color = $req->color;
-            $insert->size = $req->size;
-            if ($insert->save()) {
-                return response()->json([
-                    "response_message" => "Added to Cart!",
-                    "response_code" => 200,
-                ], 200);
-            } else {
-                return response()->json([
-                    "response_message" => "Some error Occured",
-                    "response_code" => 401,
-                ], 401);
-            }
-        } else {
-            return response()->json([
-                "response_message" => "Already Added to cart",
-                "response_code" => 401,
-            ], 401);
-        }
     }
 
     // rest all
