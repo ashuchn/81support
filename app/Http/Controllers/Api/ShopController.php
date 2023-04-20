@@ -408,6 +408,13 @@ class ShopController extends Controller
             ], 401);
         }
 
+        $cart = Cart::where('id', $req->cartId)->first();
+        $qty = $cart->quantity;
+
+        if ($qty == 1) {
+            $cart->delete();
+        }
+
         $decrement = Cart::where('id', $req->cartId)->decrement('quantity', 1);
         if ($decrement) {
 
