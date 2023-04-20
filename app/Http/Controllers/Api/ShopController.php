@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Riding_Charter_User;
 use App\Models\Product;
+use App\Models\ProductSizeQuantity;
 use App\Models\Category;
 use App\Models\Cart;
 use App\Models\Bookmark;
@@ -408,7 +409,7 @@ class ShopController extends Controller
         $userId = $req->user()->id;
         $exists = Cart::where('userId', $userId)->where('productId', $req->productId)->exists();
 
-        $available_quantity = Product::where('id', $req->productId)->first()->quantity;
+        $available_quantity = ProductSizeQuantity::where('productId', $req->productId)->where('color', $req->color)->where('size', $req->size)->first()->quantity;
         if($available_quantity < $req->quantity){
             return response()->json([
                 "response_message" => "Quantity not available",
