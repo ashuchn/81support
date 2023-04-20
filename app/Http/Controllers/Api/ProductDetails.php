@@ -101,7 +101,7 @@ class ProductDetails extends Controller
         $curr_color = (isset($req->color)) ? $req->color : ((isset($psq->color)) ? $psq->color : null);
         $current_color['color'] = (isset($curr_color)) ? DB::table('colors')->where('id', $curr_color)->first()->id : null;
         $current_color['hex'] = (isset($curr_color)) ? DB::table('colors')->where('id', $curr_color)->first()->hex : null;
-        $curr_color['name'] = (isset($curr_color)) ? DB::table('colors')->where('id', $curr_color)->first()->name : null;
+        $current_color['name'] = (isset($curr_color)) ? DB::table('colors')->where('id', $curr_color)->first()->name : null;
 
         $data->available_colors = $colors;
         $data->current_color = $current_color;
