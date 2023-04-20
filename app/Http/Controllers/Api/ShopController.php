@@ -409,7 +409,7 @@ class ShopController extends Controller
         $userId = $req->user()->id;
         $exists = Cart::where('userId', $userId)->where('productId', $req->productId)->exists();
 
-        $available_quantity = ProductSizeQuantity::where('productId', $req->productId)->where('color', $req->color)->where('size', $req->size)->first()->quantity;
+        $available_quantity = ProductSizeQuantity::where('product_id', $req->productId)->where('color', $req->color)->where('size', $req->size)->first()->quantity;
         if($available_quantity < $req->quantity){
             return response()->json([
                 "response_message" => "Quantity not available",
