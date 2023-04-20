@@ -423,6 +423,7 @@ class ShopController extends Controller
             $insert->userId = $userId;
             $insert->quantity = $req->quantity;
             $insert->color = $req->color;
+            $insert->size = $req->size;
             if ($insert->save()) {
                 return response()->json([
                     "response_message" => "Added to Cart!",
