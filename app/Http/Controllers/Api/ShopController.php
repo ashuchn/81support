@@ -37,7 +37,7 @@ class ShopController extends Controller
                 "response_code" => 401,
             ], 401);
         }
-        
+
         $data = Product::where('rc_id', $req->shopId)->paginate(10)->through(function ($dt) {
 
             $images = DB::table('product_images')->where('productId', $dt->id)->pluck('image');
@@ -122,12 +122,12 @@ class ShopController extends Controller
         $userId = $req->user()->id;
         $bookmark = Bookmark::find($id);
 
-        if($bookmark == NULL){
+        if ($bookmark == NULL) {
             return response()->json([
                 "response_message" => "No Product Found",
                 "response_code" => 404,
             ], 404);
-        }else{
+        } else {
             $bookmark->delete();
             $remaining = Bookmark::where('userId', $userId)->get();
             return response()->json([
@@ -388,6 +388,51 @@ class ShopController extends Controller
 
     }
 
+    public function addProductToCart(Request $req)
+    {
+        $valid = Validator::make($req->all(), [
+            "productId" => "Required",
+            "quantity" => "Required"
+        ], [
+                "productId.required" => "Provide Product Id",
+                "quantity.required" => "Provide Product Quantity",
+            ]);
+
+        if ($valid->fails()) {
+            return response()->json([
+                "response_message" => $valid->errors()->first(),
+                "response_code" => 401,
+            ], 401);
+        }
+
+        $userId = $req->user()->id;
+        $exists = Cart::where('userId', $userId)->where('productId', $req->productId)->exists();
+
+        if (!$exists) {
+            $insert = new Cart;
+            $insert->productId = $req->productId;
+            $insert->userId = $userId;
+            $insert->quantity = $req->quantity;
+            $insert->color = $req->color;
+            if ($insert->save()) {
+                return response()->json([
+                    "response_message" => "Added to Cart!",
+                    "response_code" => 200,
+                ], 200);
+            } else {
+                return response()->json([
+                    "response_message" => "Some error Occured",
+                    "response_code" => 401,
+                ], 401);
+            }
+        } else {
+            return response()->json([
+                "response_message" => "Already Added to cart",
+                "response_code" => 401,
+            ], 401);
+        }
+    }
+
     // rest all
 
     public function deleteBookmarkedProductV1(Request $req, $id)
@@ -511,50 +556,6 @@ class ShopController extends Controller
             "response_code" => 200,
             "data" => $dt
         ], 200);
-    }
-
-    public function addProductToCart(Request $req)
-    {
-        $valid = Validator::make($req->all(), [
-            "productId" => "Required",
-            "quantity" => "Required"
-        ], [
-                "productId.required" => "Provide Product Id",
-                "quantity.required" => "Provide Product Quantity",
-            ]);
-
-        if ($valid->fails()) {
-            return response()->json([
-                "response_message" => $valid->errors()->first(),
-                "response_code" => 401,
-            ], 401);
-        }
-
-        $userId = $req->user()->id;
-        $exists = Cart::where('userId', $userId)->where('productId', $req->productId)->exists();
-
-        if (!$exists) {
-            $insert = new Cart;
-            $insert->productId = $req->productId;
-            $insert->userId = $userId;
-            $insert->quantity = $req->quantity;
-            if ($insert->save()) {
-                return response()->json([
-                    "response_message" => "Added to Cart!",
-                    "response_code" => 200,
-                ], 200);
-            } else {
-                return response()->json([
-                    "response_message" => "Some error Occured",
-                    "response_code" => 401,
-                ], 401);
-            }
-        } else {
-            return response()->json([
-                "response_message" => "Already Added to cart",
-                "response_code" => 401,
-            ], 401);
-        }
     }
 
     public function getProduct(Request $req)
