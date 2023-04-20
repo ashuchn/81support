@@ -413,6 +413,10 @@ class ShopController extends Controller
 
         if ($qty == 1) {
             $cart->delete();
+            return response()->json([
+                "response_message" => "Product deleted from cart",
+                "response_code" => 200,
+            ], 200);
         }
 
         $decrement = Cart::where('id', $req->cartId)->decrement('quantity', 1);
