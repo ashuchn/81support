@@ -408,6 +408,14 @@ class ShopController extends Controller
         $userId = $req->user()->id;
         $exists = Cart::where('userId', $userId)->where('productId', $req->productId)->exists();
 
+        $available_quantity = Product::where('id', $req->productId)->first()->quantity;
+        if($available_quantity < $req->quantity){
+            return response()->json([
+                "response_message" => "Quantity not available",
+                "response_code" => 401,
+            ], 401);
+        }
+
         if (!$exists) {
             $insert = new Cart;
             $insert->productId = $req->productId;
