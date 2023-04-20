@@ -37,7 +37,7 @@ class ShopController extends Controller
                 "response_code" => 401,
             ], 401);
         }
-        // $data = Product::all();
+        
         $data = Product::where('rc_id', $req->shopId)->paginate(10)->through(function ($dt) {
 
             $images = DB::table('product_images')->where('productId', $dt->id)->pluck('image');
