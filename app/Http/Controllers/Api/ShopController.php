@@ -157,8 +157,10 @@ class ShopController extends Controller
 
     }
 
-    public function deleteBookmarkedProduct(Request $req, $id)
+    public function deleteBookmarkedProduct(Request $req)
     {
+        $id = $req->bookmarkId;
+
         if ($id == NULL || $id == '') {
             return response()->json([
                 "response_message" => "Bookmark Id is Required",
@@ -439,8 +441,9 @@ class ShopController extends Controller
 
     }
 
-    public function removeProductFromCart($id, Request $req)
+    public function removeProductFromCart(Request $req)
     {
+        $id = $req->productId;
         if ($id == NULL || $id == '') {
             return response()->json([
                 "response_message" => "Product Id is Required",
