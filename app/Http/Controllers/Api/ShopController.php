@@ -43,30 +43,9 @@ class ShopController extends Controller
         $price = $req->price;
         $searchText = $req->searchText;
 
-        if($category != null || $price != null || $searchText != null){
-            $data = Product::where('rc_id', $req->shopId)->orwhere('categoryId', $category)->orwhere('price', '<=', $price)->orwhere('productName', 'LIKE', "%{$searchText}%")->paginate(10)->through(function ($dt) {
+        $query = Product::where('rc_id', $req->shopId)->query();
 
-                $images = DB::table('product_images')->where('productId', $dt->id)->pluck('image');
-                $urlImages = $images->map(function ($img) {
-                    $img = url('/') . '/' . $img;
-                    return $img;
-                });
-                $dt->images = $urlImages;
-
-                $category = Category::where('id', $dt->categoryId)->first();
-
-                return $dt->addedProduct = [
-                    'id' => $dt->id,
-                    'productName' => $dt->productName,
-                    'category' => $category->categoryName,
-                    'price' => $dt->price,
-                    'description' => $dt->description,
-                    'images' => $urlImages,
-                ];
-            });
-        }
-
-        $data = Product::where('rc_id', $req->shopId)->paginate(10)->through(function ($dt) {
+        $data = $query->paginate(10)->through(function ($dt) {
 
             $images = DB::table('product_images')->where('productId', $dt->id)->pluck('image');
             $urlImages = $images->map(function ($img) {
@@ -336,7 +315,7 @@ class ShopController extends Controller
         $qty = $cart->quantity;
         $available_quantity = ProductSizeQuantity::where('product_id', $productId)->where('color', $color)->where('size', $size)->first()->quantity;
 
-        if ($available_quantity <=  $qty) {
+        if ($available_quantity <= $qty) {
             return response()->json([
                 "response_message" => "Quantity not available",
                 "response_code" => 401,
@@ -573,7 +552,7 @@ class ShopController extends Controller
         }
 
     }
-    
+
     public function getNearestShops(Request $req)
     {
         $valid = Validator::make($req->all(), [
