@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\New_User;
+use Mail;
 use Validator;
 use Hash;
 use DB;
@@ -125,7 +126,7 @@ class AuthController extends Controller {
         }
 
         $otp = mt_rand(1000,9999);
-        \Mail::to($req->email)->send(new \App\Mail\sendOtp($otp));
+        Mail::to($req->email)->send(new \App\Mail\sendOtp($otp));
         $update = New_User::where('email', $req->email)->update([ "otp" => $otp ]);
         return response()->json( [
             "response_message" => "otp sent!",
