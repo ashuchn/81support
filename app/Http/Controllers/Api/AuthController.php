@@ -9,7 +9,6 @@ use Mail;
 use Validator;
 use Hash;
 use DB;
-use Illuminate\Support\Facades\Mail;
 
 class AuthController extends Controller {
 
