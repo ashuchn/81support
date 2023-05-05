@@ -17,6 +17,10 @@ class NotificationController extends Controller
         $categories = [
             'new' => "new",
             'hot' => "hot",
+            'order' => "order",
+            'offer' => "offer",
+            'event' => "event",
+            'return' => "return",
         ];
         $params = [
             'data' => $data,
